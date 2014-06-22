@@ -2,10 +2,8 @@
   AWind.h - Arduino window library support for Color TFT LCD Boards
   Copyright (C)2014 Andrei Degtiarev. All right reserved
   
-
-  You can always find the latest version of the library at 
+  You can find the latest version of the library at 
   https://github.com/AndreiDegtiarev/AWind
-
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the CC BY-NC-SA 3.0 license.

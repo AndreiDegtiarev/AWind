@@ -76,7 +76,6 @@
     <ClInclude Include="..\..\DataBuffer.h" />
     <ClInclude Include="..\..\DataBufferBase.h" />
     <ClInclude Include="..\..\DC.h" />
-    <ClInclude Include="..\..\LinkedList.h" />
     <ClInclude Include="..\..\Log.h" />
     <ClInclude Include="..\..\SensorWindow.h" />
     <ClInclude Include="..\..\TextBox.h" />

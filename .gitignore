@@ -18,12 +18,13 @@ $RECYCLE.BIN/
 *.vcxproj
 *.sln
 *.sdf
+*.opensdf
 *.suo
 *.filters
 *.user
 *.xml
 *.ipch
-.Charts.vsarduino.h
+*.vsarduino.h
 # =========================
 # Operating System Files
 # =========================

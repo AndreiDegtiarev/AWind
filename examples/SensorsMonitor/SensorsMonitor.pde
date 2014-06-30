@@ -67,8 +67,8 @@ void setup()
 
 	sensors.Add(new DHTSensor(DHTSensor::Temperature,temperature_port+2,15,40,1000*10));   //0 in tempr
 	sensors.Add(new DHTSensor(DHTSensor::Humidity,((DHTSensor *)sensors[0]),0,80,1000*10)); //1            in humidity
-	sensors.Add(new DHTSensor(DHTSensor::Temperature,temperature_port-2,15,40,1000*10));   //2 alkuven temp
-	sensors.Add(new DHTSensor(DHTSensor::Humidity,((DHTSensor *)sensors[2]),0,80,1000*10)); //3            alkuven humidity
+	sensors.Add(new DHTSensor(DHTSensor::Temperature,temperature_port-2,15,40,1000*10));   //2 alkoven temp
+	sensors.Add(new DHTSensor(DHTSensor::Humidity,((DHTSensor *)sensors[2]),0,80,1000*10)); //3            alkoven humidity
 	sensors.Add(new BMP085Sensor(1000*10));                                           //4  pressure
 
 	sensors.Add(new DS18B20Sensor(temperature_port,1,-5,16,1000*10));                      //5
@@ -83,8 +83,8 @@ void setup()
 	int third_row = second_row + SensorWindow::SmallWindowHeight+SensorWindow::Margin/2;
 	vis_sensors.Add(new SensorWindow(F("Pressure"),sensors[4],second_column,second_row,SensorWindow::Small));
 	vis_sensors.Add(new SensorWindow(F("Fridge"),sensors[5],third_column,second_row,SensorWindow::Small));
-	vis_sensors.Add(new SensorWindow(F("Bed Temp"),sensors[2],second_column,third_row,SensorWindow::Small));
-	vis_sensors.Add(new SensorWindow(F("Bed Humid"),sensors[3],third_column,third_row,SensorWindow::Small));
+	vis_sensors.Add(new SensorWindow(F("Alk Temp"),sensors[2],second_column,third_row,SensorWindow::Small));
+	vis_sensors.Add(new SensorWindow(F("Alk Humid"),sensors[3],third_column,third_row,SensorWindow::Small));
 	for(int i=0;i<vis_sensors.Count();i++)
 		windowsManager.MainWindow()->AddChild(vis_sensors[i]);
 	windowsManager.MainWindow()->AddChild(new ViewModusWindow(vis_sensors,windowsManager.MainWindow()->Width()-100,windowsManager.MainWindow()->Height()-45,95,35));

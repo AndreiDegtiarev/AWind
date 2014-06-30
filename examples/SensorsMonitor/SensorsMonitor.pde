@@ -65,14 +65,14 @@ void setup()
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
 
-	sensors.Add(new DHTSensor(DHTSensor::Temperature,temperature_port+2,-50,50,1000*10));   //0 in tempr
-	sensors.Add(new DHTSensor(DHTSensor::Humidity,((DHTSensor *)sensors[0]),0,100,1000*10)); //1            in humidity
-	sensors.Add(new DHTSensor(DHTSensor::Temperature,temperature_port-2,-50,50,1000*10));   //2 alkuven temp
-	sensors.Add(new DHTSensor(DHTSensor::Humidity,((DHTSensor *)sensors[2]),0,100,1000*10)); //3            alkuven humidity
-	sensors.Add(new BMP085Sensor(500,2000,1000*10));                                           //4  pressure
+	sensors.Add(new DHTSensor(DHTSensor::Temperature,temperature_port+2,15,40,1000*10));   //0 in tempr
+	sensors.Add(new DHTSensor(DHTSensor::Humidity,((DHTSensor *)sensors[0]),0,80,1000*10)); //1            in humidity
+	sensors.Add(new DHTSensor(DHTSensor::Temperature,temperature_port-2,15,40,1000*10));   //2 alkuven temp
+	sensors.Add(new DHTSensor(DHTSensor::Humidity,((DHTSensor *)sensors[2]),0,80,1000*10)); //3            alkuven humidity
+	sensors.Add(new BMP085Sensor(1000*10));                                           //4  pressure
 
-	sensors.Add(new DS18B20Sensor(temperature_port,1,-50,50,1000*10));                      //5
-	sensors.Add(new DS18B20Sensor(temperature_port,2,-50,50,1000*10));                      //6
+	sensors.Add(new DS18B20Sensor(temperature_port,1,-5,16,1000*10));                      //5
+	sensors.Add(new DS18B20Sensor(temperature_port,2,-30,40,1000*10));                      //6
 
 	int second_column = SensorWindow::BigWindowWidth+SensorWindow::Margin/2;
 	int second_row=SensorWindow::BigWindowHeight+SensorWindow::Margin/2;

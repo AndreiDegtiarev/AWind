@@ -40,10 +40,19 @@ public:
 	static const int SmallWindowHeight=BigWindowHeight/2-Margin/4;
 	static const int BigWindowWidth=135+Margin*2;
 	static const int SmallWindowWidth=BigWindowWidth/2-Margin/4;
+
+	static const ARGB DaylightBkColor=Color::CadetBlue;
+    static const ARGB NightBkColor=Color::Black;
 	enum WindowSize
 	{
 		Big,
 		Small
+	};
+	enum BkColorMode
+	{
+		Day,
+		Night,
+		Alarm
 	};
 protected:
 	enum VisMode
@@ -59,6 +68,7 @@ protected:
 	TextBoxString *_textChartAxis;
 	ChartWindow *_chartWnd;
 	VisMode _mode;
+	BkColorMode _bkColorMode;
 public:
 	SensorWindow(const __FlashStringHelper * name,OneWireSensor *sensor,int left,int top,WindowSize size=Big):TouchWindow(name,left,top,size == Big?BigWindowWidth:SmallWindowWidth,size == Big?BigWindowHeight:SmallWindowHeight)
 	{
@@ -66,7 +76,8 @@ public:
 		_mode = Text;
 		int offset = size == Big?Margin:Margin/2;
 		int first_font_height=size == Big?70:30;
-		SetBackColor(Color::CadetBlue);
+		_bkColorMode=Day;
+		SetBackColor(DaylightBkColor);
 
 		_textValue = new TextBoxNumber(offset,offset,Width(),1,_sensor->GetPrecission(),Color::White);
 		_textValue->SetFont(size == Big?ArialNumFontPlus:BigFont);
@@ -85,6 +96,18 @@ public:
 		this->AddChild(_chartWnd);
 		this->AddChild(_textChartAxis);
 
+	}
+	void SetBkColorMode(BkColorMode mode)
+	{
+		_bkColorMode=mode;
+		UpdateBkColor();
+	}
+	void UpdateBkColor()
+	{
+		if(_bkColorMode == Day)
+			SetBackColor(DaylightBkColor);
+		else
+			SetBackColor(NightBkColor);
 	}
 	virtual bool OnTouch(int x, int y)
 	{
@@ -124,15 +147,22 @@ public:
 	}
 	virtual void OnUpdate()
 	{
-		_textValue->SetResultStatus(_sensor->IsOK());
+		_textValue->SetStatus(_sensor->Status()!=Error);
 		float value=_sensor->GetData();
 		//Log::Number("OnUpdate:",value,true);
-		if(_sensor->IsOK() && _textValue->GetNumber()!=value)
+		if(_sensor->Status()!=Error)
+		{
+			if(_sensor->Status() == ApplicationAlarm)
+				SetBackColor(Color::Red);
+			else
+				UpdateBkColor();
+		}
+		if(_sensor->Status()!=Error && _textValue->GetNumber()!=value)
 		{
 			_textValue->SetNumber(value);
 			_mode == Text?Invalidate():_chartWnd->Invalidate();
 		}
-		else if(_sensor->IsOK() && _mode == ChartSec)
+		else if(_sensor->Status()!=Error && _mode == ChartSec)
 			_chartWnd->Invalidate();
 	}
 };

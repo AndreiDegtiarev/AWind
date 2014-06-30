@@ -30,38 +30,36 @@ class ViewModusWindow : public TextBoxString
 		Day,
 		Night
 	};
-	Modus _modus;
+	SensorWindow::BkColorMode _modus;
 	LinkedList<SensorWindow> _vis_sensors;
 public:
 	ViewModusWindow(LinkedList<SensorWindow> vis_sensors,int left,int top,int width,int height):TextBoxString(left,top,width,height,F("Night"),Color::White)
 	{
 		SetBackColor(Color::CadetBlue);
-		_modus=Day;
+		_modus=SensorWindow::Day;
 		_vis_sensors=vis_sensors;
 		SetFont(BigFont);
 		SetTextOffset(15,10);
 	}
 	virtual bool OnTouch(int x, int y)
 	{
-		Color color;
+		SensorWindow::BkColorMode mode=SensorWindow::Day;
 		if(_modus==Day)
 		{
-			color=Color::Black;
-			_modus=Night;
+			_modus=SensorWindow::Night;
 			SetText(F("Day"));
 		}
 		else
 		{
-			color=Color::CadetBlue;
-			_modus=Day;	
+			_modus=SensorWindow::Day;	
 			SetText(F("Night"));
 		}
 		for(int i=0;i<_vis_sensors.Count();i++)
 		{
-			_vis_sensors[i]->SetBackColor(color);
+			_vis_sensors[i]->SetBkColorMode(_modus);
 			_vis_sensors[i]->Invalidate();
 		}
-		SetBackColor(color);
+		SetBackColor(_modus==SensorWindow::Day?SensorWindow::DaylightBkColor:SensorWindow::NightBkColor);
 		Invalidate();
 		return true;
 	}

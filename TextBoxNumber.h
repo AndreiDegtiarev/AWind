@@ -40,7 +40,7 @@ public:
 	{
 		return _number;
 	}
-	void SetResultStatus(bool isOK)
+	void SetStatus(bool isOK)
 	{
 		_isOK = isOK;
 	}

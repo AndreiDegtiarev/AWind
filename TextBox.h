@@ -35,7 +35,10 @@ public:
 	{
 		_font = font;
 	}
-
+	void SetColor(Color textColor)
+	{
+		_textColor=textColor;
+	}
 	virtual void OnDraw(DC *dc)
 	{
 		Window::OnDraw(dc);

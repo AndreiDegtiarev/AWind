@@ -19,12 +19,24 @@
 
 #define DEMO_SENSORS
 
+#ifndef DEMO_SENSORS
+#include <OneWire.h>
+#include <SPI.h>
+#include <RF24.h>
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BMP085_U.h>
+#include <DHT.h>
+#endif
+
 #include <UTFT.h>
 #include <UTouch.h>
 
-#include "OneWireSensor.h"
+#include "ISensor.h"
+#include "SensorManager.h"
 #include "DS18B20Sensor.h"
-#include "DHTSensor.h"
+#include "DHTTemperatureSensor.h"
+#include "DHTHumiditySensor.h"
 #include "BMP085Sensor.h"
 #include "MeasurementNode.h"
 
@@ -39,7 +51,7 @@ extern uint8_t ArialNumFontPlus[];
 
 int temperature_port=10;
 
-LinkedList<OneWireSensor> sensors;
+LinkedList<SensorManager> sensors;
 MeasurementNode measurementNode(sensors,loopTouch); //,num_sensors);
 
 WindowsManager windowsManager(&myGLCD,loopTouch);
@@ -65,14 +77,22 @@ void setup()
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
 
-	sensors.Add(new DHTSensor(DHTSensor::Temperature,temperature_port+2,15,40,1000*10));   //0 in tempr
-	sensors.Add(new DHTSensor(DHTSensor::Humidity,((DHTSensor *)sensors[0]),0,80,1000*10)); //1            in humidity
-	sensors.Add(new DHTSensor(DHTSensor::Temperature,temperature_port-2,15,40,1000*10));   //2 alkoven temp
-	sensors.Add(new DHTSensor(DHTSensor::Humidity,((DHTSensor *)sensors[2]),0,80,1000*10)); //3            alkoven humidity
-	sensors.Add(new BMP085Sensor(1000*10));                                           //4  pressure
+	DHTTemperatureSensor *inTempr=new DHTTemperatureSensor(temperature_port+2);
+	DHTHumiditySensor *inHumidity=new DHTHumiditySensor(inTempr);
+	DHTTemperatureSensor *alkovenTempr=new DHTTemperatureSensor(temperature_port-2);
+	DHTHumiditySensor *alkovenHumidity=new DHTHumiditySensor(alkovenTempr);
+	BMP085Sensor *pressure=new BMP085Sensor();
+	DS18B20Sensor *fridgeTempr=new DS18B20Sensor(temperature_port,1);
+	DS18B20Sensor *outTempr=new DS18B20Sensor(temperature_port,2);
 
-	sensors.Add(new DS18B20Sensor(temperature_port,1,-5,16,1000*10));                      //5
-	sensors.Add(new DS18B20Sensor(temperature_port,2,-30,40,1000*10));                      //6
+	sensors.Add(new SensorManager(inTempr,15,40,1000*10));
+	sensors.Add(new SensorManager(inHumidity,0,80,1000*10));
+	sensors.Add(new SensorManager(alkovenTempr,15,40,1000*10));
+	sensors.Add(new SensorManager(alkovenHumidity,0,80,1000*10));
+	sensors.Add(new SensorManager(pressure,700,1300,1000*10));
+	sensors.Add(new SensorManager(fridgeTempr,-5,16,1000*10));
+	sensors.Add(new SensorManager(outTempr,-30,40,1000*10));
+
 
 	int second_column = SensorWindow::BigWindowWidth+SensorWindow::Margin/2;
 	int second_row=SensorWindow::BigWindowHeight+SensorWindow::Margin/2;

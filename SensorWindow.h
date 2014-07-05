@@ -20,7 +20,7 @@
 */
 #pragma once
 
-#include "OneWireSensor.h"
+#include "SensorManager.h"
 #include "TextBoxNumber.h"
 #include "TextBoxString.h"
 #include "ChartWindow.h"
@@ -62,7 +62,7 @@ protected:
 		ChartMin,
 		ChartHowr
 	};
-	OneWireSensor *_sensor;
+	SensorManager *_sensorManager;
 	TextBoxNumber *_textValue;
 	TextBoxString *_textName;
 	TextBoxString *_textChartAxis;
@@ -70,16 +70,16 @@ protected:
 	VisMode _mode;
 	BkColorMode _bkColorMode;
 public:
-	SensorWindow(const __FlashStringHelper * name,OneWireSensor *sensor,int left,int top,WindowSize size=Big):TouchWindow(name,left,top,size == Big?BigWindowWidth:SmallWindowWidth,size == Big?BigWindowHeight:SmallWindowHeight)
+	SensorWindow(const __FlashStringHelper * name,SensorManager *sensorManager,int left,int top,WindowSize size=Big):TouchWindow(name,left,top,size == Big?BigWindowWidth:SmallWindowWidth,size == Big?BigWindowHeight:SmallWindowHeight)
 	{
-		_sensor = sensor;
+		_sensorManager = sensorManager;
 		_mode = Text;
 		int offset = size == Big?Margin:Margin/2;
 		int first_font_height=size == Big?70:30;
 		_bkColorMode=Day;
 		SetBackColor(DaylightBkColor);
 
-		_textValue = new TextBoxNumber(offset,offset,Width(),1,_sensor->GetPrecission(),Color::White);
+		_textValue = new TextBoxNumber(offset,offset,Width(),1,_sensorManager->Sensor()->Precission(),Color::White);
 		_textValue->SetFont(size == Big?ArialNumFontPlus:BigFont);
 		//_textValue->SetBackColor(Color::CadetBlue);
 
@@ -125,19 +125,19 @@ public:
 			_textName->SetVisible(false);
 			_chartWnd->SetVisible(true);
 			_textChartAxis->SetVisible(true);
-			_chartWnd->SetBuffer(_sensor->SecBuffer());
+			_chartWnd->SetBuffer(_sensorManager->SecBuffer());
 			_textChartAxis->SetText(F("sec"));
 			_mode=ChartSec;
 		}
 		else if(_mode == ChartSec)
 		{
-			_chartWnd->SetBuffer(_sensor->MinBuffer());
+			_chartWnd->SetBuffer(_sensorManager->MinBuffer());
 			_textChartAxis->SetText(F("min"));
 			_mode=ChartMin;
 		}
 		else if(_mode == ChartMin)
 		{
-			_chartWnd->SetBuffer(_sensor->HowrsBuffer());
+			_chartWnd->SetBuffer(_sensorManager->HowrsBuffer());
 			_textChartAxis->SetText(F("howr"));
 			_mode=ChartHowr;
 		}
@@ -147,22 +147,22 @@ public:
 	}
 	virtual void OnUpdate()
 	{
-		_textValue->SetStatus(_sensor->Status()!=Error);
-		float value=_sensor->GetData();
+		_textValue->SetStatus(_sensorManager->Status()!=Error);
+		float value=_sensorManager->GetData();
 		//Log::Number("OnUpdate:",value,true);
-		if(_sensor->Status()!=Error)
+		if(_sensorManager->Status()!=Error)
 		{
-			if(_sensor->Status() == ApplicationAlarm)
+			if(_sensorManager->Status() == ApplicationAlarm)
 				SetBackColor(Color::Red);
 			else
 				UpdateBkColor();
 		}
-		if(_sensor->Status()!=Error && _textValue->GetNumber()!=value)
+		if(_sensorManager->Status()!=Error && _textValue->GetNumber()!=value)
 		{
 			_textValue->SetNumber(value);
 			_mode == Text?Invalidate():_chartWnd->Invalidate();
 		}
-		else if(_sensor->Status()!=Error && _mode == ChartSec)
+		else if(_sensorManager->Status()!=Error && _mode == ChartSec)
 			_chartWnd->Invalidate();
 	}
 };

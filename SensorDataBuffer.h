@@ -25,7 +25,7 @@
 #include "DataBufferBase.h"
 
 
-template <class Tx,class Ty> class DataBuffer : public DataBufferBase
+template <class Tx,class Ty> class SensorDataBuffer : public DataBufferBase
 {
 	int _size;
 	Tx   *_data_x;

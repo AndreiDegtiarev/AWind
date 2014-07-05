@@ -22,6 +22,7 @@
 
 #include "Window.h"
 #include "DataBufferBase.h"
+#include "TextBoxNumber.h"
 
 
 class ChartDC

@@ -85,13 +85,13 @@ void setup()
 	DS18B20Sensor *fridgeTempr=new DS18B20Sensor(temperature_port,1);
 	DS18B20Sensor *outTempr=new DS18B20Sensor(temperature_port,2);
 
-	sensors.Add(new SensorManager(inTempr,15,40,1000*10));
-	sensors.Add(new SensorManager(inHumidity,0,80,1000*10));
-	sensors.Add(new SensorManager(alkovenTempr,15,40,1000*10));
-	sensors.Add(new SensorManager(alkovenHumidity,0,80,1000*10));
-	sensors.Add(new SensorManager(pressure,700,1300,1000*10));
-	sensors.Add(new SensorManager(fridgeTempr,-5,16,1000*10));
-	sensors.Add(new SensorManager(outTempr,-30,40,1000*10));
+	sensors.Add(new SensorManager(inTempr,15,40,1000*10)); //0
+	sensors.Add(new SensorManager(inHumidity,0,80,1000*10)); //1
+	sensors.Add(new SensorManager(alkovenTempr,15,40,1000*10)); //2
+	sensors.Add(new SensorManager(alkovenHumidity,0,80,1000*10));//3
+	sensors.Add(new SensorManager(pressure,700,1300,1000*10));//4
+	sensors.Add(new SensorManager(fridgeTempr,-5,16,1000*10));//5
+	sensors.Add(new SensorManager(outTempr,-30,40,1000*10));//6
 
 
 	int second_column = SensorWindow::BigWindowWidth+SensorWindow::Margin/2;

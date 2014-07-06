@@ -22,10 +22,10 @@
 
 #include <math.h>
 #include "Log.h"
-#include "DataBufferBase.h"
+#include "IDataBuffer.h"
 
 
-template <class Ty> class TimeSerieBuffer : public DataBufferBase
+template <class Ty> class TimeSerieBuffer : public IDataBuffer
 {
 	int _size;
 	Ty   *_data_y;

@@ -30,9 +30,9 @@ class WindowsManager
 	KeyboardWindow _keyboardWindow;
 	void  (*_fncCritical)();
 public:
-	WindowsManager(UTFT *lcd,void (*fncCritical)()):_dc(lcd),
-													_mainWindow(F("Main"),0,0,319,239),
-													_keyboardWindow(0,100,329,200)
+	WindowsManager(UTFT *lcd,void (*fncCritical)(),int width,int height):_dc(lcd),
+													_mainWindow(F("Main"),0,0,width-1,height-1),
+													_keyboardWindow(0,100,width-1,200)
 	{
 		_fncCritical=fncCritical;
 		_keyboardWindow.SetVisible(false);

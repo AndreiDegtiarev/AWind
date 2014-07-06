@@ -160,11 +160,11 @@ public:
 			float min_y;
 			float max_y;
 			_buffer->MinMax(min_x,max_x,min_y,max_y);
-			Log::Number("size: ",size);
+			/*Log::Number("size: ",size);
 			Log::Number(" min_x: ",min_x);
 			Log::Number(" max_x: ",max_x);
 			Log::Number(" min_y: ",min_y);
-			Log::Number(" max_y: ",max_y,true);
+			Log::Number(" max_y: ",max_y,true);*/
 			if(_last_buffer_change!=_buffer->X(size-1))
 			{
 				_dc.setScalingX(Width(),min_x,max_x,Left());

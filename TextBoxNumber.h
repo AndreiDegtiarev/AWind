@@ -25,12 +25,27 @@ class TextBoxNumber : public TextBox
 	float _number;
 	bool _isOK;
 	int _precission;
+	bool _isReadOnly;
 public:
 	TextBoxNumber(int left,int top,int width,int height,int precission,Color textColor,bool isOK=false):TextBox(left,top,width,height,textColor)
 	{
 		_precission=precission;
 		_isOK=isOK;
 		_number=0;
+		_isReadOnly=true;
+		_type=F("TextBoxNumber");
+	}
+	int Precission()
+	{
+		return _precission;
+	}
+	void SetIsReadOnly(bool isReadOnly)
+	{
+		_isReadOnly=isReadOnly;
+	}
+	bool IsReadOnly()
+	{
+		return _isReadOnly;
 	}
 	void SetNumber(float number)
 	{
@@ -49,7 +64,7 @@ public:
 		TextBox::OnDraw(dc);
 		if(_isOK)
 		{
-			dc->DrawNumber(_number,_precission,0,0);
+			dc->DrawNumber(_number,_precission,_offset_x,_offset_y);
 		}
 		//else
 			//lcd->print("...",1,_left,_top);

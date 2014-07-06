@@ -21,24 +21,37 @@
 #pragma once
 
 #include "Window.h"
+#include "KeyboardWindow.h"
 
 class WindowsManager
 {
-	Window _mainWindow;
 	DC _dc;
+	Window _mainWindow;
+	KeyboardWindow _keyboardWindow;
 	void  (*_fncCritical)();
 public:
-	WindowsManager(UTFT *lcd,void (*fncCritical)()):_mainWindow(F("Main"),0,0,319,239),_dc(lcd)
+	WindowsManager(UTFT *lcd,void (*fncCritical)()):_dc(lcd),
+													_mainWindow(F("Main"),0,0,319,239),
+													_keyboardWindow(0,100,329,200)
 	{
 		_fncCritical=fncCritical;
+		_keyboardWindow.SetVisible(false);
+		_mainWindow.AddChild(&_keyboardWindow);
 	}
 	void loop()
 	{
-		redraw(MainWindow(),false);
+		if(_keyboardWindow.IsVisible())
+			redraw(&_keyboardWindow,false);
+		else
+			redraw(MainWindow(),false);
 	}
 	Window *MainWindow()
 	{
 		return &_mainWindow;
+	}
+	KeyboardWindow * Keyboard()
+	{
+		return &_keyboardWindow;
 	}
 	DC *GetDC()
 	{

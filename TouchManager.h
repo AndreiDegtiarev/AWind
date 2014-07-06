@@ -32,7 +32,7 @@ public :
 		_windowsManager=windowsManager;
 		_touch = touch;
 	}
-	Window *HitTest(Window *window,int x,int y)
+	/*Window *HitTest(Window *window,int x,int y)
 	{
 		//Serial.print("Test wnd touch: ");
 		//Serial.println(window->Name());
@@ -49,7 +49,7 @@ public :
 			return window;
 		}
 		return NULL;
-	}
+	}*/
 	void loop()
 	{
 		if (_touch->dataAvailable())
@@ -61,7 +61,7 @@ public :
 			_touch->read();
 			int x=_touch->getX();
 			int y=_touch->getY();
-			Window *window=HitTest(_windowsManager->MainWindow(),x,y);
+			Window *window=_windowsManager->MainWindow()->HitTest(x,y);
 			TouchWindow *touchWnd=NULL;
 			if(window!=NULL)
 			{
@@ -86,23 +86,28 @@ public :
 			Serial.print(F("Touch begins: ("));
 			Serial.print(x);Serial.print(",");Serial.print(y);
 			Serial.print(F(") "));
-			Serial.print(window->Name());
-			Serial.println();
+			Serial.println(window->Name());
 			while (_touch->dataAvailable())
 			{
 				_touch->read();
 			}
 			Serial.print("Touch: ");
-//			Window *window=HitTest(_windowsManager->MainWindow(),x,y);
 			Serial.println(window->Name());
-			Window *crWindow=touchWnd;
-			while(crWindow!=NULL && ((crWindow->IsOfType(F("TouchWindow")) && !((TouchWindow *)crWindow)->OnTouch(x,y))||!crWindow->IsOfType(F("TouchWindow"))))
+			if(window->IsOfType(F("TextBoxNumber")) && !((TextBoxNumber *)window)->IsReadOnly())
 			{
-				crWindow=crWindow->Parent();	
+				_windowsManager->Keyboard()->BeginEdit((TextBoxNumber *)window);
+			}
+			else
+			{
+				Window *crWindow=touchWnd;
+				while(crWindow!=NULL && ((crWindow->IsOfType(F("TouchWindow")) && !((TouchWindow *)crWindow)->OnTouch(x,y))||!crWindow->IsOfType(F("TouchWindow"))))
+				{
+					crWindow=crWindow->Parent();	
+				}
+				if(crWindow !=NULL)
+					crWindow->Invalidate();
 			}
 			Serial.println("Touch finish");
-			if(crWindow !=NULL)
-				crWindow->Invalidate();
 		}
 	}
 };

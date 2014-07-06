@@ -24,6 +24,8 @@
 #include "WindowsManager.h"
 #include "TouchManager.h"
 
+#include "KeyboardWindow.h"
+
 #include "ChartWindow.h"
 
 #include "VoltmeterSensor.h"
@@ -38,8 +40,8 @@ TouchManager touchManager(&myTouch,&windowsManager);
 VoltmeterSensor *voltmeter;
 ChartWindow *chartWnd;
 
-const float time_length=0.001;
-const int buf_size=3000;
+const float time_length=0.0001;
+const int buf_size=1000;
 const int sample_ratio=(int)(1.0/(time_length/buf_size));
 
 void setup()
@@ -61,8 +63,15 @@ void setup()
 	Log::Number("Sample ratio:",sample_ratio,true);
 	Log::Number("ms:",(int)(1e6*1.0/sample_ratio),true);
 
-	chartWnd=new ChartWindow(0,0,windowsManager.MainWindow()->Width(),windowsManager.MainWindow()->Height());
+	chartWnd=new ChartWindow(0,0,windowsManager.MainWindow()->Width(),windowsManager.MainWindow()->Height()-50);
 	windowsManager.MainWindow()->AddChild(chartWnd);
+
+	//KeyboardWindow *keyboard=new KeyboardWindow(0,windowsManager.MainWindow()->Height()-100+10,windowsManager.MainWindow()->Width(),100);
+	//windowsManager.MainWindow()->AddChild(keyboard);
+
+	TextBoxNumber *txt=new TextBoxNumber(windowsManager.MainWindow()->Width()-100,windowsManager.MainWindow()->Height()-45,90,45,1,Color::CornflowerBlue,true);
+	txt->SetIsReadOnly(false);
+	windowsManager.MainWindow()->AddChild(txt);
 
 	delay(1000); 
 	Serial.println("End setup");

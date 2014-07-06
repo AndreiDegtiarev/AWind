@@ -34,7 +34,7 @@ template <class Tx,class Ty> class SensorDataBuffer : public DataBufferBase
 	float _factor_x;
 	float _factor_y;
 public:
-	DataBuffer(float factor_x,float factor_y,int size)
+	SensorDataBuffer(float factor_x,float factor_y,int size)
 	{
 		_factor_x=factor_x;
 		_factor_y=factor_y;

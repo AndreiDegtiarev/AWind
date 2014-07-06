@@ -86,6 +86,10 @@ public:
 	{
 		_lcd->print(_text,ToDC_X(x),ToDC_Y(y));
 	}
+	void DrawText(const char * _text,int x,int y)
+	{
+		_lcd->print(_text,ToDC_X(x),ToDC_Y(y));
+	}
 	void SetColor(Color color)
 	{
 		/*Serial.print(color.GetRed());Serial.print(" ");

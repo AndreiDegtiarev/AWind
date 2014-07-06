@@ -75,6 +75,25 @@ public:
 	{
 		return _type;
 	}
+	Window *HitTest(int x,int y)
+	{
+		//Log::Number("Test wnd touch x: ",x);
+		//Log::Number(" y : ",y,true);
+		//Serial.println(Name());
+		if(IsVisible()
+			&&x>=Left() && x<=Left()+Width()
+			&&y>=Top() && y<=Top()+Height())
+		{
+			for(int i=0;i<Children().Count();i++)
+			{
+				Window * retWnd=Children()[i]->HitTest(x-Left(),y-Top());
+				if(retWnd!=NULL)
+					return retWnd;
+			}
+			return this;
+		}
+		return NULL;
+	}
 	void Invalidate()
 	{
 		_isDirty=true;

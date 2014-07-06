@@ -24,12 +24,20 @@ class TextBox : public TouchWindow
 {
 	Color _textColor;
 	uint8_t *_font;
-
 protected:
+	int _offset_x;
+	int _offset_y;
 public:
 	TextBox(int left,int top,int width,int height,Color textColor):TouchWindow(F("text"),left,top,width,height),_textColor(textColor)
 	{
 		_font = NULL;
+		_offset_x=0;
+		_offset_y=0;
+	}
+	void SetTextOffset(int offset_x,int offset_y)
+	{
+		_offset_x=offset_x;
+		_offset_y=offset_y;
 	}
 	void SetFont(uint8_t *font)
 	{

@@ -22,29 +22,20 @@
 
 #include "TextBox.h"
 
-class TextBoxString : public TextBox
+template <class T> class TextBoxString : public TextBox
 {
-	const __FlashStringHelper * _text;
-	int _offset_x;
-	int _offset_y;
+	const T * _text;
 public:
-	TextBoxString(int left,int top,int width,int height,const __FlashStringHelper *text,Color textColor):TextBox(left,top,width,height,textColor)
+	TextBoxString(int left,int top,int width,int height,T *text,Color textColor):TextBox(left,top,width,height,textColor)
 	{
 		_text=text;
-		_offset_x=0;
-		_offset_y=0;
-	}
-	void SetTextOffset(int offset_x,int offset_y)
-	{
-		_offset_x=offset_x;
-		_offset_y=offset_y;
 	}
 	virtual void OnDraw(DC *dc)
 	{
 		TextBox::OnDraw(dc);
 		dc->DrawText(_text,_offset_x,_offset_y);
 	}
-	void SetText(const __FlashStringHelper *text)
+	void SetText(T *text)
 	{
 		_text=text;
 	}

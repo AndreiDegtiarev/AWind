@@ -32,7 +32,7 @@ class WindowsManager
 public:
 	WindowsManager(UTFT *lcd,void (*fncCritical)(),int width,int height):_dc(lcd),
 													_mainWindow(F("Main"),0,0,width-1,height-1),
-													_keyboardWindow(0,100,width-1,200)
+													_keyboardWindow(1,90)
 	{
 		_fncCritical=fncCritical;
 		_keyboardWindow.SetVisible(false);

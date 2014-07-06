@@ -35,16 +35,23 @@ UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
 extern uint8_t ArialNumFontPlus[];
 
-WindowsManager windowsManager(&myGLCD,loopTouch,320,240);
+const int display_width=320;
+const int display_height=240;
+
+WindowsManager windowsManager(&myGLCD,loopTouch,display_width,display_height);
 TouchManager touchManager(&myTouch,&windowsManager);
 VoltmeterSensor *voltmeter;
 ChartWindow *chartWnd;
+TextBoxNumber *txtTimeStep;
+TextBoxNumber *txtBufSize;
+TextBoxNumber *txtBuf;
 TextBoxNumber *txtMinV;
 TextBoxNumber *txtMaxV;
 
-const float time_length=0.0001;
-const int buf_size=1000;
-const int sample_ratio=(int)(1.0/(time_length/buf_size));
+int time_step_mus=100;
+const int reserved_buf_size=2000;
+int buf_size=500;
+//const int sample_ratio=(int)(1.0/(time_length/buf_size));
 
 void setup()
 {
@@ -61,36 +68,54 @@ void setup()
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
 
-	voltmeter=new VoltmeterSensor(A0,buf_size);
-	Log::Number("Sample ratio:",sample_ratio,true);
-	Log::Number("ms:",(int)(1e6*1.0/sample_ratio),true);
+	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,buf_size);
+	voltmeter->SetTimeStep(time_step_mus);
+	//Log::Number("Sample ratio:",voltmeter->SampleRatio(),true);
+	//Log::Number("ms:",(int)(1e6*1.0/sample_ratio),true);
 
 	float minV=0;
 	float maxV=4;
 
-	chartWnd=new ChartWindow(0,0,windowsManager.MainWindow()->Width(),windowsManager.MainWindow()->Height()-50);
+	int x=2;
+	int y=0;
+	int width=70;
+	int height=30;
+
+	TextBoxString<const __FlashStringHelper> *labelTimeSTep=new TextBoxString<const __FlashStringHelper>(x,y+10,width,height,F("Tstep us:"),Color::CornflowerBlue);
+	initTextBox(labelTimeSTep,true);
+	x+=width;
+	txtTimeStep=new TextBoxNumber(x,y,width,height,0,Color::CornflowerBlue,true);
+	txtTimeStep->SetNumber(time_step_mus);
+	initTextBox(txtTimeStep,false);
+	x+=width*1.2;
+	TextBoxString<const __FlashStringHelper> *labelBufsize=new TextBoxString<const __FlashStringHelper>(x,y+10,width,height,F("Buf. size:"),Color::CornflowerBlue);
+	initTextBox(labelBufsize,true);
+	x+=width*1.1;
+	txtBufSize=new TextBoxNumber(x,y,width,height,0,Color::CornflowerBlue,true);
+	initTextBox(txtBufSize,false);
+	txtBufSize->SetNumber(buf_size);
+	x=0;
+	y=txtBufSize->Top()+txtBufSize->Height()+1;
+	chartWnd=new ChartWindow(x,y,windowsManager.MainWindow()->Width(),display_height-y-height*1.2);
 	chartWnd->SetMinMaxY(minV,maxV);
 	windowsManager.MainWindow()->AddChild(chartWnd);
 	windowsManager.MainWindow()->SetBackColor(Color::Black);
-	int x=0;
-	int y=windowsManager.MainWindow()->Height()-40;
-	int width=80;
-	int height=30;
-	TextBoxString<const __FlashStringHelper> *labelMinV=new TextBoxString<const __FlashStringHelper>(x,y+5,width,height,F("Vmin:"),Color::CornflowerBlue);
+	y=chartWnd->Top()+chartWnd->Height()+3;
+
+	TextBoxString<const __FlashStringHelper> *labelMinV=new TextBoxString<const __FlashStringHelper>(x,y+10,width,height,F("Vmin/max:"),Color::CornflowerBlue);
 	x+=width;
-	txtMinV=new TextBoxNumber(x,y,width-15,height,1,Color::CornflowerBlue,true);
-	txtMinV->SetIsReadOnly(false);
+	txtMinV=new TextBoxNumber(x,y,width-10,height,1,Color::CornflowerBlue,true);
 	txtMinV->SetNumber(minV);
 	x+=width;
-	TextBoxString<const __FlashStringHelper> *labelMaxV=new TextBoxString<const __FlashStringHelper>(x,y+5,width,height,F("Vmax:"),Color::CornflowerBlue);
-	x+=width;
-	txtMaxV=new TextBoxNumber(x,y,width-15,height,1,Color::CornflowerBlue,true);
-	txtMaxV->SetIsReadOnly(false);
+	txtMaxV=new TextBoxNumber(x,y,width-10,height,1,Color::CornflowerBlue,true);
 	txtMaxV->SetNumber(maxV);
+	x+=width;
+
+
+
 
 	initTextBox(labelMinV,true);
 	initTextBox(txtMinV,false);
-	initTextBox(labelMaxV,true);
 	initTextBox(txtMaxV,false);
 
 	delay(1000); 
@@ -105,8 +130,11 @@ void initTextBox(TextBox *textBox,bool isLabel)
 		textBox->SetOnChanged(settingsChanged);
 		textBox->SetBorder(Color::CornflowerBlue);
 		textBox->SetTextOffset(0,7);
+		textBox->SetFont(BigFont);
+		((TextBoxNumber *)textBox)->SetIsReadOnly(false);
 	}
-	textBox->SetFont(BigFont);
+	else
+		textBox->SetFont(SmallFont);
 	textBox->SetColor(Color::CornflowerBlue);
 	textBox->SetBackColor(Color::Black);
 
@@ -118,6 +146,17 @@ void settingsChanged(TextBox *textBox)
 		chartWnd->SetMinMaxY(txtMinV->GetNumber(),txtMaxV->GetNumber());
 		chartWnd->Invalidate();
 	}
+	else if(textBox == txtTimeStep)
+	{
+		//Log::Number("Target time step:",txtTimeStep->GetNumber(),true);
+		voltmeter->SetTimeStep(txtTimeStep->GetNumber());
+		//Log::Number("Sample ratio:",voltmeter->SampleRatio(),true);
+	}
+	else if(textBox == txtBufSize)
+	{
+		voltmeter->Buffer()->SetSize(txtBufSize->GetNumber());
+		txtBufSize->SetNumber(voltmeter->Buffer()->Size());
+	}
 }
 void loopTouch()
 {
@@ -125,7 +164,7 @@ void loopTouch()
 }
 void loop()
 {
-	voltmeter->MeasureBuffer(sample_ratio);
+	voltmeter->MeasureBuffer();
 	chartWnd->SetBuffer(voltmeter->Buffer());
 	loopTouch();
 	windowsManager.loop();

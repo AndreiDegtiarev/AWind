@@ -64,8 +64,8 @@ protected:
 	};
 	SensorManager *_sensorManager;
 	TextBoxNumber *_textValue;
-	TextBoxString *_textName;
-	TextBoxString *_textChartAxis;
+	TextBoxString<const __FlashStringHelper> *_textName;
+	TextBoxString<const __FlashStringHelper> *_textChartAxis;
 	ChartWindow *_chartWnd;
 	VisMode _mode;
 	BkColorMode _bkColorMode;
@@ -83,11 +83,11 @@ public:
 		_textValue->SetFont(size == Big?ArialNumFontPlus:BigFont);
 		//_textValue->SetBackColor(Color::CadetBlue);
 
-		_textName = new TextBoxString(offset,first_font_height,Width(),1,name,Color::White);
+		_textName = new TextBoxString<const __FlashStringHelper>(offset,first_font_height,Width(),1,name,Color::White);
 		_textName->SetFont(size == Big?BigFont:SmallFont);
 
 		int chart_height=Height()-15;
-		_textChartAxis=new TextBoxString(Width()/2,chart_height,Width(),1,F(""),Color::White);
+		_textChartAxis=new TextBoxString<const __FlashStringHelper>(Width()/2,chart_height,Width(),1,F(""),Color::White);
 		_chartWnd = new ChartWindow(0,0,Width(),chart_height);
 		_chartWnd->SetVisible(false);
 

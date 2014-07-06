@@ -51,10 +51,14 @@ extern uint8_t ArialNumFontPlus[];
 
 int temperature_port=10;
 
+const int display_width=320;
+const int display_height=240;
+
+
 LinkedList<SensorManager> sensors;
 MeasurementNode measurementNode(sensors,loopTouch); //,num_sensors);
 
-WindowsManager windowsManager(&myGLCD,loopTouch);
+WindowsManager windowsManager(&myGLCD,loopTouch,display_width,display_height);
 TouchManager touchManager(&myTouch,&windowsManager);
 
 LinkedList<SensorWindow> vis_sensors;

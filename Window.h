@@ -77,9 +77,9 @@ public:
 	}
 	Window *HitTest(int x,int y)
 	{
-		//Log::Number("Test wnd touch x: ",x);
-		//Log::Number(" y : ",y,true);
-		//Serial.println(Name());
+		/*Log::Number("Test wnd touch x: ",x);
+		Log::Number(" y : ",y,true);
+		Serial.println(Name());*/
 		if(IsVisible()
 			&&x>=Left() && x<=Left()+Width()
 			&&y>=Top() && y<=Top()+Height())

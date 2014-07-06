@@ -49,9 +49,12 @@ public:
 	}
 	void SetNumber(float number)
 	{
-		_number = number;
-		if(_callback_OnChanged!=NULL)
-			_callback_OnChanged(this);
+		if(_number!=number)
+		{
+			_number = number;
+			if(_callback_OnChanged!=NULL)
+				_callback_OnChanged(this);
+		}
 	}
 	float GetNumber()
 	{

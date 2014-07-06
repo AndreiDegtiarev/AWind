@@ -23,7 +23,7 @@
 class Log
 {
 public:
-	static void Number(const char *prefix,unsigned int value,bool newLine=false)
+	static void Number(const __FlashStringHelper *prefix,unsigned int value,bool newLine=false)
 	{
 		if(prefix!=NULL)
 			Serial.print(prefix);
@@ -31,7 +31,7 @@ public:
 		if(newLine)
 			NewLine();
 	}
-	static void Number(const char *prefix,int value,bool newLine=false)
+	static void Number(const __FlashStringHelper *prefix,int value,bool newLine=false)
 	{
 		if(prefix!=NULL)
 			Serial.print(prefix);
@@ -39,7 +39,7 @@ public:
 		if(newLine)
 			NewLine();
 	}
-	static void Number(const char *prefix,float value,bool newLine=false)
+	static void Number(const __FlashStringHelper *prefix,float value,bool newLine=false)
 	{
 		if(prefix!=NULL)
 			Serial.print(prefix);

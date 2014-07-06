@@ -22,10 +22,10 @@
 
 #include <math.h>
 #include "Log.h"
-#include "DataBufferBase.h"
+#include "IDataBuffer.h"
 
 
-template <class Tx,class Ty> class SensorDataBuffer : public DataBufferBase
+template <class Tx,class Ty> class SensorDataBuffer : public IDataBuffer
 {
 	int _size;
 	Tx   *_data_x;
@@ -94,7 +94,7 @@ public:
 	{
 		if(index>=Size())
 		{
-			Log::Number("Error: index outside of array bounds: ",index,true);
+			Log::Number(F("Error: index outside of array bounds: "),index,true);
 			return 0;
 		}
 		return _data_x[index]/_factor_x;
@@ -103,7 +103,7 @@ public:
 	{
 		if(index>=Size())
 		{
-			Log::Number("Error: index outside of array bounds: ",index,true);
+			Log::Number(F("Error: index outside of array bounds: "),index,true);
 			return 0;
 		}
 		return _data_y[index]/_factor_y;

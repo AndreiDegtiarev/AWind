@@ -23,7 +23,7 @@
 #include "TextBoxString.h"
 #include "SensorWindow.h"
 
-class ViewModusWindow : public TextBoxString
+class ViewModusWindow : public TextBoxString<const __FlashStringHelper>
 {
 	enum Modus
 	{
@@ -33,7 +33,7 @@ class ViewModusWindow : public TextBoxString
 	SensorWindow::BkColorMode _modus;
 	LinkedList<SensorWindow> _vis_sensors;
 public:
-	ViewModusWindow(LinkedList<SensorWindow> vis_sensors,int left,int top,int width,int height):TextBoxString(left,top,width,height,F("Night"),Color::White)
+	ViewModusWindow(LinkedList<SensorWindow> vis_sensors,int left,int top,int width,int height):TextBoxString<const __FlashStringHelper>(left,top,width,height,F("Night"),Color::White)
 	{
 		SetBackColor(Color::CadetBlue);
 		_modus=SensorWindow::Day;

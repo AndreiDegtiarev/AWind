@@ -27,20 +27,33 @@
 
 template <class Ty> class TimeSerieBuffer : public IDataBuffer
 {
+	int _reserved_size;
 	int _size;
 	Ty   *_data_y;
 	float _time_step;
 	float _factor_y;
 public:
-	TimeSerieBuffer(float time_step,float factor_y,int size)
+	TimeSerieBuffer(float time_step,float factor_y,int reserved_size,int size)
 	{
 		_factor_y=factor_y;
 		_size=size;
+		_reserved_size=reserved_size;
 		_time_step=0;
-		_data_y=new Ty[_size];
+		_data_y=new Ty[reserved_size];
 		for(int i=0;i<_size;i++)
 			_data_y[i]=0;
 
+	}
+	bool SetSize(int size)
+	{
+		if(size<=_reserved_size)
+			_size=size;
+		else
+		{
+			Serial.println("Error: buffer size is too big");
+			return false;
+		}
+		return true;
 	}
 	float SetTimeStep(float time_step)
 	{
@@ -68,7 +81,7 @@ public:
 	{
 		if(index>=Size())
 		{
-			Log::Number("Error: index outside of array bounds: ",index,true);
+			Log::Number(F("Error: index outside of array bounds: "),index,true);
 			return 0;
 		}
 		return _time_step*index;
@@ -77,7 +90,7 @@ public:
 	{
 		if(index>=Size())
 		{
-			Log::Number("Error: index outside of array bounds: ",index,true);
+			Log::Number(F("Error: index outside of array bounds: "),index,true);
 			return 0;
 		}
 		return _data_y[index]/_factor_y;

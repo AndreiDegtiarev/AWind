@@ -20,7 +20,7 @@
 */
 #pragma once
 
-class DataBufferBase
+class IDataBuffer
 {
 public:
 	virtual unsigned int StartIndex()=0;

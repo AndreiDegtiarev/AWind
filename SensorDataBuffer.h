@@ -25,23 +25,25 @@
 #include "IDataBuffer.h"
 
 
-template <class Tx,class Ty> class SensorDataBuffer : public IDataBuffer
+class SensorDataBuffer : public IDataBuffer
 {
 	int _size;
-	Tx   *_data_x;
-	Ty   *_data_y;
+	unsigned int  *_data_x;
+	int   *_data_y;
 	int _startIndex;
 	float _factor_x;
 	float _factor_y;
+	unsigned long _offset_x;
 public:
 	SensorDataBuffer(float factor_x,float factor_y,int size)
 	{
+		_offset_x = 0;
 		_factor_x=factor_x;
 		_factor_y=factor_y;
 		_size=size;
 
-		_data_x=new Tx[_size];
-		_data_y=new Ty[_size];
+		_data_x=new unsigned int[_size];
+		_data_y=new int[_size];
 		for(int i=0;i<_size;i++)
 		{
 			_data_x[i]=0;
@@ -50,29 +52,31 @@ public:
 		_startIndex = _size;
 
 	}
-	Tx *X()
+	unsigned int *X()
 	{
 		return _data_x;
 	}
-	Ty *Y()
+	int *Y()
 	{
 		return _data_y;
 	}
 	void AddValue(float value_x,float value_y)
 	{
-		Tx buf_value_x=value_x*_factor_x;
-		Ty buf_value_y=value_y*_factor_y;
+		int offset_0=_data_x[0];
+		_offset_x+=offset_0;
+		unsigned int buf_value_x=value_x*_factor_x;
+		int buf_value_y=value_y*_factor_y;
 		if(_startIndex!=0)
 			_startIndex--;
 		for(int i=0;i<_size-1;i++)
 		{
-			_data_x[i]=_data_x[i+1];
+			_data_x[i]=_data_x[i+1]-offset_0;
 			_data_y[i]=_data_y[i+1];
 		}
-		_data_x[_size-1]=buf_value_x;
+		_data_x[_size-1]=buf_value_x-_offset_x;
 		_data_y[_size-1]=buf_value_y;
 	}
-	virtual void MinMax(float &min_x,float &max_x,float &min_y,float &max_y)
+	void MinMax(float &min_x,float &max_x,float &min_y,float &max_y)
 	{
  		min_x=_data_x[_size-1];
 		max_x=_data_x[_size-1];
@@ -85,6 +89,8 @@ public:
 			min_y=min(min_y,_data_y[i]);
 			max_y=max(max_y,_data_y[i]);
 		}
+		min_x+=_offset_x;
+		max_x+=_offset_x;
 		min_x/=_factor_x;
 		max_x/=_factor_x;
 		min_y/=_factor_y;
@@ -97,7 +103,7 @@ public:
 			Log::Number(F("Error: index outside of array bounds: "),index,true);
 			return 0;
 		}
-		return _data_x[index]/_factor_x;
+		return (_data_x[index]+_offset_x)/_factor_x;
 	}
 	float Y(unsigned int index)
 	{
@@ -108,11 +114,11 @@ public:
 		}
 		return _data_y[index]/_factor_y;
 	}
-	virtual unsigned int StartIndex()
+	unsigned int StartIndex()
 	{
 		return _startIndex;
 	}
-	virtual unsigned int Size()
+	unsigned int Size()
 	{
 		return _size;
 	}

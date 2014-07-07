@@ -25,25 +25,35 @@
 #include "IDataBuffer.h"
 
 
-template <class Ty> class TimeSerieBuffer : public IDataBuffer
+class TimeSerieBuffer : public IDataBuffer
 {
 	int _reserved_size;
 	int _size;
-	Ty   *_data_y;
+	int   *_data_y;
 	float _time_step;
 	float _factor_y;
 public:
 	TimeSerieBuffer(float time_step,float factor_y,int reserved_size,int size)
 	{
+		initialize(time_step,factor_y,reserved_size,size);
+	}
+	TimeSerieBuffer(float time_step,float factor_y,int size)
+	{
+		initialize(time_step,factor_y,size,size);
+
+	}
+protected:
+	void initialize(float time_step,float factor_y,int reserved_size,int size)
+	{
 		_factor_y=factor_y;
 		_size=size;
 		_reserved_size=reserved_size;
-		_time_step=0;
-		_data_y=new Ty[reserved_size];
+		_time_step=time_step;
+		_data_y=new int[reserved_size];
 		for(int i=0;i<_size;i++)
 			_data_y[i]=0;
-
 	}
+public:
 	bool SetSize(int size)
 	{
 		if(size<=_reserved_size)
@@ -59,11 +69,24 @@ public:
 	{
 		_time_step=time_step;
 	}
-	Ty *Y()
+	float SetFactorY(float factor_y)
+	{
+		_factor_y=factor_y;
+	}
+	void Set(unsigned int index,float value)
+	{
+		if(index>=Size())
+		{
+			Log::Number(F("Error: index outside of array bounds: "),index,true);
+			return;
+		}
+		_data_y[index]=(value*_factor_y);
+	}
+	int *Y()
 	{
 		return _data_y;
 	}
-	virtual void MinMax(float &min_x,float &max_x,float &min_y,float &max_y)
+	void MinMax(float &min_x,float &max_x,float &min_y,float &max_y)
 	{
  		min_x=0;
 		max_x=_time_step*_size;
@@ -77,7 +100,7 @@ public:
 		min_y/=_factor_y;
 		max_y/=_factor_y;
 	}
-	virtual float X(unsigned int index)
+	float X(unsigned int index)
 	{
 		if(index>=Size())
 		{
@@ -86,7 +109,7 @@ public:
 		}
 		return _time_step*index;
 	}
-	virtual float Y(unsigned int index)
+	float Y(unsigned int index)
 	{
 		if(index>=Size())
 		{
@@ -95,11 +118,11 @@ public:
 		}
 		return _data_y[index]/_factor_y;
 	}
-	virtual unsigned int StartIndex()
+	unsigned int StartIndex()
 	{
 		return 0;
 	}
-	virtual unsigned int Size()
+	unsigned int Size()
 	{
 		return _size;
 	}

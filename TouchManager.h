@@ -80,7 +80,6 @@ public :
 				if(window->IsOfType(F("TextBoxNumber")) && !((TextBoxNumber *)window)->IsReadOnly())
 				{
 					_windowsManager->Keyboard()->BeginEdit((TextBoxNumber *)window);
-					Serial.println(F("Begin edit"));
 				}
 				else
 				{

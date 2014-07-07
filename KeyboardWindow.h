@@ -9,46 +9,45 @@ class KeyboardWindow :  public TouchWindow
 {
 	TextBoxNumber *_targetTextBox;
 
-	TextBoxString<char> * _editField;
+	TextBoxString * _editField;
 	TextBoxNumber * _digidWindows[10];
-	TextBoxString<const __FlashStringHelper> * _enterSymbol;
-	TextBoxString<const __FlashStringHelper> * _cancelSymbol;
-	TextBoxString<const __FlashStringHelper> * _pointSymbol;
-	TextBoxString<const __FlashStringHelper> * _backspaceSymbol;
+	TextBoxFString * _enterSymbol;
+	TextBoxFString * _cancelSymbol;
+	TextBoxFString * _pointSymbol;
+	TextBoxFString * _backspaceSymbol;
 
 	char _editBuffer[15];
 	int  _editPosition;
-	const static int _buttonSize=40;
+	const static int _buttonSize=39;
 	const static int _buttonDistance=5;
 	const static int _textOffset=9;
 public:
-	KeyboardWindow(int left,int top):TouchWindow(F(""),left,top,7*(_buttonSize+_buttonDistance),3*(_buttonSize+_buttonDistance)+_buttonDistance)
+	KeyboardWindow(int left,int top):TouchWindow(F(""),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
 	{
 		_targetTextBox=NULL;
 		SetBorder(Color::CornflowerBlue);
 		SetBackColor(Color::Black);
-		//_digidWindows=new TextBoxNumber *[10];
 		int x=_buttonDistance;
 		int y=_buttonDistance;
-		_editField=new TextBoxString<char>(x,y,7*(_buttonSize+_buttonDistance)-2*_buttonDistance,_buttonSize,"",Color::DarkBlue);
+		_editField=new TextBoxString(x,y,Width()-2*_buttonDistance,_buttonSize,"",Color::DarkBlue);
 		y+=_buttonSize+_buttonDistance;
-		_backspaceSymbol=new TextBoxString<const __FlashStringHelper>(5*(_buttonSize+_buttonDistance),y,_buttonSize,_buttonSize,F("<-"),Color::DarkBlue);
-		_enterSymbol=new TextBoxString<const __FlashStringHelper>(6*(_buttonSize+_buttonDistance),y,_buttonSize,_buttonSize,F("E"),Color::DarkBlue);
+		_backspaceSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("<-"),Color::DarkBlue);
+		_enterSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("E"),Color::DarkBlue);
 		for(int i=0;i<10;i++)
 		{
 			x=(i-(i<5?0:5))*(_buttonSize+_buttonDistance);
 			if(i==5)
 				y+=_buttonSize+_buttonDistance;
-			_digidWindows[i]=new TextBoxNumber(x+_buttonDistance,y,_buttonSize,_buttonSize,0,Color::DarkBlue,true);
+			_digidWindows[i]=new TextBoxNumber(x+_buttonDistance,y,_buttonSize,_buttonSize,0,Color::DarkBlue);
 			_digidWindows[i]->SetNumber(i);
 			initTextBox(_digidWindows[i]);
 			AddChild(_digidWindows[i]);
 		}
-		_pointSymbol=new TextBoxString<const __FlashStringHelper>(5*(_buttonSize+_buttonDistance),y,_buttonSize,_buttonSize,F("."),Color::DarkBlue);
-		_cancelSymbol=new TextBoxString<const __FlashStringHelper>(6*(_buttonSize+_buttonDistance),y,_buttonSize,_buttonSize,F("C"),Color::DarkBlue);
+		_pointSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("."),Color::DarkBlue);
+		_cancelSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("C"),Color::DarkBlue);
 		initTextBox(_editField);
 		initTextBox(_backspaceSymbol);
-		_backspaceSymbol->SetTextOffset(_textOffset,_textOffset*1.5);
+		_backspaceSymbol->SetMargins(_textOffset,_textOffset*1.5);
 		_backspaceSymbol->SetFont(SmallFont);
 		initTextBox(_pointSymbol);
 		initTextBox(_cancelSymbol);
@@ -66,7 +65,7 @@ protected:
 		text->SetColor(Color::CornflowerBlue);
 		text->SetBorder(Color::CornflowerBlue);
 		text->SetBackColor(Color::Black);
-		text->SetTextOffset(_textOffset,_textOffset);
+		text->SetMargins(_textOffset,_textOffset);
 	}
 public:
 	void BeginEdit(TextBoxNumber * targetTextBox)
@@ -126,10 +125,7 @@ public:
 					}
 			}
 			if(needUpdate)
-			{
 				_editField->SetText(_editBuffer);
-				_editField->Invalidate();
-			}
 		}
 		return true;
 	}

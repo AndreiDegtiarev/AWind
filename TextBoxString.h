@@ -22,11 +22,11 @@
 
 #include "TextBox.h"
 
-template <class T> class TextBoxString : public TextBox
+template <class T> class TextBoxTString : public TextBox
 {
 	const T * _text;
 public:
-	TextBoxString(int left,int top,int width,int height,T *text,Color textColor):TextBox(left,top,width,height,textColor)
+	TextBoxTString(int left,int top,int width,int height,T *text,Color textColor):TextBox(left,top,width,height,textColor)
 	{
 		_text=text;
 	}
@@ -38,5 +38,8 @@ public:
 	void SetText(T *text)
 	{
 		_text=text;
+		Invalidate();
 	}
 };
+typedef	TextBoxTString<const __FlashStringHelper> TextBoxFString;
+typedef TextBoxTString<char> TextBoxString;

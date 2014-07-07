@@ -23,7 +23,7 @@
 #include "TextBoxString.h"
 #include "SensorWindow.h"
 
-class ViewModusWindow : public TextBoxString<const __FlashStringHelper>
+class ViewModusWindow : public TextBoxFString
 {
 	enum Modus
 	{
@@ -33,13 +33,13 @@ class ViewModusWindow : public TextBoxString<const __FlashStringHelper>
 	SensorWindow::BkColorMode _modus;
 	LinkedList<SensorWindow> _vis_sensors;
 public:
-	ViewModusWindow(LinkedList<SensorWindow> vis_sensors,int left,int top,int width,int height):TextBoxString<const __FlashStringHelper>(left,top,width,height,F("Night"),Color::White)
+	ViewModusWindow(LinkedList<SensorWindow> vis_sensors,int left,int top,int width,int height):TextBoxFString(left,top,width,height,F("Night"),Color::White)
 	{
 		SetBackColor(Color::CadetBlue);
 		_modus=SensorWindow::Day;
 		_vis_sensors=vis_sensors;
 		SetFont(BigFont);
-		SetTextOffset(15,10);
+		SetMargins(15,10);
 	}
 	virtual bool OnTouch(int x, int y)
 	{

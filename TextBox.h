@@ -40,7 +40,7 @@ public:
 	{
 		_callback_OnChanged=callback_OnChanged;
 	}
-	void SetTextOffset(int offset_x,int offset_y)
+	void SetMargins(int offset_x,int offset_y)
 	{
 		_offset_x=offset_x;
 		_offset_y=offset_y;

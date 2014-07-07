@@ -27,10 +27,10 @@ class TextBoxNumber : public TextBox
 	int _precission;
 	bool _isReadOnly;
 public:
-	TextBoxNumber(int left,int top,int width,int height,int precission,Color textColor,bool isOK=false):TextBox(left,top,width,height,textColor)
+	TextBoxNumber(int left,int top,int width,int height,int precission,Color textColor):TextBox(left,top,width,height,textColor)
 	{
 		_precission=precission;
-		_isOK=isOK;
+		_isOK=true;
 		_number=0;
 		_isReadOnly=true;
 		_type=F("TextBoxNumber");
@@ -54,6 +54,7 @@ public:
 			_number = number;
 			if(_callback_OnChanged!=NULL)
 				_callback_OnChanged(this);
+			Invalidate();
 		}
 	}
 	float GetNumber()

@@ -32,8 +32,6 @@ class ChartWindow : public Window
 	IDataBuffer *_buffer;
 	unsigned long _last_buffer_change;
 	ChartDC _dc;
-	//TextBoxNumber *_textMinY;
-	//TextBoxNumber *_textMaxY;
 	float _fix_MinY;
 	float _fix_MaxY;
 public:
@@ -41,12 +39,6 @@ public:
 	{
 		this->SetBackColor(Color::Black);
 		_buffer = NULL;
-		//_textMaxY = new TextBoxNumber(1,1,width/2,hight/2,1,Color::White,true);
-		//_textMaxY->SetFont(SmallFont);
-		//_textMinY = new TextBoxNumber(1,hight-15,width/2,hight/2,1,Color::White,true);
-		//_textMinY->SetFont(SmallFont);
-		//this->AddChild(_textMinY);
-		//this->AddChild(_textMaxY);
 		_fix_MinY=ChartDC::AutoMin;
 		_fix_MaxY=ChartDC::AutoMax;
 	}
@@ -74,11 +66,11 @@ public:
 			_buffer->MinMax(min_x,max_x,min_y,max_y);
 			min_y=_fix_MinY==ChartDC::AutoMin?min_y:_fix_MinY;
 			max_y=_fix_MaxY==ChartDC::AutoMax?max_y:_fix_MaxY;
-			/*Log::Number("size: ",size);
-			Log::Number(" min_x: ",min_x);
-			Log::Number(" max_x: ",max_x);*/
-			//Log::Number(" min_y: ",min_y);
-			//Log::Number(" max_y: ",max_y,true);
+			Log::Number(F("size: "),size);
+			Log::Number(F(" min_x: "),min_x);
+			Log::Number(F(" max_x: "),max_x);
+			Log::Number(" min_y: ",min_y);
+			Log::Number(" max_y: ",max_y,true);
 			if(_last_buffer_change!=_buffer->X(size-1))
 			{
 				_dc.setScalingX(Width(),min_x,max_x);

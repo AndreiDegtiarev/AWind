@@ -23,11 +23,8 @@
 #include "LinkedList.h"
 #include "WindowsManager.h"
 #include "TouchManager.h"
-
 #include "KeyboardWindow.h"
-
 #include "ChartWindow.h"
-
 #include "VoltmeterSensor.h"
 
 
@@ -51,7 +48,6 @@ TextBoxNumber *txtMaxV;
 int time_step_mus=100;
 const int reserved_buf_size=2000;
 int buf_size=500;
-//const int sample_ratio=(int)(1.0/(time_length/buf_size));
 
 void setup()
 {
@@ -70,8 +66,6 @@ void setup()
 
 	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,buf_size);
 	voltmeter->SetTimeStep(time_step_mus);
-	//Log::Number("Sample ratio:",voltmeter->SampleRatio(),true);
-	//Log::Number("ms:",(int)(1e6*1.0/sample_ratio),true);
 
 	float minV=0;
 	float maxV=4;
@@ -81,17 +75,17 @@ void setup()
 	int width=70;
 	int height=30;
 
-	TextBoxString<const __FlashStringHelper> *labelTimeSTep=new TextBoxString<const __FlashStringHelper>(x,y+10,width,height,F("Tstep us:"),Color::CornflowerBlue);
+	TextBoxFString *labelTimeSTep=new TextBoxFString(x,y+10,width,height,F("Tstep us:"),Color::CornflowerBlue);
 	initTextBox(labelTimeSTep,true);
 	x+=width;
-	txtTimeStep=new TextBoxNumber(x,y,width,height,0,Color::CornflowerBlue,true);
+	txtTimeStep=new TextBoxNumber(x,y,width,height,0,Color::CornflowerBlue);
 	txtTimeStep->SetNumber(time_step_mus);
 	initTextBox(txtTimeStep,false);
 	x+=width*1.2;
-	TextBoxString<const __FlashStringHelper> *labelBufsize=new TextBoxString<const __FlashStringHelper>(x,y+10,width,height,F("Buf. size:"),Color::CornflowerBlue);
+	TextBoxFString *labelBufsize=new TextBoxFString(x,y+10,width,height,F("Buf. size:"),Color::CornflowerBlue);
 	initTextBox(labelBufsize,true);
 	x+=width*1.1;
-	txtBufSize=new TextBoxNumber(x,y,width,height,0,Color::CornflowerBlue,true);
+	txtBufSize=new TextBoxNumber(x,y,width,height,0,Color::CornflowerBlue);
 	initTextBox(txtBufSize,false);
 	txtBufSize->SetNumber(buf_size);
 	x=0;
@@ -102,17 +96,14 @@ void setup()
 	windowsManager.MainWindow()->SetBackColor(Color::Black);
 	y=chartWnd->Top()+chartWnd->Height()+3;
 
-	TextBoxString<const __FlashStringHelper> *labelMinV=new TextBoxString<const __FlashStringHelper>(x,y+10,width,height,F("Vmin/max:"),Color::CornflowerBlue);
+	TextBoxFString *labelMinV=new TextBoxFString(x,y+10,width,height,F("Vmin/max:"),Color::CornflowerBlue);
 	x+=width;
-	txtMinV=new TextBoxNumber(x,y,width-10,height,1,Color::CornflowerBlue,true);
+	txtMinV=new TextBoxNumber(x,y,width-10,height,1,Color::CornflowerBlue);
 	txtMinV->SetNumber(minV);
 	x+=width;
-	txtMaxV=new TextBoxNumber(x,y,width-10,height,1,Color::CornflowerBlue,true);
+	txtMaxV=new TextBoxNumber(x,y,width-10,height,1,Color::CornflowerBlue);
 	txtMaxV->SetNumber(maxV);
 	x+=width;
-
-
-
 
 	initTextBox(labelMinV,true);
 	initTextBox(txtMinV,false);
@@ -129,7 +120,7 @@ void initTextBox(TextBox *textBox,bool isLabel)
 	{
 		textBox->SetOnChanged(settingsChanged);
 		textBox->SetBorder(Color::CornflowerBlue);
-		textBox->SetTextOffset(0,7);
+		textBox->SetMargins(0,7);
 		textBox->SetFont(BigFont);
 		((TextBoxNumber *)textBox)->SetIsReadOnly(false);
 	}
@@ -148,9 +139,7 @@ void settingsChanged(TextBox *textBox)
 	}
 	else if(textBox == txtTimeStep)
 	{
-		//Log::Number("Target time step:",txtTimeStep->GetNumber(),true);
 		voltmeter->SetTimeStep(txtTimeStep->GetNumber());
-		//Log::Number("Sample ratio:",voltmeter->SampleRatio(),true);
 	}
 	else if(textBox == txtBufSize)
 	{

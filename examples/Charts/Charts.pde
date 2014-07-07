@@ -19,50 +19,78 @@
 #include <UTFT.h>
 #include <UTouch.h>
 
-#include "OneWireSensor.h"
+#include "LinkedList.h"
 #include "WindowsManager.h"
-#include "TouchManager.h"
-#include "ViewModusWindow.h"
+#include "ChartWindow.h"
+#include "TimeSerieBuffer.h"
+#include "TextBoxString.h"
+#include "TextBoxNumber.h"
+#include "Log.h"
+
 
 UTFT    myGLCD(ITDB32S,39,41,43,45);
-UTouch  myTouch( 49, 51, 53, 50, 52);
-extern uint8_t ArialNumFontPlus[];
-//extern void loopTouch();
 
-WindowsManager windowsManager(&myGLCD,loopTouch);
-TouchManager touchManager(&myTouch,&windowsManager);
+const int display_width=319;
+const int display_height=239;
 
+WindowsManager windowsManager(&myGLCD,NULL,display_width,display_height);
 
-unsigned long timer;
+TimeSerieBuffer	*dataBuffer;
+ChartWindow *chartWnd;
+TextBoxNumber *textNumber;
+int buf_size=1000;
+float time_step=1.0/buf_size;
 
 void setup()
 {
-   Serial.begin(57600);
-   Serial.println(F("Setup"));
+	Serial.begin(57600);
+	Serial.println(F("Setup"));
 
-  myGLCD.InitLCD();
-  myGLCD.clrScr();
+	myGLCD.InitLCD();
+	myGLCD.clrScr();
 
-  myTouch.InitTouch();
-  myTouch.setPrecision(PREC_MEDIUM);
+	pinMode(47,OUTPUT);
+	digitalWrite(47,HIGH);
 
-  myGLCD.setFont(ArialNumFontPlus);
-  pinMode(47,OUTPUT);
-  digitalWrite(47,HIGH);
+	dataBuffer=new TimeSerieBuffer(time_step,100,1000,1000);
+
+	int x=0;
+	int y=0;
+	TextBoxFString *textBox=new TextBoxFString(x,y,display_width/2,25,F("Scaling factor: "),Color::SkyBlue);
+	textBox->SetFont(BigFont);
+	x=display_width*3.0/4;
+	textNumber=new TextBoxNumber(x,y,display_width-x,25,0,Color::SkyBlue);
+	textNumber->SetBackColor(Color::Red);
+	textNumber->SetFont(BigFont);
+	textNumber->SetMargins(20,2);
+	x=0;
+	y+=25;
+	chartWnd=new ChartWindow(x,y,display_width,display_height-25);
+	chartWnd->SetBackColor(Color::Black);
+	chartWnd->SetBuffer(dataBuffer);
+
+	windowsManager.MainWindow()->AddChild(textBox);
+	windowsManager.MainWindow()->AddChild(textNumber);
+	windowsManager.MainWindow()->AddChild(chartWnd);
 
 
-   delay(1000); 
-   Serial.println("End setup");
+	Serial.println(F("End setup"));
 
 }
-void loopTouch()
-{
-  touchManager.loop();
-}
+int index=100;
 void loop()
 {
-  loopTouch();
-
-  windowsManager.loop();
+	if(index<1)
+		index=100;
+	dataBuffer->SetFactorY(index);
+	for(unsigned int i=0;i<1000;i++)
+	{
+		dataBuffer->Set(i,sin(2*3.14*(time_step*i)));
+	}
+	textNumber->SetNumber(index);
+	chartWnd->Invalidate();
+	index/=2;
+	windowsManager.loop();
+	delay(1000);
 }
 

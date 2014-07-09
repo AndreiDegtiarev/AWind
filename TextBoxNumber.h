@@ -20,6 +20,7 @@
 */
 #pragma once
 #include "TextBox.h"
+
 class TextBoxNumber : public TextBox
 {
 	float _number;
@@ -39,6 +40,10 @@ public:
 	{
 		return _precission;
 	}
+	bool IsAwaitTouch()
+	{
+		return !_isReadOnly||TextBox::IsAwaitTouch();
+	}
 	void SetIsReadOnly(bool isReadOnly)
 	{
 		_isReadOnly=isReadOnly;
@@ -52,8 +57,8 @@ public:
 		if(_number!=number)
 		{
 			_number = number;
-			if(_callback_OnChanged!=NULL)
-				_callback_OnChanged(this);
+			if(_changedEvent!=NULL)
+				_changedEvent->Notify(this);
 			Invalidate();
 		}
 	}

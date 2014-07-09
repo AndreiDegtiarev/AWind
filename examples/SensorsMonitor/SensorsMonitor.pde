@@ -56,9 +56,9 @@ const int display_height=240;
 
 
 LinkedList<SensorManager> sensors;
-MeasurementNode measurementNode(sensors,loopTouch); //,num_sensors);
+MeasurementNode measurementNode(sensors); //,num_sensors);
 
-WindowsManager windowsManager(&myGLCD,loopTouch,display_width,display_height);
+WindowsManager windowsManager(&myGLCD,display_width,display_height);
 TouchManager touchManager(&myTouch,&windowsManager);
 
 LinkedList<SensorWindow> vis_sensors;
@@ -113,18 +113,16 @@ void setup()
 		windowsManager.MainWindow()->AddChild(vis_sensors[i]);
 	windowsManager.MainWindow()->AddChild(new ViewModusWindow(vis_sensors,windowsManager.MainWindow()->Width()-100,windowsManager.MainWindow()->Height()-45,95,35));
 
+	windowsManager.SetCriticalProcess(&touchManager);
+	measurementNode.SetCriticalProcess(&touchManager);
 
 	delay(1000); 
 	Serial.println("End setup");
 
 }
-void loopTouch()
-{
-  touchManager.loop();
-}
+
 void loop()
 {
-  loopTouch();
   if(measurementNode.measure())
   {
 	  if(measurementNode.IsChanged())

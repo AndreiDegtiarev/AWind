@@ -20,20 +20,58 @@
 */
 #pragma once
 
+class Endl {};
 class Log
 {
+	bool _is_initialized;
 public:
+	Log()
+	{
+		_is_initialized=false;
+	}
+	void Init()
+	{
+		_is_initialized=true;
+	}
+	bool IsInitialized()
+	{
+		return _is_initialized;
+	}
 	template<class T1,class T2>
-	static void Number(T1 *prefix,T2 value,bool newLine=false)
+	static void Number(T1 *prefix,T2 &value,bool newLine=false)
 	{
 		if(prefix!=NULL)
 			Serial.print(prefix);
 		Serial.print(value);
 		if(newLine)
-			NewLine();
+			Line();
 	}
-	static void NewLine()
+	static void Line()
 	{
 		Serial.println("");
 	}
+	template<class T>
+	static void Line(T value)
+	{
+		Serial.println(value);
+	}
+	friend Log& operator<<(Log &out,Endl &value)
+	{
+		if(out.IsInitialized())
+			Serial.println();
+	}
+	/*template<class T>
+	friend Log& operator<<(Log &out,T &value)
+	{
+		if(out.IsInitialized())
+			Serial.print(value);
+	}*/
+	template<class T>
+	friend Log& operator<<(Log &out,T value)
+	{
+		if(out.IsInitialized())
+			Serial.print(value);
+	}
 };
+extern Log out;
+extern Endl endl;

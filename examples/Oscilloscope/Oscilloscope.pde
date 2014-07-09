@@ -26,6 +26,7 @@
 #include "KeyboardWindow.h"
 #include "ChartWindow.h"
 #include "VoltmeterSensor.h"
+#include "IEvent.h"
 
 
 UTFT    myGLCD(ITDB32S,39,41,43,45);
@@ -35,7 +36,7 @@ extern uint8_t ArialNumFontPlus[];
 const int display_width=320;
 const int display_height=240;
 
-WindowsManager windowsManager(&myGLCD,loopTouch,display_width,display_height);
+WindowsManager windowsManager(&myGLCD,display_width,display_height);
 TouchManager touchManager(&myTouch,&windowsManager);
 VoltmeterSensor *voltmeter;
 ChartWindow *chartWnd;
@@ -45,6 +46,31 @@ TextBoxNumber *txtBuf;
 TextBoxNumber *txtMinV;
 TextBoxNumber *txtMaxV;
 
+class ProcessTextBoxEvent : public IEvent<Window>
+{
+	void Notify(Window *textBox)
+	{
+		out<<F("Notified")<<endl;
+		if(textBox == txtMinV || textBox == txtMaxV)
+		{
+			chartWnd->SetMinMaxY(txtMinV->GetNumber(),txtMaxV->GetNumber());
+			chartWnd->Invalidate();
+		}
+		else if(textBox == txtTimeStep)
+		{
+			voltmeter->SetTimeStep(txtTimeStep->GetNumber());
+		}
+		else if(textBox == txtBufSize)
+		{
+			voltmeter->Buffer()->SetSize(txtBufSize->GetNumber());
+			txtBufSize->SetNumber(voltmeter->Buffer()->Size());
+		}
+	}
+
+};
+ProcessTextBoxEvent textBoxEvent;
+
+
 int time_step_mus=100;
 const int reserved_buf_size=2000;
 int buf_size=500;
@@ -53,6 +79,7 @@ void setup()
 {
 	Serial.begin(57600);
 	Serial.println(F("Setup"));
+	out.Init();
 
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
@@ -66,6 +93,8 @@ void setup()
 
 	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,buf_size);
 	voltmeter->SetTimeStep(time_step_mus);
+
+	windowsManager.SetCriticalProcess(&touchManager);
 
 	float minV=0;
 	float maxV=4;
@@ -113,12 +142,13 @@ void setup()
 	Serial.println("End setup");
 
 }
+
 void initTextBox(TextBox *textBox,bool isLabel)
 {
 	windowsManager.MainWindow()->AddChild(textBox);
 	if(!isLabel)
 	{
-		textBox->SetOnChanged(settingsChanged);
+		textBox->SetOnChanged(&textBoxEvent);
 		textBox->SetBorder(Color::CornflowerBlue);
 		textBox->SetMargins(0,7);
 		textBox->SetFont(BigFont);
@@ -130,31 +160,9 @@ void initTextBox(TextBox *textBox,bool isLabel)
 	textBox->SetBackColor(Color::Black);
 
 }
-void settingsChanged(TextBox *textBox)
-{
-	if(textBox == txtMinV || textBox == txtMaxV)
-	{
-		chartWnd->SetMinMaxY(txtMinV->GetNumber(),txtMaxV->GetNumber());
-		chartWnd->Invalidate();
-	}
-	else if(textBox == txtTimeStep)
-	{
-		voltmeter->SetTimeStep(txtTimeStep->GetNumber());
-	}
-	else if(textBox == txtBufSize)
-	{
-		voltmeter->Buffer()->SetSize(txtBufSize->GetNumber());
-		txtBufSize->SetNumber(voltmeter->Buffer()->Size());
-	}
-}
-void loopTouch()
-{
-  touchManager.loop();
-}
 void loop()
 {
 	voltmeter->MeasureBuffer();
 	chartWnd->SetBuffer(voltmeter->Buffer());
-	loopTouch();
 	windowsManager.loop();
 }

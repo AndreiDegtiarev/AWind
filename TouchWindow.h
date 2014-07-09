@@ -22,10 +22,18 @@
 #include "Window.h"
 class TouchWindow : public Window
 {
+	//IEvent<Window> *_touchEvent;
+
 public:
 	TouchWindow(const __FlashStringHelper * name,int left,int top,int width,int height):Window(name,left,top,width,height)
 	{
 		_type=F("TouchWindow");
+		//_touchEvent=NULL;
+	}
+	/*
+	void SetOnTouch(IEvent<Window> *event)
+	{
+		_touchEvent=event;
 	}
 	virtual void OnTouching(DC *dc)
 	{
@@ -35,6 +43,12 @@ public:
 	}
 	virtual bool OnTouch(int x,int y)
 	{
+		if(_touchEvent!=NULL)
+		{
+			out<<F("TouchEvent generated")<<endl;
+			_touchEvent->Notify(this);
+			return true;
+		}
 		return false;
-	}
+	}*/
 };

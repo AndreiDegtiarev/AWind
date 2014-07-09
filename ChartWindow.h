@@ -41,6 +41,7 @@ public:
 		_buffer = NULL;
 		_fix_MinY=ChartDC::AutoMin;
 		_fix_MaxY=ChartDC::AutoMax;
+		_type=F("ChartWindow");
 	}
 	void SetMinMaxY(float min,float max)
 	{
@@ -66,11 +67,11 @@ public:
 			_buffer->MinMax(min_x,max_x,min_y,max_y);
 			min_y=_fix_MinY==ChartDC::AutoMin?min_y:_fix_MinY;
 			max_y=_fix_MaxY==ChartDC::AutoMax?max_y:_fix_MaxY;
-			Log::Number(F("size: "),size);
+			/*Log::Number(F("size: "),size);
 			Log::Number(F(" min_x: "),min_x);
 			Log::Number(F(" max_x: "),max_x);
 			Log::Number(" min_y: ",min_y);
-			Log::Number(" max_y: ",max_y,true);
+			Log::Number(" max_y: ",max_y,true);*/
 			if(_last_buffer_change!=_buffer->X(size-1))
 			{
 				_dc.setScalingX(Width(),min_x,max_x);

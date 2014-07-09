@@ -27,18 +27,18 @@ class TextBox : public TouchWindow
 protected:
 	int _offset_x;
 	int _offset_y;
-	void  (*_callback_OnChanged)(TextBox *);
+	IEvent<Window> *_changedEvent;
 public:
 	TextBox(int left,int top,int width,int height,Color textColor):TouchWindow(F("text"),left,top,width,height),_textColor(textColor)
 	{
 		_font = NULL;
 		_offset_x=0;
 		_offset_y=0;
-		_callback_OnChanged=NULL;
+		_changedEvent=NULL;
 	}
-	void SetOnChanged(void (*callback_OnChanged)(TextBox *))
+	void SetOnChanged(IEvent<Window> *event)
 	{
-		_callback_OnChanged=callback_OnChanged;
+		_changedEvent=event;
 	}
 	void SetMargins(int offset_x,int offset_y)
 	{

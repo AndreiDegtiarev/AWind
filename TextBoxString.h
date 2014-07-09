@@ -29,6 +29,7 @@ public:
 	TextBoxTString(int left,int top,int width,int height,T *text,Color textColor):TextBox(left,top,width,height,textColor)
 	{
 		_text=text;
+		_type=F("TextBoxString");
 	}
 	virtual void OnDraw(DC *dc)
 	{
@@ -38,6 +39,8 @@ public:
 	void SetText(T *text)
 	{
 		_text=text;
+		if(_changedEvent!=NULL)
+			_changedEvent->Notify(this);
 		Invalidate();
 	}
 };

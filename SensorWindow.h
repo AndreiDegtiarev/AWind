@@ -99,6 +99,10 @@ public:
 		this->AddChild(_textChartAxis);
 
 	}
+	bool IsAwaitTouch()
+	{
+		return true;
+	}
 	void SetBkColorMode(BkColorMode mode)
 	{
 		_bkColorMode=mode;

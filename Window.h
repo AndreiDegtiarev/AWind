@@ -25,6 +25,7 @@
 #include "LinkedList.h"
 #include "Log.h"
 #include "DC.h"
+#include "IEvent.h"
 
 class Window
 {
@@ -41,6 +42,9 @@ protected:
 	Window *_parent;
 	const __FlashStringHelper *_name;
 	bool _isDirty;
+
+	IEvent<Window> *_touchEvent;
+
 public:
 	Window(const __FlashStringHelper * name,int left,int top,int width,int height):
 																	_left(left),
@@ -55,9 +59,36 @@ public:
 	{
 		_parent = NULL;
 		_isDirty=true;
+		_touchEvent=NULL;
 		_type=F("Window");
 	}
 	bool IsOfType(const __FlashStringHelper * type);
+	void SetOnTouch(IEvent<Window> *event)
+	{
+		_touchEvent=event;
+	}
+	virtual bool IsAwaitTouch()
+	{
+		return _touchEvent!=NULL;
+	}
+	virtual void OnTouching(DC *dc)
+	{
+		dc->SetColor(Color::Red);
+		dc->DrawRoundRect(0,0,Width(),Height());
+		dc->DrawRoundRect(1,1,Width()-1,Height()-1);
+	}
+	virtual bool OnTouch(int x,int y)
+	{
+		out<<F("OnTouch")<<endl;
+		if(_touchEvent!=NULL)
+		{
+			out<<F("TouchEvent generated")<<endl;
+			_touchEvent->Notify(this);
+			return true;
+		}
+		return false;
+	}
+
 	void PrepareDC(DC *dc)
 	{
 		//Serial.println(F("PrepareDC"));
@@ -75,11 +106,8 @@ public:
 	{
 		return _type;
 	}
-	Window *HitTest(int x,int y)
+	/*Window *HitTest(int x,int y)
 	{
-		/*Log::Number("Test wnd touch x: ",x);
-		Log::Number(" y : ",y,true);
-		Serial.println(Name());*/
 		if(IsVisible()
 			&&x>=Left() && x<=Left()+Width()
 			&&y>=Top() && y<=Top()+Height())
@@ -93,9 +121,10 @@ public:
 			return this;
 		}
 		return NULL;
-	}
+	}*/
 	void Invalidate()
 	{
+		//out<<F("Invalidate: ")<<GetType()<<endl;
 		_isDirty=true;
 	}
 	bool IsDirty()

@@ -33,7 +33,7 @@ UTFT    myGLCD(ITDB32S,39,41,43,45);
 const int display_width=319;
 const int display_height=239;
 
-WindowsManager windowsManager(&myGLCD,NULL,display_width,display_height);
+WindowsManager windowsManager(&myGLCD,display_width,display_height);
 
 TimeSerieBuffer	*dataBuffer;
 ChartWindow *chartWnd;

@@ -29,8 +29,9 @@ public:
 	{
 		_is_initialized=false;
 	}
-	void Init()
+	void begin(unsigned long boud)
 	{
+		Serial.begin(boud);
 		_is_initialized=true;
 	}
 	bool IsInitialized()
@@ -59,6 +60,7 @@ public:
 	{
 		if(out.IsInitialized())
 			Serial.println();
+		return out;
 	}
 	/*template<class T>
 	friend Log& operator<<(Log &out,T &value)
@@ -67,10 +69,18 @@ public:
 			Serial.print(value);
 	}*/
 	template<class T>
+	friend Log& operator<<(Log &out,double &value)
+	{
+		if(out.IsInitialized())
+			Serial.print(value);
+		return out;
+	}
+	template<class T>
 	friend Log& operator<<(Log &out,T value)
 	{
 		if(out.IsInitialized())
 			Serial.print(value);
+		return out;
 	}
 };
 extern Log out;

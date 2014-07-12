@@ -43,8 +43,8 @@ float time_step=1.0/buf_size;
 
 void setup()
 {
-	Serial.begin(57600);
-	Serial.println(F("Setup"));
+	out.begin(57600);
+	out<<(F("Setup"));
 
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
@@ -74,7 +74,7 @@ void setup()
 	windowsManager.MainWindow()->AddChild(chartWnd);
 
 
-	Serial.println(F("End setup"));
+	out<<F("End setup");
 
 }
 int index=100;

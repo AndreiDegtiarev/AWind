@@ -82,9 +82,34 @@ public:
 		else
 			_lcd->printNumF(number,dec,ToDC_X(x),ToDC_Y(y));
 	}
-	void DrawText(const __FlashStringHelper * _text,int x,int y)
+	void DrawText(const __FlashStringHelper * text,int x,int y)
 	{
-		_lcd->print(_text,ToDC_X(x),ToDC_Y(y));
+		x=ToDC_X(x);
+		y=ToDC_Y(y);
+		int stl, i;
+		const char PROGMEM *p = (const char PROGMEM *)text;
+
+		stl = strlen_P(p);
+		if (_lcd->orient==PORTRAIT)
+		{
+			if (x==RIGHT)
+				x=(_lcd->disp_x_size+1)-(stl*_lcd->cfont.x_size);
+			if (x==CENTER)
+				x=((_lcd->disp_x_size+1)-(stl*_lcd->cfont.x_size))/2;
+		}
+		else
+		{
+			if (x==RIGHT)
+				x=(_lcd->disp_y_size+1)-(stl*_lcd->cfont.x_size);
+			if (x==CENTER)
+				x=((_lcd->disp_y_size+1)-(stl*_lcd->cfont.x_size))/2;
+		}
+		for (i=0; i<stl; i++)
+		{
+			unsigned char c = pgm_read_byte(p++);
+			_lcd->printChar(c, x + (i*(_lcd->cfont.x_size)), y);
+		}
+
 	}
 	void DrawText(const char * _text,int x,int y)
 	{

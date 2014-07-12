@@ -21,10 +21,8 @@
 #include "UTFT.h"
 #include "Window.h"
 
-Log out;
-Endl endl;
 
-bool Window::IsOfType(const __FlashStringHelper * type)
+/*bool Window::IsOfType(const __FlashStringHelper * type)
 {
 	const char PROGMEM *t1 = (const char PROGMEM *)_type;
 	const char PROGMEM *t2 = (const char PROGMEM *)type;
@@ -41,4 +39,4 @@ bool Window::IsOfType(const __FlashStringHelper * type)
 		return i==length1;
 	}
 	return false;
-}
+}*/

@@ -68,8 +68,8 @@ unsigned long timer;
 
 void setup()
 {
-	Serial.begin(57600);
-	Serial.println(F("Setup"));
+	out.begin(57600);
+	out<<F("Setup");
 
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
@@ -117,7 +117,7 @@ void setup()
 	measurementNode.SetCriticalProcess(&touchManager);
 
 	delay(1000); 
-	Serial.println("End setup");
+	out<<F("End setup");
 
 }
 

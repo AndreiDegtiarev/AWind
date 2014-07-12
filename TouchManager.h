@@ -34,7 +34,6 @@ public :
 	}
 	void loop()
 	{
-		out<<F("Touch loop")<<endl;
 		if (_touch->dataAvailable())
 		{
 			_touch->read();

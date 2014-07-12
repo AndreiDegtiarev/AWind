@@ -62,7 +62,7 @@ public:
 		_touchEvent=NULL;
 		_type=F("Window");
 	}
-	bool IsOfType(const __FlashStringHelper * type);
+	//bool IsOfType(const __FlashStringHelper * type);
 	void SetOnTouch(IEvent<Window> *event)
 	{
 		_touchEvent=event;

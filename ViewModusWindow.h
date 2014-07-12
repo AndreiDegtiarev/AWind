@@ -23,7 +23,7 @@
 #include "TextBoxString.h"
 #include "SensorWindow.h"
 
-class ViewModusWindow : public TextBoxFString
+class ViewModusWindow : public TextBoxFString,IEvent<Window>
 {
 	enum Modus
 	{
@@ -40,8 +40,9 @@ public:
 		_vis_sensors=vis_sensors;
 		SetFont(BigFont);
 		SetMargins(15,10);
+		this->SetOnTouch(this);
 	}
-	virtual bool OnTouch(int x, int y)
+	void Notify(Window *wnd)
 	{
 		SensorWindow::BkColorMode mode=SensorWindow::Day;
 		if(_modus==Day)
@@ -61,6 +62,5 @@ public:
 		}
 		SetBackColor(_modus==SensorWindow::Day?SensorWindow::DaylightBkColor:SensorWindow::NightBkColor);
 		Invalidate();
-		return true;
 	}
 };

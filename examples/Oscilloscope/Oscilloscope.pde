@@ -77,9 +77,10 @@ int buf_size=500;
 
 void setup()
 {
-	Serial.begin(57600);
-	Serial.println(F("Setup"));
-	out.Init();
+	Serial.begin(9600);
+
+	out.begin(57600);
+	out<<F("Setup");
 
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
@@ -139,7 +140,7 @@ void setup()
 	initTextBox(txtMaxV,false);
 
 	delay(1000); 
-	Serial.println("End setup");
+	out<<F("End setup");
 
 }
 

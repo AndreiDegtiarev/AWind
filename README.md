@@ -2,15 +2,14 @@ AWind library
 -------------
 Introduction
 ------------
-AWind (arduino window) is Arduino-library is intended to simplify the use of touch TFT displays for the visualization of sensors data in text or chart form. The user is able to interact with GUI by the use of display touch feature. 
-The library is implemented as general window framework that allows creation of simple GUIs. The GUI is consist of text fields, buttons, chart window and etc.
-The library architecture is sort of compromise between "beauty of templates" and simplicity for users with basic c++ experience.    
-Special keyboard window is implemented to provide runtime possibility of changing text fields. It is  needed sometimes to change visualization settings like chart scaling (see Oscilloscope example for details) and etc.
-At this moment only TFT with 320x240 resolution is tested on Arduiono Mega, but the library can be adjusted to other display dimensions without big efforts.
+AWind (arduino window) is Arduino-library that is intended to simplify the use of touch TFT displays for the visualization of sensors data in text or chart form. It is also possible to interact with GUI by the use of display touch feature. 
+The library is implemented as general window framework that allows creation of simple GUIs. The GUI is consist of text fields, buttons, chart window and etc. 
+Special keyboard window is implemented to provide runtime possibility of changing text fields. Sometimes it is necessary to change visualization settings like chart scaling (see Oscilloscope example for details) and etc.
+At this moment only TFT with 320x240 resolution on Arduiono Mega is tested, but the library can be adjusted to other display dimensions without big efforts.
 
 Installation
 ------------
-The AWind library is build on top of Henning Karlsen libraries (many thanks for that libraries it have saved pretty much of my time): 
+AWind library is build on top of Henning Karlsen libraries (many thanks for that libraries. It have saved pretty much of my time): 
 * [UTFT] (http://www.henningkarlsen.com/electronics/library.php?id=51)
 * [UTouch] (http://www.henningkarlsen.com/electronics/library.php?id=55)
 

@@ -4,7 +4,7 @@ Introduction
 ------------
 AWind (arduino window) is Arduino-library that is intended to simplify the use of touch TFT displays for the visualization of sensors data in text or chart form. It is also possible to interact with GUI by the use of display touch feature. 
 The library is implemented as general window framework that allows creation of simple GUIs. The GUI is consist of text fields, buttons, chart window and etc. 
-Special keyboard window is implemented to provide runtime possibility of changing text fields. Sometimes it is necessary to change visualization settings like chart scaling (see Oscilloscope example for details) and etc.
+Special keyboard window is implemented to provide runtime possibility of changing text fields.
 At this moment only TFT with 320x240 resolution on Arduiono Mega is tested, but the library can be adjusted to other display dimensions without big efforts.
 
 Installation
@@ -19,7 +19,7 @@ The AWind library refers AFrame and ASensor libraries
 * [AFrame] (https://github.com/AndreiDegtiarev/AFrame)
 * [ASensor] (https://github.com/AndreiDegtiarev/AFrame)
 
-To install you need to download them into arduinosketchfolder/libraries/ folder and then remove the "-master" in the folder names.
+To install you need download them into arduinosketchfolder/libraries/ folder and then remove the "-master" in the folder names.
 Restart the IDE
 
 How to connect TFT-display see the UTFT documentation.

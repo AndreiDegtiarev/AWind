@@ -22,46 +22,31 @@
 
 #include "Window.h"
 #include "KeyboardWindow.h"
+#include "MainWindow.h"
 #include "ICriticalProcess.h"
 
-class WindowsManager : public IEvent<Window>
+class WindowsManager
 {
 	DC _dc;
-	Window _mainWindow;
-	KeyboardWindow _keyboardWindow;
+	MainWindow _mainWindow;
 	ICriticalProcess *_criticalProcess;
-	Window *_modalWindow;
 public:
-	WindowsManager(UTFT *lcd,int width,int height):_dc(lcd),
-													_mainWindow(F("Main"),0,0,width-1,height-1),
-													_keyboardWindow(3,90)
+	WindowsManager(UTFT *lcd,int width,int height):_dc(lcd)
 	{
 		_criticalProcess=NULL;
-		_modalWindow=NULL;
-		_keyboardWindow.SetVisible(false);
-		_mainWindow.AddChild(&_keyboardWindow);
-		_keyboardWindow.SetEndEditEvent(this);
+	}
+	void Initialize()
+	{
+		_mainWindow.Move(0,0,_dc.DeviceWidth(),_dc.DeviceHeight());
 	}
 	void SetCriticalProcess(ICriticalProcess *criticalProcess)
 	{
 		_criticalProcess=criticalProcess;
 	}
-	void SetModalWindow(Window * modalWindow)
-	{
-		_modalWindow=modalWindow;
-	}
-	void Notify(Window *window)
-	{
-		if(window == &_keyboardWindow) //End edit
-		{
-			SetModalWindow(NULL);
-			_mainWindow.Invalidate();
-		}
-	}
 	Window *HitTest(int x,int y)
 	{
-		if(_modalWindow!=NULL)
-			return HitTest(_modalWindow,x,y);
+		if(MainWnd()->ModalWnd()!=NULL)
+			return HitTest(MainWnd()->ModalWnd(),x,y);
 		else
 			return HitTest(&_mainWindow,x,y);
 	}
@@ -88,18 +73,14 @@ public:
 	{
 		//if(_keyboardWindow.IsVisible())
 		//	redraw(&_keyboardWindow,false);
-		if(_modalWindow == NULL)
-			redraw(MainWindow(),false);
+		if(MainWnd()->ModalWnd() == NULL)
+			redraw(MainWnd(),false);
 		else 
-			redraw(_modalWindow,false);
+			redraw(MainWnd()->ModalWnd(),false);
 	}
-	Window *MainWindow()
+	MainWindow *MainWnd()
 	{
 		return &_mainWindow;
-	}
-	KeyboardWindow * Keyboard()
-	{
-		return &_keyboardWindow;
 	}
 	DC *GetDC()
 	{

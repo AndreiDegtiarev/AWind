@@ -69,9 +69,9 @@ void setup()
 	chartWnd->SetBackColor(Color::Black);
 	chartWnd->SetBuffer(dataBuffer);
 
-	windowsManager.MainWindow()->AddChild(textBox);
-	windowsManager.MainWindow()->AddChild(textNumber);
-	windowsManager.MainWindow()->AddChild(chartWnd);
+	windowsManager.MainWnd()->AddChild(textBox);
+	windowsManager.MainWnd()->AddChild(textNumber);
+	windowsManager.MainWnd()->AddChild(chartWnd);
 
 
 	out<<F("End setup");

@@ -77,13 +77,13 @@ int buf_size=500;
 
 void setup()
 {
-	Serial.begin(9600);
-
 	out.begin(57600);
 	out<<F("Setup");
 
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
+
+	windowsManager.Initialize();
 
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
@@ -120,10 +120,10 @@ void setup()
 	txtBufSize->SetNumber(buf_size);
 	x=0;
 	y=txtBufSize->Top()+txtBufSize->Height()+1;
-	chartWnd=new ChartWindow(x,y,windowsManager.MainWindow()->Width(),display_height-y-height*1.2);
+	chartWnd=new ChartWindow(x,y,windowsManager.MainWnd()->Width(),display_height-y-height*1.2);
 	chartWnd->SetMinMaxY(minV,maxV);
-	windowsManager.MainWindow()->AddChild(chartWnd);
-	windowsManager.MainWindow()->SetBackColor(Color::Black);
+	windowsManager.MainWnd()->AddChild(chartWnd);
+	windowsManager.MainWnd()->SetBackColor(Color::Black);
 	y=chartWnd->Top()+chartWnd->Height()+3;
 
 	TextBoxFString *labelMinV=new TextBoxFString(x,y+10,width,height,F("Vmin/max:"),Color::CornflowerBlue);
@@ -146,7 +146,7 @@ void setup()
 
 void initTextBox(TextBox *textBox,bool isLabel)
 {
-	windowsManager.MainWindow()->AddChild(textBox);
+	windowsManager.MainWnd()->AddChild(textBox);
 	if(!isLabel)
 	{
 		textBox->SetOnChanged(&textBoxEvent);

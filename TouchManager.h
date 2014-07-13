@@ -74,12 +74,12 @@ public :
 						_touch->read();
 					}
 					out<<F("Touch: ")<<touchWnd->Name()<<endl;
-					if(touchWnd->IsOfType(F("TextBoxNumber")) && !((TextBoxNumber *)touchWnd)->IsReadOnly())
+					/*if(touchWnd->IsOfType(F("TextBoxNumber")) && !((TextBoxNumber *)touchWnd)->IsReadOnly())
 					{
-						_windowsManager->SetModalWindow(_windowsManager->Keyboard());
-						_windowsManager->Keyboard()->BeginEdit((TextBoxNumber *)touchWnd);
+						_windowsManager->MainWnd()->SetModalWindow(_windowsManager->MainWnd()->Keyboard());
+						_windowsManager->MainWnd()->Keyboard()->BeginEdit((TextBoxNumber *)touchWnd);
 					}
-					else
+					else*/
 					{
 						Window *crWindow=touchWnd;
 						while(crWindow!=NULL && ((crWindow->IsAwaitTouch()) && !((TouchWindow *)crWindow)->OnTouch(x,y))||!crWindow->IsAwaitTouch())

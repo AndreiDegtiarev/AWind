@@ -18,11 +18,12 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
+/*
 #include "UTFT.h"
 #include "Window.h"
 
 
-/*bool Window::IsOfType(const __FlashStringHelper * type)
+bool Window::IsOfType(const __FlashStringHelper * type)
 {
 	const char PROGMEM *t1 = (const char PROGMEM *)_type;
 	const char PROGMEM *t2 = (const char PROGMEM *)type;
@@ -39,4 +40,5 @@
 		return i==length1;
 	}
 	return false;
-}*/
+}
+*/

@@ -33,6 +33,14 @@ public:
 		_lcd=lcd;
 		Reset();
 	}
+	int DeviceWidth()
+	{
+		return _lcd->getDisplayXSize()-1;
+	}
+	int DeviceHeight()
+	{
+		return _lcd->getDisplayYSize()-1;
+	}
 	void Reset()
 	{
 		_offset_x = 0;

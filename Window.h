@@ -27,6 +27,8 @@
 #include "DC.h"
 #include "IEvent.h"
 
+class MainWindow;
+
 class Window
 {
 protected:
@@ -60,7 +62,7 @@ public:
 		_parent = NULL;
 		_isDirty=true;
 		_touchEvent=NULL;
-		_type=F("Window");
+		//_type=F("Window");
 	}
 	//bool IsOfType(const __FlashStringHelper * type);
 	void SetOnTouch(IEvent<Window> *event)
@@ -79,16 +81,31 @@ public:
 	}
 	virtual bool OnTouch(int x,int y)
 	{
-		out<<F("OnTouch")<<endl;
+		//out<<F("OnTouch")<<endl;
 		if(_touchEvent!=NULL)
 		{
-			out<<F("TouchEvent generated")<<endl;
+			//out<<F("TouchEvent generated")<<endl;
 			_touchEvent->Notify(this);
 			return true;
 		}
 		return false;
 	}
-
+	MainWindow *MainWnd()
+	{
+		Window *parent=this;
+		while(parent->Parent()!=NULL)
+		{
+			parent=parent->Parent();
+		}
+		return (MainWindow *)(parent);
+	}
+	virtual void Move(int left,int top,int width,int height)
+	{
+		_left = left;
+		_top = top;
+		_width = width;
+		_height = height;
+	}
 	void PrepareDC(DC *dc)
 	{
 		//Serial.println(F("PrepareDC"));
@@ -102,11 +119,11 @@ public:
 		}
 		//Serial.println(F("End PrepareDC"));
 	}
-	const __FlashStringHelper * GetType()
+	/*const __FlashStringHelper * GetType()
 	{
 		return _type;
 	}
-	/*Window *HitTest(int x,int y)
+	Window *HitTest(int x,int y)
 	{
 		if(IsVisible()
 			&&x>=Left() && x<=Left()+Width()

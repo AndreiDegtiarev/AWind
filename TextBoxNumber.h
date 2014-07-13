@@ -20,6 +20,7 @@
 */
 #pragma once
 #include "TextBox.h"
+//#include "MainWindow.h"
 
 class TextBoxNumber : public TextBox
 {
@@ -34,7 +35,7 @@ public:
 		_isOK=true;
 		_number=0;
 		_isReadOnly=true;
-		_type=F("TextBoxNumber");
+		//_type=F("TextBoxNumber");
 	}
 	int Precission()
 	{
@@ -44,6 +45,15 @@ public:
 	{
 		return !_isReadOnly||TextBox::IsAwaitTouch();
 	}
+	bool OnTouch(int x,int y);
+	/*{
+		bool retCode=TextBox::OnTouch(x,y);
+		if(!_isReadOnly)
+		{
+			MainWnd()->StartKeyboard(this);
+		}
+		return retCode;
+	}*/
 	void SetIsReadOnly(bool isReadOnly)
 	{
 		_isReadOnly=isReadOnly;

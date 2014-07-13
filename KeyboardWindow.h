@@ -43,7 +43,6 @@ public:
 			_digidWindows[i]=new TextBoxNumber(x+_buttonDistance,y,_buttonSize,_buttonSize,0,Color::DarkBlue);
 			_digidWindows[i]->SetNumber(i);
 			initTextBox(_digidWindows[i]);
-			AddChild(_digidWindows[i]);
 		}
 		_pointSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("."),Color::DarkBlue);
 		_cancelSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("C"),Color::DarkBlue);
@@ -54,11 +53,6 @@ public:
 		initTextBox(_pointSymbol);
 		initTextBox(_cancelSymbol);
 		initTextBox(_enterSymbol);
-		AddChild(_editField);
-		AddChild(_backspaceSymbol);
-		AddChild(_pointSymbol);
-		AddChild(_enterSymbol);
-		AddChild(_cancelSymbol);
 		_endEditEvent=NULL;
 		_type=F("Keyboard");
 	}
@@ -71,6 +65,7 @@ protected:
 		text->SetBackColor(Color::Black);
 		text->SetMargins(_textOffset,_textOffset);
 		text->SetOnTouch(this);
+		AddChild(text);
 	}
 public:
 	void BeginEdit(TextBoxNumber * targetTextBox)
@@ -140,53 +135,4 @@ public:
 				_editField->SetText(_editBuffer);
 		}
 	}
-	/*virtual bool OnTouch(int x,int y)
-	{
-		out<<F("Keybord OnTouch")<<endl;
-		Window *hitTestWnd=this->HitTest(x,y);
-		if(hitTestWnd == _enterSymbol || hitTestWnd == _cancelSymbol)
-		{
-			if(hitTestWnd == _enterSymbol)
-			{
-				float number=atof(_editBuffer);
-				//Log::Number("KeyboardWindow end eidt: ",number,true);
-				_targetTextBox->SetNumber(number);
-				_targetTextBox->Invalidate();
-			}
-			SetVisible(false);
-			Parent()->Invalidate();
-		}
-		else
-		{
-			bool needUpdate=false;
-			if(hitTestWnd == _backspaceSymbol && _editPosition>0)
-			{
-				//Log::Number("KeyboardWindow backspace touch: ",_editPosition,true);
-				_editPosition--;
-				_editBuffer[_editPosition]=0;
-				needUpdate=true;
-			}
-			else if(hitTestWnd == _pointSymbol && _editPosition<14)
-			{
-				_editBuffer[_editPosition++]='.';
-				_editBuffer[_editPosition]=0;
-				needUpdate=true;
-			}
-			else
-			{
-				for(int i=0;i<10;i++)
-					if(hitTestWnd == _digidWindows[i] && _editPosition<14)
-					{
-						//Log::Number("KeyboardWindow touch: ",((TextBoxNumber *)hitTestWnd)->GetNumber(),true);
-						_editBuffer[_editPosition++]='0'+i;
-						_editBuffer[_editPosition]=0;
-						needUpdate=true;
-						break;
-					}
-			}
-			if(needUpdate)
-				_editField->SetText(_editBuffer);
-		}
-		return true;
-	}*/
 };

@@ -18,31 +18,17 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#pragma once
+#include "UTFT.h"
+#include "TextBoxNumber.h"
+#include "MainWindow.h"
 
-#include "TextBox.h"
-
-template <class T> class TextBoxTString : public TextBox
+bool TextBoxNumber::OnTouch(int x,int y)
 {
-	const T * _text;
-public:
-	TextBoxTString(int left,int top,int width,int height,T *text,Color textColor):TextBox(left,top,width,height,textColor)
+	bool retCode=TextBox::OnTouch(x,y);
+	if(!_isReadOnly)
 	{
-		_text=text;
-		//_type=F("TextBoxString");
+		MainWnd()->StartKeyboard(this);
+		retCode=true;
 	}
-	virtual void OnDraw(DC *dc)
-	{
-		TextBox::OnDraw(dc);
-		dc->DrawText(_text,_offset_x,_offset_y);
-	}
-	void SetText(T *text)
-	{
-		_text=text;
-		if(_changedEvent!=NULL)
-			_changedEvent->Notify(this);
-		Invalidate();
-	}
-};
-typedef	TextBoxTString<const __FlashStringHelper> TextBoxFString;
-typedef TextBoxTString<char> TextBoxString;
+	return retCode;
+}

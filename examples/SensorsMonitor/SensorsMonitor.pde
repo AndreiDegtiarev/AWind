@@ -47,7 +47,6 @@
 
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
-extern uint8_t ArialNumFontPlus[];
 
 int temperature_port=10;
 

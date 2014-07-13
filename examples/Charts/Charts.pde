@@ -1,4 +1,6 @@
 /*
+  Charts example is intended to demonstrate basics features of AWind library. 
+
   AWind.h - Arduino window library support for Color TFT LCD Boards
   Copyright (C)2014 Andrei Degtiarev. All right reserved
   
@@ -27,18 +29,20 @@
 #include "TextBoxNumber.h"
 #include "Log.h"
 
-
+//UTFT disaply connection
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 
-//const int display_width=319;
-//const int display_height=239;
-
+//Windows manager: container for GUI elements 
 WindowsManager windowsManager(&myGLCD);
 
+//Container that keeps data for further visualization 
 TimeSerieBuffer	*dataBuffer;
 ChartWindow *chartWnd;
 TextBoxNumber *textNumber;
+
+//Number of chart points
 int buf_size=1000;
+//Time step in buffer. If this paramter is defined it is no more need to store x-date separatly
 float time_step=1.0/buf_size;
 
 void setup()
@@ -50,6 +54,7 @@ void setup()
 	myGLCD.clrScr();
 	windowsManager.Initialize();
 
+	//my speciality: I connect LED-A display pin to D47 on arduino board
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
 

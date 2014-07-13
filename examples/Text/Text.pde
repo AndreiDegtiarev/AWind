@@ -1,4 +1,6 @@
 /*
+  Text example is intended to demonstrate basics features of AWind library. 
+
   AWind.h - Arduino window library support for Color TFT LCD Boards
   Copyright (C)2014 Andrei Degtiarev. All right reserved
   
@@ -16,33 +18,28 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-
 #include <UTFT.h>
 #include <UTouch.h>
 
-#include "LinkedList.h"
 #include "WindowsManager.h"
 #include "TouchManager.h"
-#include "VoltmeterSensor.h"
-#include "Oscilloscope.h"
+#include "Log.h"
+#include "TextExampleWindow.h"
 
-
+//UTFT disaply connection
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
 
+//Windows manager: container for GUI elements 
 WindowsManager windowsManager(&myGLCD);
 TouchManager touchManager(&myTouch,&windowsManager);
-VoltmeterSensor *voltmeter;
-Oscilloscope *oscilloscopeWnd;
 
-int time_step_mus=100;
-const int reserved_buf_size=2000;
-int buf_size=500;
+
 
 void setup()
 {
 	out.begin(57600);
-	out<<F("Setup");
+	out<<(F("Setup"))<<endl;
 
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
@@ -50,26 +47,22 @@ void setup()
 	myTouch.setPrecision(PREC_MEDIUM);
 
 	windowsManager.Initialize();
+	windowsManager.SetCriticalProcess(&touchManager);
 
+	//my speciality: I connect LED-A display pin to D47 on arduino board
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
 
-	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,500);
-	voltmeter->SetTimeStep(time_step_mus);
 
-	windowsManager.SetCriticalProcess(&touchManager);
+	windowsManager.MainWnd()->AddChild(new TextExampleWindow(windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight()));
 
-	oscilloscopeWnd=new Oscilloscope(voltmeter,buf_size,0.0,4.0,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight());
-	windowsManager.MainWnd()->AddChild(oscilloscopeWnd);
 
-	delay(1000); 
-	out<<F("End setup");
+	out<<F("End setup")<<endl;
 
 }
 
 void loop()
 {
-	voltmeter->MeasureBuffer();
-	oscilloscopeWnd->ChartWnd()->SetBuffer(voltmeter->Buffer());
 	windowsManager.loop();
 }
+

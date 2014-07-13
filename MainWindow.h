@@ -15,6 +15,7 @@ public:
 		AddChild(&_keyboardWindow);
 		_keyboardWindow.SetEndEditEvent(this);
 		_modalWindow=NULL;
+		SetBackColor(Color::Black);
 	}
 	void Notify(Window *window)
 	{

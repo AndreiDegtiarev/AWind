@@ -95,9 +95,8 @@ public:
 		x=ToDC_X(x);
 		y=ToDC_Y(y);
 		int stl, i;
-		const char PROGMEM *p = (const char PROGMEM *)text;
 
-		stl = strlen_P(p);
+		stl = strlen_P((const char PROGMEM *)text);
 		if (_lcd->orient==PORTRAIT)
 		{
 			if (x==RIGHT)
@@ -114,7 +113,7 @@ public:
 		}
 		for (i=0; i<stl; i++)
 		{
-			unsigned char c = pgm_read_byte(p++);
+			unsigned char c = pgm_read_byte(&((const char PROGMEM *)text)[i]);
 			_lcd->printChar(c, x + (i*(_lcd->cfont.x_size)), y);
 		}
 

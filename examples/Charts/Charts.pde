@@ -30,10 +30,10 @@
 
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 
-const int display_width=319;
-const int display_height=239;
+//const int display_width=319;
+//const int display_height=239;
 
-WindowsManager windowsManager(&myGLCD,display_width,display_height);
+WindowsManager windowsManager(&myGLCD);
 
 TimeSerieBuffer	*dataBuffer;
 ChartWindow *chartWnd;
@@ -48,6 +48,7 @@ void setup()
 
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
+	windowsManager.Initialize();
 
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
@@ -56,16 +57,16 @@ void setup()
 
 	int x=0;
 	int y=0;
-	TextBoxFString *textBox=new TextBoxFString(x,y,display_width/2,25,F("Scaling factor: "),Color::SkyBlue);
+	TextBoxFString *textBox=new TextBoxFString(x,y,windowsManager.GetDC()->DeviceWidth()/2,25,F("Scaling factor: "),Color::SkyBlue);
 	textBox->SetFont(BigFont);
-	x=display_width*3.0/4;
-	textNumber=new TextBoxNumber(x,y,display_width-x,25,0,Color::SkyBlue);
+	x=windowsManager.GetDC()->DeviceWidth()*3.0/4;
+	textNumber=new TextBoxNumber(x,y,windowsManager.GetDC()->DeviceWidth()-x,25,0,Color::SkyBlue);
 	textNumber->SetBackColor(Color::Red);
 	textNumber->SetFont(BigFont);
 	textNumber->SetMargins(20,2);
 	x=0;
 	y+=25;
-	chartWnd=new ChartWindow(x,y,display_width,display_height-25);
+	chartWnd=new ChartWindow(x,y,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight()-25);
 	chartWnd->SetBackColor(Color::Black);
 	chartWnd->SetBuffer(dataBuffer);
 

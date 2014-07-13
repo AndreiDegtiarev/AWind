@@ -24,7 +24,6 @@
 #include "TextBoxNumber.h"
 #include "TextBoxString.h"
 #include "ChartWindow.h"
-#include "TouchWindow.h"
 
 
 extern uint8_t ArialNumFontPlus[];
@@ -32,7 +31,7 @@ extern uint8_t BigFont[];
 extern uint8_t SmallFont[];
 
 
-class SensorWindow : public TouchWindow
+class SensorWindow : public Window
 {
 public:
 	static const int Margin=10;
@@ -70,7 +69,7 @@ protected:
 	VisMode _mode;
 	BkColorMode _bkColorMode;
 public:
-	SensorWindow(const __FlashStringHelper * name,SensorManager *sensorManager,int left,int top,WindowSize size=Big):TouchWindow(name,left,top,size == Big?BigWindowWidth:SmallWindowWidth,size == Big?BigWindowHeight:SmallWindowHeight)
+	SensorWindow(const __FlashStringHelper * name,SensorManager *sensorManager,int left,int top,WindowSize size=Big):Window(name,left,top,size == Big?BigWindowWidth:SmallWindowWidth,size == Big?BigWindowHeight:SmallWindowHeight)
 	{
 		_sensorManager = sensorManager;
 		_mode = Text;

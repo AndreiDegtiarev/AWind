@@ -19,8 +19,8 @@
   examples and tools supplied with the library.
 */
 #pragma once
-#include "TouchWindow.h"
-class TextBox : public TouchWindow
+#include "Window.h"
+class TextBox : public Window
 {
 	Color _textColor;
 	uint8_t *_font;
@@ -29,7 +29,7 @@ protected:
 	int _offset_y;
 	IEvent<Window> *_changedEvent;
 public:
-	TextBox(int left,int top,int width,int height,Color textColor):TouchWindow(F("text"),left,top,width,height),_textColor(textColor)
+	TextBox(int left,int top,int width,int height,Color textColor):Window(F("text"),left,top,width,height),_textColor(textColor)
 	{
 		_font = NULL;
 		_offset_x=0;

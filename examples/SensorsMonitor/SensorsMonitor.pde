@@ -51,14 +51,10 @@ extern uint8_t ArialNumFontPlus[];
 
 int temperature_port=10;
 
-const int display_width=320;
-const int display_height=240;
-
-
 LinkedList<SensorManager> sensors;
-MeasurementNode measurementNode(sensors); //,num_sensors);
+MeasurementNode measurementNode(sensors);
 
-WindowsManager windowsManager(&myGLCD,display_width,display_height);
+WindowsManager windowsManager(&myGLCD);
 TouchManager touchManager(&myTouch,&windowsManager);
 
 LinkedList<SensorWindow> vis_sensors;
@@ -69,10 +65,11 @@ unsigned long timer;
 void setup()
 {
 	out.begin(57600);
-	out<<F("Setup");
+	out<<F("Setup")<<endl;
 
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
+	windowsManager.Initialize();
 
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
@@ -110,14 +107,14 @@ void setup()
 	vis_sensors.Add(new SensorWindow(F("Alk Temp"),sensors[2],second_column,third_row,SensorWindow::Small));
 	vis_sensors.Add(new SensorWindow(F("Alk Humid"),sensors[3],third_column,third_row,SensorWindow::Small));
 	for(int i=0;i<vis_sensors.Count();i++)
-		windowsManager.MainWindow()->AddChild(vis_sensors[i]);
-	windowsManager.MainWindow()->AddChild(new ViewModusWindow(vis_sensors,windowsManager.MainWindow()->Width()-100,windowsManager.MainWindow()->Height()-45,95,35));
+		windowsManager.MainWnd()->AddChild(vis_sensors[i]);
+	windowsManager.MainWnd()->AddChild(new ViewModusWindow(vis_sensors,windowsManager.MainWnd()->Width()-100,windowsManager.MainWnd()->Height()-45,95,35));
 
 	windowsManager.SetCriticalProcess(&touchManager);
 	measurementNode.SetCriticalProcess(&touchManager);
 
 	delay(1000); 
-	out<<F("End setup");
+	out<<F("End setup")<<endl;
 
 }
 

@@ -20,7 +20,6 @@
 */
 #pragma once
 
-#include "TouchWindow.h"
 
 class TouchManager : public ICriticalProcess
 {
@@ -82,7 +81,7 @@ public :
 					else*/
 					{
 						Window *crWindow=touchWnd;
-						while(crWindow!=NULL && ((crWindow->IsAwaitTouch()) && !((TouchWindow *)crWindow)->OnTouch(x,y))||!crWindow->IsAwaitTouch())
+						while(crWindow!=NULL && ((crWindow->IsAwaitTouch()) && !(crWindow)->OnTouch(x,y))||!crWindow->IsAwaitTouch())
 						{
 							crWindow=crWindow->Parent();	
 						}

@@ -31,7 +31,7 @@ class WindowsManager
 	MainWindow _mainWindow;
 	ICriticalProcess *_criticalProcess;
 public:
-	WindowsManager(UTFT *lcd,int width,int height):_dc(lcd)
+	WindowsManager(UTFT *lcd):_dc(lcd)
 	{
 		_criticalProcess=NULL;
 	}
@@ -52,9 +52,7 @@ public:
 	}
 	Window *HitTest(Window *window,int x,int y)
 	{
-		/*Log::Number("Test wnd touch x: ",x);
-		Log::Number(" y : ",y,true);
-		Serial.println(Name());*/
+		//out<<F("Test wnd touch ")<<window->Name()<<endl;
 		if(window->IsVisible()
 			&&x>=window->Left() && x<=window->Left()+window->Width()
 			&&y>=window->Top() && y<=window->Top()+window->Height())

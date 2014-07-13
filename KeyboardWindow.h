@@ -6,7 +6,7 @@
 extern uint8_t BigFont[];
 extern uint8_t SmallFont[];
 
-class KeyboardWindow :  public TouchWindow,IEvent<Window>
+class KeyboardWindow :  public Window,IEvent<Window>
 {
 	TextBoxNumber *_targetTextBox;
 
@@ -24,7 +24,7 @@ class KeyboardWindow :  public TouchWindow,IEvent<Window>
 	const static int _textOffset=9;
 	IEvent<Window> *_endEditEvent;
 public:
-	KeyboardWindow(int left,int top):TouchWindow(F(""),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
+	KeyboardWindow(int left,int top):Window(F(""),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
 	{
 		_targetTextBox=NULL;
 		SetBorder(Color::CornflowerBlue);

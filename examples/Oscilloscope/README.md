@@ -11,4 +11,5 @@ Oscilloscope example is intended to demonstrate advanced features of AWind libra
 Hardware connection
 -------------------
 Connect display
+
 Signal is measured on A0 pin

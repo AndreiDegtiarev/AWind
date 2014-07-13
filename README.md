@@ -10,12 +10,13 @@ At this moment only TFT with 320x240 resolution is tested on Arduiono Mega, but 
 
 Installation
 ------------
-1. The AWind library is build on top of Henning Karlsen libraries (many thanks for that libraries it have saved pretty much of my time): 
+The AWind library is build on top of Henning Karlsen libraries (many thanks for that libraries it have saved pretty much of my time): 
 * [UTFT] (http://www.henningkarlsen.com/electronics/library.php?id=51)
 * [UTouch] (http://www.henningkarlsen.com/electronics/library.php?id=55)
 
-You need uncompressed them into  arduinosketchfolder/libraries/ folder.
-2. The AWind library refers AFrame and ASensor libraries
+You need uncompressed them into  arduinosketchfolder/libraries/ folder
+
+The AWind library refers AFrame and ASensor libraries
 * [AFrame] (https://github.com/AndreiDegtiarev/AFrame)
 * [ASensor] (https://github.com/AndreiDegtiarev/AFrame)
 

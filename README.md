@@ -2,7 +2,7 @@ AWind library
 -------------
 Introduction
 ------------
-AWind (arduino window) is Arduino-library that is intended to simplify the use of touch TFT displays for the visualization of sensors data in text or chart form. It is also possible to interact with GUI by the use of display touch feature. 
+AWind (arduino window) is Arduino-library that is intended to simplify the use of touch TFT displays for visualization of sensors data in text or chart form. It is also possible to interact with GUI by the use of display touch feature. 
 The library is implemented as general window framework that allows creation of simple GUIs. The GUI is consist of text fields, buttons, chart window and etc. 
 Special keyboard window is implemented to provide runtime possibility of changing text fields.
 At this moment only TFT with 320x240 resolution on Arduiono Mega is tested, but the library can be adjusted to other display dimensions without big efforts.
@@ -30,4 +30,4 @@ Examples
 In the each example folder there is a screen-shots to demonstrate how results should looks like
 * [Charts] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Charts/README.md): Simple example that demonstrate the basic use of AWind library 
 * [Oscilloscope] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Oscilloscope/README.md): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length
-* [SensorsMonitor] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/SensorsMonitor/README.md): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example works in DEMO-mode and real sensors connections is not needed
+* [SensorsMonitor] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/SensorsMonitor/README.md): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example work in DEMO-mode and real sensors connections is not needed

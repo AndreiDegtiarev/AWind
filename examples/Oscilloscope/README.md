@@ -6,7 +6,7 @@ Oscilloscope example is intended to demonstrate advanced features of AWind libra
 - Interaction with analog pin
 - Signal measurement
 - Visualization in form of chart
-- Virtual keyboard, that allows to change chart scaling and measurement parameters
+- Virtual keyboard, that allows the change chart scaling and measurement parameters
 
 Hardware connection
 -------------------

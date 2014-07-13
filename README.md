@@ -28,6 +28,7 @@ How to connect TFT-display see the UTFT documentation.
 Examples
 --------
 In the each example folder there is a screen-shots to demonstrate how results should looks like
-* [Charts] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Charts/README.md): Simple example that demonstrate the basic use of AWind library 
+* [Text] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Text/README.md): Simple example that demonstrate the basic use of text window + touch interaction
+* [Charts] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Charts/README.md): Simple example that demonstrate the basic use of chart window 
 * [Oscilloscope] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Oscilloscope/README.md): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length
 * [SensorsMonitor] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/SensorsMonitor/README.md): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example work in DEMO-mode and real sensors connections is not needed

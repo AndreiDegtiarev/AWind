@@ -12,11 +12,13 @@ Installation
 ------------
 1. The AWind library is build on top of Henning Karlsen libraries (many thanks for that libraries it have saved pretty much of my time): 
 * [UTFT] (http://www.henningkarlsen.com/electronics/library.php?id=51)
-* [UTouch] (http://www.henningkarlsen.com/electronics/library.php?id=55).
+* [UTouch] (http://www.henningkarlsen.com/electronics/library.php?id=55)
+
 You need uncompressed them into  arduinosketchfolder/libraries/ folder.
 2. The AWind library refers AFrame and ASensor libraries
 * [AFrame] (https://github.com/AndreiDegtiarev/AFrame)
-* [ASensor] (https://github.com/AndreiDegtiarev/AFrame).
+* [ASensor] (https://github.com/AndreiDegtiarev/AFrame)
+
 To install you need to download them into arduinosketchfolder/libraries/ folder and then remove the "-master" in the folder names.
 Restart the IDE
 
@@ -26,6 +28,6 @@ How to connect TFT-display see the UTFT documentation.
 Examples
 --------
 In the each example folder there is a screen-shots to demonstrate how results should looks like
-*[Charts](https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Charts/README.md): Simple example that demonstrate the basic use of AWind library 
-*[Oscilloscope](https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Oscilloscope/README.md): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length
-*[SensorsMonitor](https://github.com/AndreiDegtiarev/AWind/blob/master/examples/SensorsMonitor/README.md): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example works in DEMO-mode and real sensors connections is not needed
+* [Charts] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Charts/README.md): Simple example that demonstrate the basic use of AWind library 
+* [Oscilloscope] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Oscilloscope/README.md): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length
+* [SensorsMonitor] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/SensorsMonitor/README.md): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example works in DEMO-mode and real sensors connections is not needed

@@ -18,11 +18,10 @@
 */
 #pragma once
 
-#include "IEvent.h"
 #include "TextBoxString.h"
 #include "TextBoxNumber.h"
 
-class TextExampleWindow : public Window, IEvent<Window>
+class TextExampleWindow : public Window
 {
 	TextBoxNumber *_textNumber;
 public:

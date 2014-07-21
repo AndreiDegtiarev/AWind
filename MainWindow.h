@@ -1,6 +1,5 @@
 #pragma once
 #include "Window.h"
-#include "IEvent.h"
 #include "KeyboardWindow.h"
 class TextBoxNumber;
 class MainWindow : public Window, IDialogClosedEventReceiver

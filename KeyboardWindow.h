@@ -1,12 +1,13 @@
 #pragma once
 #include "TextBoxNumber.h"
 #include "TextBoxString.h"
+#include "IDialogClosedEventReceiver.h"
 
 
 extern uint8_t BigFont[];
 extern uint8_t SmallFont[];
 
-class KeyboardWindow :  public Window,IEvent<Window>
+class KeyboardWindow :  public Window,ITouchEventReceiver
 {
 	TextBoxNumber *_targetTextBox;
 
@@ -22,7 +23,7 @@ class KeyboardWindow :  public Window,IEvent<Window>
 	const static int _buttonSize=39;
 	const static int _buttonDistance=5;
 	const static int _textOffset=9;
-	IEvent<Window> *_endEditEvent;
+	IDialogClosedEventReceiver *_dialogClosedEventReceiver;
 public:
 	KeyboardWindow(int left,int top):Window(F(""),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
 	{
@@ -53,8 +54,7 @@ public:
 		initTextBox(_pointSymbol);
 		initTextBox(_cancelSymbol);
 		initTextBox(_enterSymbol);
-		_endEditEvent=NULL;
-		_type=F("Keyboard");
+		_dialogClosedEventReceiver=NULL;
 	}
 protected:
 	void initTextBox(TextBox *text)
@@ -64,7 +64,7 @@ protected:
 		text->SetBorder(Color::CornflowerBlue);
 		text->SetBackColor(Color::Black);
 		text->SetMargins(_textOffset,_textOffset);
-		text->SetOnTouch(this);
+		text->RegisterTouchEventReceiver(this);
 		AddChild(text);
 	}
 public:
@@ -73,19 +73,17 @@ public:
 		_editPosition=0;
 		_targetTextBox=targetTextBox;
 		dtostrf( _targetTextBox->GetNumber(),0,_targetTextBox->Precission(),_editBuffer);
-		//sprintf(_editBuffer, "%f", _targetTextBox->GetNumber());
-		//Serial.println(_editBuffer);
 		_editField->SetText(_editBuffer);
 		_editField->Invalidate();
 		_editPosition=strlen(_editBuffer);
 		SetVisible(true);
 		Invalidate();
 	}
-	void SetEndEditEvent(IEvent<Window> *endEditEvent)
+	void RegisterEndDialogEventReceiver(IDialogClosedEventReceiver *receiver)
 	{
-		_endEditEvent=endEditEvent;
+		_dialogClosedEventReceiver=receiver;
 	}
-	void Notify(Window *window)
+	void NotifyTouch(Window *window)
 	{
 		out<<F("Keybord notify")<<endl;
 		if(window == _enterSymbol || window == _cancelSymbol)
@@ -93,22 +91,18 @@ public:
 			if(window == _enterSymbol)
 			{
 				float number=atof(_editBuffer);
-				//Log::Number("KeyboardWindow end eidt: ",number,true);
 				_targetTextBox->SetNumber(number);
 				_targetTextBox->Invalidate();
 			}
 			SetVisible(false);
-			if(_endEditEvent!=NULL)
-				_endEditEvent->Notify(this);
-
-			//Parent()->Invalidate();
+			if(_dialogClosedEventReceiver!=NULL)
+				_dialogClosedEventReceiver->NotifyDialogClosed(this);
 		}
 		else
 		{
 			bool needUpdate=false;
 			if(window == _backspaceSymbol && _editPosition>0)
 			{
-				//Log::Number("KeyboardWindow backspace touch: ",_editPosition,true);
 				_editPosition--;
 				_editBuffer[_editPosition]=0;
 				needUpdate=true;
@@ -124,7 +118,6 @@ public:
 				for(int i=0;i<10;i++)
 					if(window == _digidWindows[i] && _editPosition<14)
 					{
-						//Log::Number("KeyboardWindow touch: ",((TextBoxNumber *)hitTestWnd)->GetNumber(),true);
 						_editBuffer[_editPosition++]='0'+i;
 						_editBuffer[_editPosition]=0;
 						needUpdate=true;

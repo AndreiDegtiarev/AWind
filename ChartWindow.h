@@ -41,7 +41,6 @@ public:
 		_buffer = NULL;
 		_fix_MinY=ChartDC::AutoMin;
 		_fix_MaxY=ChartDC::AutoMax;
-		_type=F("ChartWindow");
 	}
 	void SetMinMaxY(float min,float max)
 	{

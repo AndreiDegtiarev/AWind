@@ -68,7 +68,7 @@ public:
 		{
 			_number = number;
 			if(_changedEvent!=NULL)
-				_changedEvent->Notify(this);
+				_changedEvent->NotifyContentChanged(this);
 			Invalidate();
 		}
 	}

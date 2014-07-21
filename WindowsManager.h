@@ -39,6 +39,10 @@ public:
 	{
 		_mainWindow.Move(0,0,_dc.DeviceWidth(),_dc.DeviceHeight());
 	}
+	void InitializeWindowSystem()
+	{
+		initialze(&_mainWindow);
+	}
 	void SetCriticalProcess(ICriticalProcess *criticalProcess)
 	{
 		_criticalProcess=criticalProcess;
@@ -52,7 +56,6 @@ public:
 	}
 	Window *HitTest(Window *window,int x,int y)
 	{
-		//out<<F("Test wnd touch ")<<window->Name()<<endl;
 		if(window->IsVisible()
 			&&x>=window->Left() && x<=window->Left()+window->Width()
 			&&y>=window->Top() && y<=window->Top()+window->Height())
@@ -69,11 +72,9 @@ public:
 	}
 	void loop()
 	{
-		//if(_keyboardWindow.IsVisible())
-		//	redraw(&_keyboardWindow,false);
 		if(MainWnd()->ModalWnd() == NULL)
 			redraw(MainWnd(),false);
-		else 
+		if(MainWnd()->ModalWnd() != NULL)
 			redraw(MainWnd()->ModalWnd(),false);
 	}
 	MainWindow *MainWnd()
@@ -85,6 +86,12 @@ public:
 		return &_dc;
 	}
 protected:
+	void initialze(Window *window)
+	{
+		window->Initialize();
+		for(int i=0;i<window->Children().Count();i++)
+			initialze(window->Children()[i]);
+	}
 	void redraw(Window *window,bool isForceRedraw)
 	{
 		if(_criticalProcess!=NULL)

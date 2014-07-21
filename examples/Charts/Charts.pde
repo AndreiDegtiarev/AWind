@@ -29,10 +29,10 @@
 #include "TextBoxNumber.h"
 #include "Log.h"
 
-//UTFT disaply connection
+// Setup TFT display (see UTFT and UTouch library documentation)
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 
-//Windows manager: container for GUI elements 
+//manager which is responsible for window updating process 
 WindowsManager windowsManager(&myGLCD);
 
 //Container that keeps data for further visualization 
@@ -42,21 +42,22 @@ TextBoxNumber *textNumber;
 
 //Number of chart points
 int buf_size=1000;
-//Time step in buffer. If this paramter is defined it is no more need to store x-date separatly
+//Time step in buffer. If this parameter is defined it is no more need to store x-date separatly
 float time_step=1.0/buf_size;
 
 void setup()
 {
 	out.begin(57600);
 	out<<(F("Setup"));
-
+	//initialize display
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
-	windowsManager.Initialize();
-
-	//my speciality: I connect LED-A display pin to D47 on arduino board
+	//my speciality I have connected LED-A display pin to the pin 47 on Arduino board. Comment next two lines if the example from UTFT library runs without any problems 
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
+	
+	//initialize window manager
+	windowsManager.Initialize();
 
 	dataBuffer=new TimeSerieBuffer(time_step,100,1000,1000);
 
@@ -96,6 +97,7 @@ void loop()
 	textNumber->SetNumber(index);
 	chartWnd->Invalidate();
 	index/=2;
+	//give window manager an opportunity to update display
 	windowsManager.loop();
 	delay(1000);
 }

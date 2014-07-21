@@ -26,12 +26,13 @@
 #include "Log.h"
 #include "TextExampleWindow.h"
 
-//UTFT disaply connection
+// Setup TFT display + touch (see UTFT and UTouch library documentation)
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
 
 //Windows manager: container for GUI elements 
 WindowsManager windowsManager(&myGLCD);
+//manager which is responsible for processing of touch events
 TouchManager touchManager(&myTouch,&windowsManager);
 
 
@@ -41,17 +42,19 @@ void setup()
 	out.begin(57600);
 	out<<(F("Setup"))<<endl;
 
+	//initialize display
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
+	//my speciality I have connected LED-A display pin to the pin 47 on Arduino board. Comment next two lines if the example from UTFT library runs without any problems 
+	pinMode(47,OUTPUT);
+	digitalWrite(47,HIGH);
+	//initialize touch
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
 
+	//initialize window manager
 	windowsManager.Initialize();
 	windowsManager.SetCriticalProcess(&touchManager);
-
-	//my speciality: I connect LED-A display pin to D47 on arduino board
-	pinMode(47,OUTPUT);
-	digitalWrite(47,HIGH);
 
 
 	windowsManager.MainWnd()->AddChild(new TextExampleWindow(windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight()));

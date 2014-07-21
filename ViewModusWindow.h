@@ -23,44 +23,54 @@
 #include "TextBoxString.h"
 #include "SensorWindow.h"
 
-class ViewModusWindow : public TextBoxFString,IEvent<Window>
+class ViewModusWindow : public Window,ITouchEventReceiver
 {
 	enum Modus
 	{
 		Day,
 		Night
 	};
-	SensorWindow::BkColorMode _modus;
-	LinkedList<SensorWindow> _vis_sensors;
+	static const ARGB DaylightBkColor=Color::CadetBlue;
+    static const ARGB NightBkColor=Color::Black;
+	TextBoxFString *_text;
+	Modus _modus;
 public:
-	ViewModusWindow(LinkedList<SensorWindow> vis_sensors,int left,int top,int width,int height):TextBoxFString(left,top,width,height,F("Night"),Color::White)
+	ViewModusWindow(int width,int height):Window(F("ViewModusWindow"),0,0,width,height)
 	{
-		SetBackColor(Color::CadetBlue);
-		_modus=SensorWindow::Day;
-		_vis_sensors=vis_sensors;
-		SetFont(BigFont);
-		SetMargins(15,10);
-		this->SetOnTouch(this);
+		SetBackColor(Color::Black);
+		_text=new TextBoxFString(width-100,height-45,95,35,F("Night"),Color::White);
+		_text->SetBackColor(DaylightBkColor);
+		_modus=Day;
+		_text->SetFont(BigFont);
+		_text->SetMargins(15,10);
+		AddChild(_text);
+		this->RegisterTouchEventReceiver(this);
 	}
-	void Notify(Window *wnd)
+	void Initialize()
 	{
-		SensorWindow::BkColorMode mode=SensorWindow::Day;
+		updateBackColor();
+	}
+	void NotifyTouch(Window *wnd)
+	{
 		if(_modus==Day)
 		{
-			_modus=SensorWindow::Night;
-			SetText(F("Day"));
+			_modus=Night;
+			_text->SetText(F("Day"));
 		}
 		else
 		{
-			_modus=SensorWindow::Day;	
-			SetText(F("Night"));
+			_modus=Day;	
+			_text->SetText(F("Night"));
 		}
-		for(int i=0;i<_vis_sensors.Count();i++)
-		{
-			_vis_sensors[i]->SetBkColorMode(_modus);
-			_vis_sensors[i]->Invalidate();
-		}
-		SetBackColor(_modus==SensorWindow::Day?SensorWindow::DaylightBkColor:SensorWindow::NightBkColor);
+		updateBackColor();
 		Invalidate();
+	}
+protected:
+	void updateBackColor()
+	{
+		for(int i=0;i<Children().Count();i++)
+		{
+			Children()[i]->SetBackColor(_modus==Day?DaylightBkColor:NightBkColor);
+		}
 	}
 };

@@ -25,14 +25,13 @@
 #include "LinkedList.h"
 #include "Log.h"
 #include "DC.h"
-#include "IEvent.h"
+#include "ITouchEventReceiver.h"
 
 class MainWindow;
 
 class Window
 {
 protected:
-	const __FlashStringHelper *_type;
 	int _left;
 	int _top;
 	int _width;
@@ -45,7 +44,7 @@ protected:
 	const __FlashStringHelper *_name;
 	bool _isDirty;
 
-	IEvent<Window> *_touchEvent;
+	ITouchEventReceiver *_touchEventReceiver;
 
 public:
 	Window(const __FlashStringHelper * name,int left,int top,int width,int height):
@@ -61,17 +60,15 @@ public:
 	{
 		_parent = NULL;
 		_isDirty=true;
-		_touchEvent=NULL;
-		//_type=F("Window");
+		_touchEventReceiver=NULL;
 	}
-	//bool IsOfType(const __FlashStringHelper * type);
-	void SetOnTouch(IEvent<Window> *event)
+	void RegisterTouchEventReceiver(ITouchEventReceiver *touchEventReceiver)
 	{
-		_touchEvent=event;
+		_touchEventReceiver=touchEventReceiver;
 	}
 	virtual bool IsAwaitTouch()
 	{
-		return _touchEvent!=NULL;
+		return _touchEventReceiver!=NULL;
 	}
 	virtual void OnTouching(DC *dc)
 	{
@@ -82,10 +79,10 @@ public:
 	virtual bool OnTouch(int x,int y)
 	{
 		//out<<F("OnTouch")<<endl;
-		if(_touchEvent!=NULL)
+		if(_touchEventReceiver!=NULL)
 		{
 			//out<<F("TouchEvent generated")<<endl;
-			_touchEvent->Notify(this);
+			_touchEventReceiver->NotifyTouch(this);
 			return true;
 		}
 		return false;
@@ -99,6 +96,10 @@ public:
 		}
 		return (MainWindow *)(parent);
 	}
+	virtual void Initialize()
+	{
+
+	}
 	virtual void Move(int left,int top,int width,int height)
 	{
 		_left = left;
@@ -108,40 +109,16 @@ public:
 	}
 	void PrepareDC(DC *dc)
 	{
-		//Serial.println(F("PrepareDC"));
 		dc->Reset();
 		Window *crWnd=this;
 		while(crWnd!=NULL)
 		{
-			//Serial.println(crWnd->Name());
 			dc->Offset(crWnd->Left(),crWnd->Top());
 			crWnd=crWnd->Parent();
 		}
-		//Serial.println(F("End PrepareDC"));
 	}
-	/*const __FlashStringHelper * GetType()
-	{
-		return _type;
-	}
-	Window *HitTest(int x,int y)
-	{
-		if(IsVisible()
-			&&x>=Left() && x<=Left()+Width()
-			&&y>=Top() && y<=Top()+Height())
-		{
-			for(int i=0;i<Children().Count();i++)
-			{
-				Window * retWnd=Children()[i]->HitTest(x-Left(),y-Top());
-				if(retWnd!=NULL)
-					return retWnd;
-			}
-			return this;
-		}
-		return NULL;
-	}*/
 	void Invalidate()
 	{
-		//out<<F("Invalidate: ")<<GetType()<<endl;
 		_isDirty=true;
 	}
 	bool IsDirty()
@@ -181,7 +158,7 @@ public:
 	{
 		return _parent;
 	}
-	void SetBackColor(Color color)
+	virtual void SetBackColor(Color color)
 	{
 		_backColor=color;
 	}
@@ -205,8 +182,6 @@ public:
 	}
 	virtual void OnDraw(DC *dc)
 	{
-		//Serial.print(F("Begin OnDraw "));
-		//Serial.println(Name());
 		_isDirty=false;
 		if(_backColor.GetValue() != VGA_TRANSPARENT)
 		{

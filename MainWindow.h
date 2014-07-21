@@ -3,7 +3,7 @@
 #include "IEvent.h"
 #include "KeyboardWindow.h"
 class TextBoxNumber;
-class MainWindow : public Window, IEvent<Window>
+class MainWindow : public Window, IDialogClosedEventReceiver
 {
 	Window *_modalWindow;
 	KeyboardWindow _keyboardWindow;
@@ -13,11 +13,11 @@ public:
 	{
 		_keyboardWindow.SetVisible(false);
 		AddChild(&_keyboardWindow);
-		_keyboardWindow.SetEndEditEvent(this);
+		_keyboardWindow.RegisterEndDialogEventReceiver(this);
 		_modalWindow=NULL;
 		SetBackColor(Color::Black);
 	}
-	void Notify(Window *window)
+	void NotifyDialogClosed(Window *window)
 	{
 		if(window == &_keyboardWindow) //End edit
 		{

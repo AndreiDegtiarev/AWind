@@ -20,7 +20,7 @@
 #include "Window.h"
 #include "ChartWindow.h"
 #include "TextBoxNumber.h"
-class Oscilloscope : public Window, IEvent<Window>
+class Oscilloscope : public Window, IContentChangedEventReceiver
 {
 	VoltmeterSensor *_voltmeter;
 	ChartWindow *_chartWnd;
@@ -77,7 +77,7 @@ public:
 		AddChild(textBox);
 		if(!isLabel)
 		{
-			textBox->SetOnChanged(this);
+			textBox->RegisterContentChangedReceiver(this);
 			textBox->SetBorder(Color::CornflowerBlue);
 			textBox->SetMargins(0,7);
 			textBox->SetFont(BigFont);
@@ -93,9 +93,9 @@ public:
 	{
 		return _chartWnd;
 	}
-	void Notify(Window *textBox)
+	void NotifyContentChanged(Window *textBox)
 	{
-		out<<F("Notified")<<endl;
+		//out<<F("Notified")<<endl;
 		if(textBox == _txtMinV || textBox == _txtMaxV)
 		{
 			_chartWnd->SetMinMaxY(_txtMinV->GetNumber(),_txtMaxV->GetNumber());

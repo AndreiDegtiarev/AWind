@@ -26,12 +26,15 @@
 #include "VoltmeterSensor.h"
 #include "Oscilloscope.h"
 
-
+// Setup TFT display + touch (see UTFT and UTouch library documentation)
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
 
+//manager which is responsible for window updating process
 WindowsManager windowsManager(&myGLCD);
+//manager which is responsible for processing of touch events
 TouchManager touchManager(&myTouch,&windowsManager);
+
 VoltmeterSensor *voltmeter;
 Oscilloscope *oscilloscopeWnd;
 
@@ -41,20 +44,25 @@ int buf_size=500;
 
 void setup()
 {
+	//setup log (out is wrap about Serial class)
 	out.begin(57600);
 	out<<F("Setup");
 
+	//initialize display
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
+	//initialize touch
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
-
-	windowsManager.Initialize();
-
+	//my speciality I have connected LED-A display pin to the pin 47 on Arduino board. Comment next two lines if the example from UTFT library runs without any problems 
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
 
-	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,500);
+	//initialize window manager
+	windowsManager.Initialize();
+
+	//create voltmeter sensor that measures analog pin A0
+	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,buf_size);
 	voltmeter->SetTimeStep(time_step_mus);
 
 	windowsManager.SetCriticalProcess(&touchManager);
@@ -62,6 +70,8 @@ void setup()
 	oscilloscopeWnd=new Oscilloscope(voltmeter,buf_size,0.0,4.0,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight());
 	windowsManager.MainWnd()->AddChild(oscilloscopeWnd);
 
+	//finalize window initialization: window resizing and etc.
+	windowsManager.InitializeWindowSystem();
 	delay(1000); 
 	out<<F("End setup");
 
@@ -69,7 +79,10 @@ void setup()
 
 void loop()
 {
+	//measure data
 	voltmeter->MeasureBuffer();
+	//initialize chart window with measured data 
 	oscilloscopeWnd->ChartWnd()->SetBuffer(voltmeter->Buffer());
+	//give window manager an opportunity to update display
 	windowsManager.loop();
 }

@@ -16,7 +16,7 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-
+// DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
 #define DEMO_SENSORS
 
 #ifndef DEMO_SENSORS
@@ -33,11 +33,12 @@
 #include <UTouch.h>
 
 #include "ISensor.h"
-#include "SensorManager.h"
 #include "DS18B20Sensor.h"
 #include "DHTTemperatureSensor.h"
 #include "DHTHumiditySensor.h"
 #include "BMP085Sensor.h"
+
+#include "SensorManager.h"
 #include "MeasurementNode.h"
 
 #include "WindowsManager.h"
@@ -45,38 +46,44 @@
 #include "ViewModusWindow.h"
 #include "MeasurementNode.h"
 
+// Setup TFT display + touch (see UTFT and UTouch library documentation)
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
 
+//pin on Arduino where temperature sensor is connected (in demo is meaningless)
 int temperature_port=10;
 
+//list where all sensors are collected
 LinkedList<SensorManager> sensors;
+//manager which controls the measurement process
 MeasurementNode measurementNode(sensors);
 
+//manager which is responsible for window updating process
 WindowsManager windowsManager(&myGLCD);
+//manager which is responsible for processing of touch events
 TouchManager touchManager(&myTouch,&windowsManager);
 
-LinkedList<SensorWindow> vis_sensors;
-
-
-unsigned long timer;
 
 void setup()
 {
+	//setup log (out is wrap about Serial class)
 	out.begin(57600);
 	out<<F("Setup")<<endl;
 
+	//initialize display
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
-	windowsManager.Initialize();
-
+	//my speciality I have connected LED-A display pin to the pin 47 on Arduino board. Comment next two lines if the example from UTFT library runs without any problems 
+	pinMode(47,OUTPUT);
+	digitalWrite(47,HIGH);
+	//initialize touch
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
 
-	myGLCD.setFont(ArialNumFontPlus);
-	pinMode(47,OUTPUT);
-	digitalWrite(47,HIGH);
+	//initialize window manager
+	windowsManager.Initialize();
 
+	//sensors
 	DHTTemperatureSensor *inTempr=new DHTTemperatureSensor(temperature_port+2);
 	DHTHumiditySensor *inHumidity=new DHTHumiditySensor(inTempr);
 	DHTTemperatureSensor *alkovenTempr=new DHTTemperatureSensor(temperature_port-2);
@@ -84,7 +91,7 @@ void setup()
 	BMP085Sensor *pressure=new BMP085Sensor();
 	DS18B20Sensor *fridgeTempr=new DS18B20Sensor(temperature_port,1);
 	DS18B20Sensor *outTempr=new DS18B20Sensor(temperature_port,2);
-
+	//sensor managers. Manager defines measurement limits and measurement delays
 	sensors.Add(new SensorManager(inTempr,15,40,1000*10)); //0
 	sensors.Add(new SensorManager(inHumidity,0,80,1000*10)); //1
 	sensors.Add(new SensorManager(alkovenTempr,15,40,1000*10)); //2
@@ -93,24 +100,26 @@ void setup()
 	sensors.Add(new SensorManager(fridgeTempr,-5,16,1000*10));//5
 	sensors.Add(new SensorManager(outTempr,-30,40,1000*10));//6
 
-
+	//sensor windows
 	int second_column = SensorWindow::BigWindowWidth+SensorWindow::Margin/2;
 	int second_row=SensorWindow::BigWindowHeight+SensorWindow::Margin/2;
-	vis_sensors.Add(new SensorWindow(F("In Temp"),sensors[0],0,0));
-	vis_sensors.Add(new SensorWindow(F("In Humid"),sensors[1],second_column,0));
-	vis_sensors.Add(new SensorWindow(F("Out"),sensors[6],0,second_row));
+	ViewModusWindow *modusWindow=new ViewModusWindow(windowsManager.MainWnd()->Width(),windowsManager.MainWnd()->Height());
+	windowsManager.MainWnd()->AddChild(modusWindow);
+	modusWindow->AddChild(new SensorWindow(F("In Temp"),sensors[0],0,0));
+	modusWindow->AddChild(new SensorWindow(F("In Humid"),sensors[1],second_column,0));
+	modusWindow->AddChild(new SensorWindow(F("Out"),sensors[6],0,second_row));
 	int third_column = second_column + SensorWindow::SmallWindowWidth+SensorWindow::Margin/2;
 	int third_row = second_row + SensorWindow::SmallWindowHeight+SensorWindow::Margin/2;
-	vis_sensors.Add(new SensorWindow(F("Pressure"),sensors[4],second_column,second_row,SensorWindow::Small));
-	vis_sensors.Add(new SensorWindow(F("Fridge"),sensors[5],third_column,second_row,SensorWindow::Small));
-	vis_sensors.Add(new SensorWindow(F("Alk Temp"),sensors[2],second_column,third_row,SensorWindow::Small));
-	vis_sensors.Add(new SensorWindow(F("Alk Humid"),sensors[3],third_column,third_row,SensorWindow::Small));
-	for(int i=0;i<vis_sensors.Count();i++)
-		windowsManager.MainWnd()->AddChild(vis_sensors[i]);
-	windowsManager.MainWnd()->AddChild(new ViewModusWindow(vis_sensors,windowsManager.MainWnd()->Width()-100,windowsManager.MainWnd()->Height()-45,95,35));
-
+	modusWindow->AddChild(new SensorWindow(F("Pressure"),sensors[4],second_column,second_row,SensorWindow::Small));
+	modusWindow->AddChild(new SensorWindow(F("Fridge"),sensors[5],third_column,second_row,SensorWindow::Small));
+	modusWindow->AddChild(new SensorWindow(F("Alk Temp"),sensors[2],second_column,third_row,SensorWindow::Small));
+	modusWindow->AddChild(new SensorWindow(F("Alk Humid"),sensors[3],third_column,third_row,SensorWindow::Small));
+	//in order to avoid pause in the touch interactions, touch manager is defined as critical process
 	windowsManager.SetCriticalProcess(&touchManager);
 	measurementNode.SetCriticalProcess(&touchManager);
+
+	//finalize window initialization: window resizing and etc.
+	windowsManager.InitializeWindowSystem();
 
 	delay(1000); 
 	out<<F("End setup")<<endl;
@@ -119,16 +128,17 @@ void setup()
 
 void loop()
 {
-  if(measurementNode.measure())
-  {
-	  if(measurementNode.IsChanged())
-	  {
-		  measurementNode.printSerial();
-		  for(int i=0;i<vis_sensors.Count();i++)
-			  vis_sensors[i]->OnUpdate();
-	  }
+	//measure (if necessary -see delay parameter in sensor manager)
+	if(measurementNode.measure())
+	{
+		//following if is only for debugging purposes
+		if(measurementNode.IsChanged())
+		{
+			measurementNode.printSerial();
+		}
 
-  }
-  windowsManager.loop();
+	}
+	//give window manager an opportunity to update display
+	windowsManager.loop();
 }
 

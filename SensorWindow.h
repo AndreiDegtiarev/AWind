@@ -24,6 +24,8 @@
 #include "TextBoxNumber.h"
 #include "TextBoxString.h"
 #include "ChartWindow.h"
+#include "ChartWindow.h"
+#include "ISensorHasDataEventReceiver.h"
 
 
 extern uint8_t ArialNumFontPlus[];
@@ -31,7 +33,7 @@ extern uint8_t BigFont[];
 extern uint8_t SmallFont[];
 
 
-class SensorWindow : public Window
+class SensorWindow : public Window, ISensorHasDataEventReceiver
 {
 public:
 	static const int Margin=10;
@@ -40,18 +42,10 @@ public:
 	static const int BigWindowWidth=135+Margin*2;
 	static const int SmallWindowWidth=BigWindowWidth/2-Margin/4;
 
-	static const ARGB DaylightBkColor=Color::CadetBlue;
-    static const ARGB NightBkColor=Color::Black;
 	enum WindowSize
 	{
 		Big,
 		Small
-	};
-	enum BkColorMode
-	{
-		Day,
-		Night,
-		Alarm
 	};
 protected:
 	enum VisMode
@@ -67,7 +61,8 @@ protected:
 	TextBoxFString *_textChartAxis;
 	ChartWindow *_chartWnd;
 	VisMode _mode;
-	BkColorMode _bkColorMode;
+	Color _normalBkColor;
+
 public:
 	SensorWindow(const __FlashStringHelper * name,SensorManager *sensorManager,int left,int top,WindowSize size=Big):Window(name,left,top,size == Big?BigWindowWidth:SmallWindowWidth,size == Big?BigWindowHeight:SmallWindowHeight)
 	{
@@ -75,13 +70,10 @@ public:
 		_mode = Text;
 		int offset = size == Big?Margin:Margin/2;
 		int first_font_height=size == Big?70:30;
-		_bkColorMode=Day;
-		SetBackColor(DaylightBkColor);
 
 		_textValue = new TextBoxNumber(offset,offset,Width(),1,_sensorManager->Sensor()->Precission(),Color::White);
 		_textValue->SetFont(size == Big?ArialNumFontPlus:BigFont);
 		_textValue->SetStatus(false);
-		//_textValue->SetBackColor(Color::CadetBlue);
 
 		_textName = new TextBoxFString(offset,first_font_height,Width(),1,name,Color::White);
 		_textName->SetFont(size == Big?BigFont:SmallFont);
@@ -91,29 +83,24 @@ public:
 		_textChartAxis->SetFont(size == Big?BigFont:SmallFont);
 		_chartWnd = new ChartWindow(0,0,Width(),chart_height);
 		_chartWnd->SetVisible(false);
+		_normalBkColor=Color::Black;
 
 		this->AddChild(_textValue);
 		this->AddChild(_textName);
 		this->AddChild(_chartWnd);
 		this->AddChild(_textChartAxis);
-
+		sensorManager->RegisterReceiver(this);
 	}
 	bool IsAwaitTouch()
 	{
 		return true;
 	}
-	void SetBkColorMode(BkColorMode mode)
+	void SetBackColor(Color color)
 	{
-		_bkColorMode=mode;
-		UpdateBkColor();
+		Window::SetBackColor(color);
+		_normalBkColor=color;
 	}
-	void UpdateBkColor()
-	{
-		if(_bkColorMode == Day)
-			SetBackColor(DaylightBkColor);
-		else
-			SetBackColor(NightBkColor);
-	}
+
 	virtual bool OnTouch(int x, int y)
 	{
 		if(_mode == ChartHowr)
@@ -150,17 +137,16 @@ public:
 		Invalidate();
 		return true;
 	}
-	virtual void OnUpdate()
+	void NotifySensorHasData(SensorManager *sensorManager)
 	{
 		_textValue->SetStatus(_sensorManager->Status()!=Error);
 		float value=_sensorManager->GetData();
-		//Log::Number("OnUpdate:",value,true);
 		if(_sensorManager->Status()!=Error)
 		{
 			if(_sensorManager->Status() == ApplicationAlarm)
-				SetBackColor(Color::Red);
+				Window::SetBackColor(Color::Red);
 			else
-				UpdateBkColor();
+				Window::SetBackColor(_normalBkColor);
 		}
 		if(_sensorManager->Status()!=Error && _textValue->GetNumber()!=value)
 		{

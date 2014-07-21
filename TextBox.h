@@ -20,6 +20,7 @@
 */
 #pragma once
 #include "Window.h"
+#include "IContentChangedEventReceiver.h"
 class TextBox : public Window
 {
 	Color _textColor;
@@ -27,7 +28,7 @@ class TextBox : public Window
 protected:
 	int _offset_x;
 	int _offset_y;
-	IEvent<Window> *_changedEvent;
+	IContentChangedEventReceiver *_changedEvent;
 public:
 	TextBox(int left,int top,int width,int height,Color textColor):Window(F("text"),left,top,width,height),_textColor(textColor)
 	{
@@ -36,7 +37,7 @@ public:
 		_offset_y=0;
 		_changedEvent=NULL;
 	}
-	void SetOnChanged(IEvent<Window> *event)
+	void RegisterContentChangedReceiver(IContentChangedEventReceiver *event)
 	{
 		_changedEvent=event;
 	}

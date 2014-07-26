@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>AWind: Main Page</title>
+<title>AWind: IDataBuffer Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -36,9 +36,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -58,7 +58,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-</div><!-- top -->
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -73,11 +79,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="class_i_data_buffer-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">AWind Documentation</div>  </div>
+<div class="title">IDataBuffer Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for IDataBuffer:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_i_data_buffer.png" usemap="#IDataBuffer_map" alt=""/>
+  <map id="IDataBuffer_map" name="IDataBuffer_map">
+<area href="class_sensor_data_buffer.html" alt="SensorDataBuffer" shape="rect" coords="0,56,113,80"/>
+<area href="class_time_serie_buffer.html" alt="TimeSerieBuffer" shape="rect" coords="123,56,236,80"/>
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ab7b5a823f657cbfc18ba5b7ee1df693e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7b5a823f657cbfc18ba5b7ee1df693e"></a>
+virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>StartIndex</b> ()=0</td></tr>
+<tr class="separator:ab7b5a823f657cbfc18ba5b7ee1df693e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84aea99cdf2e23c8e26439293bbfc0f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84aea99cdf2e23c8e26439293bbfc0f3"></a>
+virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Size</b> ()=0</td></tr>
+<tr class="separator:a84aea99cdf2e23c8e26439293bbfc0f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0234a55c65e04aaa92fcb048dc62cad7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0234a55c65e04aaa92fcb048dc62cad7"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>MinMax</b> (float &amp;mix_x, float &amp;max_x, float &amp;mix_y, float &amp;max_y)=0</td></tr>
+<tr class="separator:a0234a55c65e04aaa92fcb048dc62cad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a241d2c18c66916ead9994dedd518f438"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a241d2c18c66916ead9994dedd518f438"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>X</b> (unsigned int index)=0</td></tr>
+<tr class="separator:a241d2c18c66916ead9994dedd518f438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a410abbd3eac64f8dd87f0c8fa7ca405b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a410abbd3eac64f8dd87f0c8fa7ca405b"></a>
+virtual float&#160;</td><td class="memItemRight" valign="bottom"><b>Y</b> (unsigned int index)=0</td></tr>
+<tr class="separator:a410abbd3eac64f8dd87f0c8fa7ca405b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li><a class="el" href="_i_data_buffer_8h_source.html">IDataBuffer.h</a></li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

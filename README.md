@@ -30,9 +30,9 @@ Examples
 In the each example folder there is a screen-shots to demonstrate how results should looks like
 * [Text] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Text/README.md): Simple example that demonstrate the basic use of text window + touch interaction
 * [Charts] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Charts/README.md): Simple example that demonstrate the basic use of chart window 
-![](./examples/Charts/Example.JPG)
+![](https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Charts/Example.JPG)
 * [Oscilloscope] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Oscilloscope/README.md): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length
-![](./examples/Oscilloscope/Example.JPG)
-![](./examples/Oscilloscope/Example1.JPG)
+![](https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Oscilloscope/Example.JPG)
+![](https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Oscilloscope/Example1.JPG)
 * [SensorsMonitor] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/SensorsMonitor/README.md): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example work in DEMO-mode and real sensors connections is not needed
-![](./examples/SensorsMonitor/Example.JPG)
+![](https://github.com/AndreiDegtiarev/AWind/blob/master/examples/SensorsMonitor/Example.JPG)

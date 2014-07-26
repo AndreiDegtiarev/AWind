@@ -28,7 +28,7 @@ How to connect TFT-display see the UTFT documentation.
 Examples
 --------
 In the each example folder there is a screen-shots to demonstrate how results should looks like
-* [Text] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Text/README.md): Simple example that demonstrate the basic use of text window + touch interaction
+* [Text] (examples/Text/README.md): Simple example that demonstrate the basic use of text window + touch interaction
 * [Charts] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Charts/README.md): Simple example that demonstrate the basic use of chart window 
 ![](https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Charts/Example.JPG)
 * [Oscilloscope] (https://github.com/AndreiDegtiarev/AWind/blob/master/examples/Oscilloscope/README.md): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length

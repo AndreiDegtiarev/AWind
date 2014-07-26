@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keyboardwindow',['KeyboardWindow',['../class_keyboard_window.html',1,'']]]
+  ['mainwindow',['MainWindow',['../class_main_window.html',1,'']]]
 ];

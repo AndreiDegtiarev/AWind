@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['charts',['Charts',['../md_examples__charts__r_e_a_d_m_e.html',1,'']]]
+  ['oscilloscope',['Oscilloscope',['../md_examples__oscilloscope__r_e_a_d_m_e.html',1,'']]]
 ];

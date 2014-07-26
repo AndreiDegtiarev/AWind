@@ -1,0 +1,26 @@
+var annotated =
+[
+    [ "ButtonWindow", "class_button_window.html", "class_button_window" ],
+    [ "ChartDC", "class_chart_d_c.html", "class_chart_d_c" ],
+    [ "ChartWindow", "class_chart_window.html", "class_chart_window" ],
+    [ "Color", "class_color.html", "class_color" ],
+    [ "DC", "class_d_c.html", "class_d_c" ],
+    [ "IContentChangedEventReceiver", "class_i_content_changed_event_receiver.html", "class_i_content_changed_event_receiver" ],
+    [ "IDataBuffer", "class_i_data_buffer.html", "class_i_data_buffer" ],
+    [ "IDialogClosedEventReceiver", "class_i_dialog_closed_event_receiver.html", "class_i_dialog_closed_event_receiver" ],
+    [ "ITouchEventReceiver", "class_i_touch_event_receiver.html", "class_i_touch_event_receiver" ],
+    [ "KeyboardWindow", "class_keyboard_window.html", "class_keyboard_window" ],
+    [ "MainWindow", "class_main_window.html", "class_main_window" ],
+    [ "Oscilloscope", "class_oscilloscope.html", "class_oscilloscope" ],
+    [ "SensorDataBuffer", "class_sensor_data_buffer.html", "class_sensor_data_buffer" ],
+    [ "SensorWindow", "class_sensor_window.html", "class_sensor_window" ],
+    [ "TextBox", "class_text_box.html", "class_text_box" ],
+    [ "TextBoxNumber", "class_text_box_number.html", "class_text_box_number" ],
+    [ "TextBoxTString", "class_text_box_t_string.html", "class_text_box_t_string" ],
+    [ "TextExampleWindow", "class_text_example_window.html", "class_text_example_window" ],
+    [ "TimeSerieBuffer", "class_time_serie_buffer.html", "class_time_serie_buffer" ],
+    [ "TouchManager", "class_touch_manager.html", "class_touch_manager" ],
+    [ "ViewModusWindow", "class_view_modus_window.html", "class_view_modus_window" ],
+    [ "Window", "class_window.html", "class_window" ],
+    [ "WindowsManager", "class_windows_manager.html", "class_windows_manager" ]
+];

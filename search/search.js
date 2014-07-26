@@ -9,7 +9,7 @@ var indexSectionsWithContent =
 {
   0: "bcdikmostvw",
   1: "bcdikmostvw",
-  2: "cost"
+  2: "cmost"
 };
 
 var indexSectionNames =

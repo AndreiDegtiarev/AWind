@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['oscilloscope',['Oscilloscope',['../md_examples__oscilloscope__r_e_a_d_m_e.html',1,'']]]
+  ['main',['Main',['../md_docs__main.html',1,'']]]
 ];

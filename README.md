@@ -35,4 +35,4 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 ![](examples/Oscilloscope/Example.JPG)
 ![](examples/Oscilloscope/Example1.JPG)
 * [SensorsMonitor] (examples/SensorsMonitor/README.md): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example work in DEMO-mode and real sensors connections is not needed
-![](/examples/SensorsMonitor/Example.JPG)
+![](examples/SensorsMonitor/Example.JPG)

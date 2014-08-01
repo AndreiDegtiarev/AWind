@@ -32,6 +32,7 @@
 #include <UTFT.h>
 #include <UTouch.h>
 
+#include "AHelper.h"
 #include "ISensor.h"
 #include "DS18B20Sensor.h"
 #include "DHTTemperatureSensor.h"
@@ -63,12 +64,14 @@ WindowsManager windowsManager(&myGLCD);
 //manager which is responsible for processing of touch events
 TouchManager touchManager(&myTouch,&windowsManager);
 
-
 void setup()
 {
 	//setup log (out is wrap about Serial class)
 	out.begin(57600);
 	out<<F("Setup")<<endl;
+
+	//this example runs on the limit of SRAM. Here is initial check
+	AHelper::LogFreeRam();
 
 	//initialize display
 	myGLCD.InitLCD();
@@ -122,7 +125,11 @@ void setup()
 	windowsManager.InitializeWindowSystem();
 
 	delay(1000); 
+	//Checks how much SRAM is left. If it is less than 300, the example will not work stably. The usage of SRAM can be reduced by changing buf_size variable in SensorManager.h (AFrame)
+	AHelper::LogFreeRam();
+
 	out<<F("End setup")<<endl;
+
 
 }
 

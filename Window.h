@@ -28,25 +28,33 @@
 #include "ITouchEventReceiver.h"
 
 class MainWindow;
-
+///Base class for all window objects. Provides basic window functionality
 class Window
 {
 protected:
-	int _left;
-	int _top;
-	int _width;
-	int _height;
-	bool _isVisible;
-	Color _borderColor;
-	Color _backColor;
-	LinkedList<Window> _children;
-	Window *_parent;
-	const __FlashStringHelper *_name;
-	bool _isDirty;
+	int _left;				//!< window left coordinate relative to the parent window
+	int _top;				//!< window top coordinate relative to the parent window
+	int _width;				//!< window width
+	int _height;            //!< window height
+	bool _isVisible;        //!< if this variable is false this window and all child windows are not visualized 
+	Color _borderColor;     //!< window border color, default value is VGA_TRANSPARENT that means no border
+	Color _backColor;       //!< window background color, default value is VGA_TRANSPARENT that means no border
+	LinkedList<Window> _children;   //!< list of children windows. All children window are positioned relative to parent window
+	Window *_parent;                //!< pointer to parent window
+	const __FlashStringHelper *_name;  //!< internal window name that helps by debugging
+	bool _isDirty;                     //!< if true than window manager will redraw this window. 
 
-	ITouchEventReceiver *_touchEventReceiver;
+	ITouchEventReceiver *_touchEventReceiver;   //!< call back event receiver for touch actions
 
 public:
+	///Constructor
+	/**
+	\param name internal window name that help by debugging
+	\param left left coordinate relative to parent indow
+	\param top top coordinate relative to parent indow
+	\param width window width
+	\param height window height
+	*/
 	Window(const __FlashStringHelper * name,int left,int top,int width,int height):
 																	_left(left),
 																	_top(top),
@@ -62,20 +70,28 @@ public:
 		_isDirty=true;
 		_touchEventReceiver=NULL;
 	}
+	///Registers receiver for touch event
+    /** Receiver can be a general class that is derived from ITouchEventReceiver. In this calss NotifyTouch virtual function has to be ovveriden */
+	/**
+	\param touchEventReceiver pointer to touch event receiver
+	*/
 	void RegisterTouchEventReceiver(ITouchEventReceiver *touchEventReceiver)
 	{
 		_touchEventReceiver=touchEventReceiver;
 	}
+	///returns true if window await touch action (like button) or false if touch manager should ignore this window during processing of touch events
 	virtual bool IsAwaitTouch()
 	{
 		return _touchEventReceiver!=NULL;
 	}
+	///touch manager calls this function in the loop as long as touch action proceeds
 	virtual void OnTouching(DC *dc)
 	{
 		dc->SetColor(Color::Red);
 		dc->DrawRoundRect(0,0,Width(),Height());
 		dc->DrawRoundRect(1,1,Width()-1,Height()-1);
 	}
+	///touch manager calls this function right after touch is released
 	virtual bool OnTouch(int x,int y)
 	{
 		//out<<F("OnTouch")<<endl;
@@ -87,6 +103,7 @@ public:
 		}
 		return false;
 	}
+	///return pointer to root window. MainWindow does not have any parents
 	MainWindow *MainWnd()
 	{
 		Window *parent=this;
@@ -96,10 +113,18 @@ public:
 		}
 		return (MainWindow *)(parent);
 	}
+	///is called once during system initialization
 	virtual void Initialize()
 	{
 
 	}
+	///moves and resizes window relative to the parent window 
+	/**
+	\param left left coordinate relative to parent window
+	\param top top coordinate relative to parent window
+	\param width window width
+	\param height window height
+	*/
 	virtual void Move(int left,int top,int width,int height)
 	{
 		_left = left;
@@ -107,6 +132,10 @@ public:
 		_width = width;
 		_height = height;
 	}
+	///setups window coordinate system. This function called by window manager right before window has to be redrawn and it is intended for internal use
+	/**
+	\param left left coordinate relative to parent window
+	*/
 	void PrepareDC(DC *dc)
 	{
 		dc->Reset();
@@ -117,10 +146,14 @@ public:
 			crWnd=crWnd->Parent();
 		}
 	}
+	///if function is called than the window manager get signal that this window has to be redrawn
 	void Invalidate()
 	{
 		_isDirty=true;
 	}
+	/**
+	\return true if window has to be redrawn
+	*/
 	bool IsDirty()
 	{
 		return _isDirty;

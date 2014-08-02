@@ -101,7 +101,7 @@ protected:
 		{
 			//Log::Line(window->GetType());
 			window->PrepareDC(&_dc);
-			window->OnDraw(&_dc);
+			window->InternalDraw(&_dc);
 		}
 		for(int i=0;i<window->Children().Count();i++)
 		{

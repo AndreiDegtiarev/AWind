@@ -55,7 +55,6 @@ public:
 	}
 	void OnDraw(DC *dc)
 	{ 
-		Window::OnDraw(dc);
 		if(_buffer!=NULL && _buffer->StartIndex()<_buffer->Size()-1)
 		{
 			unsigned int size=_buffer->Size();

@@ -1,3 +1,4 @@
+#pragma once
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
   Copyright (C)2014 Andrei Degtiarev. All right reserved
@@ -18,7 +19,6 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#pragma once
 #include "Color.h"
 class DC
 {
@@ -27,6 +27,7 @@ class DC
 	int _offset_y;
 	int _last_x;
 	int _last_y;
+	char _buffer[15];
 public:
 	DC(UTFT *lcd)
 	{
@@ -50,21 +51,15 @@ public:
 	}
 	void Offset(int offset_x,int offset_y)
 	{
-		//Log::Number("Offset x: ",offset_x);
-		//Log::Number(" y: ",offset_y,true);
 		_offset_x+=offset_x;
 		_offset_y+=offset_y;
 	}
 	int ToDC_X(int x)
 	{
-		//Log::Number("ToDC_X x: ",x);
-		//Log::Number(" offset: ",_offset_x,true);
 		return x+_offset_x;
 	}
 	int ToDC_Y(int y)
 	{
-		//Log::Number("ToDC_Y y: ",y);
-		//Log::Number(" offset: ",_offset_y,true);
 		return y+_offset_y;
 	}
 	void Rectangle(int left,int top,int right,int bottom)
@@ -81,14 +76,13 @@ public:
 	}
 	void DrawNumber(int number,int x,int y)
 	{
-		_lcd->printNumI(number,ToDC_X(x),ToDC_Y(y));
+		sprintf(_buffer,"%d",number);
+		DrawText(_buffer,x,y);
 	}
 	void DrawNumber(float number,int dec,int x,int y)
 	{
-		if(dec == 0)
-			_lcd->printNumI(number,ToDC_X(x),ToDC_Y(y));
-		else
-			_lcd->printNumF(number,dec,ToDC_X(x),ToDC_Y(y));
+		dtostrf(number,-sizeof(_buffer),dec,_buffer);
+		DrawText(_buffer,x,y);
 	}
 	void DrawText(const __FlashStringHelper * text,int x,int y)
 	{
@@ -114,26 +108,85 @@ public:
 		for (i=0; i<stl; i++)
 		{
 			unsigned char c = pgm_read_byte(&((const char PROGMEM *)text)[i]);
-			_lcd->printChar(c, x + (i*(_lcd->cfont.x_size)), y);
+			DrawSymbol(c, x + (i*(_lcd->cfont.x_size)), y);
 		}
 
 	}
-	void DrawText(const char * _text,int x,int y)
+	int FontWidth()
 	{
-		_lcd->print(_text,ToDC_X(x),ToDC_Y(y));
+		return _lcd->cfont.x_size;
 	}
+	int FontHeight()
+	{
+		return _lcd->cfont.y_size;
+	}
+	void DrawSymbol(const char c,int dc_x,int dc_y)
+	{
+		_lcd->printChar(c, dc_x, dc_y);
+	}
+	void DrawText(const char * text,int x,int y)
+	{
+		x=ToDC_X(x);
+		y=ToDC_Y(y);
+		for(int i=0;i<strlen(text);i++)
+		{
+			char c=text[i];
+			if(c==' ')
+				break;
+			DrawSymbol(c, x + (i*(_lcd->cfont.x_size)), y);
+		}
+	}
+	void Sector(int x0, int y0, int radius,float angle_rad) 
+	{
+		x0=ToDC_X(x0);
+		y0=ToDC_Y(y0);
+		int x = 0;
+		int y = radius;
+		float tan_stop=tan(angle_rad/2);
+		out<<tan_stop<<endl;
+		int delta = 2 - 2 * radius;
+		int error = 0;
+		float ratio;
+		while(y >= 0) {
+			ratio=x/(float)y;
+			//_lcd->drawPixel(x0 + x, y0 + y);
+			if(ratio>tan_stop)
+				break;
+			_lcd->drawPixel(x0 + x, y0 - y);
+			//_lcd->drawPixel(x0 - x, y0 + y);
+			_lcd->drawPixel(x0 - x, y0 - y);
+			error = 2 * (delta + y) - 1;
+			if(delta < 0 && error <= 0)
+			{
+				++x;
+				delta += 2 * x + 1;
+				continue;
+			}
+			error = 2 * (delta - x) - 1;
+			if(delta > 0 && error > 0)
+			{
+				--y;
+				delta += 1 - 2 * y;
+				continue;
+			}
+			++x;
+			delta += 2 * (x - y);
+			--y;
+		}
+	}
+	void SetDeviceColor(Color color)
+	{
+		_lcd->setColor(color.GetR(),color.GetG(),color.GetB());
+	}
+
 	void SetColor(Color color)
 	{
-		/*Serial.print(color.GetRed());Serial.print(" ");
-		Serial.print(color.GetGreen());Serial.print(" ");
-		Serial.println(color.GetBlue());*/
-		//lcd->setColor(color.GetValue());
-		_lcd->setColor(color.GetR(),color.GetG(),color.GetB());
+		SetDeviceColor(color);
 	}
 	void SetBackColor(Color color)
 	{
-			_lcd->setBackColor(VGA_TRANSPARENT);
-			SetColor(color);
+		_lcd->setBackColor(VGA_TRANSPARENT);
+		SetDeviceColor(color);
 	}
 	void SetFont(uint8_t *font)
 	{

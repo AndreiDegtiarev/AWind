@@ -71,9 +71,10 @@ public:
 		int offset = size == Big?Margin:Margin/2;
 		int first_font_height=size == Big?70:30;
 
-		_textValue = new TextBoxNumber(offset,offset,Width(),1,_sensorManager->Sensor()->Precission(),Color::White);
+		_textValue = new TextBoxNumber(offset,offset,Width()-offset,first_font_height-offset,_sensorManager->Sensor()->Precission(),Color::White);
 		_textValue->SetFont(size == Big?ArialNumFontPlus:BigFont);
 		_textValue->SetStatus(false);
+		_textValue->SetColor(Color::White);
 
 		_textName = new TextBoxFString(offset,first_font_height,Width(),1,name,Color::White);
 		_textName->SetFont(size == Big?BigFont:SmallFont);
@@ -99,6 +100,7 @@ public:
 	{
 		Window::SetBackColor(color);
 		_normalBkColor=color;
+		_textValue->SetBackColor(GetBackColor());
 	}
 
 	virtual bool OnTouch(int x, int y)
@@ -143,15 +145,19 @@ public:
 		float value=_sensorManager->GetData();
 		if(_sensorManager->Status()!=Error)
 		{
+			ARGB oldColor=GetBackColor().GetValue();
 			if(_sensorManager->Status() == ApplicationAlarm)
 				Window::SetBackColor(Color::Red);
 			else
 				Window::SetBackColor(_normalBkColor);
+			_textValue->SetBackColor(GetBackColor());
+			if(oldColor != GetBackColor().GetValue() && _mode == Text)
+				Invalidate();
 		}
 		if(_sensorManager->Status()!=Error && _textValue->GetNumber()!=value)
 		{
 			_textValue->SetNumber(value);
-			_mode == Text?Invalidate():_chartWnd->Invalidate();
+			_mode == Text?_textValue->Invalidate():_chartWnd->Invalidate();
 		}
 		else if(_sensorManager->Status()!=Error && _mode == ChartSec)
 			_chartWnd->Invalidate();

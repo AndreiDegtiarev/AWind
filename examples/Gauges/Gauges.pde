@@ -23,8 +23,7 @@
 #include "LinkedList.h"
 #include "WindowsManager.h"
 #include "TouchManager.h"
-#include "VoltmeterSensor.h"
-#include "Oscilloscope.h"
+#include "GaugesWindow.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
 UTFT    myGLCD(ITDB32S,39,41,43,45);
@@ -35,8 +34,7 @@ WindowsManager windowsManager(&myGLCD);
 //manager which is responsible for processing of touch events
 TouchManager touchManager(&myTouch,&windowsManager);
 
-VoltmeterSensor *voltmeter;
-Oscilloscope *oscilloscopeWnd;
+GaugesWindow *gaugesWnd;
 
 int time_step_mus=100;
 const int reserved_buf_size=2000;
@@ -61,14 +59,11 @@ void setup()
 	//initialize window manager
 	windowsManager.Initialize();
 
-	//create voltmeter sensor that measures analog pin A0
-	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,buf_size);
-	voltmeter->SetTimeStep(time_step_mus);
 
 	windowsManager.SetCriticalProcess(&touchManager);
 
-	oscilloscopeWnd=new Oscilloscope(voltmeter,buf_size,0.0,4.0,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight());
-	windowsManager.MainWnd()->AddChild(oscilloscopeWnd);
+	gaugesWnd=new GaugesWindow(0.0,0.0,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight());
+	windowsManager.MainWnd()->AddChild(gaugesWnd);
 
 	//finalize window initialization: window resizing and etc.
 	windowsManager.InitializeWindowSystem();
@@ -79,10 +74,6 @@ void setup()
 
 void loop()
 {
-	//measure data
-	voltmeter->MeasureBuffer();
-	//initialize chart window with measured data 
-	oscilloscopeWnd->ChartWnd()->SetBuffer(voltmeter->Buffer());
 	//give window manager an opportunity to update display
 	windowsManager.loop();
 }

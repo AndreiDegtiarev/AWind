@@ -28,9 +28,13 @@
 #include "ITouchEventReceiver.h"
 
 class MainWindow;
-///Base class for all window objects. Provides basic window functionality
+class WindowsManager;
+class TouchManager;
+///Base class for all window objects. Provids basic window functionality
 class Window
 {
+	friend class WindowsManager;
+	friend class TouchManager;
 protected:
 	int _left;				//!< window left coordinate relative to the parent window
 	int _top;				//!< window top coordinate relative to the parent window
@@ -73,25 +77,25 @@ public:
 	///Registers receiver for touch event
     /** Receiver can be a general class that is derived from ITouchEventReceiver. In this calss NotifyTouch virtual function has to be ovveriden */
 	/**
-	\param touchEventReceiver pointer to touch event receiver
+	\param TouchEventReceiver pointer to touch event receiver
 	*/
 	void RegisterTouchEventReceiver(ITouchEventReceiver *touchEventReceiver)
 	{
 		_touchEventReceiver=touchEventReceiver;
 	}
-	///returns true if window await touch action (like button) or false if touch manager should ignore this window during processing of touch events
+	///Returns true if window await touch action (like button) or false if touch manager should ignore this window during processing of touch events
 	virtual bool IsAwaitTouch()
 	{
 		return _touchEventReceiver!=NULL;
 	}
-	///touch manager calls this function in the loop as long as touch action proceeds
+	///Touch manager calls this function in the loop as long as touch action proceeds
 	virtual void OnTouching(DC *dc)
 	{
 		dc->SetColor(Color::Red);
 		dc->DrawRoundRect(0,0,Width(),Height());
 		dc->DrawRoundRect(1,1,Width()-1,Height()-1);
 	}
-	///touch manager calls this function right after touch is released
+	///Touch manager calls this function right after touch is released
 	virtual bool OnTouch(int x,int y)
 	{
 		//out<<F("OnTouch")<<endl;
@@ -103,7 +107,7 @@ public:
 		}
 		return false;
 	}
-	///return pointer to root window. MainWindow does not have any parents
+	///Returns pointer to root window. MainWindow does not have any parents
 	MainWindow *MainWnd()
 	{
 		Window *parent=this;
@@ -113,12 +117,12 @@ public:
 		}
 		return (MainWindow *)(parent);
 	}
-	///is called once during system initialization
+	///Is called once during system initialization
 	virtual void Initialize()
 	{
 
 	}
-	///moves and resizes window relative to the parent window 
+	///Moves and resizes window relativly to the parent window 
 	/**
 	\param left left coordinate relative to parent window
 	\param top top coordinate relative to parent window
@@ -132,7 +136,98 @@ public:
 		_width = width;
 		_height = height;
 	}
-	///setups window coordinate system. This function called by window manager right before window has to be redrawn and it is intended for internal use
+	///If function is called than the window manager updates the window
+	void Invalidate()
+	{
+		_isDirty=true;
+	}
+	///Returns true if window has to be updated
+	bool IsDirty()
+	{
+		return _isDirty;
+	}
+	///Returns internal window name
+	const __FlashStringHelper *Name()
+	{
+		return _name;
+	}
+	///Returns window left coordinate relative to the parent window
+	int Left()
+	{
+		return _left;
+	}
+	///Returns window top coordinate relative to the parent window
+	int Top()
+	{
+		return _top;
+	}
+	///Returns window width
+	int Width()
+	{
+		return _width;
+	}
+	///Returns window height
+	int Height()
+	{
+		return _height;
+	}
+	///Adds window child window. 
+	void AddChild(Window * window)
+	{
+		window->SetParent(this);
+		_children.Add(window);
+	}
+	///Returns Parent window
+	Window * Parent()
+	{
+		return _parent;
+	}
+	///Sets window background color (default background is transparent)
+	virtual void SetBackColor(Color color)
+	{
+		_backColor=color;
+	}
+	///Returns window background color
+	Color GetBackColor()
+	{
+		return _backColor;
+	}
+	///Sets window border color (default no border)
+	void SetBorder(Color color)
+	{
+		_borderColor=color;
+	}
+	///Sets window visibility status
+	void SetVisible(bool isVisible)
+	{
+		_isVisible=isVisible;
+
+	}
+	///Returns true if window visible and false is hidden
+	bool IsVisible()
+	{
+		return _isVisible;
+	}
+	///Returns list of children window
+	LinkedList<Window> Children()
+	{
+		return _children;
+	}
+protected:
+	///If derived class needs to draw something, this function has to be ovverriden 
+	/**
+	\param dc Device context
+	*/
+	virtual void OnDraw(DC *dc)
+	{
+	}
+private:
+	///Adds window child window. 
+	void SetParent(Window *window)
+	{
+		_parent = window;
+	}
+	///Setups window coordinate system. This function called by window manager right before window has to be redrawn and it is intended for internal use
 	/**
 	\param left left coordinate relative to parent window
 	*/
@@ -146,74 +241,8 @@ public:
 			crWnd=crWnd->Parent();
 		}
 	}
-	///if function is called than the window manager get signal that this window has to be redrawn
-	void Invalidate()
-	{
-		_isDirty=true;
-	}
-	/**
-	\return true if window has to be redrawn
-	*/
-	bool IsDirty()
-	{
-		return _isDirty;
-	}
-	const __FlashStringHelper *Name()
-	{
-		return _name;
-	}
-	int Left()
-	{
-		return _left;
-	}
-	int Top()
-	{
-		return _top;
-	}
-	int Width()
-	{
-		return _width;
-	}
-	int Height()
-	{
-		return _height;
-	}
-	void AddChild(Window * window)
-	{
-		window->SetParent(this);
-		_children.Add(window);
-	}
-	void SetParent(Window *window)
-	{
-		_parent = window;
-	}
-	Window * Parent()
-	{
-		return _parent;
-	}
-	virtual void SetBackColor(Color color)
-	{
-		_backColor=color;
-	}
-	void SetBorder(Color color)
-	{
-		_borderColor=color;
-	}
-
-	void SetVisible(bool isVisible)
-	{
-		_isVisible=isVisible;
-
-	}
-	bool IsVisible()
-	{
-		return _isVisible;
-	}
-	LinkedList<Window> Children()
-	{
-		return _children;
-	}
-	virtual void OnDraw(DC *dc)
+	///Implements basic window visualisation (border and background)
+	void InternalDraw(DC *dc)
 	{
 		_isDirty=false;
 		if(_backColor.GetValue() != VGA_TRANSPARENT)
@@ -226,5 +255,7 @@ public:
 			dc->SetColor(_borderColor);
 			dc->DrawRoundRect (0, 0, _width, _height);
 		}
+		OnDraw(dc);
 	}
+
 };

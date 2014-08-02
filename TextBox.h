@@ -35,6 +35,7 @@ public:
 		_font = NULL;
 		_offset_x=0;
 		_offset_y=0;
+		_textColor=Color::White;
 		_changedEvent=NULL;
 	}
 	void RegisterContentChangedReceiver(IContentChangedEventReceiver *event)
@@ -54,9 +55,8 @@ public:
 	{
 		_textColor=textColor;
 	}
-	virtual void OnDraw(DC *dc)
+	void OnDraw(DC *dc)
 	{
-		Window::OnDraw(dc);
 		dc->SetColor(_textColor);
 		if(_font !=NULL)
 			dc->SetFont(_font);

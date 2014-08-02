@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('_keyboard_window_8h_source.html','');}
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -131,14 +131,14 @@ $(document).ready(function(){initNavTree('_keyboard_window_8h_source.html','');}
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">const</span> <span class="keyword">static</span> <span class="keywordtype">int</span> _textOffset=9;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_i_dialog_closed_event_receiver.html">IDialogClosedEventReceiver</a> *_dialogClosedEventReceiver;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_keyboard_window.html">KeyboardWindow</a>(<span class="keywordtype">int</span> left,<span class="keywordtype">int</span> top):<a class="code" href="class_window.html">Window</a>(F(<span class="stringliteral">&quot;&quot;</span>),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_keyboard_window.html">KeyboardWindow</a>(<span class="keywordtype">int</span> left,<span class="keywordtype">int</span> top):<a class="code" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a>(F(<span class="stringliteral">&quot;&quot;</span>),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        _targetTextBox=NULL;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        SetBorder(Color::CornflowerBlue);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        SetBackColor(Color::Black);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="class_window.html#a9e7671f83805ecc64b98c07f1677e032">SetBorder</a>(Color::CornflowerBlue);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a>(Color::Black);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">int</span> x=_buttonDistance;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordtype">int</span> y=_buttonDistance;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        _editField=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxString</a>(x,y,Width()-2*_buttonDistance,_buttonSize,<span class="stringliteral">&quot;&quot;</span>,Color::DarkBlue);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        _editField=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxString</a>(x,y,<a class="code" href="class_window.html#af0e26e4066865471331229f574b91140">Width</a>()-2*_buttonDistance,_buttonSize,<span class="stringliteral">&quot;&quot;</span>,Color::DarkBlue);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        y+=_buttonSize+_buttonDistance;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        _backspaceSymbol=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F(<span class="stringliteral">&quot;&lt;-&quot;</span>),Color::DarkBlue);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        _enterSymbol=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F(<span class="stringliteral">&quot;E&quot;</span>),Color::DarkBlue);</div>
@@ -167,11 +167,11 @@ $(document).ready(function(){initNavTree('_keyboard_window_8h_source.html','');}
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        text-&gt;SetFont(BigFont);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        text-&gt;SetColor(Color::CornflowerBlue);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        text-&gt;SetBorder(Color::CornflowerBlue);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        text-&gt;SetBackColor(Color::Black);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        text-&gt;<a class="code" href="class_window.html#a9e7671f83805ecc64b98c07f1677e032">SetBorder</a>(Color::CornflowerBlue);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        text-&gt;<a class="code" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a>(Color::Black);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        text-&gt;SetMargins(_textOffset,_textOffset);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        text-&gt;RegisterTouchEventReceiver(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        AddChild(text);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        text-&gt;<a class="code" href="class_window.html#aeec02fbd78ad4c37722002577211226e">RegisterTouchEventReceiver</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(text);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> BeginEdit(<a class="code" href="class_text_box_number.html">TextBoxNumber</a> * targetTextBox)</div>
@@ -180,10 +180,10 @@ $(document).ready(function(){initNavTree('_keyboard_window_8h_source.html','');}
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        _targetTextBox=targetTextBox;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        dtostrf( _targetTextBox-&gt;GetNumber(),0,_targetTextBox-&gt;Precission(),_editBuffer);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        _editField-&gt;SetText(_editBuffer);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        _editField-&gt;Invalidate();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        _editField-&gt;<a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        _editPosition=strlen(_editBuffer);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        SetVisible(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        Invalidate();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="class_window.html#a76c231e52092718f7adf5006c22d73cb">SetVisible</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> RegisterEndDialogEventReceiver(<a class="code" href="class_i_dialog_closed_event_receiver.html">IDialogClosedEventReceiver</a> *receiver)</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    {</div>
@@ -198,9 +198,9 @@ $(document).ready(function(){initNavTree('_keyboard_window_8h_source.html','');}
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            {</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keywordtype">float</span> number=atof(_editBuffer);</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                _targetTextBox-&gt;SetNumber(number);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                _targetTextBox-&gt;Invalidate();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                _targetTextBox-&gt;<a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            SetVisible(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <a class="code" href="class_window.html#a76c231e52092718f7adf5006c22d73cb">SetVisible</a>(<span class="keyword">false</span>);</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keywordflow">if</span>(_dialogClosedEventReceiver!=NULL)</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                _dialogClosedEventReceiver-&gt;NotifyDialogClosed(<span class="keyword">this</span>);</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
@@ -235,20 +235,28 @@ $(document).ready(function(){initNavTree('_keyboard_window_8h_source.html','');}
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        }</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    }</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;};</div>
-<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdef"><b>Definition:</b> Window.h:32</div></div>
+<div class="ttc" id="class_window_html_a0b95e307920f9fa1b5bf06a6dde6c96f"><div class="ttname"><a href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">Window::SetBackColor</a></div><div class="ttdeci">virtual void SetBackColor(Color color)</div><div class="ttdoc">Sets window background color (default background is transparent) </div><div class="ttdef"><b>Definition:</b> Window.h:186</div></div>
+<div class="ttc" id="class_window_html_aeec02fbd78ad4c37722002577211226e"><div class="ttname"><a href="class_window.html#aeec02fbd78ad4c37722002577211226e">Window::RegisterTouchEventReceiver</a></div><div class="ttdeci">void RegisterTouchEventReceiver(ITouchEventReceiver *touchEventReceiver)</div><div class="ttdoc">Registers receiver for touch event. </div><div class="ttdef"><b>Definition:</b> Window.h:82</div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provids basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
 <div class="ttc" id="class_text_box_html"><div class="ttname"><a href="class_text_box.html">TextBox</a></div><div class="ttdef"><b>Definition:</b> TextBox.h:24</div></div>
 <div class="ttc" id="class_text_box_t_string_html"><div class="ttname"><a href="class_text_box_t_string.html">TextBoxTString</a></div><div class="ttdef"><b>Definition:</b> TextBoxString.h:25</div></div>
 <div class="ttc" id="class_keyboard_window_html"><div class="ttname"><a href="class_keyboard_window.html">KeyboardWindow</a></div><div class="ttdef"><b>Definition:</b> KeyboardWindow.h:10</div></div>
 <div class="ttc" id="class_text_box_number_html"><div class="ttname"><a href="class_text_box_number.html">TextBoxNumber</a></div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:25</div></div>
+<div class="ttc" id="class_window_html_ada96195db4ae77ac0ddb6a40c529610c"><div class="ttname"><a href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Window::Invalidate</a></div><div class="ttdeci">void Invalidate()</div><div class="ttdoc">If function is called than the window manager updates the window. </div><div class="ttdef"><b>Definition:</b> Window.h:140</div></div>
+<div class="ttc" id="class_window_html_aaa4ac4e2ab3c69b2380ef738de35b972"><div class="ttname"><a href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window::Window</a></div><div class="ttdeci">Window(const __FlashStringHelper *name, int left, int top, int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Window.h:62</div></div>
+<div class="ttc" id="class_window_html_a9e7671f83805ecc64b98c07f1677e032"><div class="ttname"><a href="class_window.html#a9e7671f83805ecc64b98c07f1677e032">Window::SetBorder</a></div><div class="ttdeci">void SetBorder(Color color)</div><div class="ttdoc">Sets window border color (default no border) </div><div class="ttdef"><b>Definition:</b> Window.h:196</div></div>
+<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:175</div></div>
+<div class="ttc" id="class_window_html_a76c231e52092718f7adf5006c22d73cb"><div class="ttname"><a href="class_window.html#a76c231e52092718f7adf5006c22d73cb">Window::SetVisible</a></div><div class="ttdeci">void SetVisible(bool isVisible)</div><div class="ttdoc">Sets window visibility status. </div><div class="ttdef"><b>Definition:</b> Window.h:201</div></div>
 <div class="ttc" id="class_i_dialog_closed_event_receiver_html"><div class="ttname"><a href="class_i_dialog_closed_event_receiver.html">IDialogClosedEventReceiver</a></div><div class="ttdef"><b>Definition:</b> IDialogClosedEventReceiver.h:23</div></div>
 <div class="ttc" id="class_i_touch_event_receiver_html"><div class="ttname"><a href="class_i_touch_event_receiver.html">ITouchEventReceiver</a></div><div class="ttdef"><b>Definition:</b> ITouchEventReceiver.h:23</div></div>
+<div class="ttc" id="class_window_html_af0e26e4066865471331229f574b91140"><div class="ttname"><a href="class_window.html#af0e26e4066865471331229f574b91140">Window::Width</a></div><div class="ttdeci">int Width()</div><div class="ttdoc">Returns window width. </div><div class="ttdef"><b>Definition:</b> Window.h:165</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>KeyboardWindow.h</b></li>
-    <li class="footer">Generated on Sat Jul 26 2014 16:40:53 for AWind by
+    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

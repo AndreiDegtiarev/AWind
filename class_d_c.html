@@ -70,6 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -92,7 +93,7 @@ $(document).ready(function(){initNavTree('class_d_c.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -151,9 +152,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawNumber</b> (float
 <tr class="memitem:a334854704fe3887995a1d936f9391264"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a334854704fe3887995a1d936f9391264"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawText</b> (const __FlashStringHelper *text, int x, int y)</td></tr>
 <tr class="separator:a334854704fe3887995a1d936f9391264"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93b8e962191e235b65994238e5bff163"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93b8e962191e235b65994238e5bff163"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawText</b> (const char *_text, int x, int y)</td></tr>
-<tr class="separator:a93b8e962191e235b65994238e5bff163"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8250094b2666462dcce00469affd73f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8250094b2666462dcce00469affd73f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>FontWidth</b> ()</td></tr>
+<tr class="separator:ad8250094b2666462dcce00469affd73f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad52626d25820e65425807ce4b0175a6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad52626d25820e65425807ce4b0175a6f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>FontHeight</b> ()</td></tr>
+<tr class="separator:ad52626d25820e65425807ce4b0175a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9303c29cdc1dff9bbdc7f15e476e7081"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9303c29cdc1dff9bbdc7f15e476e7081"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawSymbol</b> (const char c, int dc_x, int dc_y)</td></tr>
+<tr class="separator:a9303c29cdc1dff9bbdc7f15e476e7081"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6931e7ed0cf98e8000a8ae8176f4d8ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6931e7ed0cf98e8000a8ae8176f4d8ad"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawText</b> (const char *text, int x, int y)</td></tr>
+<tr class="separator:a6931e7ed0cf98e8000a8ae8176f4d8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e0f84495366a90f13403eaeb6255508"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e0f84495366a90f13403eaeb6255508"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Sector</b> (int x0, int y0, int radius, float angle_rad)</td></tr>
+<tr class="separator:a5e0f84495366a90f13403eaeb6255508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a671fd90030766599e9db042453285097"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a671fd90030766599e9db042453285097"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDeviceColor</b> (<a class="el" href="class_color.html">Color</a> color)</td></tr>
+<tr class="separator:a671fd90030766599e9db042453285097"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03d5ffcaa1c5f841f9d7986051cf10e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03d5ffcaa1c5f841f9d7986051cf10e8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetColor</b> (<a class="el" href="class_color.html">Color</a> color)</td></tr>
 <tr class="separator:a03d5ffcaa1c5f841f9d7986051cf10e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,7 +198,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Line</b> (int x1, int
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_d_c.html">DC</a></li>
-    <li class="footer">Generated on Sat Jul 26 2014 16:40:53 for AWind by
+    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

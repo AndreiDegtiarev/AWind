@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('_text_example_window_8h_source.html','
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -131,7 +131,7 @@ $(document).ready(function(){initNavTree('_text_example_window_8h_source.html','
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_textNumber;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_text_example_window.html">TextExampleWindow</a>(<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_window.html">Window</a>(F(<span class="stringliteral">&quot;TextExampleWindow&quot;</span>),0,0,width,height)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_text_example_window.html">TextExampleWindow</a>(<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a>(F(<span class="stringliteral">&quot;TextExampleWindow&quot;</span>),0,0,width,height)</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">int</span> x=0;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">int</span> y=40;</div>
@@ -139,14 +139,14 @@ $(document).ready(function(){initNavTree('_text_example_window_8h_source.html','
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        label-&gt;SetFont(BigFont);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        x=width*3.0/4;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        _textNumber=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width-x,25,0,Color::SkyBlue);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        _textNumber-&gt;SetBackColor(Color::Black);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        _textNumber-&gt;<a class="code" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a>(Color::Black);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        _textNumber-&gt;SetFont(BigFont);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        _textNumber-&gt;SetMargins(20,2);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        _textNumber-&gt;SetNumber(4);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        _textNumber-&gt;SetIsReadOnly(<span class="keyword">false</span>);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        AddChild(label);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        AddChild(_textNumber);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(label);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(_textNumber);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> Notify(<a class="code" href="class_window.html">Window</a> * wnd)</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
@@ -156,17 +156,20 @@ $(document).ready(function(){initNavTree('_text_example_window_8h_source.html','
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
-<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdef"><b>Definition:</b> Window.h:32</div></div>
+<div class="ttc" id="class_window_html_a0b95e307920f9fa1b5bf06a6dde6c96f"><div class="ttname"><a href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">Window::SetBackColor</a></div><div class="ttdeci">virtual void SetBackColor(Color color)</div><div class="ttdoc">Sets window background color (default background is transparent) </div><div class="ttdef"><b>Definition:</b> Window.h:186</div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provids basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
 <div class="ttc" id="class_text_box_t_string_html"><div class="ttname"><a href="class_text_box_t_string.html">TextBoxTString</a></div><div class="ttdef"><b>Definition:</b> TextBoxString.h:25</div></div>
 <div class="ttc" id="class_text_box_number_html"><div class="ttname"><a href="class_text_box_number.html">TextBoxNumber</a></div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:25</div></div>
+<div class="ttc" id="class_window_html_aaa4ac4e2ab3c69b2380ef738de35b972"><div class="ttname"><a href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window::Window</a></div><div class="ttdeci">Window(const __FlashStringHelper *name, int left, int top, int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Window.h:62</div></div>
 <div class="ttc" id="class_text_example_window_html"><div class="ttname"><a href="class_text_example_window.html">TextExampleWindow</a></div><div class="ttdef"><b>Definition:</b> TextExampleWindow.h:24</div></div>
+<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:175</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="dir_96ed6c72ffe6d0d5628c00990c7a056f.html">Text</a></li><li class="navelem"><b>TextExampleWindow.h</b></li>
-    <li class="footer">Generated on Sat Jul 26 2014 16:40:53 for AWind by
+    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

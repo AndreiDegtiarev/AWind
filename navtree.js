@@ -9,7 +9,12 @@ var NAVTREE =
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ]
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
     ] ],
     [ "Files", null, [
       [ "File List", "files.html", "files" ]
@@ -19,8 +24,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_button_window_8h_source.html",
-"class_main_window.html#a88c6a33b0b02715bdf279aaf51f66868"
+"_8_charts_8vsarduino_8h_source.html",
+"class_gauge.html#adcb399969bc40381c45e6f3e1f44d724"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

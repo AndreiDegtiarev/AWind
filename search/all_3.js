@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['icontentchangedeventreceiver',['IContentChangedEventReceiver',['../class_i_content_changed_event_receiver.html',1,'']]],
-  ['idatabuffer',['IDataBuffer',['../class_i_data_buffer.html',1,'']]],
-  ['idialogclosedeventreceiver',['IDialogClosedEventReceiver',['../class_i_dialog_closed_event_receiver.html',1,'']]],
-  ['itoucheventreceiver',['ITouchEventReceiver',['../class_i_touch_event_receiver.html',1,'']]]
+  ['chartdc',['ChartDC',['../class_chart_d_c.html',1,'']]],
+  ['chartwindow',['ChartWindow',['../class_chart_window.html',1,'']]],
+  ['children',['Children',['../class_window.html#a084a0d589edd4d9162314ef73c3ce2a3',1,'Window']]],
+  ['color',['Color',['../class_color.html',1,'']]],
+  ['charts',['Charts',['../md_examples__charts__r_e_a_d_m_e.html',1,'']]]
 ];

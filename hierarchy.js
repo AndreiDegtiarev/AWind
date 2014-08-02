@@ -26,6 +26,8 @@ var hierarchy =
     [ "Window", "class_window.html", [
       [ "ButtonWindow", "class_button_window.html", null ],
       [ "ChartWindow", "class_chart_window.html", null ],
+      [ "Gauge", "class_gauge.html", null ],
+      [ "GaugesWindow", "class_gauges_window.html", null ],
       [ "KeyboardWindow", "class_keyboard_window.html", null ],
       [ "MainWindow", "class_main_window.html", null ],
       [ "Oscilloscope", "class_oscilloscope.html", null ],

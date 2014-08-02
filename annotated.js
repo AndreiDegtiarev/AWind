@@ -5,6 +5,8 @@ var annotated =
     [ "ChartWindow", "class_chart_window.html", "class_chart_window" ],
     [ "Color", "class_color.html", "class_color" ],
     [ "DC", "class_d_c.html", "class_d_c" ],
+    [ "Gauge", "class_gauge.html", "class_gauge" ],
+    [ "GaugesWindow", "class_gauges_window.html", "class_gauges_window" ],
     [ "IContentChangedEventReceiver", "class_i_content_changed_event_receiver.html", "class_i_content_changed_event_receiver" ],
     [ "IDataBuffer", "class_i_data_buffer.html", "class_i_data_buffer" ],
     [ "IDialogClosedEventReceiver", "class_i_dialog_closed_event_receiver.html", "class_i_dialog_closed_event_receiver" ],

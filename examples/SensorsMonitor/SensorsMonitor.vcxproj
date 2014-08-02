@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{363FA0FD-BC2C-4588-AA25-C4043BAA4C7B}</ProjectGuid>
+    <RootNamespace>SensorsMonitor</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\hardware\arduino\cores\arduino;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\hardware\arduino\variants\mega;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\OneWire;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\OneWire\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\SPI;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\SPI\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\RF24;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\RF24\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\Wire;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\Wire\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\Adafruit_Sensor;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\Adafruit_Sensor\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\UTFT;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\UTFT\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\UTouch;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\UTouch\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\Adafruit_BMP085_Unified;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\Adafruit_BMP085_Unified\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\arduino_DHT;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\arduino_DHT\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\AFrame;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\AFrame\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\ASensor;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\ASensor\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\AWind;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries\AWind\utility;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\libraries;C:\Users\degtiadr\Private\Raspberri\ArduinoIDE\windows\hardware\arduino\libraries;C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers;C:\Users\degtiadr\Documents\Arduino\libraries;c:\users\degtiadr\private\raspberri\arduinoide\windows\hardware\tools\avr\avr\include\;c:\users\degtiadr\private\raspberri\arduinoide\windows\hardware\tools\avr\avr\include\avr\;c:\users\degtiadr\private\raspberri\arduinoide\windows\hardware\tools\avr\avr\;c:\users\degtiadr\private\raspberri\arduinoide\windows\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="SensorsMonitor.pde">
+      <FileType>CppCode</FileType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

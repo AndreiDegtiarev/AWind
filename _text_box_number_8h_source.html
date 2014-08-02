@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('_text_box_number_8h_source.html','');}
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -147,11 +147,11 @@ $(document).ready(function(){initNavTree('_text_box_number_8h_source.html','');}
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">return</span> _precission;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> IsAwaitTouch()</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_text_box_number.html#a36d9a1a691d9ba0305c28c48a3e0ed0b">   44</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_text_box_number.html#a36d9a1a691d9ba0305c28c48a3e0ed0b">IsAwaitTouch</a>()</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span> !_isReadOnly||TextBox::IsAwaitTouch();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span> !_isReadOnly||<a class="code" href="class_window.html#aa9b74d1c1a5760972f0e1c206ee304c3">TextBox::IsAwaitTouch</a>();</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> OnTouch(<span class="keywordtype">int</span> x,<span class="keywordtype">int</span> y);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_text_box_number.html#a94e0cf360d55d0071e71915ab0e7ea8a">OnTouch</a>(<span class="keywordtype">int</span> x,<span class="keywordtype">int</span> y);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">/*{</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">        bool retCode=TextBox::OnTouch(x,y);</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">        if(!_isReadOnly)</span></div>
@@ -175,7 +175,7 @@ $(document).ready(function(){initNavTree('_text_box_number_8h_source.html','');}
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            _number = number;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">if</span>(_changedEvent!=NULL)</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                _changedEvent-&gt;NotifyContentChanged(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            Invalidate();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">float</span> GetNumber()</div>
@@ -186,9 +186,9 @@ $(document).ready(function(){initNavTree('_text_box_number_8h_source.html','');}
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        _isOK = isOK;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnDraw(<a class="code" href="class_d_c.html">DC</a> *dc)</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="class_text_box_number.html#a217238e7f9fb168c1d891d8b9eb084b6">   83</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_text_box_number.html#a217238e7f9fb168c1d891d8b9eb084b6">OnDraw</a>(<a class="code" href="class_d_c.html">DC</a> *dc)</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        TextBox::OnDraw(dc);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="class_text_box.html#a14cc4d27fc89ad69b930f387c3b9335b">TextBox::OnDraw</a>(dc);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">if</span>(_isOK)</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        {</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            dc-&gt;DrawNumber(_number,_precission,_offset_x,_offset_y);</div>
@@ -197,17 +197,23 @@ $(document).ready(function(){initNavTree('_text_box_number_8h_source.html','');}
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="comment">//lcd-&gt;print(&quot;...&quot;,1,_left,_top);</span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;};</div>
+<div class="ttc" id="class_window_html_aa9b74d1c1a5760972f0e1c206ee304c3"><div class="ttname"><a href="class_window.html#aa9b74d1c1a5760972f0e1c206ee304c3">Window::IsAwaitTouch</a></div><div class="ttdeci">virtual bool IsAwaitTouch()</div><div class="ttdoc">Returns true if window await touch action (like button) or false if touch manager should ignore this ...</div><div class="ttdef"><b>Definition:</b> Window.h:87</div></div>
 <div class="ttc" id="class_text_box_html"><div class="ttname"><a href="class_text_box.html">TextBox</a></div><div class="ttdef"><b>Definition:</b> TextBox.h:24</div></div>
 <div class="ttc" id="class_color_html"><div class="ttname"><a href="class_color.html">Color</a></div><div class="ttdef"><b>Definition:</b> Color.h:38</div></div>
+<div class="ttc" id="class_text_box_number_html_a94e0cf360d55d0071e71915ab0e7ea8a"><div class="ttname"><a href="class_text_box_number.html#a94e0cf360d55d0071e71915ab0e7ea8a">TextBoxNumber::OnTouch</a></div><div class="ttdeci">bool OnTouch(int x, int y)</div><div class="ttdoc">Touch manager calls this function right after touch is released. </div><div class="ttdef"><b>Definition:</b> TextBoxNumber.cpp:25</div></div>
 <div class="ttc" id="class_text_box_number_html"><div class="ttname"><a href="class_text_box_number.html">TextBoxNumber</a></div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:25</div></div>
+<div class="ttc" id="class_text_box_number_html_a217238e7f9fb168c1d891d8b9eb084b6"><div class="ttname"><a href="class_text_box_number.html#a217238e7f9fb168c1d891d8b9eb084b6">TextBoxNumber::OnDraw</a></div><div class="ttdeci">virtual void OnDraw(DC *dc)</div><div class="ttdoc">If derived class needs to draw something, this function has to be ovverriden. </div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:83</div></div>
 <div class="ttc" id="class_d_c_html"><div class="ttname"><a href="class_d_c.html">DC</a></div><div class="ttdef"><b>Definition:</b> DC.h:23</div></div>
+<div class="ttc" id="class_window_html_ada96195db4ae77ac0ddb6a40c529610c"><div class="ttname"><a href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Window::Invalidate</a></div><div class="ttdeci">void Invalidate()</div><div class="ttdoc">If function is called than the window manager updates the window. </div><div class="ttdef"><b>Definition:</b> Window.h:140</div></div>
+<div class="ttc" id="class_text_box_html_a14cc4d27fc89ad69b930f387c3b9335b"><div class="ttname"><a href="class_text_box.html#a14cc4d27fc89ad69b930f387c3b9335b">TextBox::OnDraw</a></div><div class="ttdeci">void OnDraw(DC *dc)</div><div class="ttdoc">If derived class needs to draw something, this function has to be ovverriden. </div><div class="ttdef"><b>Definition:</b> TextBox.h:58</div></div>
+<div class="ttc" id="class_text_box_number_html_a36d9a1a691d9ba0305c28c48a3e0ed0b"><div class="ttname"><a href="class_text_box_number.html#a36d9a1a691d9ba0305c28c48a3e0ed0b">TextBoxNumber::IsAwaitTouch</a></div><div class="ttdeci">bool IsAwaitTouch()</div><div class="ttdoc">Returns true if window await touch action (like button) or false if touch manager should ignore this ...</div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:44</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>TextBoxNumber.h</b></li>
-    <li class="footer">Generated on Sat Jul 26 2014 16:40:53 for AWind by
+    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

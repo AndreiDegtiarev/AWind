@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('_oscilloscope_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -136,7 +136,7 @@ $(document).ready(function(){initNavTree('_oscilloscope_8h_source.html','');});
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtMinV;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtMaxV;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_oscilloscope.html">Oscilloscope</a>(VoltmeterSensor *voltmeter,<span class="keywordtype">int</span> buf_size,<span class="keywordtype">float</span> minV,<span class="keywordtype">float</span> maxV,<span class="keywordtype">int</span> wnd_width,<span class="keywordtype">int</span> wnd_height):<a class="code" href="class_window.html">Window</a>(F(<span class="stringliteral">&quot;Oscilloscope&quot;</span>),0,0,wnd_width,wnd_height)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_oscilloscope.html">Oscilloscope</a>(VoltmeterSensor *voltmeter,<span class="keywordtype">int</span> buf_size,<span class="keywordtype">float</span> minV,<span class="keywordtype">float</span> maxV,<span class="keywordtype">int</span> wnd_width,<span class="keywordtype">int</span> wnd_height):<a class="code" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a>(F(<span class="stringliteral">&quot;Oscilloscope&quot;</span>),0,0,wnd_width,wnd_height)</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    {</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        _voltmeter=voltmeter;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">int</span> x=2;</div>
@@ -158,12 +158,12 @@ $(document).ready(function(){initNavTree('_oscilloscope_8h_source.html','');});
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        initTextBox(_txtBufSize,<span class="keyword">false</span>);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        _txtBufSize-&gt;SetNumber(buf_size);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        x=0;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        y=_txtBufSize-&gt;Top()+_txtBufSize-&gt;Height()+1;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        y=_txtBufSize-&gt;<a class="code" href="class_window.html#a537345dfd19896df637b8aa1b7dadb73">Top</a>()+_txtBufSize-&gt;<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>()+1;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        _chartWnd=<span class="keyword">new</span> <a class="code" href="class_chart_window.html">ChartWindow</a>(x,y,wnd_width,wnd_height-y-height*1.2);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        _chartWnd-&gt;SetMinMaxY(minV,maxV);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        AddChild(_chartWnd);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        SetBackColor(Color::Black);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        y=_chartWnd-&gt;Top()+_chartWnd-&gt;Height()+3;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(_chartWnd);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a>(Color::Black);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        y=_chartWnd-&gt;<a class="code" href="class_window.html#a537345dfd19896df637b8aa1b7dadb73">Top</a>()+_chartWnd-&gt;<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>()+3;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="class_text_box_t_string.html">TextBoxFString</a> *labelMinV=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(x,y+10,width,height,F(<span class="stringliteral">&quot;Vmin/max:&quot;</span>),Color::CornflowerBlue);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        x+=width;</div>
@@ -180,11 +180,11 @@ $(document).ready(function(){initNavTree('_oscilloscope_8h_source.html','');});
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> initTextBox(<a class="code" href="class_text_box.html">TextBox</a> *textBox,<span class="keywordtype">bool</span> isLabel)</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        AddChild(textBox);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(textBox);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span>(!isLabel)</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            textBox-&gt;RegisterContentChangedReceiver(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            textBox-&gt;SetBorder(Color::CornflowerBlue);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            textBox-&gt;<a class="code" href="class_window.html#a9e7671f83805ecc64b98c07f1677e032">SetBorder</a>(Color::CornflowerBlue);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            textBox-&gt;SetMargins(0,7);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            textBox-&gt;SetFont(BigFont);</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            ((<a class="code" href="class_text_box_number.html">TextBoxNumber</a> *)textBox)-&gt;SetIsReadOnly(<span class="keyword">false</span>);</div>
@@ -192,7 +192,7 @@ $(document).ready(function(){initNavTree('_oscilloscope_8h_source.html','');});
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            textBox-&gt;SetFont(SmallFont);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        textBox-&gt;SetColor(Color::CornflowerBlue);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        textBox-&gt;SetBackColor(Color::Black);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        textBox-&gt;<a class="code" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a>(Color::Black);</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="class_chart_window.html">ChartWindow</a> *ChartWnd()</div>
@@ -205,7 +205,7 @@ $(document).ready(function(){initNavTree('_oscilloscope_8h_source.html','');});
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">if</span>(textBox == _txtMinV || textBox == _txtMaxV)</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        {</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            _chartWnd-&gt;SetMinMaxY(_txtMinV-&gt;GetNumber(),_txtMaxV-&gt;GetNumber());</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            _chartWnd-&gt;Invalidate();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            _chartWnd-&gt;<a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(textBox == _txtTimeStep)</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        {</div>
@@ -218,20 +218,27 @@ $(document).ready(function(){initNavTree('_oscilloscope_8h_source.html','');});
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    }</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;};</div>
-<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdef"><b>Definition:</b> Window.h:32</div></div>
+<div class="ttc" id="class_window_html_a0b95e307920f9fa1b5bf06a6dde6c96f"><div class="ttname"><a href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">Window::SetBackColor</a></div><div class="ttdeci">virtual void SetBackColor(Color color)</div><div class="ttdoc">Sets window background color (default background is transparent) </div><div class="ttdef"><b>Definition:</b> Window.h:186</div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provids basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
 <div class="ttc" id="class_oscilloscope_html"><div class="ttname"><a href="class_oscilloscope.html">Oscilloscope</a></div><div class="ttdef"><b>Definition:</b> Oscilloscope.h:23</div></div>
 <div class="ttc" id="class_text_box_html"><div class="ttname"><a href="class_text_box.html">TextBox</a></div><div class="ttdef"><b>Definition:</b> TextBox.h:24</div></div>
 <div class="ttc" id="class_text_box_t_string_html"><div class="ttname"><a href="class_text_box_t_string.html">TextBoxTString</a></div><div class="ttdef"><b>Definition:</b> TextBoxString.h:25</div></div>
 <div class="ttc" id="class_i_content_changed_event_receiver_html"><div class="ttname"><a href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a></div><div class="ttdef"><b>Definition:</b> IContentChangedEventReceiver.h:23</div></div>
 <div class="ttc" id="class_text_box_number_html"><div class="ttname"><a href="class_text_box_number.html">TextBoxNumber</a></div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:25</div></div>
 <div class="ttc" id="class_chart_window_html"><div class="ttname"><a href="class_chart_window.html">ChartWindow</a></div><div class="ttdef"><b>Definition:</b> ChartWindow.h:30</div></div>
+<div class="ttc" id="class_window_html_a0718d9a46b881ede120e51539c2aea1f"><div class="ttname"><a href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Window::Height</a></div><div class="ttdeci">int Height()</div><div class="ttdoc">Returns window height. </div><div class="ttdef"><b>Definition:</b> Window.h:170</div></div>
+<div class="ttc" id="class_window_html_ada96195db4ae77ac0ddb6a40c529610c"><div class="ttname"><a href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Window::Invalidate</a></div><div class="ttdeci">void Invalidate()</div><div class="ttdoc">If function is called than the window manager updates the window. </div><div class="ttdef"><b>Definition:</b> Window.h:140</div></div>
+<div class="ttc" id="class_window_html_aaa4ac4e2ab3c69b2380ef738de35b972"><div class="ttname"><a href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window::Window</a></div><div class="ttdeci">Window(const __FlashStringHelper *name, int left, int top, int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Window.h:62</div></div>
+<div class="ttc" id="class_window_html_a9e7671f83805ecc64b98c07f1677e032"><div class="ttname"><a href="class_window.html#a9e7671f83805ecc64b98c07f1677e032">Window::SetBorder</a></div><div class="ttdeci">void SetBorder(Color color)</div><div class="ttdoc">Sets window border color (default no border) </div><div class="ttdef"><b>Definition:</b> Window.h:196</div></div>
+<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:175</div></div>
+<div class="ttc" id="class_window_html_a537345dfd19896df637b8aa1b7dadb73"><div class="ttname"><a href="class_window.html#a537345dfd19896df637b8aa1b7dadb73">Window::Top</a></div><div class="ttdeci">int Top()</div><div class="ttdoc">Returns window top coordinate relative to the parent window. </div><div class="ttdef"><b>Definition:</b> Window.h:160</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="dir_14b066d395826e73f1776575f7ecd0a2.html">Oscilloscope</a></li><li class="navelem"><b>Oscilloscope.h</b></li>
-    <li class="footer">Generated on Sat Jul 26 2014 16:40:53 for AWind by
+    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -6,6 +6,7 @@ var files =
     [ "ChartWindow.h", "_chart_window_8h_source.html", null ],
     [ "Color.h", "_color_8h_source.html", null ],
     [ "DC.h", "_d_c_8h_source.html", null ],
+    [ "Gauge.h", "_gauge_8h_source.html", null ],
     [ "IContentChangedEventReceiver.h", "_i_content_changed_event_receiver_8h_source.html", null ],
     [ "IDataBuffer.h", "_i_data_buffer_8h_source.html", null ],
     [ "IDialogClosedEventReceiver.h", "_i_dialog_closed_event_receiver_8h_source.html", null ],

@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('_text_box_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -136,51 +136,53 @@ $(document).ready(function(){initNavTree('_text_box_8h_source.html','');});
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> _offset_y;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a> *_changedEvent;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_text_box.html">TextBox</a>(<span class="keywordtype">int</span> left,<span class="keywordtype">int</span> top,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height,<a class="code" href="class_color.html">Color</a> textColor):<a class="code" href="class_window.html">Window</a>(F(<span class="stringliteral">&quot;text&quot;</span>),left,top,width,height),_textColor(textColor)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_text_box.html">TextBox</a>(<span class="keywordtype">int</span> left,<span class="keywordtype">int</span> top,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height,<a class="code" href="class_color.html">Color</a> textColor):<a class="code" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a>(F(<span class="stringliteral">&quot;text&quot;</span>),left,top,width,height),_textColor(textColor)</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    {</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        _font = NULL;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        _offset_x=0;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        _offset_y=0;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        _changedEvent=NULL;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> RegisterContentChangedReceiver(<a class="code" href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a> *event)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        _changedEvent=event;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> SetMargins(<span class="keywordtype">int</span> offset_x,<span class="keywordtype">int</span> offset_y)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        _offset_x=offset_x;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        _offset_y=offset_y;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> SetFont(uint8_t *font)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        _font = font;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> SetColor(<a class="code" href="class_color.html">Color</a> textColor)</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        _textColor=textColor;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnDraw(<a class="code" href="class_d_c.html">DC</a> *dc)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        Window::OnDraw(dc);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        _textColor=Color::White;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        _changedEvent=NULL;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> RegisterContentChangedReceiver(<a class="code" href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a> *event)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        _changedEvent=event;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> SetMargins(<span class="keywordtype">int</span> offset_x,<span class="keywordtype">int</span> offset_y)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        _offset_x=offset_x;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        _offset_y=offset_y;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> SetFont(uint8_t *font)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        _font = font;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> SetColor(<a class="code" href="class_color.html">Color</a> textColor)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        _textColor=textColor;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="class_text_box.html#a14cc4d27fc89ad69b930f387c3b9335b">   58</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_text_box.html#a14cc4d27fc89ad69b930f387c3b9335b">OnDraw</a>(<a class="code" href="class_d_c.html">DC</a> *dc)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        dc-&gt;SetColor(_textColor);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">if</span>(_font !=NULL)</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            dc-&gt;SetFont(_font);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdef"><b>Definition:</b> Window.h:32</div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provids basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
 <div class="ttc" id="class_text_box_html"><div class="ttname"><a href="class_text_box.html">TextBox</a></div><div class="ttdef"><b>Definition:</b> TextBox.h:24</div></div>
 <div class="ttc" id="class_color_html"><div class="ttname"><a href="class_color.html">Color</a></div><div class="ttdef"><b>Definition:</b> Color.h:38</div></div>
 <div class="ttc" id="class_i_content_changed_event_receiver_html"><div class="ttname"><a href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a></div><div class="ttdef"><b>Definition:</b> IContentChangedEventReceiver.h:23</div></div>
 <div class="ttc" id="class_d_c_html"><div class="ttname"><a href="class_d_c.html">DC</a></div><div class="ttdef"><b>Definition:</b> DC.h:23</div></div>
+<div class="ttc" id="class_text_box_html_a14cc4d27fc89ad69b930f387c3b9335b"><div class="ttname"><a href="class_text_box.html#a14cc4d27fc89ad69b930f387c3b9335b">TextBox::OnDraw</a></div><div class="ttdeci">void OnDraw(DC *dc)</div><div class="ttdoc">If derived class needs to draw something, this function has to be ovverriden. </div><div class="ttdef"><b>Definition:</b> TextBox.h:58</div></div>
+<div class="ttc" id="class_window_html_aaa4ac4e2ab3c69b2380ef738de35b972"><div class="ttname"><a href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window::Window</a></div><div class="ttdeci">Window(const __FlashStringHelper *name, int left, int top, int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Window.h:62</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>TextBox.h</b></li>
-    <li class="footer">Generated on Sat Jul 26 2014 16:40:53 for AWind by
+    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -70,6 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -92,7 +93,7 @@ $(document).ready(function(){initNavTree('class_d_c.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,26 +116,31 @@ $(document).ready(function(){initNavTree('class_d_c.html','');});
   <tr bgcolor="#f0f0f0"><td class="entry"><b>DrawNumber</b>(int number, int x, int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>DrawNumber</b>(float number, int dec, int x, int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>DrawRoundRect</b>(int left, int top, int right, int bottom) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>DrawText</b>(const __FlashStringHelper *text, int x, int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>DrawText</b>(const char *_text, int x, int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>FillRoundRect</b>(int left, int top, int right, int bottom) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Line</b>(int x1, int y1, int x2, int y2) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>LineTo</b>(int x, int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>MoveTo</b>(int x, int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Offset</b>(int offset_x, int offset_y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Rectangle</b>(int left, int top, int right, int bottom) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Reset</b>() (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>DrawSymbol</b>(const char c, int dc_x, int dc_y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>DrawText</b>(const __FlashStringHelper *text, int x, int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>DrawText</b>(const char *text, int x, int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>FillRoundRect</b>(int left, int top, int right, int bottom) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>FontHeight</b>() (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>FontWidth</b>() (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Line</b>(int x1, int y1, int x2, int y2) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>LineTo</b>(int x, int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>MoveTo</b>(int x, int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Offset</b>(int offset_x, int offset_y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Rectangle</b>(int left, int top, int right, int bottom) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Reset</b>() (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Sector</b>(int x0, int y0, int radius, float angle_rad) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>SetBackColor</b>(Color color) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>SetColor</b>(Color color) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>SetFont</b>(uint8_t *font) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ToDC_X</b>(int x) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>ToDC_Y</b>(int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>SetDeviceColor</b>(Color color) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>SetFont</b>(uint8_t *font) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>ToDC_X</b>(int x) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ToDC_Y</b>(int y) (defined in <a class="el" href="class_d_c.html">DC</a>)</td><td class="entry"><a class="el" href="class_d_c.html">DC</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Jul 26 2014 16:40:53 for AWind by
+    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

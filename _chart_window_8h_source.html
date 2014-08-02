@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('_chart_window_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -141,9 +141,9 @@ $(document).ready(function(){initNavTree('_chart_window_8h_source.html','');});
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">float</span> _fix_MinY;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">float</span> _fix_MaxY;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_chart_window.html">ChartWindow</a>(<span class="keywordtype">int</span> left,<span class="keywordtype">int</span> top,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> hight):<a class="code" href="class_window.html">Window</a>(F(<span class="stringliteral">&quot;chart&quot;</span>),left,top,width,hight)<span class="comment">//,_textMinY(TextBoxFloat(left+1,top+1,0,Color::White))</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_chart_window.html">ChartWindow</a>(<span class="keywordtype">int</span> left,<span class="keywordtype">int</span> top,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> hight):<a class="code" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a>(F(<span class="stringliteral">&quot;chart&quot;</span>),left,top,width,hight)<span class="comment">//,_textMinY(TextBoxFloat(left+1,top+1,0,Color::White))</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        this-&gt;SetBackColor(Color::Black);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        this-&gt;<a class="code" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a>(Color::Black);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        _buffer = NULL;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        _fix_MinY=ChartDC::AutoMin;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        _fix_MaxY=ChartDC::AutoMax;</div>
@@ -157,63 +157,68 @@ $(document).ready(function(){initNavTree('_chart_window_8h_source.html','');});
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        _buffer=buffer;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        _last_buffer_change=0;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        Invalidate();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> OnDraw(<a class="code" href="class_d_c.html">DC</a> *dc)</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_chart_window.html#ac99d6374ca91fd4ca2ce4b0eaf026c2c">   56</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_chart_window.html#ac99d6374ca91fd4ca2ce4b0eaf026c2c">OnDraw</a>(<a class="code" href="class_d_c.html">DC</a> *dc)</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    { </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        Window::OnDraw(dc);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">if</span>(_buffer!=NULL &amp;&amp; _buffer-&gt;StartIndex()&lt;_buffer-&gt;Size()-1)</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> size=_buffer-&gt;Size();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordtype">float</span> min_x;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordtype">float</span> max_x;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordtype">float</span> min_y;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordtype">float</span> max_y;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            _buffer-&gt;MinMax(min_x,max_x,min_y,max_y);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            min_y=_fix_MinY==ChartDC::AutoMin?min_y:_fix_MinY;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            max_y=_fix_MaxY==ChartDC::AutoMax?max_y:_fix_MaxY;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="comment">/*Log::Number(F(&quot;size: &quot;),size);</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            Log::Number(F(&quot; min_x: &quot;),min_x);</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            Log::Number(F(&quot; max_x: &quot;),max_x);</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            Log::Number(&quot; min_y: &quot;,min_y);</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">            Log::Number(&quot; max_y: &quot;,max_y,true);*/</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">if</span>(_last_buffer_change!=_buffer-&gt;X(size-1))</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                _dc.setScalingX(Width(),min_x,max_x);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                _dc.setScalingY(Height(),min_y,max_y);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                _last_buffer_change=max_x;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="comment">//_textMinY-&gt;SetNumber(_dc.MinY());</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="comment">//_textMaxY-&gt;SetNumber(_dc.MaxY());</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            dc-&gt;SetColor(Color::Yellow);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            _dc.MoveTo(dc,min_x,max(min_y,0));</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            _dc.LineTo(dc,max_x,max(min_y,0));</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            _dc.MoveTo(dc,max(min_x,0),min_y);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            _dc.LineTo(dc,max(min_x,0),max_y);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            dc-&gt;SetColor(Color::LightBlue);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            dc-&gt;SetFont(SmallFont);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            dc-&gt;DrawNumber(_dc.MaxY(),1,1,1);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            dc-&gt;DrawNumber(_dc.MinY(),1,1,Height()-15);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            _dc.MoveTo(dc,_buffer-&gt;X(_buffer-&gt;StartIndex()),_buffer-&gt;Y(_buffer-&gt;StartIndex()));</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=_buffer-&gt;StartIndex()+1;i&lt;size;i++)</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                _dc.LineTo(dc,_buffer-&gt;X(i),_buffer-&gt;Y(i));</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;};</div>
-<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdef"><b>Definition:</b> Window.h:32</div></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">if</span>(_buffer!=NULL &amp;&amp; _buffer-&gt;StartIndex()&lt;_buffer-&gt;Size()-1)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> size=_buffer-&gt;Size();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordtype">float</span> min_x;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordtype">float</span> max_x;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordtype">float</span> min_y;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordtype">float</span> max_y;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            _buffer-&gt;MinMax(min_x,max_x,min_y,max_y);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            min_y=_fix_MinY==ChartDC::AutoMin?min_y:_fix_MinY;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            max_y=_fix_MaxY==ChartDC::AutoMax?max_y:_fix_MaxY;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="comment">/*Log::Number(F(&quot;size: &quot;),size);</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">            Log::Number(F(&quot; min_x: &quot;),min_x);</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">            Log::Number(F(&quot; max_x: &quot;),max_x);</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">            Log::Number(&quot; min_y: &quot;,min_y);</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">            Log::Number(&quot; max_y: &quot;,max_y,true);*/</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">if</span>(_last_buffer_change!=_buffer-&gt;X(size-1))</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                _dc.setScalingX(<a class="code" href="class_window.html#af0e26e4066865471331229f574b91140">Width</a>(),min_x,max_x);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                _dc.setScalingY(<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>(),min_y,max_y);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                _last_buffer_change=max_x;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="comment">//_textMinY-&gt;SetNumber(_dc.MinY());</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="comment">//_textMaxY-&gt;SetNumber(_dc.MaxY());</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            dc-&gt;SetColor(Color::Yellow);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            _dc.MoveTo(dc,min_x,max(min_y,0));</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            _dc.LineTo(dc,max_x,max(min_y,0));</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            _dc.MoveTo(dc,max(min_x,0),min_y);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            _dc.LineTo(dc,max(min_x,0),max_y);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            dc-&gt;SetColor(Color::LightBlue);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            dc-&gt;SetFont(SmallFont);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            dc-&gt;DrawNumber(_dc.MaxY(),1,1,1);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            dc-&gt;DrawNumber(_dc.MinY(),1,1,<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>()-15);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            _dc.MoveTo(dc,_buffer-&gt;X(_buffer-&gt;StartIndex()),_buffer-&gt;Y(_buffer-&gt;StartIndex()));</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=_buffer-&gt;StartIndex()+1;i&lt;size;i++)</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                _dc.LineTo(dc,_buffer-&gt;X(i),_buffer-&gt;Y(i));</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;};</div>
+<div class="ttc" id="class_window_html_a0b95e307920f9fa1b5bf06a6dde6c96f"><div class="ttname"><a href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">Window::SetBackColor</a></div><div class="ttdeci">virtual void SetBackColor(Color color)</div><div class="ttdoc">Sets window background color (default background is transparent) </div><div class="ttdef"><b>Definition:</b> Window.h:186</div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provids basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
 <div class="ttc" id="class_chart_d_c_html"><div class="ttname"><a href="class_chart_d_c.html">ChartDC</a></div><div class="ttdef"><b>Definition:</b> ChartDC.h:2</div></div>
 <div class="ttc" id="class_i_data_buffer_html"><div class="ttname"><a href="class_i_data_buffer.html">IDataBuffer</a></div><div class="ttdef"><b>Definition:</b> IDataBuffer.h:23</div></div>
 <div class="ttc" id="class_d_c_html"><div class="ttname"><a href="class_d_c.html">DC</a></div><div class="ttdef"><b>Definition:</b> DC.h:23</div></div>
 <div class="ttc" id="class_chart_window_html"><div class="ttname"><a href="class_chart_window.html">ChartWindow</a></div><div class="ttdef"><b>Definition:</b> ChartWindow.h:30</div></div>
+<div class="ttc" id="class_window_html_a0718d9a46b881ede120e51539c2aea1f"><div class="ttname"><a href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Window::Height</a></div><div class="ttdeci">int Height()</div><div class="ttdoc">Returns window height. </div><div class="ttdef"><b>Definition:</b> Window.h:170</div></div>
+<div class="ttc" id="class_window_html_ada96195db4ae77ac0ddb6a40c529610c"><div class="ttname"><a href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Window::Invalidate</a></div><div class="ttdeci">void Invalidate()</div><div class="ttdoc">If function is called than the window manager updates the window. </div><div class="ttdef"><b>Definition:</b> Window.h:140</div></div>
+<div class="ttc" id="class_window_html_aaa4ac4e2ab3c69b2380ef738de35b972"><div class="ttname"><a href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window::Window</a></div><div class="ttdeci">Window(const __FlashStringHelper *name, int left, int top, int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Window.h:62</div></div>
+<div class="ttc" id="class_window_html_af0e26e4066865471331229f574b91140"><div class="ttname"><a href="class_window.html#af0e26e4066865471331229f574b91140">Window::Width</a></div><div class="ttdeci">int Width()</div><div class="ttdoc">Returns window width. </div><div class="ttdef"><b>Definition:</b> Window.h:165</div></div>
+<div class="ttc" id="class_chart_window_html_ac99d6374ca91fd4ca2ce4b0eaf026c2c"><div class="ttname"><a href="class_chart_window.html#ac99d6374ca91fd4ca2ce4b0eaf026c2c">ChartWindow::OnDraw</a></div><div class="ttdeci">void OnDraw(DC *dc)</div><div class="ttdoc">If derived class needs to draw something, this function has to be ovverriden. </div><div class="ttdef"><b>Definition:</b> ChartWindow.h:56</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>ChartWindow.h</b></li>
-    <li class="footer">Generated on Sat Jul 26 2014 16:40:53 for AWind by
+    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

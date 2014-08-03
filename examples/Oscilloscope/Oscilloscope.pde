@@ -22,7 +22,6 @@
 
 #include "LinkedList.h"
 #include "WindowsManager.h"
-#include "TouchManager.h"
 #include "VoltmeterSensor.h"
 #include "Oscilloscope.h"
 
@@ -31,9 +30,7 @@ UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
 
 //manager which is responsible for window updating process
-WindowsManager windowsManager(&myGLCD);
-//manager which is responsible for processing of touch events
-TouchManager touchManager(&myTouch,&windowsManager);
+WindowsManager<Oscilloscope> windowsManager(&myGLCD,&myTouch);
 
 VoltmeterSensor *voltmeter;
 Oscilloscope *oscilloscopeWnd;
@@ -65,13 +62,10 @@ void setup()
 	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,buf_size);
 	voltmeter->SetTimeStep(time_step_mus);
 
-	windowsManager.SetCriticalProcess(&touchManager);
+	windowsManager.MainWnd()->Initialize(voltmeter,buf_size,0.0,4.0); 
+	//oscilloscopeWnd=new Oscilloscope(voltmeter,buf_size,0.0,4.0,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight());
+	//windowsManager.MainWnd()->AddChild(oscilloscopeWnd);
 
-	oscilloscopeWnd=new Oscilloscope(voltmeter,buf_size,0.0,4.0,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight());
-	windowsManager.MainWnd()->AddChild(oscilloscopeWnd);
-
-	//finalize window initialization: window resizing and etc.
-	windowsManager.InitializeWindowSystem();
 	delay(1000); 
 	out<<F("End setup")<<endl;
 
@@ -82,7 +76,7 @@ void loop()
 	//measure data
 	voltmeter->MeasureBuffer();
 	//initialize chart window with measured data 
-	oscilloscopeWnd->ChartWnd()->SetBuffer(voltmeter->Buffer());
+	windowsManager.MainWnd()->ChartWnd()->SetBuffer(voltmeter->Buffer());
 	//give window manager an opportunity to update display
 	windowsManager.loop();
 }

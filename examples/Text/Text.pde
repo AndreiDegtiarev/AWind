@@ -22,7 +22,6 @@
 #include <UTouch.h>
 
 #include "WindowsManager.h"
-#include "TouchManager.h"
 #include "Log.h"
 #include "TextExampleWindow.h"
 
@@ -31,9 +30,7 @@ UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
 
 //Windows manager: container for GUI elements 
-WindowsManager windowsManager(&myGLCD);
-//manager which is responsible for processing of touch events
-TouchManager touchManager(&myTouch,&windowsManager);
+WindowsManager<TextExampleWindow> windowsManager(&myGLCD,&myTouch);
 
 
 
@@ -54,10 +51,9 @@ void setup()
 
 	//initialize window manager
 	windowsManager.Initialize();
-	windowsManager.SetCriticalProcess(&touchManager);
 
 
-	windowsManager.MainWnd()->AddChild(new TextExampleWindow(windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight()));
+	//windowsManager.MainWnd()->AddChild(new TextExampleWindow(windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight()));
 
 
 	out<<F("End setup")<<endl;

@@ -43,7 +43,6 @@
 #include "MeasurementNode.h"
 
 #include "WindowsManager.h"
-#include "TouchManager.h"
 #include "ViewModusWindow.h"
 #include "MeasurementNode.h"
 
@@ -60,9 +59,7 @@ LinkedList<SensorManager> sensors;
 MeasurementNode measurementNode(sensors);
 
 //manager which is responsible for window updating process
-WindowsManager windowsManager(&myGLCD);
-//manager which is responsible for processing of touch events
-TouchManager touchManager(&myTouch,&windowsManager);
+WindowsManager<ViewModusWindow> windowsManager(&myGLCD,&myTouch);
 
 void setup()
 {
@@ -106,8 +103,7 @@ void setup()
 	//sensor windows
 	int second_column = SensorWindow::BigWindowWidth+SensorWindow::Margin/2;
 	int second_row=SensorWindow::BigWindowHeight+SensorWindow::Margin/2;
-	ViewModusWindow *modusWindow=new ViewModusWindow(windowsManager.MainWnd()->Width(),windowsManager.MainWnd()->Height());
-	windowsManager.MainWnd()->AddChild(modusWindow);
+	ViewModusWindow *modusWindow=windowsManager.MainWnd();
 	modusWindow->AddChild(new SensorWindow(F("In Temp"),sensors[0],0,0));
 	modusWindow->AddChild(new SensorWindow(F("In Humid"),sensors[1],second_column,0));
 	modusWindow->AddChild(new SensorWindow(F("Out"),sensors[6],0,second_row));
@@ -117,12 +113,9 @@ void setup()
 	modusWindow->AddChild(new SensorWindow(F("Fridge"),sensors[5],third_column,second_row,SensorWindow::Small));
 	modusWindow->AddChild(new SensorWindow(F("Alk Temp"),sensors[2],second_column,third_row,SensorWindow::Small));
 	modusWindow->AddChild(new SensorWindow(F("Alk Humid"),sensors[3],third_column,third_row,SensorWindow::Small));
-	//in order to avoid pause in the touch interactions, touch manager is defined as critical process
-	windowsManager.SetCriticalProcess(&touchManager);
-	measurementNode.SetCriticalProcess(&touchManager);
-
-	//finalize window initialization: window resizing and etc.
-	windowsManager.InitializeWindowSystem();
+	modusWindow->Initialize();
+	//in order to avoid pause in the touch interactions, windows manager is defined as critical process
+	measurementNode.SetCriticalProcess(&windowsManager);
 
 	delay(1000); 
 	//Checks how much SRAM is left. If it is less than 300, the example will not work stably. The usage of SRAM can be reduced by changing buf_size variable in SensorManager.h (AFrame)

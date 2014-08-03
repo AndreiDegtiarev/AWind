@@ -21,11 +21,11 @@
 #include "TextBoxString.h"
 #include "TextBoxNumber.h"
 
-class TextExampleWindow : public Window
+class TextExampleWindow : public MainWindow
 {
 	TextBoxNumber *_textNumber;
 public:
-	TextExampleWindow(int width,int height):Window(F("TextExampleWindow"),0,0,width,height)
+	TextExampleWindow(int width,int height):MainWindow(width,height) //(F("TextExampleWindow"),0,0,width,height)
 	{
 		int x=0;
 		int y=40;
@@ -41,6 +41,9 @@ public:
 
 		AddChild(label);
 		AddChild(_textNumber);
+	}
+	void Create()
+	{
 	}
 	void Notify(Window * wnd)
 	{

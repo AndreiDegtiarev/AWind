@@ -28,13 +28,9 @@
 #include "ITouchEventReceiver.h"
 
 class MainWindow;
-class WindowsManager;
-class TouchManager;
-///Base class for all window objects. Provids basic window functionality
+///Base class for all window objects. Provides basic window functionality
 class Window
 {
-	friend class WindowsManager;
-	friend class TouchManager;
 protected:
 	int _left;				//!< window left coordinate relative to the parent window
 	int _top;				//!< window top coordinate relative to the parent window
@@ -91,6 +87,7 @@ public:
 	///Touch manager calls this function in the loop as long as touch action proceeds
 	virtual void OnTouching(DC *dc)
 	{
+		PrepareDC(dc);
 		dc->SetColor(Color::Red);
 		dc->DrawRoundRect(0,0,Width(),Height());
 		dc->DrawRoundRect(1,1,Width()-1,Height()-1);
@@ -116,11 +113,6 @@ public:
 			parent=parent->Parent();
 		}
 		return (MainWindow *)(parent);
-	}
-	///Is called once during system initialization
-	virtual void Initialize()
-	{
-
 	}
 	///Moves and resizes window relativly to the parent window 
 	/**
@@ -213,37 +205,13 @@ public:
 	{
 		return _children;
 	}
-protected:
-	///If derived class needs to draw something, this function has to be ovverriden 
+	///Performs full window redraw
 	/**
-	\param dc Device context
+	\param dc device context
 	*/
-	virtual void OnDraw(DC *dc)
+	void Redraw(DC *dc)
 	{
-	}
-private:
-	///Adds window child window. 
-	void SetParent(Window *window)
-	{
-		_parent = window;
-	}
-	///Setups window coordinate system. This function called by window manager right before window has to be redrawn and it is intended for internal use
-	/**
-	\param left left coordinate relative to parent window
-	*/
-	void PrepareDC(DC *dc)
-	{
-		dc->Reset();
-		Window *crWnd=this;
-		while(crWnd!=NULL)
-		{
-			dc->Offset(crWnd->Left(),crWnd->Top());
-			crWnd=crWnd->Parent();
-		}
-	}
-	///Implements basic window visualisation (border and background)
-	void InternalDraw(DC *dc)
-	{
+		PrepareDC(dc);
 		_isDirty=false;
 		if(_backColor.GetValue() != VGA_TRANSPARENT)
 		{
@@ -257,5 +225,32 @@ private:
 		}
 		OnDraw(dc);
 	}
-
+protected:
+	///Setups window coordinate system. This function called by window manager right before window has to be redrawn and it is intended for internal use
+	/**
+	\param dc device context
+	*/
+	void PrepareDC(DC *dc)
+	{
+		dc->Reset();
+		Window *crWnd=this;
+		while(crWnd!=NULL)
+		{
+			dc->Offset(crWnd->Left(),crWnd->Top());
+			crWnd=crWnd->Parent();
+		}
+	}
+	///If derived class needs to draw something in window client area, this function has to be ovverriden 
+	/**
+	\param dc device context
+	*/
+	virtual void OnDraw(DC *dc)
+	{
+	}
+private:
+	///Adds window child window. 
+	void SetParent(Window *window)
+	{
+		_parent = window;
+	}
 };

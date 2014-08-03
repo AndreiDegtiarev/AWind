@@ -25,34 +25,33 @@
 #include "MainWindow.h"
 #include "ICriticalProcess.h"
 
-class WindowsManager
+class WindowsManagerBase
+{
+};
+template <class T=MainWindow> class WindowsManager : public WindowsManagerBase, public ICriticalProcess
 {
 	DC _dc;
-	MainWindow _mainWindow;
-	ICriticalProcess *_criticalProcess;
+	T *_mainWindow;
+	UTouch  *_touch;
 public:
-	WindowsManager(UTFT *lcd):_dc(lcd)
+	WindowsManager(UTFT *lcd,UTouch *touch=NULL):_dc(lcd),_touch(touch)
 	{
-		_criticalProcess=NULL;
 	}
 	void Initialize()
 	{
-		_mainWindow.Move(0,0,_dc.DeviceWidth(),_dc.DeviceHeight());
+		_mainWindow=new T(_dc.DeviceWidth(),_dc.DeviceHeight());
+		_mainWindow->Invalidate();
 	}
-	void InitializeWindowSystem()
+	/*void CreateWindowSystem()
 	{
 		initialze(&_mainWindow);
-	}
-	void SetCriticalProcess(ICriticalProcess *criticalProcess)
-	{
-		_criticalProcess=criticalProcess;
-	}
+	}*/
 	Window *HitTest(int x,int y)
 	{
 		if(MainWnd()->ModalWnd()!=NULL)
 			return HitTest(MainWnd()->ModalWnd(),x,y);
 		else
-			return HitTest(&_mainWindow,x,y);
+			return HitTest(MainWnd(),x,y);
 	}
 	Window *HitTest(Window *window,int x,int y)
 	{
@@ -75,34 +74,30 @@ public:
 		if(MainWnd()->ModalWnd() == NULL)
 			redraw(MainWnd(),false);
 		if(MainWnd()->ModalWnd() != NULL)
-			redraw(MainWnd()->ModalWnd(),false);
+			redraw(MainWnd()->ModalWnd(),MainWnd()->ModalWnd()->IsDirty());
 	}
-	MainWindow *MainWnd()
+	T *MainWnd()
 	{
-		return &_mainWindow;
+		return _mainWindow;
 	}
 	DC *GetDC()
 	{
 		return &_dc;
 	}
-protected:
-	void initialze(Window *window)
+	void Idle()
 	{
-		window->Initialize();
-		for(int i=0;i<window->Children().Count();i++)
-			initialze(window->Children()[i]);
+		if(_touch!=NULL)
+			loopTouch();
 	}
+protected:
 	void redraw(Window *window,bool isForceRedraw)
 	{
-		if(_criticalProcess!=NULL)
-			_criticalProcess->loop();
+		Idle();
+		if(window == MainWnd()->ModalWnd() && window->IsDirty() && isForceRedraw == false) // Modal window is updated as last one by use of isForceRedraw flag
+			return;
 		bool needRedraw=isForceRedraw || window->IsDirty();
 		if(needRedraw)
-		{
-			//Log::Line(window->GetType());
-			window->PrepareDC(&_dc);
-			window->InternalDraw(&_dc);
-		}
+			window->Redraw(&_dc);
 		for(int i=0;i<window->Children().Count();i++)
 		{
 			Window *child=window->Children()[i];
@@ -110,5 +105,53 @@ protected:
 				redraw(child,needRedraw);
 		}
 
+	}
+	void loopTouch()
+	{
+		if (_touch->dataAvailable())
+		{
+			_touch->read();
+			int x=_touch->getX();
+			int y=_touch->getY();
+			out<<F("Touch begins x:")<<x<<F(" y:")<<y<<endl;
+			if(x>0 && y>0)
+			{
+				Window *window=HitTest(x,y);
+				Window *touchWnd=NULL;
+				if(window!=NULL)
+				{
+					Window *crWindow=window;
+					out<<F("Searching touch window: ")<<endl;
+					while(crWindow!=NULL && (!crWindow->IsAwaitTouch()))
+					{
+						out<<crWindow->Name()<<endl;
+						crWindow=crWindow->Parent();	
+					}
+					if(crWindow != NULL)
+					{
+						out<<F("Touch found")<<endl;
+						touchWnd=crWindow;
+						touchWnd->OnTouching(GetDC());
+					}
+				}
+				if(touchWnd!=NULL)
+				{
+					while (_touch->dataAvailable())
+					{
+						_touch->read();
+					}
+					out<<F("Touch: ")<<touchWnd->Name()<<endl;
+					{
+						Window *crWindow=touchWnd;
+						while(crWindow!=NULL && ((crWindow->IsAwaitTouch()) && !(crWindow)->OnTouch(x,y))||!crWindow->IsAwaitTouch())
+						{
+							crWindow=crWindow->Parent();	
+						}
+						touchWnd->Invalidate();
+					}
+				}
+				out<<F("Touch finish")<<endl;
+			}
+		}
 	}
 };

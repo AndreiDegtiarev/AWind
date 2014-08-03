@@ -25,7 +25,7 @@ class KeyboardWindow :  public Window,ITouchEventReceiver
 	const static int _textOffset=9;
 	IDialogClosedEventReceiver *_dialogClosedEventReceiver;
 public:
-	KeyboardWindow(int left,int top):Window(F(""),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
+	KeyboardWindow(int left,int top):Window(F("Keyboard"),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
 	{
 		_targetTextBox=NULL;
 		SetBorder(Color::CornflowerBlue);

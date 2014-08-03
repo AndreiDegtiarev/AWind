@@ -27,7 +27,7 @@ class MainWindow : public Window, IDialogClosedEventReceiver
 	Window *_modalWindow;
 	KeyboardWindow _keyboardWindow;
 public:
-	MainWindow():Window(F("Main"),0,0,0,0),_keyboardWindow(3,90)
+	MainWindow(int width,int height):Window(F("Main"),0,0,width,height),_keyboardWindow(3,90)
 
 	{
 		_keyboardWindow.SetVisible(false);

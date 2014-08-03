@@ -23,7 +23,7 @@
 #include "TextBoxString.h"
 #include "SensorWindow.h"
 
-class ViewModusWindow : public Window,ITouchEventReceiver
+class ViewModusWindow : public MainWindow,ITouchEventReceiver
 {
 	enum Modus
 	{
@@ -35,7 +35,7 @@ class ViewModusWindow : public Window,ITouchEventReceiver
 	TextBoxFString *_text;
 	Modus _modus;
 public:
-	ViewModusWindow(int width,int height):Window(F("ViewModusWindow"),0,0,width,height)
+	ViewModusWindow(int width,int height):MainWindow(width,height)
 	{
 		SetBackColor(Color::Black);
 		_text=new TextBoxFString(width-100,height-45,95,35,F("Night"),Color::White);

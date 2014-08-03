@@ -22,7 +22,6 @@
 
 #include "LinkedList.h"
 #include "WindowsManager.h"
-#include "TouchManager.h"
 #include "GaugesWindow.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
@@ -30,9 +29,7 @@ UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
 
 //manager which is responsible for window updating process
-WindowsManager windowsManager(&myGLCD);
-//manager which is responsible for processing of touch events
-TouchManager touchManager(&myTouch,&windowsManager);
+WindowsManager<> windowsManager(&myGLCD,&myTouch);
 
 GaugesWindow *gaugesWnd;
 
@@ -58,9 +55,6 @@ void setup()
 
 	//initialize window manager
 	windowsManager.Initialize();
-
-
-	windowsManager.SetCriticalProcess(&touchManager);
 
 	gaugesWnd=new GaugesWindow(0.0,0.0,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight());
 	windowsManager.MainWnd()->AddChild(gaugesWnd);

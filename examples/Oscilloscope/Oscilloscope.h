@@ -17,10 +17,10 @@
   examples and tools supplied with the library.
 */
 #pragma once
-#include "Window.h"
+#include "MainWindow.h"
 #include "ChartWindow.h"
 #include "TextBoxNumber.h"
-class Oscilloscope : public Window, IContentChangedEventReceiver
+class Oscilloscope : public MainWindow, IContentChangedEventReceiver
 {
 	VoltmeterSensor *_voltmeter;
 	ChartWindow *_chartWnd;
@@ -30,8 +30,13 @@ class Oscilloscope : public Window, IContentChangedEventReceiver
 	TextBoxNumber *_txtMinV;
 	TextBoxNumber *_txtMaxV;
 public:
-	Oscilloscope(VoltmeterSensor *voltmeter,int buf_size,float minV,float maxV,int wnd_width,int wnd_height):Window(F("Oscilloscope"),0,0,wnd_width,wnd_height)
+	Oscilloscope(int wnd_width,int wnd_height):MainWindow(wnd_width,wnd_height)
 	{
+	}
+	void Initialize(VoltmeterSensor *voltmeter,int buf_size,float minV,float maxV)
+	{
+		int wnd_width=Width();
+		int wnd_height=Height();
 		_voltmeter=voltmeter;
 		int x=2;
 		int y=0;
@@ -95,7 +100,7 @@ public:
 	}
 	void NotifyContentChanged(Window *textBox)
 	{
-		//out<<F("Notified")<<endl;
+		out<<"Content changed"<<endl;
 		if(textBox == _txtMinV || textBox == _txtMaxV)
 		{
 			_chartWnd->SetMinMaxY(_txtMinV->GetNumber(),_txtMaxV->GetNumber());

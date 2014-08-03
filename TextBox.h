@@ -21,6 +21,8 @@
 #pragma once
 #include "Window.h"
 #include "IContentChangedEventReceiver.h"
+extern uint8_t SmallFont[];
+
 class TextBox : public Window
 {
 	Color _textColor;
@@ -32,7 +34,7 @@ protected:
 public:
 	TextBox(int left,int top,int width,int height,Color textColor):Window(F("text"),left,top,width,height),_textColor(textColor)
 	{
-		_font = NULL;
+		_font = SmallFont;
 		_offset_x=0;
 		_offset_y=0;
 		_textColor=Color::White;

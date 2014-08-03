@@ -33,7 +33,7 @@
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 
 //manager which is responsible for window updating process 
-WindowsManager windowsManager(&myGLCD);
+WindowsManager<> windowsManager(&myGLCD,NULL);
 
 //Container that keeps data for further visualization 
 TimeSerieBuffer	*dataBuffer;
@@ -48,7 +48,7 @@ float time_step=1.0/buf_size;
 void setup()
 {
 	out.begin(57600);
-	out<<(F("Setup"));
+	out<<(F("Setup"))<<endl;
 	//initialize display
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
@@ -81,7 +81,7 @@ void setup()
 	windowsManager.MainWnd()->AddChild(chartWnd);
 
 
-	out<<F("End setup");
+	out<<F("End setup")<<endl;
 
 }
 int index=100;

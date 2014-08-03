@@ -81,7 +81,7 @@ public:
 	}
 	void DrawNumber(float number,int dec,int x,int y)
 	{
-		dtostrf(number,-sizeof(_buffer),dec,_buffer);
+		dtostrf(number,0,dec,_buffer);
 		DrawText(_buffer,x,y);
 	}
 	void DrawText(const __FlashStringHelper * text,int x,int y)
@@ -128,6 +128,8 @@ public:
 	{
 		x=ToDC_X(x);
 		y=ToDC_Y(y);
+		//_lcd->print(text,x,y);
+		//out<<text<<" "<<strlen(text)<<endl;
 		for(int i=0;i<strlen(text);i++)
 		{
 			char c=text[i];
@@ -143,7 +145,6 @@ public:
 		int x = 0;
 		int y = radius;
 		float tan_stop=tan(angle_rad/2);
-		out<<tan_stop<<endl;
 		int delta = 2 - 2 * radius;
 		int error = 0;
 		float ratio;

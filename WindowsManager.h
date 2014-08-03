@@ -25,10 +25,8 @@
 #include "MainWindow.h"
 #include "ICriticalProcess.h"
 
-class WindowsManagerBase
-{
-};
-template <class T=MainWindow> class WindowsManager : public WindowsManagerBase, public ICriticalProcess
+UTFT *globalLcd;
+template <class T=MainWindow> class WindowsManager :  public ICriticalProcess
 {
 	DC _dc;
 	T *_mainWindow;
@@ -36,6 +34,7 @@ template <class T=MainWindow> class WindowsManager : public WindowsManagerBase, 
 public:
 	WindowsManager(UTFT *lcd,UTouch *touch=NULL):_dc(lcd),_touch(touch)
 	{
+		globalLcd=lcd;
 	}
 	void Initialize()
 	{

@@ -20,7 +20,8 @@
   examples and tools supplied with the library.
 */
 #include "Window.h"
-///Gauge window class, that allows visualisaion of data in form of bar or radial pointer or level
+#include "AHelper.h"
+///Gauge window class, that allows visualisaion of data in form of bar or radial pointer
 class Gauge : public Window
 {
 public:
@@ -28,7 +29,6 @@ public:
 	{
 		Bar, 
 		RadialPointer,
-		Level
 	};
 	int _numTicks; //!< Number of ticks (lines) on gauge scale 
 	Color _color;  //!< Gauge color 
@@ -48,7 +48,7 @@ public:
 		:Window(F("gauge"),left,top,width,height),
 		_gaugeType(gaugeType),
 		_numTicks(5),
-		_value(0),
+		_value(25),
 		_minValue(0),
 		_maxValue(100),
 		_color(Color::Green)
@@ -77,7 +77,19 @@ public:
 		_minValue=minVal;
 		_maxValue=maxVal;
 	}
-	///Implements drawinf code
+	///Sets display value
+	/**
+	\param value desired value
+	\return if value is above limits than limit otherwise value
+	*/
+	float SetValue(float value)
+	{
+		_value=max(_minValue,value);
+		_value=min(_maxValue,value);
+		DC dc;
+		Redraw(&dc);
+	}
+	///Implements drawing code
 	/**
 	\param dc Device context
 	*/
@@ -85,15 +97,32 @@ public:
 	{
 		dc->SetColor(_color);
 		dc->SetFont(SmallFont);
-
-		float factor=1000/(_maxValue-_minValue);
-		float dc_val=1000/(_maxValue-_minValue)*(_value-_minValue);
-		float step_val=(_maxValue-_minValue)/(_numTicks-1);
+		float range=_maxValue-_minValue;
+		float factor=1000/range;
+		float dc_val=1000/(range)*(_value-_minValue);
+		float step_val=(range)/(_numTicks-1);
 		switch(_gaugeType)
 		{
 		case Bar:
-			dc->FillRoundRect(0,0,Width(),Height());
+		{
+			const int tick_length=5;
+			int right_offset=Width()-(AHelper::GetNumberLength(max(_minValue,_maxValue),1)*dc->FontWidth()+dc->FontWidth()+tick_length);
+			dc->DrawRoundRect(0,0,right_offset,Height());
+			int y;
+			int scale_step=Height()/(_numTicks-1);
+			for(int i=0;i<_numTicks;i++)
+			{
+				y=Height()-scale_step*i;
+				dc->MoveTo(right_offset,y);
+				dc->LineTo(right_offset+tick_length,y);
+				dc->DrawNumber(_minValue+i*step_val,1,right_offset+tick_length+dc->FontWidth(),y-(dc->FontHeight()*(i==_numTicks-1?0:1)));
+			}
+			dc->SetColor(GetBackColor());
+			dc->FillRoundRect(2,1,right_offset-2,min(Height()-2,Height()-_value*Height()/range+2));
+			dc->SetColor(Color::Red);
+			dc->FillRoundRect(2,Height()-_value*Height()/range,right_offset-2,Height()-1);
 			break;
+		}
 		case RadialPointer:
 		{
 			int radius=Height()*1;
@@ -116,7 +145,7 @@ public:
 				dc->MoveTo(x0+radius*sin_val,y0-radius*cos_val);
 				dc->LineTo(x0+radius*1.1*sin_val,y0-radius*1.1*cos_val);
 				value=_minValue+step_val*i;
-				x_offset=(value==0?0:log10(value))+3;
+				x_offset=AHelper::GetNumberLength(value,1);
 				if(value<0)
 					x_offset++;
 				if(i==0)
@@ -134,9 +163,6 @@ public:
 			dc->LineTo(x0+radius*0.7*sin_val,y0-radius*0.7*cos_val);
 			break;
 		}
-		case Level:
-			dc->DrawRoundRect(0,0,Width(),Height());
-			break;
 		}
 	}
 

@@ -16,26 +16,30 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-
+// DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
+#define DEMO_SENSORS
 #include <UTFT.h>
 #include <UTouch.h>
 
 #include "LinkedList.h"
 #include "WindowsManager.h"
 #include "GaugesWindow.h"
+#include "FakeSensor.h"
+#include "SensorManager.h"
+#include "MeasurementNode.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
 
 //manager which is responsible for window updating process
-WindowsManager<> windowsManager(&myGLCD,&myTouch);
+WindowsManager<GaugesWindow> windowsManager(&myGLCD,&myTouch);
 
-GaugesWindow *gaugesWnd;
+//list where all sensors are collected
+LinkedList<SensorManager> sensors;
+//manager which controls the measurement process
+MeasurementNode measurementNode(sensors);
 
-int time_step_mus=100;
-const int reserved_buf_size=2000;
-int buf_size=500;
 
 void setup()
 {
@@ -56,11 +60,14 @@ void setup()
 	//initialize window manager
 	windowsManager.Initialize();
 
-	gaugesWnd=new GaugesWindow(0.0,0.0,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight());
-	windowsManager.MainWnd()->AddChild(gaugesWnd);
+	//create sensor manager
+	SensorManager *manager=new SensorManager(new FakeSensor(),15,40,1000*1);
+	sensors.Add(manager); 
+	manager->RegisterHasDataEventReceiver(windowsManager.MainWnd());
+	manager->RegisterMeasuredEventReceiver(windowsManager.MainWnd());
+	//in order to avoid pause in the touch interactions, windows manager is defined as critical process
+	measurementNode.SetCriticalProcess(&windowsManager);
 
-	//finalize window initialization: window resizing and etc.
-	windowsManager.InitializeWindowSystem();
 	delay(1000); 
 	out<<F("End setup")<<endl;
 
@@ -68,6 +75,16 @@ void setup()
 
 void loop()
 {
+	//measure (if necessary -see delay parameter in sensor manager)
+	if(measurementNode.measure())
+	{
+		//following if is only for debugging purposes
+		if(measurementNode.IsChanged())
+		{
+			measurementNode.printSerial();
+		}
+
+	}
 	//give window manager an opportunity to update display
 	windowsManager.loop();
 }

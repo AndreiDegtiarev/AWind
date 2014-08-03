@@ -18,28 +18,119 @@
   examples and tools supplied with the library.
 */
 #include "Gauge.h"
-class GaugesWindow : public Window
+#include "ChartWindow.h"
+#include "TextBoxString.h"
+#include "ButtonWindow.h"
+#include "SensorDataBuffer.h"
+#include "SensorManager.h"
+#include "FakeSensor.h"
+
+///Main window of gauges example. Routs events between child elements
+class GaugesWindow : public MainWindow, public ITouchEventReceiver, public ISensorHasDataEventReceiver, public ISensorMeasuredEventReceiver
 {
+	Gauge *_gaugeBar;
+	Gauge *_gaugeRadialPointer;
+	ChartWindow *_chartWindow;
+	TextBoxFString *_btnFast;
+	TextBoxFString *_btnSlow;
+	ButtonWindow *_btnTop;
+	ButtonWindow *_btnBottom;
+	SensorManager *_sensorManager;
+	bool _isAuto;
+public:
 	///Constructor
 	/**
-	\param name internal window name that help by debugging
-	\param left left coordinate relative to parent indow
-	\param top top coordinate relative to parent indow
 	\param width window width
 	\param height window height
 	*/
-	Gauge *_gaugeBar;
-	Gauge *_gaugeRadialPointer;
-	Gauge *_gaugeLevel;
-public:
-	GaugesWindow(int left,int top,int width,int height):Window(F("Gauges window"),left,top,width,height)
+	GaugesWindow(int width,int height):MainWindow(width,height)
 	{
-		_gaugeBar=new Gauge(Gauge::Bar,0,0,width/2,height/2);
-		_gaugeRadialPointer=new Gauge(Gauge::RadialPointer,width/2,0,width/2,height/2);
-		_gaugeLevel=new Gauge(Gauge::Level,0,height/2,width/2,height/2);
+		_sensorManager=NULL;
+		SetBackColor(Color::WhiteSmoke);
+		_isAuto=false;
+		int x=1;
+		int szx=width/4;
+		_gaugeBar=new Gauge(Gauge::Bar,x,1,szx,height-2);
+		x+=szx+1;
+		szx=width/2;
+		_gaugeRadialPointer=new Gauge(Gauge::RadialPointer,x,1,szx,height/2-2);
+		_chartWindow=new ChartWindow(x,height/2,szx,height/2-2);
 		AddChild(_gaugeBar); 
 		AddChild(_gaugeRadialPointer);
-		AddChild(_gaugeLevel);
-		SetBackColor(Color::WhiteSmoke);
+		AddChild(_chartWindow);
+		x+=szx+4;
+		szx=width/4-6;
+		_btnFast=new TextBoxFString(x,20,szx,30,F("Fast"),Color::Blue);
+		initTextBox(_btnFast);
+		_btnSlow=new TextBoxFString(x,70,szx,30,F("Slow"),Color::Blue);
+		initTextBox(_btnSlow);
+		_btnTop=new ButtonWindow(ButtonWindow::TriangleTop,x+15,height/2,40,40);
+		_btnBottom=new ButtonWindow(ButtonWindow::TriangleBottom,x+15,height/2+60,40,40);
+		initButton(_btnTop);
+		initButton(_btnBottom);
+	}
+	///Initialize text box windows
+	void initTextBox(TextBoxFString *textBox)
+	{
+		textBox->SetBorder(Color::Green);
+		textBox->SetFont(BigFont);
+		textBox->SetMargins(0,5);
+		textBox->RegisterTouchEventReceiver(this);
+		textBox->SetBackColor(GetBackColor());
+		AddChild(textBox);
+	}
+	///Initialize button windows
+	void initButton(ButtonWindow *button)
+	{
+		button->SetBorder(Color::Blue);
+		button->RegisterTouchEventReceiver(this);
+		button->SetBackColor(GetBackColor());
+		AddChild(button);
+	}
+	///Events routing for gui interaction (see RegisterTouchEventReceiver and public ITouchEventReceiver declaration)
+	void NotifyTouch(Window *window)
+	{
+		if(window==_btnFast)
+		{
+			out<<F("touch in gauges auto")<<endl;
+			if(_sensorManager!=NULL)
+			{
+				_sensorManager->SetPause(_sensorManager->GetPause()*1.1);
+			}
+		}
+		else if(window==_btnSlow)
+		{
+			out<<F("touch in gauges manual")<<endl;
+			if(_sensorManager!=NULL)
+			{
+				_sensorManager->SetPause(_sensorManager->GetPause()*0.9);
+			}
+		}
+		else if(window==_btnTop)
+		{
+			out<<F("touch in gauges top")<<endl;
+			if(_sensorManager!=NULL)
+				((FakeSensor *)_sensorManager->Sensor())->Increase();
+		}
+		else if(window==_btnBottom)
+		{
+			out<<F("touch in gauges bottom")<<endl;
+			if(_sensorManager!=NULL)
+				((FakeSensor *)_sensorManager->Sensor())->Decrease();
+		}
+	}
+	///Events routing for gui interaction (see RegisterReceiver and public ISensorHasDataEventReceiver declaration)
+	void NotifySensorHasData(SensorManager *sensorManager)
+	{
+		float value=sensorManager->GetData();
+		_gaugeBar->SetValue(value);
+		_gaugeRadialPointer->SetValue(value);
+		_sensorManager=sensorManager;
+		_chartWindow->SetBuffer(sensorManager->SecBuffer());
+		_chartWindow->Invalidate();
+	}
+	void NotifySensorMeasured(SensorManager *sensorManager)
+	{
+		_chartWindow->Invalidate();
 	}
 };

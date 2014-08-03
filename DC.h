@@ -34,6 +34,12 @@ public:
 		_lcd=lcd;
 		Reset();
 	}
+	DC()
+	{
+		extern UTFT *globalLcd;
+		_lcd=globalLcd;
+		Reset();
+	}
 	int DeviceWidth()
 	{
 		return _lcd->getDisplayXSize()-1;

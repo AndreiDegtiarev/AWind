@@ -90,7 +90,7 @@ public:
 		this->AddChild(_textName);
 		this->AddChild(_chartWnd);
 		this->AddChild(_textChartAxis);
-		sensorManager->RegisterReceiver(this);
+		sensorManager->RegisterHasDataEventReceiver(this);
 	}
 	bool IsAwaitTouch()
 	{

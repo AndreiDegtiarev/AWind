@@ -47,7 +47,7 @@ public:
 	{
 		return 200;
 	}
-	///perfrom measurements 
+	///Perfrom measurements 
 	/**
 	\param data reference to the variable that becoms result measurement
 	\return true if success

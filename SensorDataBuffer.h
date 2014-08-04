@@ -100,7 +100,7 @@ public:
 	{
 		if(index>=Size())
 		{
-			Log::Number(F("Error: index outside of array bounds: "),index,true);
+			out<<F("Error: index outside of array bounds: ")<<index<<endl;
 			return 0;
 		}
 		return (_data_x[index]+_offset_x)/_factor_x;
@@ -109,7 +109,7 @@ public:
 	{
 		if(index>=Size())
 		{
-			Log::Number(F("Error: index outside of array bounds: "),index,true);
+			out<<F("Error: index outside of array bounds: ")<<index<<endl;
 			return 0;
 		}
 		return _data_y[index]/_factor_y;

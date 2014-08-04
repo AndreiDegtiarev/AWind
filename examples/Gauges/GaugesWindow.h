@@ -51,9 +51,11 @@ public:
 		int x=1;
 		int szx=width/4;
 		_gaugeBar=new Gauge(Gauge::Bar,x,1,szx,height-2);
+		_gaugeBar->SetBackColor(GetBackColor());
 		x+=szx+1;
 		szx=width/2;
 		_gaugeRadialPointer=new Gauge(Gauge::RadialPointer,x,1,szx,height/2-2);
+		_gaugeRadialPointer->SetBackColor(GetBackColor());
 		_chartWindow=new ChartWindow(x,height/2,szx,height/2-2);
 		AddChild(_gaugeBar); 
 		AddChild(_gaugeRadialPointer);
@@ -92,18 +94,18 @@ public:
 	{
 		if(window==_btnFast)
 		{
-			out<<F("touch in gauges auto")<<endl;
+			out<<F("touch in gauges fast")<<endl;
 			if(_sensorManager!=NULL)
 			{
-				_sensorManager->SetPause(_sensorManager->GetPause()*1.1);
+				_sensorManager->SetPause(_sensorManager->GetPause()*0.9);
 			}
 		}
 		else if(window==_btnSlow)
 		{
-			out<<F("touch in gauges manual")<<endl;
+			out<<F("touch in gauges slow")<<endl;
 			if(_sensorManager!=NULL)
 			{
-				_sensorManager->SetPause(_sensorManager->GetPause()*0.9);
+				_sensorManager->SetPause(_sensorManager->GetPause()*1.1);
 			}
 		}
 		else if(window==_btnTop)
@@ -119,7 +121,7 @@ public:
 				((FakeSensor *)_sensorManager->Sensor())->Decrease();
 		}
 	}
-	///Events routing for gui interaction (see RegisterReceiver and public ISensorHasDataEventReceiver declaration)
+	///Event sensor has new data. If data is the same as measured previosly. This event is not generated (see RegisterReceiver and public ISensorHasDataEventReceiver declaration)
 	void NotifySensorHasData(SensorManager *sensorManager)
 	{
 		float value=sensorManager->GetData();
@@ -129,6 +131,7 @@ public:
 		_chartWindow->SetBuffer(sensorManager->SecBuffer());
 		_chartWindow->Invalidate();
 	}
+	///Event is generated after each measurement
 	void NotifySensorMeasured(SensorManager *sensorManager)
 	{
 		_chartWindow->Invalidate();

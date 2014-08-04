@@ -16,10 +16,10 @@ AWind library is build on top of Henning Karlsen libraries (many thanks for that
 You need uncompressed them into  arduinosketchfolder/libraries/ folder
 
 The AWind library refers AFrame and ASensor libraries
-* [AFrame] (https://github.com/AndreiDegtiarev/AFrame)
-* [ASensor] (https://github.com/AndreiDegtiarev/AFrame)
+* [AFrame] (https://github.com/AndreiDegtiarev/AFrame/archive/master.zip)
+* [ASensor] (https://github.com/AndreiDegtiarev/AFrame/archive/master.zip)
 
-To install you need download them into arduinosketchfolder/libraries/ folder and then remove the "-master" in the folder names.
+To install you need download them into arduinosketchfolder/libraries/ folder, unzip and then remove the "-master" in the folder names.
 Restart the IDE
 
 How to connect TFT-display see the UTFT documentation.
@@ -36,3 +36,5 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 ![](examples/Oscilloscope/Example1.JPG)
 * [SensorsMonitor] (examples/SensorsMonitor/README.md): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example work in DEMO-mode and real sensors connections is not needed
 ![](examples/SensorsMonitor/Example.JPG)
+* [Gauges] (examples/Gauges/README.md): This example demonstrates how to use gauge and button controls
+![](examples/Gauges/Example.JPG)

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>AWind: WindowsManager Class Reference</title>
+<title>AWind: WindowsManager&lt; T &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -108,48 +108,53 @@ $(document).ready(function(){initNavTree('class_windows_manager.html','');});
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="class_windows_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">WindowsManager Class Reference</div>  </div>
+<div class="title">WindowsManager&lt; T &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for WindowsManager&lt; T &gt;:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_windows_manager.png" usemap="#WindowsManager&lt; T &gt;_map" alt=""/>
+  <map id="WindowsManager&lt; T &gt;_map" name="WindowsManager&lt; T &gt;_map">
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a30bde5ebea31213344b6026424fc1b1d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30bde5ebea31213344b6026424fc1b1d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>WindowsManager</b> (UTFT *lcd)</td></tr>
-<tr class="separator:a30bde5ebea31213344b6026424fc1b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa17322e2779325082370de7bad701f0a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa17322e2779325082370de7bad701f0a"></a>
+<tr class="memitem:a47f5abbfa8a6c4a1f6689360247721f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47f5abbfa8a6c4a1f6689360247721f9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>WindowsManager</b> (UTFT *lcd, UTouch *touch=NULL)</td></tr>
+<tr class="separator:a47f5abbfa8a6c4a1f6689360247721f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac27cba31bdc3e83fabc725bc3da16891"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac27cba31bdc3e83fabc725bc3da16891"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Initialize</b> ()</td></tr>
-<tr class="separator:aa17322e2779325082370de7bad701f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed2e5e9863be43b4c5facca4eb921e18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed2e5e9863be43b4c5facca4eb921e18"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>InitializeWindowSystem</b> ()</td></tr>
-<tr class="separator:aed2e5e9863be43b4c5facca4eb921e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c9f84b49f22aaed49bcbdf78d1309e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c9f84b49f22aaed49bcbdf78d1309e0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetCriticalProcess</b> (ICriticalProcess *criticalProcess)</td></tr>
-<tr class="separator:a7c9f84b49f22aaed49bcbdf78d1309e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8440307820de5547c1bfb9f0cdca1ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8440307820de5547c1bfb9f0cdca1ad"></a>
+<tr class="separator:ac27cba31bdc3e83fabc725bc3da16891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab78533074b1315ca1033fa7ceca1417"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab78533074b1315ca1033fa7ceca1417"></a>
 <a class="el" href="class_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>HitTest</b> (int x, int y)</td></tr>
-<tr class="separator:ab8440307820de5547c1bfb9f0cdca1ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1c0dd123778109fa281b576e66f48e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1c0dd123778109fa281b576e66f48e3"></a>
+<tr class="separator:aab78533074b1315ca1033fa7ceca1417"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a807e24d33108bf34e950008b88f76446"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a807e24d33108bf34e950008b88f76446"></a>
 <a class="el" href="class_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>HitTest</b> (<a class="el" href="class_window.html">Window</a> *window, int x, int y)</td></tr>
-<tr class="separator:ad1c0dd123778109fa281b576e66f48e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a751cbbcd56dac4124ade0ae306265a23"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a751cbbcd56dac4124ade0ae306265a23"></a>
+<tr class="separator:a807e24d33108bf34e950008b88f76446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf21652bb4212e68fa45eda6355a3ce2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf21652bb4212e68fa45eda6355a3ce2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>loop</b> ()</td></tr>
-<tr class="separator:a751cbbcd56dac4124ade0ae306265a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa95a46fb044e4952d995f5d229731127"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa95a46fb044e4952d995f5d229731127"></a>
-<a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>MainWnd</b> ()</td></tr>
-<tr class="separator:aa95a46fb044e4952d995f5d229731127"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c542982d571f04865bb273e76e9ec15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c542982d571f04865bb273e76e9ec15"></a>
+<tr class="separator:adf21652bb4212e68fa45eda6355a3ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0677a4bfede8bc6bdd529a5ab08672a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0677a4bfede8bc6bdd529a5ab08672a"></a>
+T *&#160;</td><td class="memItemRight" valign="bottom"><b>MainWnd</b> ()</td></tr>
+<tr class="separator:ac0677a4bfede8bc6bdd529a5ab08672a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76d1170d9cc310884f095a5cf6d17689"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76d1170d9cc310884f095a5cf6d17689"></a>
 <a class="el" href="class_d_c.html">DC</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDC</b> ()</td></tr>
-<tr class="separator:a6c542982d571f04865bb273e76e9ec15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a76d1170d9cc310884f095a5cf6d17689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d0108c21ce149c06fc6a6f85fd2fcb4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d0108c21ce149c06fc6a6f85fd2fcb4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Idle</b> ()</td></tr>
+<tr class="separator:a8d0108c21ce149c06fc6a6f85fd2fcb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a319aec4c0b9e9103c4e9fe6e9563645e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a319aec4c0b9e9103c4e9fe6e9563645e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initialze</b> (<a class="el" href="class_window.html">Window</a> *window)</td></tr>
-<tr class="separator:a319aec4c0b9e9103c4e9fe6e9563645e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2da4eddc721e698bb493a3c9e7d9ed84"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2da4eddc721e698bb493a3c9e7d9ed84"></a>
+<tr class="memitem:a7252ead029fc3671667d859e69105f80"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7252ead029fc3671667d859e69105f80"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>redraw</b> (<a class="el" href="class_window.html">Window</a> *window, bool isForceRedraw)</td></tr>
-<tr class="separator:a2da4eddc721e698bb493a3c9e7d9ed84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a7252ead029fc3671667d859e69105f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91cdaf312a482a88a547ddfe38f4ad21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91cdaf312a482a88a547ddfe38f4ad21"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>loopTouch</b> ()</td></tr>
+<tr class="separator:a91cdaf312a482a88a547ddfe38f4ad21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="_windows_manager_8h_source.html">WindowsManager.h</a></li>
@@ -160,7 +165,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>redraw</b> (<a class=
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_windows_manager.html">WindowsManager</a></li>
-    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
+    <li class="footer">Generated on Mon Aug 4 2014 17:28:45 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

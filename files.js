@@ -19,7 +19,6 @@ var files =
     [ "TextBoxNumber.h", "_text_box_number_8h_source.html", null ],
     [ "TextBoxString.h", "_text_box_string_8h_source.html", null ],
     [ "TimeSerieBuffer.h", "_time_serie_buffer_8h_source.html", null ],
-    [ "TouchManager.h", "_touch_manager_8h_source.html", null ],
     [ "ViewModusWindow.h", "_view_modus_window_8h_source.html", null ],
     [ "Window.h", "_window_8h_source.html", null ],
     [ "WindowsManager.h", "_windows_manager_8h_source.html", null ]

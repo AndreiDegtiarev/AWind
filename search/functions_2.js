@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['gauge',['Gauge',['../class_gauge.html#a9199bbabf1dae81ab72f815335bde427',1,'Gauge']]],
-  ['getbackcolor',['GetBackColor',['../class_window.html#a05c5e45a3959382b18ee76701a20f601',1,'Window']]]
+  ['children',['Children',['../class_window.html#a084a0d589edd4d9162314ef73c3ce2a3',1,'Window']]]
 ];

@@ -104,52 +104,116 @@ $(document).ready(function(){initNavTree('_button_window_8h_source.html','');});
 <div class="title">ButtonWindow.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">  AWind.h - Arduino window library support for Color TFT LCD Boards</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">  Copyright (C)2014 Andrei Degtiarev. All right reserved</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">  </span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">  You can always find the latest version of the library at </span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">  https://github.com/AndreiDegtiarev/AWind</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"></span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">  AWind.h - Arduino window library support for Color TFT LCD Boards</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">  Copyright (C)2014 Andrei Degtiarev. All right reserved</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">  </span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">  You can always find the latest version of the library at </span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">  https://github.com/AndreiDegtiarev/AWind</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">  This library is free software; you can redistribute it and/or</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">  modify it under the terms of the CC BY-NC-SA 3.0 license.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">  Please see the included documents for further information.</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">  Commercial use of this library requires you to buy a license that</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">  will allow commercial use. This includes using the library,</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">  modified or not, as a tool to sell products.</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">  The license applies to all part of the library including the </span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">  examples and tools supplied with the library.</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">  This library is free software; you can redistribute it and/or</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">  modify it under the terms of the CC BY-NC-SA 3.0 license.</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">  Please see the included documents for further information.</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">  Commercial use of this library requires you to buy a license that</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">  will allow commercial use. This includes using the library,</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">  modified or not, as a tool to sell products.</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">  The license applies to all part of the library including the </span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">  examples and tools supplied with the library.</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;TextBoxString.h&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;Window.h&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_button_window.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_button_window.html">ButtonWindow</a> : <span class="keyword">public</span> <a class="code" href="class_window.html">Window</a></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_button_window.html">ButtonWindow</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name,<span class="keywordtype">int</span> left,<span class="keywordtype">int</span> top,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a>(left,top,width,height)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">enum</span> Pictogram</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">int</span> offset=10;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        TextBoxStr * textName = <span class="keyword">new</span> TextBoxStr(left+offset,top+offset,name,Color::White);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        textName-&gt;SetFont(BigFont);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        this-&gt;<a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(textName);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;};</div>
-<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provids basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
-<div class="ttc" id="class_button_window_html"><div class="ttname"><a href="class_button_window.html">ButtonWindow</a></div><div class="ttdef"><b>Definition:</b> ButtonWindow.h:25</div></div>
-<div class="ttc" id="class_window_html_aaa4ac4e2ab3c69b2380ef738de35b972"><div class="ttname"><a href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window::Window</a></div><div class="ttdeci">Window(const __FlashStringHelper *name, int left, int top, int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Window.h:62</div></div>
-<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:175</div></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        TriangleLeft,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        TriangleRight,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        TriangleTop,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        TriangleBottom,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    };</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    Pictogram _pictogram;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_button_window.html#ab49a078a342b59cf7496a3690ef5a9fb">   46</a></span>&#160;    <a class="code" href="class_button_window.html#ab49a078a342b59cf7496a3690ef5a9fb">ButtonWindow</a>(Pictogram pictogram,<span class="keywordtype">int</span> left,<span class="keywordtype">int</span> top,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_window.html">Window</a>(F(<span class="stringliteral">&quot;Button&quot;</span>),left,top,width,height)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        _pictogram=pictogram;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="class_button_window.html#a6939033bc2f863136f3ddb971dc9458a">   54</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_button_window.html#a6939033bc2f863136f3ddb971dc9458a">OnDraw</a>(<a class="code" href="class_d_c.html">DC</a> *dc)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        dc-&gt;SetColor(<a class="code" href="class_window.html#ac0eb3385bc6d047e0a9902d35e31fbd0">_borderColor</a>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">int</span> marg=7;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordtype">int</span> x1=0,x2=0,x3=0;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">int</span> y1=0,y2=0,y3=0;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">int</span> x_left=marg;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">int</span> x_mid=<a class="code" href="class_window.html#af0e26e4066865471331229f574b91140">Width</a>()/2;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">int</span> x_right=<a class="code" href="class_window.html#af0e26e4066865471331229f574b91140">Width</a>()-marg;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">int</span> y_mid=<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>()/2;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">int</span> y_top=marg;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">int</span> y_bottom=<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>()-marg;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">switch</span>(_pictogram)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">case</span> TriangleLeft:</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            x1=x_left;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            y1=y_mid;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            x2=x_right;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            y2=y_top;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            x3=x_right;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            y3=y_bottom;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">case</span> TriangleRight:</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            x1=x_left;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            y1=y_top;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            x2=x_right;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            y2=y_mid;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            x3=x_left;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            y3=y_bottom;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">case</span> TriangleTop:</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            x1=x_mid;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            y1=y_top;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            x2=x_right;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            y2=y_bottom;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            x3=x_left;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            y3=y_bottom;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">case</span> TriangleBottom:</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            x1=x_left;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            y1=y_top;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            x2=x_right;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            y2=y_top;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            x3=x_mid;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            y3=y_bottom;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        dc-&gt;MoveTo(x1,y1);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        dc-&gt;LineTo(x2,y2);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        dc-&gt;LineTo(x3,y3);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        dc-&gt;LineTo(x1,y1);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;};</div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provides basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:32</div></div>
+<div class="ttc" id="class_button_window_html"><div class="ttname"><a href="class_button_window.html">ButtonWindow</a></div><div class="ttdoc">Implements pictogram buttons. </div><div class="ttdef"><b>Definition:</b> ButtonWindow.h:25</div></div>
+<div class="ttc" id="class_button_window_html_ab49a078a342b59cf7496a3690ef5a9fb"><div class="ttname"><a href="class_button_window.html#ab49a078a342b59cf7496a3690ef5a9fb">ButtonWindow::ButtonWindow</a></div><div class="ttdeci">ButtonWindow(Pictogram pictogram, int left, int top, int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> ButtonWindow.h:46</div></div>
+<div class="ttc" id="class_d_c_html"><div class="ttname"><a href="class_d_c.html">DC</a></div><div class="ttdef"><b>Definition:</b> DC.h:23</div></div>
+<div class="ttc" id="class_window_html_a0718d9a46b881ede120e51539c2aea1f"><div class="ttname"><a href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Window::Height</a></div><div class="ttdeci">int Height()</div><div class="ttdoc">Returns window height. </div><div class="ttdef"><b>Definition:</b> Window.h:162</div></div>
+<div class="ttc" id="class_button_window_html_a6939033bc2f863136f3ddb971dc9458a"><div class="ttname"><a href="class_button_window.html#a6939033bc2f863136f3ddb971dc9458a">ButtonWindow::OnDraw</a></div><div class="ttdeci">void OnDraw(DC *dc)</div><div class="ttdoc">Implements drawing code. </div><div class="ttdef"><b>Definition:</b> ButtonWindow.h:54</div></div>
+<div class="ttc" id="class_window_html_ac0eb3385bc6d047e0a9902d35e31fbd0"><div class="ttname"><a href="class_window.html#ac0eb3385bc6d047e0a9902d35e31fbd0">Window::_borderColor</a></div><div class="ttdeci">Color _borderColor</div><div class="ttdoc">window border color, default value is VGA_TRANSPARENT that means no border </div><div class="ttdef"><b>Definition:</b> Window.h:40</div></div>
+<div class="ttc" id="class_window_html_af0e26e4066865471331229f574b91140"><div class="ttname"><a href="class_window.html#af0e26e4066865471331229f574b91140">Window::Width</a></div><div class="ttdeci">int Width()</div><div class="ttdoc">Returns window width. </div><div class="ttdef"><b>Definition:</b> Window.h:157</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>ButtonWindow.h</b></li>
-    <li class="footer">Generated on Sat Aug 2 2014 16:52:10 for AWind by
+    <li class="footer">Generated on Mon Aug 4 2014 17:28:44 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

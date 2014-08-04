@@ -107,14 +107,13 @@ $(document).ready(function(){initNavTree('class_window.html','');});
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="class_window-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Window Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Base class for all window objects. Provids basic window functionality.  
+<p>Base class for all window objects. Provides basic window functionality.  
  <a href="class_window.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_window_8h_source.html">Window.h</a>&gt;</code></p>
@@ -124,17 +123,19 @@ Inheritance diagram for Window:</div>
  <div class="center">
   <img src="class_window.png" usemap="#Window_map" alt=""/>
   <map id="Window_map" name="Window_map">
-<area href="class_button_window.html" alt="ButtonWindow" shape="rect" coords="136,56,262,80"/>
-<area href="class_chart_window.html" alt="ChartWindow" shape="rect" coords="136,112,262,136"/>
-<area href="class_gauge.html" title="Gauge window class, that allows visualisaion of data in form of bar or radial pointer or level..." alt="Gauge" shape="rect" coords="136,168,262,192"/>
-<area href="class_gauges_window.html" alt="GaugesWindow" shape="rect" coords="136,224,262,248"/>
-<area href="class_keyboard_window.html" alt="KeyboardWindow" shape="rect" coords="136,280,262,304"/>
-<area href="class_main_window.html" alt="MainWindow" shape="rect" coords="136,336,262,360"/>
-<area href="class_oscilloscope.html" alt="Oscilloscope" shape="rect" coords="136,392,262,416"/>
-<area href="class_sensor_window.html" alt="SensorWindow" shape="rect" coords="136,448,262,472"/>
-<area href="class_text_box.html" alt="TextBox" shape="rect" coords="136,504,262,528"/>
-<area href="class_text_example_window.html" alt="TextExampleWindow" shape="rect" coords="136,560,262,584"/>
-<area href="class_view_modus_window.html" alt="ViewModusWindow" shape="rect" coords="136,616,262,640"/>
+<area href="class_button_window.html" title="Implements pictogram buttons. " alt="ButtonWindow" shape="rect" coords="0,56,127,80"/>
+<area href="class_chart_window.html" alt="ChartWindow" shape="rect" coords="137,56,264,80"/>
+<area href="class_gauge.html" title="Gauge window class, that allows visualisaion of data in form of bar or radial pointer. " alt="Gauge" shape="rect" coords="274,56,401,80"/>
+<area href="class_keyboard_window.html" alt="KeyboardWindow" shape="rect" coords="411,56,538,80"/>
+<area href="class_main_window.html" alt="MainWindow" shape="rect" coords="548,56,675,80"/>
+<area href="class_sensor_window.html" alt="SensorWindow" shape="rect" coords="685,56,812,80"/>
+<area href="class_text_box.html" alt="TextBox" shape="rect" coords="959,56,1086,80"/>
+<area href="class_gauges_window.html" title="Main window of gauges example. Routs events between child elements. " alt="GaugesWindow" shape="rect" coords="342,112,469,136"/>
+<area href="class_oscilloscope.html" alt="Oscilloscope" shape="rect" coords="479,112,606,136"/>
+<area href="class_text_example_window.html" alt="TextExampleWindow" shape="rect" coords="616,112,743,136"/>
+<area href="class_view_modus_window.html" alt="ViewModusWindow" shape="rect" coords="753,112,880,136"/>
+<area href="class_text_box_number.html" alt="TextBoxNumber" shape="rect" coords="890,112,1017,136"/>
+<area href="class_text_box_t_string.html" alt="TextBoxTString&lt; T &gt;" shape="rect" coords="1027,112,1154,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -162,10 +163,6 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#acc04cd965a83cacce99d1e3ddcd01cdf">MainWnd</a> ()</td></tr>
 <tr class="memdesc:acc04cd965a83cacce99d1e3ddcd01cdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns pointer to root window. <a class="el" href="class_main_window.html">MainWindow</a> does not have any parents. <br /></td></tr>
 <tr class="separator:acc04cd965a83cacce99d1e3ddcd01cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a399058661e2769454f7fda201af9b568"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a399058661e2769454f7fda201af9b568"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a399058661e2769454f7fda201af9b568">Initialize</a> ()</td></tr>
-<tr class="memdesc:a399058661e2769454f7fda201af9b568"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is called once during system initialization. <br /></td></tr>
-<tr class="separator:a399058661e2769454f7fda201af9b568"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4770a12f1846b07d0673667f6d1860ee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a4770a12f1846b07d0673667f6d1860ee">Move</a> (int left, int top, int width, int height)</td></tr>
 <tr class="memdesc:a4770a12f1846b07d0673667f6d1860ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves and resizes window relativly to the parent window.  <a href="#a4770a12f1846b07d0673667f6d1860ee">More...</a><br /></td></tr>
 <tr class="separator:a4770a12f1846b07d0673667f6d1860ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -229,11 +226,17 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 LinkedList&lt; <a class="el" href="class_window.html">Window</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a084a0d589edd4d9162314ef73c3ce2a3">Children</a> ()</td></tr>
 <tr class="memdesc:a084a0d589edd4d9162314ef73c3ce2a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns list of children window. <br /></td></tr>
 <tr class="separator:a084a0d589edd4d9162314ef73c3ce2a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b66845ba516c8d5022ecbc052967079"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a2b66845ba516c8d5022ecbc052967079">Redraw</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
+<tr class="memdesc:a2b66845ba516c8d5022ecbc052967079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs full window redraw.  <a href="#a2b66845ba516c8d5022ecbc052967079">More...</a><br /></td></tr>
+<tr class="separator:a2b66845ba516c8d5022ecbc052967079"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a1e87ef185307bffd52f0e7cfa8f288a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a1e87ef185307bffd52f0e7cfa8f288a2">PrepareDC</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
+<tr class="memdesc:a1e87ef185307bffd52f0e7cfa8f288a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setups window coordinate system. This function called by window manager right before window has to be redrawn and it is intended for internal use.  <a href="#a1e87ef185307bffd52f0e7cfa8f288a2">More...</a><br /></td></tr>
+<tr class="separator:a1e87ef185307bffd52f0e7cfa8f288a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6a82bd2b3e8e2c7122e4a536a52c9ff"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ac6a82bd2b3e8e2c7122e4a536a52c9ff">OnDraw</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
-<tr class="memdesc:ac6a82bd2b3e8e2c7122e4a536a52c9ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">If derived class needs to draw something, this function has to be ovverriden.  <a href="#ac6a82bd2b3e8e2c7122e4a536a52c9ff">More...</a><br /></td></tr>
+<tr class="memdesc:ac6a82bd2b3e8e2c7122e4a536a52c9ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">If derived class needs to draw something in window client area, this function has to be ovverriden.  <a href="#ac6a82bd2b3e8e2c7122e4a536a52c9ff">More...</a><br /></td></tr>
 <tr class="separator:ac6a82bd2b3e8e2c7122e4a536a52c9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -286,18 +289,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="el" href="class_i_touch_event_receiver.html">ITouchEventReceiver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a55139a4a47d0c792a67c80f42f0f49bd">_touchEventReceiver</a></td></tr>
 <tr class="memdesc:a55139a4a47d0c792a67c80f42f0f49bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">call back event receiver for touch actions <br /></td></tr>
 <tr class="separator:a55139a4a47d0c792a67c80f42f0f49bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:aa1cea623900c282e9c96263ba3d368d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1cea623900c282e9c96263ba3d368d7"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>WindowsManager</b></td></tr>
-<tr class="separator:aa1cea623900c282e9c96263ba3d368d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51fae5efd9c732ccec1aed71e0f8c1a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51fae5efd9c732ccec1aed71e0f8c1a1"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>TouchManager</b></td></tr>
-<tr class="separator:a51fae5efd9c732ccec1aed71e0f8c1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Base class for all window objects. Provids basic window functionality. </p>
+<div class="textblock"><p>Base class for all window objects. Provides basic window functionality. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aaa4ac4e2ab3c69b2380ef738de35b972"></a>
 <div class="memitem">
@@ -445,15 +439,79 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TouchManager</b></td
 </table>
 </div><div class="memdoc">
 
-<p>If derived class needs to draw something, this function has to be ovverriden. </p>
+<p>If derived class needs to draw something in window client area, this function has to be ovverriden. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dc</td><td>Device context </td></tr>
+    <tr><td class="paramname">dc</td><td>device context </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_gauge.html#ab6e93c2172629d8e8bf21d72c4c5925b">Gauge</a>, <a class="el" href="class_text_box_number.html#a217238e7f9fb168c1d891d8b9eb084b6">TextBoxNumber</a>, <a class="el" href="class_text_box.html#a14cc4d27fc89ad69b930f387c3b9335b">TextBox</a>, <a class="el" href="class_chart_window.html#ac99d6374ca91fd4ca2ce4b0eaf026c2c">ChartWindow</a>, and <a class="el" href="class_text_box_t_string.html#accd76c99aea89979dd891a8de21cebe3">TextBoxTString&lt; T &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="class_gauge.html#ab6e93c2172629d8e8bf21d72c4c5925b">Gauge</a>, <a class="el" href="class_text_box_number.html#a217238e7f9fb168c1d891d8b9eb084b6">TextBoxNumber</a>, <a class="el" href="class_text_box.html#a14cc4d27fc89ad69b930f387c3b9335b">TextBox</a>, <a class="el" href="class_chart_window.html#ac99d6374ca91fd4ca2ce4b0eaf026c2c">ChartWindow</a>, <a class="el" href="class_button_window.html#a6939033bc2f863136f3ddb971dc9458a">ButtonWindow</a>, and <a class="el" href="class_text_box_t_string.html#accd76c99aea89979dd891a8de21cebe3">TextBoxTString&lt; T &gt;</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1e87ef185307bffd52f0e7cfa8f288a2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Window::PrepareDC </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_d_c.html">DC</a> *&#160;</td>
+          <td class="paramname"><em>dc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setups window coordinate system. This function called by window manager right before window has to be redrawn and it is intended for internal use. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dc</td><td>device context </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2b66845ba516c8d5022ecbc052967079"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Window::Redraw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_d_c.html">DC</a> *&#160;</td>
+          <td class="paramname"><em>dc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Performs full window redraw. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dc</td><td>device context </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -498,7 +556,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>TouchManager</b></td
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_window.html">Window</a></li>
-    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
+    <li class="footer">Generated on Mon Aug 4 2014 17:28:45 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

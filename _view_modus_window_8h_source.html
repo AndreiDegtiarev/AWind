@@ -129,7 +129,7 @@ $(document).ready(function(){initNavTree('_view_modus_window_8h_source.html','')
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;TextBoxString.h&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;SensorWindow.h&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_view_modus_window.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_view_modus_window.html">ViewModusWindow</a> : <span class="keyword">public</span> <a class="code" href="class_window.html">Window</a>,<a class="code" href="class_i_touch_event_receiver.html">ITouchEventReceiver</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_view_modus_window.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_view_modus_window.html">ViewModusWindow</a> : <span class="keyword">public</span> <a class="code" href="class_main_window.html">MainWindow</a>,<a class="code" href="class_i_touch_event_receiver.html">ITouchEventReceiver</a></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">enum</span> Modus</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
@@ -141,7 +141,7 @@ $(document).ready(function(){initNavTree('_view_modus_window_8h_source.html','')
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_text_box_t_string.html">TextBoxFString</a> *_text;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    Modus _modus;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_view_modus_window.html">ViewModusWindow</a>(<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a>(F(<span class="stringliteral">&quot;ViewModusWindow&quot;</span>),0,0,width,height)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_view_modus_window.html">ViewModusWindow</a>(<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_main_window.html">MainWindow</a>(width,height)</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a>(Color::Black);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        _text=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(width-100,height-45,95,35,F(<span class="stringliteral">&quot;Night&quot;</span>),Color::White);</div>
@@ -152,7 +152,7 @@ $(document).ready(function(){initNavTree('_view_modus_window_8h_source.html','')
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(_text);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        this-&gt;<a class="code" href="class_window.html#aeec02fbd78ad4c37722002577211226e">RegisterTouchEventReceiver</a>(<span class="keyword">this</span>);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_view_modus_window.html#ab5d19348e3b4469727dc34ba35ba65db">   49</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_view_modus_window.html#ab5d19348e3b4469727dc34ba35ba65db">Initialize</a>()</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> Initialize()</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        updateBackColor();</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
@@ -180,16 +180,15 @@ $(document).ready(function(){initNavTree('_view_modus_window_8h_source.html','')
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
-<div class="ttc" id="class_window_html_a0b95e307920f9fa1b5bf06a6dde6c96f"><div class="ttname"><a href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">Window::SetBackColor</a></div><div class="ttdeci">virtual void SetBackColor(Color color)</div><div class="ttdoc">Sets window background color (default background is transparent) </div><div class="ttdef"><b>Definition:</b> Window.h:186</div></div>
-<div class="ttc" id="class_view_modus_window_html_ab5d19348e3b4469727dc34ba35ba65db"><div class="ttname"><a href="class_view_modus_window.html#ab5d19348e3b4469727dc34ba35ba65db">ViewModusWindow::Initialize</a></div><div class="ttdeci">void Initialize()</div><div class="ttdoc">Is called once during system initialization. </div><div class="ttdef"><b>Definition:</b> ViewModusWindow.h:49</div></div>
-<div class="ttc" id="class_window_html_aeec02fbd78ad4c37722002577211226e"><div class="ttname"><a href="class_window.html#aeec02fbd78ad4c37722002577211226e">Window::RegisterTouchEventReceiver</a></div><div class="ttdeci">void RegisterTouchEventReceiver(ITouchEventReceiver *touchEventReceiver)</div><div class="ttdoc">Registers receiver for touch event. </div><div class="ttdef"><b>Definition:</b> Window.h:82</div></div>
-<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provids basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
+<div class="ttc" id="class_window_html_a0b95e307920f9fa1b5bf06a6dde6c96f"><div class="ttname"><a href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">Window::SetBackColor</a></div><div class="ttdeci">virtual void SetBackColor(Color color)</div><div class="ttdoc">Sets window background color (default background is transparent) </div><div class="ttdef"><b>Definition:</b> Window.h:178</div></div>
+<div class="ttc" id="class_window_html_aeec02fbd78ad4c37722002577211226e"><div class="ttname"><a href="class_window.html#aeec02fbd78ad4c37722002577211226e">Window::RegisterTouchEventReceiver</a></div><div class="ttdeci">void RegisterTouchEventReceiver(ITouchEventReceiver *touchEventReceiver)</div><div class="ttdoc">Registers receiver for touch event. </div><div class="ttdef"><b>Definition:</b> Window.h:78</div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provides basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:32</div></div>
 <div class="ttc" id="class_view_modus_window_html"><div class="ttname"><a href="class_view_modus_window.html">ViewModusWindow</a></div><div class="ttdef"><b>Definition:</b> ViewModusWindow.h:26</div></div>
 <div class="ttc" id="class_text_box_t_string_html"><div class="ttname"><a href="class_text_box_t_string.html">TextBoxTString</a></div><div class="ttdef"><b>Definition:</b> TextBoxString.h:25</div></div>
-<div class="ttc" id="class_window_html_a084a0d589edd4d9162314ef73c3ce2a3"><div class="ttname"><a href="class_window.html#a084a0d589edd4d9162314ef73c3ce2a3">Window::Children</a></div><div class="ttdeci">LinkedList&lt; Window &gt; Children()</div><div class="ttdoc">Returns list of children window. </div><div class="ttdef"><b>Definition:</b> Window.h:212</div></div>
-<div class="ttc" id="class_window_html_ada96195db4ae77ac0ddb6a40c529610c"><div class="ttname"><a href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Window::Invalidate</a></div><div class="ttdeci">void Invalidate()</div><div class="ttdoc">If function is called than the window manager updates the window. </div><div class="ttdef"><b>Definition:</b> Window.h:140</div></div>
-<div class="ttc" id="class_window_html_aaa4ac4e2ab3c69b2380ef738de35b972"><div class="ttname"><a href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window::Window</a></div><div class="ttdeci">Window(const __FlashStringHelper *name, int left, int top, int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Window.h:62</div></div>
-<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:175</div></div>
+<div class="ttc" id="class_window_html_a084a0d589edd4d9162314ef73c3ce2a3"><div class="ttname"><a href="class_window.html#a084a0d589edd4d9162314ef73c3ce2a3">Window::Children</a></div><div class="ttdeci">LinkedList&lt; Window &gt; Children()</div><div class="ttdoc">Returns list of children window. </div><div class="ttdef"><b>Definition:</b> Window.h:204</div></div>
+<div class="ttc" id="class_window_html_ada96195db4ae77ac0ddb6a40c529610c"><div class="ttname"><a href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Window::Invalidate</a></div><div class="ttdeci">void Invalidate()</div><div class="ttdoc">If function is called than the window manager updates the window. </div><div class="ttdef"><b>Definition:</b> Window.h:132</div></div>
+<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:167</div></div>
+<div class="ttc" id="class_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition:</b> MainWindow.h:25</div></div>
 <div class="ttc" id="class_i_touch_event_receiver_html"><div class="ttname"><a href="class_i_touch_event_receiver.html">ITouchEventReceiver</a></div><div class="ttdef"><b>Definition:</b> ITouchEventReceiver.h:23</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -197,7 +196,7 @@ $(document).ready(function(){initNavTree('_view_modus_window_8h_source.html','')
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>ViewModusWindow.h</b></li>
-    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
+    <li class="footer">Generated on Mon Aug 4 2014 17:28:44 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

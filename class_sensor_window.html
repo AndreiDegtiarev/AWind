@@ -120,7 +120,7 @@ Inheritance diagram for SensorWindow:</div>
  <div class="center">
   <img src="class_sensor_window.png" usemap="#SensorWindow_map" alt=""/>
   <map id="SensorWindow_map" name="SensorWindow_map">
-<area href="class_window.html" title="Base class for all window objects. Provids basic window functionality. " alt="Window" shape="rect" coords="0,0,186,24"/>
+<area href="class_window.html" title="Base class for all window objects. Provides basic window functionality. " alt="Window" shape="rect" coords="0,0,186,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -166,10 +166,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#acc04cd965a83cacce99d1e3ddcd01cdf">MainWnd</a> ()</td></tr>
 <tr class="memdesc:acc04cd965a83cacce99d1e3ddcd01cdf inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns pointer to root window. <a class="el" href="class_main_window.html">MainWindow</a> does not have any parents. <br /></td></tr>
 <tr class="separator:acc04cd965a83cacce99d1e3ddcd01cdf inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a399058661e2769454f7fda201af9b568 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a399058661e2769454f7fda201af9b568"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a399058661e2769454f7fda201af9b568">Initialize</a> ()</td></tr>
-<tr class="memdesc:a399058661e2769454f7fda201af9b568 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is called once during system initialization. <br /></td></tr>
-<tr class="separator:a399058661e2769454f7fda201af9b568 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4770a12f1846b07d0673667f6d1860ee inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a4770a12f1846b07d0673667f6d1860ee">Move</a> (int left, int top, int width, int height)</td></tr>
 <tr class="memdesc:a4770a12f1846b07d0673667f6d1860ee inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves and resizes window relativly to the parent window.  <a href="#a4770a12f1846b07d0673667f6d1860ee">More...</a><br /></td></tr>
 <tr class="separator:a4770a12f1846b07d0673667f6d1860ee inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -229,6 +225,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 LinkedList&lt; <a class="el" href="class_window.html">Window</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a084a0d589edd4d9162314ef73c3ce2a3">Children</a> ()</td></tr>
 <tr class="memdesc:a084a0d589edd4d9162314ef73c3ce2a3 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns list of children window. <br /></td></tr>
 <tr class="separator:a084a0d589edd4d9162314ef73c3ce2a3 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b66845ba516c8d5022ecbc052967079 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a2b66845ba516c8d5022ecbc052967079">Redraw</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
+<tr class="memdesc:a2b66845ba516c8d5022ecbc052967079 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs full window redraw.  <a href="#a2b66845ba516c8d5022ecbc052967079">More...</a><br /></td></tr>
+<tr class="separator:a2b66845ba516c8d5022ecbc052967079 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -333,8 +332,11 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_class_window"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_window')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_window.html">Window</a></td></tr>
+<tr class="memitem:a1e87ef185307bffd52f0e7cfa8f288a2 inherit pro_methods_class_window"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a1e87ef185307bffd52f0e7cfa8f288a2">PrepareDC</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
+<tr class="memdesc:a1e87ef185307bffd52f0e7cfa8f288a2 inherit pro_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setups window coordinate system. This function called by window manager right before window has to be redrawn and it is intended for internal use.  <a href="#a1e87ef185307bffd52f0e7cfa8f288a2">More...</a><br /></td></tr>
+<tr class="separator:a1e87ef185307bffd52f0e7cfa8f288a2 inherit pro_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6a82bd2b3e8e2c7122e4a536a52c9ff inherit pro_methods_class_window"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ac6a82bd2b3e8e2c7122e4a536a52c9ff">OnDraw</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
-<tr class="memdesc:ac6a82bd2b3e8e2c7122e4a536a52c9ff inherit pro_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">If derived class needs to draw something, this function has to be ovverriden.  <a href="#ac6a82bd2b3e8e2c7122e4a536a52c9ff">More...</a><br /></td></tr>
+<tr class="memdesc:ac6a82bd2b3e8e2c7122e4a536a52c9ff inherit pro_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">If derived class needs to draw something in window client area, this function has to be ovverriden.  <a href="#ac6a82bd2b3e8e2c7122e4a536a52c9ff">More...</a><br /></td></tr>
 <tr class="separator:ac6a82bd2b3e8e2c7122e4a536a52c9ff inherit pro_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -346,7 +348,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_sensor_window.html">SensorWindow</a></li>
-    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
+    <li class="footer">Generated on Mon Aug 4 2014 17:28:45 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

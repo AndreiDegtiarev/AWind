@@ -104,27 +104,45 @@ $(document).ready(function(){initNavTree('class_button_window.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="class_button_window-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ButtonWindow Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implements pictogram buttons.  
+ <a href="class_button_window.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_button_window_8h_source.html">ButtonWindow.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ButtonWindow:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_button_window.png" usemap="#ButtonWindow_map" alt=""/>
   <map id="ButtonWindow_map" name="ButtonWindow_map">
-<area href="class_window.html" title="Base class for all window objects. Provids basic window functionality. " alt="Window" shape="rect" coords="0,0,91,24"/>
+<area href="class_window.html" title="Base class for all window objects. Provides basic window functionality. " alt="Window" shape="rect" coords="0,0,91,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aa79666710b0a3fb017ee5335b3315d4a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa79666710b0a3fb017ee5335b3315d4a"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Pictogram</b> { <b>TriangleLeft</b>, 
+<b>TriangleRight</b>, 
+<b>TriangleTop</b>, 
+<b>TriangleBottom</b>
+ }</td></tr>
+<tr class="separator:aa79666710b0a3fb017ee5335b3315d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5f4399362d7ec5ee24d375ae2f0c4ecc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f4399362d7ec5ee24d375ae2f0c4ecc"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ButtonWindow</b> (const char *name, int left, int top, int width, int height)</td></tr>
-<tr class="separator:a5f4399362d7ec5ee24d375ae2f0c4ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab49a078a342b59cf7496a3690ef5a9fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button_window.html#ab49a078a342b59cf7496a3690ef5a9fb">ButtonWindow</a> (Pictogram pictogram, int left, int top, int width, int height)</td></tr>
+<tr class="memdesc:ab49a078a342b59cf7496a3690ef5a9fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#ab49a078a342b59cf7496a3690ef5a9fb">More...</a><br /></td></tr>
+<tr class="separator:ab49a078a342b59cf7496a3690ef5a9fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6939033bc2f863136f3ddb971dc9458a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button_window.html#a6939033bc2f863136f3ddb971dc9458a">OnDraw</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
+<tr class="memdesc:a6939033bc2f863136f3ddb971dc9458a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements drawing code.  <a href="#a6939033bc2f863136f3ddb971dc9458a">More...</a><br /></td></tr>
+<tr class="separator:a6939033bc2f863136f3ddb971dc9458a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_window"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_window')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_window.html">Window</a></td></tr>
 <tr class="memitem:aaa4ac4e2ab3c69b2380ef738de35b972 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a> (const __FlashStringHelper *name, int left, int top, int width, int height)</td></tr>
 <tr class="memdesc:aaa4ac4e2ab3c69b2380ef738de35b972 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#aaa4ac4e2ab3c69b2380ef738de35b972">More...</a><br /></td></tr>
@@ -148,10 +166,6 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#acc04cd965a83cacce99d1e3ddcd01cdf">MainWnd</a> ()</td></tr>
 <tr class="memdesc:acc04cd965a83cacce99d1e3ddcd01cdf inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns pointer to root window. <a class="el" href="class_main_window.html">MainWindow</a> does not have any parents. <br /></td></tr>
 <tr class="separator:acc04cd965a83cacce99d1e3ddcd01cdf inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a399058661e2769454f7fda201af9b568 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a399058661e2769454f7fda201af9b568"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a399058661e2769454f7fda201af9b568">Initialize</a> ()</td></tr>
-<tr class="memdesc:a399058661e2769454f7fda201af9b568 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is called once during system initialization. <br /></td></tr>
-<tr class="separator:a399058661e2769454f7fda201af9b568 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4770a12f1846b07d0673667f6d1860ee inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a4770a12f1846b07d0673667f6d1860ee">Move</a> (int left, int top, int width, int height)</td></tr>
 <tr class="memdesc:a4770a12f1846b07d0673667f6d1860ee inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves and resizes window relativly to the parent window.  <a href="#a4770a12f1846b07d0673667f6d1860ee">More...</a><br /></td></tr>
 <tr class="separator:a4770a12f1846b07d0673667f6d1860ee inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -215,13 +229,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 LinkedList&lt; <a class="el" href="class_window.html">Window</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a084a0d589edd4d9162314ef73c3ce2a3">Children</a> ()</td></tr>
 <tr class="memdesc:a084a0d589edd4d9162314ef73c3ce2a3 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns list of children window. <br /></td></tr>
 <tr class="separator:a084a0d589edd4d9162314ef73c3ce2a3 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b66845ba516c8d5022ecbc052967079 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a2b66845ba516c8d5022ecbc052967079">Redraw</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
+<tr class="memdesc:a2b66845ba516c8d5022ecbc052967079 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs full window redraw.  <a href="#a2b66845ba516c8d5022ecbc052967079">More...</a><br /></td></tr>
+<tr class="separator:a2b66845ba516c8d5022ecbc052967079 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_class_window"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_window')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_window.html">Window</a></td></tr>
-<tr class="memitem:ac6a82bd2b3e8e2c7122e4a536a52c9ff inherit pro_methods_class_window"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ac6a82bd2b3e8e2c7122e4a536a52c9ff">OnDraw</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
-<tr class="memdesc:ac6a82bd2b3e8e2c7122e4a536a52c9ff inherit pro_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">If derived class needs to draw something, this function has to be ovverriden.  <a href="#ac6a82bd2b3e8e2c7122e4a536a52c9ff">More...</a><br /></td></tr>
-<tr class="separator:ac6a82bd2b3e8e2c7122e4a536a52c9ff inherit pro_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e87ef185307bffd52f0e7cfa8f288a2 inherit pro_methods_class_window"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a1e87ef185307bffd52f0e7cfa8f288a2">PrepareDC</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
+<tr class="memdesc:a1e87ef185307bffd52f0e7cfa8f288a2 inherit pro_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setups window coordinate system. This function called by window manager right before window has to be redrawn and it is intended for internal use.  <a href="#a1e87ef185307bffd52f0e7cfa8f288a2">More...</a><br /></td></tr>
+<tr class="separator:a1e87ef185307bffd52f0e7cfa8f288a2 inherit pro_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_window"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_window')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_window.html">Window</a></td></tr>
 <tr class="memitem:ad3309d6d12bc44381c6cff0ad7e19dc6 inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3309d6d12bc44381c6cff0ad7e19dc6"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ad3309d6d12bc44381c6cff0ad7e19dc6">_left</a></td></tr>
@@ -272,6 +289,108 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a55139a4a47d0c792a67c80f42f0f49bd inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">call back event receiver for touch actions <br /></td></tr>
 <tr class="separator:a55139a4a47d0c792a67c80f42f0f49bd inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements pictogram buttons. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ab49a078a342b59cf7496a3690ef5a9fb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ButtonWindow::ButtonWindow </td>
+          <td>(</td>
+          <td class="paramtype">Pictogram&#160;</td>
+          <td class="paramname"><em>pictogram</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>top</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pictogram</td><td>defines button appearance </td></tr>
+    <tr><td class="paramname">left</td><td>left coordinate relative to parent indow </td></tr>
+    <tr><td class="paramname">top</td><td>top coordinate relative to parent indow </td></tr>
+    <tr><td class="paramname">width</td><td>window width </td></tr>
+    <tr><td class="paramname">height</td><td>window height </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a6939033bc2f863136f3ddb971dc9458a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ButtonWindow::OnDraw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_d_c.html">DC</a> *&#160;</td>
+          <td class="paramname"><em>dc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements drawing code. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dc</td><td>Device context </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="class_window.html#ac6a82bd2b3e8e2c7122e4a536a52c9ff">Window</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="_button_window_8h_source.html">ButtonWindow.h</a></li>
 </ul>
@@ -281,7 +400,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_button_window.html">ButtonWindow</a></li>
-    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
+    <li class="footer">Generated on Mon Aug 4 2014 17:28:44 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -5,6 +5,7 @@ var annotated =
     [ "ChartWindow", "class_chart_window.html", "class_chart_window" ],
     [ "Color", "class_color.html", "class_color" ],
     [ "DC", "class_d_c.html", "class_d_c" ],
+    [ "FakeSensor", "class_fake_sensor.html", "class_fake_sensor" ],
     [ "Gauge", "class_gauge.html", "class_gauge" ],
     [ "GaugesWindow", "class_gauges_window.html", "class_gauges_window" ],
     [ "IContentChangedEventReceiver", "class_i_content_changed_event_receiver.html", "class_i_content_changed_event_receiver" ],
@@ -21,7 +22,6 @@ var annotated =
     [ "TextBoxTString", "class_text_box_t_string.html", "class_text_box_t_string" ],
     [ "TextExampleWindow", "class_text_example_window.html", "class_text_example_window" ],
     [ "TimeSerieBuffer", "class_time_serie_buffer.html", "class_time_serie_buffer" ],
-    [ "TouchManager", "class_touch_manager.html", "class_touch_manager" ],
     [ "ViewModusWindow", "class_view_modus_window.html", "class_view_modus_window" ],
     [ "Window", "class_window.html", "class_window" ],
     [ "WindowsManager", "class_windows_manager.html", "class_windows_manager" ]

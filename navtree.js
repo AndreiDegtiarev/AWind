@@ -3,6 +3,7 @@ var NAVTREE =
   [ "AWind", "index.html", [
     [ "Main", "md_docs__main.html", null ],
     [ "Charts", "md_examples__charts__r_e_a_d_m_e.html", null ],
+    [ "Gauges", "md_examples__gauges__r_e_a_d_m_e.html", null ],
     [ "Oscilloscope", "md_examples__oscilloscope__r_e_a_d_m_e.html", null ],
     [ "SensorsMonitor", "md_examples__sensors_monitor__r_e_a_d_m_e.html", null ],
     [ "Text", "md_examples__text__r_e_a_d_m_e.html", null ],
@@ -25,7 +26,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_8_charts_8vsarduino_8h_source.html",
-"class_gauge.html#adcb399969bc40381c45e6f3e1f44d724"
+"class_fake_sensor.html#a34a025b0ebe78f06e748f27f16d2db8e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

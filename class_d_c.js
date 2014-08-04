@@ -1,6 +1,7 @@
 var class_d_c =
 [
     [ "DC", "class_d_c.html#ac7b081e1019a5619eecaf7781363af67", null ],
+    [ "DC", "class_d_c.html#a921648df43516afc9b7ffa044ce6f4a8", null ],
     [ "DeviceHeight", "class_d_c.html#a22e32908237fac6c3a91736712c96bdd", null ],
     [ "DeviceWidth", "class_d_c.html#aca54863d7a93734b134d797b2adca341", null ],
     [ "DrawNumber", "class_d_c.html#a3e0cd07165a0338cc45d24b310081cea", null ],

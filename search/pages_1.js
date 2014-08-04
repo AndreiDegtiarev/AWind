@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main',['Main',['../md_docs__main.html',1,'']]]
+  ['gauges',['Gauges',['../md_examples__gauges__r_e_a_d_m_e.html',1,'']]]
 ];

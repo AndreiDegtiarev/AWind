@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['children',['Children',['../class_window.html#a084a0d589edd4d9162314ef73c3ce2a3',1,'Window']]]
+  ['buttonwindow',['ButtonWindow',['../class_button_window.html#ab49a078a342b59cf7496a3690ef5a9fb',1,'ButtonWindow']]]
 ];

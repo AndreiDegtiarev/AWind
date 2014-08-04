@@ -127,11 +127,11 @@ $(document).ready(function(){initNavTree('_text_example_window_8h_source.html','
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;TextBoxString.h&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;TextBoxNumber.h&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_text_example_window.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_text_example_window.html">TextExampleWindow</a> : <span class="keyword">public</span> <a class="code" href="class_window.html">Window</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_text_example_window.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_text_example_window.html">TextExampleWindow</a> : <span class="keyword">public</span> <a class="code" href="class_main_window.html">MainWindow</a></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_textNumber;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_text_example_window.html">TextExampleWindow</a>(<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a>(F(<span class="stringliteral">&quot;TextExampleWindow&quot;</span>),0,0,width,height)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_text_example_window.html">TextExampleWindow</a>(<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_main_window.html">MainWindow</a>(width,height) <span class="comment">//(F(&quot;TextExampleWindow&quot;),0,0,width,height)</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">int</span> x=0;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">int</span> y=40;</div>
@@ -148,28 +148,31 @@ $(document).ready(function(){initNavTree('_text_example_window_8h_source.html','
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(label);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(_textNumber);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> Notify(<a class="code" href="class_window.html">Window</a> * wnd)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> Create()</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">if</span>(wnd == _textNumber)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Value changed&quot;</span>)&lt;&lt;((<a class="code" href="class_text_box_number.html">TextBoxNumber</a> *)_textNumber)-&gt;GetNumber()&lt;&lt;endl;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
-<div class="ttc" id="class_window_html_a0b95e307920f9fa1b5bf06a6dde6c96f"><div class="ttname"><a href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">Window::SetBackColor</a></div><div class="ttdeci">virtual void SetBackColor(Color color)</div><div class="ttdoc">Sets window background color (default background is transparent) </div><div class="ttdef"><b>Definition:</b> Window.h:186</div></div>
-<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provids basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> Notify(<a class="code" href="class_window.html">Window</a> * wnd)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">if</span>(wnd == _textNumber)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Value changed&quot;</span>)&lt;&lt;((<a class="code" href="class_text_box_number.html">TextBoxNumber</a> *)_textNumber)-&gt;GetNumber()&lt;&lt;endl;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div>
+<div class="ttc" id="class_window_html_a0b95e307920f9fa1b5bf06a6dde6c96f"><div class="ttname"><a href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">Window::SetBackColor</a></div><div class="ttdeci">virtual void SetBackColor(Color color)</div><div class="ttdoc">Sets window background color (default background is transparent) </div><div class="ttdef"><b>Definition:</b> Window.h:178</div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provides basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:32</div></div>
 <div class="ttc" id="class_text_box_t_string_html"><div class="ttname"><a href="class_text_box_t_string.html">TextBoxTString</a></div><div class="ttdef"><b>Definition:</b> TextBoxString.h:25</div></div>
 <div class="ttc" id="class_text_box_number_html"><div class="ttname"><a href="class_text_box_number.html">TextBoxNumber</a></div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:25</div></div>
-<div class="ttc" id="class_window_html_aaa4ac4e2ab3c69b2380ef738de35b972"><div class="ttname"><a href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window::Window</a></div><div class="ttdeci">Window(const __FlashStringHelper *name, int left, int top, int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Window.h:62</div></div>
 <div class="ttc" id="class_text_example_window_html"><div class="ttname"><a href="class_text_example_window.html">TextExampleWindow</a></div><div class="ttdef"><b>Definition:</b> TextExampleWindow.h:24</div></div>
-<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:175</div></div>
+<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:167</div></div>
+<div class="ttc" id="class_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition:</b> MainWindow.h:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="dir_96ed6c72ffe6d0d5628c00990c7a056f.html">Text</a></li><li class="navelem"><b>TextExampleWindow.h</b></li>
-    <li class="footer">Generated on Sat Aug 2 2014 16:52:11 for AWind by
+    <li class="footer">Generated on Mon Aug 4 2014 17:28:44 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

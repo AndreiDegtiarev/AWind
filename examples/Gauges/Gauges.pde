@@ -18,6 +18,7 @@
 */
 // DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
 #define DEMO_SENSORS
+//#define DEBUG_AWIND
 #include <UTFT.h>
 #include <UTouch.h>
 

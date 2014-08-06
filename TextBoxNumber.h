@@ -29,7 +29,7 @@ class TextBoxNumber : public TextBox
 	int _precission;
 	bool _isReadOnly;
 public:
-	TextBoxNumber(int left,int top,int width,int height,int precission,Color textColor):TextBox(left,top,width,height,textColor)
+	TextBoxNumber(int left,int top,int width,int height,int precission):TextBox(left,top,width,height)
 	{
 		_precission=precission;
 		_isOK=true;

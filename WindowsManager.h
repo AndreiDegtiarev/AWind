@@ -41,10 +41,6 @@ public:
 		_mainWindow=new T(_dc.DeviceWidth(),_dc.DeviceHeight());
 		_mainWindow->Invalidate();
 	}
-	/*void CreateWindowSystem()
-	{
-		initialze(&_mainWindow);
-	}*/
 	Window *HitTest(int x,int y)
 	{
 		if(MainWnd()->ModalWnd()!=NULL)
@@ -112,7 +108,7 @@ protected:
 			_touch->read();
 			int x=_touch->getX();
 			int y=_touch->getY();
-			out<<F("Touch begins x:")<<x<<F(" y:")<<y<<endl;
+			//out<<F("Touch begins x:")<<x<<F(" y:")<<y<<endl;
 			if(x>0 && y>0)
 			{
 				Window *window=HitTest(x,y);
@@ -120,15 +116,15 @@ protected:
 				if(window!=NULL)
 				{
 					Window *crWindow=window;
-					out<<F("Searching touch window: ")<<endl;
+					//out<<F("Searching touch window: ")<<endl;
 					while(crWindow!=NULL && (!crWindow->IsAwaitTouch()))
 					{
-						out<<crWindow->Name()<<endl;
+						//out<<crWindow->Name()<<endl;
 						crWindow=crWindow->Parent();	
 					}
 					if(crWindow != NULL)
 					{
-						out<<F("Touch found")<<endl;
+						//out<<F("Touch found")<<endl;
 						touchWnd=crWindow;
 						touchWnd->OnTouching(GetDC());
 					}
@@ -139,7 +135,7 @@ protected:
 					{
 						_touch->read();
 					}
-					out<<F("Touch: ")<<touchWnd->Name()<<endl;
+					//out<<F("Touch: ")<<touchWnd->Name()<<endl;
 					{
 						Window *crWindow=touchWnd;
 						while(crWindow!=NULL && ((crWindow->IsAwaitTouch()) && !(crWindow)->OnTouch(x,y))||!crWindow->IsAwaitTouch())
@@ -149,7 +145,7 @@ protected:
 						touchWnd->Invalidate();
 					}
 				}
-				out<<F("Touch finish")<<endl;
+				//out<<F("Touch finish")<<endl;
 			}
 		}
 	}

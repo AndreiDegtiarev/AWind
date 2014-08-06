@@ -26,7 +26,9 @@
 #include "Log.h"
 #include "DC.h"
 #include "ITouchEventReceiver.h"
+#include "Decorator.h"
 
+typedef LinkedList<Decorator> DecoratorList;
 class MainWindow;
 ///Base class for all window objects. Provides basic window functionality
 class Window
@@ -37,13 +39,13 @@ protected:
 	int _width;				//!< window width
 	int _height;            //!< window height
 	bool _isVisible;        //!< if this variable is false this window and all child windows are not visualized 
-	Color _borderColor;     //!< window border color, default value is VGA_TRANSPARENT that means no border
-	Color _backColor;       //!< window background color, default value is VGA_TRANSPARENT that means no border
 	LinkedList<Window> _children;   //!< list of children windows. All children window are positioned relative to parent window
 	Window *_parent;                //!< pointer to parent window
-	const __FlashStringHelper *_name;  //!< internal window name that helps by debugging
+//#ifdef DEBUG_AWIND
+	//const __FlashStringHelper *_name;  //!< internal window name that helps by debugging
+//#endif
 	bool _isDirty;                     //!< if true than window manager will redraw this window. 
-
+	DecoratorList *_decorators;//!< contains list of drawig commands. If they are shared between more than one window -> SRAM usage optimisation
 	ITouchEventReceiver *_touchEventReceiver;   //!< call back event receiver for touch actions
 
 public:
@@ -60,15 +62,32 @@ public:
 																	_top(top),
 																	_width(width),
 																	_height(height),
-																	_isVisible(true),
-																	_borderColor(Color(VGA_TRANSPARENT)),
-																	_backColor(Color(VGA_TRANSPARENT)),
-																	_name(name)
-
+																	_isVisible(true)
+#ifdef DEBUG_AWIND
+																	,_name(name)
+#endif
 	{
 		_parent = NULL;
 		_isDirty=true;
+		_decorators=NULL;
 		_touchEventReceiver=NULL;
+	}
+	///Sets window decorators list.
+	virtual void SetDecorators(DecoratorList &decorators)
+	{
+		_decorators=&decorators;
+	}
+	///Returns window decorators list.
+	DecoratorList & GetDecorators()
+	{
+		return *_decorators;
+	}
+	///Adds decorator to the decaorator list.
+	void AddDecorator(Decorator *decorator)
+	{
+		if(_decorators == NULL)
+			_decorators=new DecoratorList();
+		_decorators->Add(decorator);
 	}
 	///Registers receiver for touch event
     /** Receiver can be a general class that is derived from ITouchEventReceiver. In this calss NotifyTouch virtual function has to be ovveriden */
@@ -87,6 +106,7 @@ public:
 	///Touch manager calls this function in the loop as long as touch action proceeds
 	virtual void OnTouching(DC *dc)
 	{
+		//out<<"OnTouching"<<endl;
 		PrepareDC(dc);
 		dc->SetColor(Color::Red);
 		dc->DrawRoundRect(0,0,Width(),Height());
@@ -138,11 +158,13 @@ public:
 	{
 		return _isDirty;
 	}
+#ifdef DEBUG_AWIND
 	///Returns internal window name
 	const __FlashStringHelper *Name()
 	{
 		return _name;
 	}
+#endif
 	///Returns window left coordinate relative to the parent window
 	int Left()
 	{
@@ -174,21 +196,6 @@ public:
 	{
 		return _parent;
 	}
-	///Sets window background color (default background is transparent)
-	virtual void SetBackColor(Color color)
-	{
-		_backColor=color;
-	}
-	///Returns window background color
-	Color GetBackColor()
-	{
-		return _backColor;
-	}
-	///Sets window border color (default no border)
-	void SetBorder(Color color)
-	{
-		_borderColor=color;
-	}
 	///Sets window visibility status
 	void SetVisible(bool isVisible)
 	{
@@ -213,15 +220,12 @@ public:
 	{
 		PrepareDC(dc);
 		_isDirty=false;
-		if(_backColor.GetValue() != VGA_TRANSPARENT)
+		if(_decorators!=NULL)
 		{
-			dc->SetBackColor(_backColor);
-			dc->FillRoundRect (0, 0, _width, _height);
-		}
-		if(_borderColor.GetValue() != VGA_TRANSPARENT)
-		{
-			dc->SetColor(_borderColor);
-			dc->DrawRoundRect (0, 0, _width, _height);
+			for(int i=0;i<_decorators->Count();i++)
+			{
+				(*_decorators)[i]->Draw(dc,0,0,_width,_height);
+			}
 		}
 		OnDraw(dc);
 	}

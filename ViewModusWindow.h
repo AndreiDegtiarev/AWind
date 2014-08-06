@@ -21,7 +21,7 @@
 #pragma once
 
 #include "TextBoxString.h"
-#include "SensorWindow.h"
+#include "DecoratorPrimitives.h"
 
 class ViewModusWindow : public MainWindow,ITouchEventReceiver
 {
@@ -30,18 +30,29 @@ class ViewModusWindow : public MainWindow,ITouchEventReceiver
 		Day,
 		Night
 	};
-	static const ARGB DaylightBkColor=Color::CadetBlue;
-    static const ARGB NightBkColor=Color::Black;
+	DecoratorList _dayLightDecorator;
+	DecoratorList _nightDecorator;
+	DecoratorList _alarmDecorator;
+	DecoratorList _chartDecorator;
 	TextBoxFString *_text;
 	Modus _modus;
 public:
 	ViewModusWindow(int width,int height):MainWindow(width,height)
 	{
-		SetBackColor(Color::Black);
-		_text=new TextBoxFString(width-100,height-45,95,35,F("Night"),Color::White);
-		_text->SetBackColor(DaylightBkColor);
-		_modus=Day;
+		AddDecorator(new DecoratorRectFill(Color::Black));
+		_dayLightDecorator.Add(new DecoratorRectFill(Color::CadetBlue));
+		_dayLightDecorator.Add(new DecoratorColor(Color::White));
+		_nightDecorator.Add(new DecoratorRectFill(Color::Black));
+		_nightDecorator.Add(new DecoratorColor(Color::White));
+		_alarmDecorator.Add(new DecoratorRectFill(Color::Red));
+		_alarmDecorator.Add(new DecoratorColor(Color::White));
+		_chartDecorator.Add(new DecoratorRectFill(Color::Black));
+
+		//SetBackColor(Color::Black);
+		_text=new TextBoxFString(width-100,height-45,95,35,F("Night"));
+		_text->SetDecorators(_dayLightDecorator);
 		_text->SetFont(BigFont);
+		_modus=Day;
 		_text->SetMargins(15,10);
 		AddChild(_text);
 		this->RegisterTouchEventReceiver(this);
@@ -49,6 +60,18 @@ public:
 	void Initialize()
 	{
 		updateBackColor();
+	}
+	LinkedList<Decorator> &ChartDecorators()
+	{
+		return _chartDecorator;
+	}
+	LinkedList<Decorator> &AlarmDecorators()
+	{
+		return _alarmDecorator;
+	}
+	LinkedList<Decorator> &NormalDecorators()
+	{
+		return _modus==Day?_dayLightDecorator:_nightDecorator;
 	}
 	void NotifyTouch(Window *wnd)
 	{
@@ -70,7 +93,8 @@ protected:
 	{
 		for(int i=0;i<Children().Count();i++)
 		{
-			Children()[i]->SetBackColor(_modus==Day?DaylightBkColor:NightBkColor);
+			//Children()[i]->SetBackColor(_modus==Day?DaylightBkColor:NightBkColor);
+			Children()[i]->SetDecorators(NormalDecorators());
 		}
 	}
 };

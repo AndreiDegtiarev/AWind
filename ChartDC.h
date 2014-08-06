@@ -8,6 +8,7 @@ class ChartDC
 	float _offset_y;
 	float _min_y;
 	float _max_y;
+	int   _dc_start_x;
 	int   _dc_start_y;
 public:
 	static const float AutoMin=1e-8;
@@ -19,6 +20,7 @@ public:
 		_scale_y=1;
 		_offset_x=0;
 		_offset_y=0;
+		_dc_start_x=0;
 		_dc_start_y=0;
 		_min_y=0;
 		_max_y=0;
@@ -39,10 +41,11 @@ public:
 		}
 		return length/(max_val-min_val);
 	}
-	void setScalingX(int length,float min_val,float max_val)
+	void setScalingX(int dc_offset,int length,float min_val,float max_val)
 	{
 		_scale_x=calcScaling(length,min_val,max_val);
 		_offset_x=min_val;
+		_dc_start_x=dc_offset;
 		/*Log::Number("Set scale x scale: ",_scale_x);
 		Log::Number(" offset: ",_offset_x);
 		Log::Number(" min: ",min_val);
@@ -70,7 +73,7 @@ public:
 	}
 	float LCtoDC_x(float x)
 	{
-		return (x-_offset_x)*_scale_x;
+		return _dc_start_x+(x-_offset_x)*_scale_x;
 	}
 	float LCtoDC_y(float y)
 	{

@@ -25,14 +25,13 @@ extern uint8_t SmallFont[];
 
 class TextBox : public Window
 {
-	Color _textColor;
 	uint8_t *_font;
 protected:
 	int _offset_x;
 	int _offset_y;
 	IContentChangedEventReceiver *_changedEvent;
 public:
-	TextBox(int left,int top,int width,int height,Color textColor):Window(F("text"),left,top,width,height),_textColor(textColor)
+	TextBox(int left,int top,int width,int height):Window(F("text"),left,top,width,height)
 	{
 		_font = SmallFont;
 		_offset_x=0;
@@ -52,15 +51,9 @@ public:
 	{
 		_font = font;
 	}
-	void SetColor(Color textColor)
-	{
-		_textColor=textColor;
-	}
 	void OnDraw(DC *dc)
 	{
-		dc->SetColor(_textColor);
-		if(_font !=NULL)
-			dc->SetFont(_font);
+		dc->SetFont(_font);
 	}
 };
 

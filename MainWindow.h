@@ -34,7 +34,7 @@ public:
 		AddChild(&_keyboardWindow);
 		_keyboardWindow.RegisterEndDialogEventReceiver(this);
 		_modalWindow=NULL;
-		SetBackColor(Color::Black);
+		//SetBackColor(Color::Black);
 	}
 	void NotifyDialogClosed(Window *window)
 	{

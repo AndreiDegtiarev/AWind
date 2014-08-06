@@ -24,7 +24,7 @@
 #include "TextBoxNumber.h"
 #include "TextBoxString.h"
 #include "ChartWindow.h"
-#include "ChartWindow.h"
+#include "ViewModusWindow.h"
 #include "ISensorHasDataEventReceiver.h"
 
 
@@ -44,9 +44,10 @@ public:
 
 	enum WindowSize
 	{
-		Big,
-		Small
+		Big=0,
+		Small=1
 	};
+
 protected:
 	enum VisMode
 	{
@@ -61,7 +62,6 @@ protected:
 	TextBoxFString *_textChartAxis;
 	ChartWindow *_chartWnd;
 	VisMode _mode;
-	Color _normalBkColor;
 
 public:
 	SensorWindow(const __FlashStringHelper * name,SensorManager *sensorManager,int left,int top,WindowSize size=Big):Window(name,left,top,size == Big?BigWindowWidth:SmallWindowWidth,size == Big?BigWindowHeight:SmallWindowHeight)
@@ -71,20 +71,18 @@ public:
 		int offset = size == Big?Margin:Margin/2;
 		int first_font_height=size == Big?70:30;
 
-		_textValue = new TextBoxNumber(offset,offset,Width()-offset,first_font_height-offset,_sensorManager->Sensor()->Precission(),Color::White);
+		_textValue = new TextBoxNumber(offset,offset,Width()-offset,first_font_height-offset,_sensorManager->Sensor()->Precission());
 		_textValue->SetFont(size == Big?ArialNumFontPlus:BigFont);
 		_textValue->SetStatus(false);
-		_textValue->SetColor(Color::White);
 
-		_textName = new TextBoxFString(offset,first_font_height,Width(),1,name,Color::White);
+		_textName = new TextBoxFString(offset,first_font_height,Width(),1,name);
 		_textName->SetFont(size == Big?BigFont:SmallFont);
 
 		int chart_height=Height()-15;
-		_textChartAxis=new TextBoxFString(Width()/2,chart_height,Width(),1,F(""),Color::White);
+		_textChartAxis=new TextBoxFString(Width()/2,chart_height,Width(),1,F(""));
 		_textChartAxis->SetFont(size == Big?BigFont:SmallFont);
-		_chartWnd = new ChartWindow(0,0,Width(),chart_height);
+		_chartWnd = new ChartWindow(NULL,NULL,0,0,Width(),chart_height);
 		_chartWnd->SetVisible(false);
-		_normalBkColor=Color::Black;
 
 		this->AddChild(_textValue);
 		this->AddChild(_textName);
@@ -96,11 +94,13 @@ public:
 	{
 		return true;
 	}
-	void SetBackColor(Color color)
+	void SetDecorators(LinkedList<Decorator> &decorators)
 	{
-		Window::SetBackColor(color);
-		_normalBkColor=color;
-		_textValue->SetBackColor(GetBackColor());
+		Window::SetDecorators(decorators);
+		_textValue->SetDecorators(decorators);
+		_textName->SetDecorators(decorators);
+		_textChartAxis->SetDecorators(decorators);
+		_chartWnd->SetDecorators(((ViewModusWindow *)Parent())->ChartDecorators());
 	}
 
 	virtual bool OnTouch(int x, int y)
@@ -145,13 +145,17 @@ public:
 		float value=_sensorManager->GetData();
 		if(_sensorManager->Status()!=Error)
 		{
-			ARGB oldColor=GetBackColor().GetValue();
+			ViewModusWindow *viewModus=(ViewModusWindow *)Parent();
+			//ARGB oldColor=GetBackColor().GetValue();
+			LinkedList<Decorator> *prevDec=&GetDecorators();
 			if(_sensorManager->Status() == ApplicationAlarm)
-				Window::SetBackColor(Color::Red);
+				SetDecorators(viewModus->AlarmDecorators());
+				//Window::SetBackColor(Color::Red);
 			else
-				Window::SetBackColor(_normalBkColor);
-			_textValue->SetBackColor(GetBackColor());
-			if(oldColor != GetBackColor().GetValue() && _mode == Text)
+				SetDecorators(viewModus->NormalDecorators());
+				//Window::SetBackColor(_normalBkColor);
+			_textValue->SetDecorators(GetDecorators());
+			if(prevDec != &GetDecorators() && _mode == Text)
 				Invalidate();
 		}
 		if(_sensorManager->Status()!=Error && _textValue->GetNumber()!=value)

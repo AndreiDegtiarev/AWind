@@ -1,3 +1,4 @@
+#pragma once
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
   Copyright (C)2014 Andrei Degtiarev. All right reserved
@@ -18,31 +19,23 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#pragma once
-
-#include "TextBox.h"
-
-template <class T> class TextBoxTString : public TextBox
+///Base class for window decorators. This concept allows sharing of drawing setting among more than one window -> SRAM memory usage optimization 
+class Decorator
 {
-	const T * _text;
 public:
-	TextBoxTString(int left,int top,int width,int height,T *text):TextBox(left,top,width,height)
+	///Estimates decorator width from reserved dimensions
+	virtual int EstimateWidth(DC *dc)
 	{
-		_text=text;
-		//_type=F("TextBoxString");
+		return 0;
 	}
-	virtual void OnDraw(DC *dc)
+	///Estimates decorator height from reserved dimensions
+	virtual int EstimateHeight(DC *dc)
 	{
-		TextBox::OnDraw(dc);
-		dc->DrawText(_text,_offset_x,_offset_y);
+		return 0;
 	}
-	void SetText(T *text)
-	{
-		_text=text;
-		if(_changedEvent!=NULL)
-			_changedEvent->NotifyContentChanged(this);
-		Invalidate();
-	}
+	///Drawing code implementation
+	/**
+	\param dc device context
+	*/
+	virtual void Draw(DC *dc,int left,int top,int width,int height)=0;
 };
-typedef	TextBoxTString<const __FlashStringHelper> TextBoxFString;
-typedef TextBoxTString<char> TextBoxString;

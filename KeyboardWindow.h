@@ -2,6 +2,7 @@
 #include "TextBoxNumber.h"
 #include "TextBoxString.h"
 #include "IDialogClosedEventReceiver.h"
+#include "DecoratorPrimitives.h"
 
 
 extern uint8_t BigFont[];
@@ -28,25 +29,29 @@ public:
 	KeyboardWindow(int left,int top):Window(F("Keyboard"),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
 	{
 		_targetTextBox=NULL;
-		SetBorder(Color::CornflowerBlue);
-		SetBackColor(Color::Black);
+		AddDecorator(new DecoratorRectFill(Color::Black));
+		AddDecorator(new DecoratorRaundRect(Color::CornflowerBlue));
+		AddDecorator(new DecoratorColor(Color::CornflowerBlue));
+
+		//SetBorder(Color::CornflowerBlue);
+		//SetBackColor(Color::Black);
 		int x=_buttonDistance;
 		int y=_buttonDistance;
-		_editField=new TextBoxString(x,y,Width()-2*_buttonDistance,_buttonSize,"",Color::DarkBlue);
+		_editField=new TextBoxString(x,y,Width()-2*_buttonDistance,_buttonSize,"");
 		y+=_buttonSize+_buttonDistance;
-		_backspaceSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("<-"),Color::DarkBlue);
-		_enterSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("E"),Color::DarkBlue);
+		_backspaceSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("<-"));
+		_enterSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("E"));
 		for(int i=0;i<10;i++)
 		{
 			x=(i-(i<5?0:5))*(_buttonSize+_buttonDistance);
 			if(i==5)
 				y+=_buttonSize+_buttonDistance;
-			_digidWindows[i]=new TextBoxNumber(x+_buttonDistance,y,_buttonSize,_buttonSize,0,Color::DarkBlue);
+			_digidWindows[i]=new TextBoxNumber(x+_buttonDistance,y,_buttonSize,_buttonSize,0);
 			_digidWindows[i]->SetNumber(i);
 			initTextBox(_digidWindows[i]);
 		}
-		_pointSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("."),Color::DarkBlue);
-		_cancelSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("C"),Color::DarkBlue);
+		_pointSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("."));
+		_cancelSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("C"));
 		initTextBox(_editField);
 		initTextBox(_backspaceSymbol);
 		_backspaceSymbol->SetMargins(_textOffset,_textOffset*1.5);
@@ -59,10 +64,10 @@ public:
 protected:
 	void initTextBox(TextBox *text)
 	{
+		//text->SetBorder(Color::CornflowerBlue);
+		//text->SetBackColor(Color::Black);
+		text->SetDecorators(GetDecorators());
 		text->SetFont(BigFont);
-		text->SetColor(Color::CornflowerBlue);
-		text->SetBorder(Color::CornflowerBlue);
-		text->SetBackColor(Color::Black);
 		text->SetMargins(_textOffset,_textOffset);
 		text->RegisterTouchEventReceiver(this);
 		AddChild(text);

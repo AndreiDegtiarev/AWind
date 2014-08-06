@@ -28,6 +28,7 @@
 #include "TextBoxString.h"
 #include "TextBoxNumber.h"
 #include "Log.h"
+#include "DecoratorPrimitives.h"
 
 // Setup TFT display (see UTFT and UTouch library documentation)
 UTFT    myGLCD(ITDB32S,39,41,43,45);
@@ -63,17 +64,19 @@ void setup()
 
 	int x=0;
 	int y=0;
-	TextBoxFString *textBox=new TextBoxFString(x,y,windowsManager.GetDC()->DeviceWidth()/2,25,F("Scaling factor: "),Color::SkyBlue);
+	TextBoxFString *textBox=new TextBoxFString(x,y,windowsManager.GetDC()->DeviceWidth()/2,25,F("Scaling factor: "));
+	textBox->AddDecorator(new DecoratorColor(Color::SkyBlue));
 	textBox->SetFont(BigFont);
 	x=windowsManager.GetDC()->DeviceWidth()*3.0/4;
-	textNumber=new TextBoxNumber(x,y,windowsManager.GetDC()->DeviceWidth()-x,25,0,Color::SkyBlue);
-	textNumber->SetBackColor(Color::Red);
+	textNumber=new TextBoxNumber(x,y,windowsManager.GetDC()->DeviceWidth()-x,25,0);
+	textNumber->AddDecorator(new DecoratorRectFill(Color::Red));
+	textNumber->AddDecorator(new DecoratorColor(Color::SkyBlue));
 	textNumber->SetFont(BigFont);
 	textNumber->SetMargins(20,2);
 	x=0;
 	y+=25;
-	chartWnd=new ChartWindow(x,y,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight()-25);
-	chartWnd->SetBackColor(Color::Black);
+	chartWnd=new ChartWindow(NULL,NULL,x,y,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight()-25);
+	chartWnd->AddDecorator(new DecoratorRectFill(Color::Black));
 	chartWnd->SetBuffer(dataBuffer);
 
 	windowsManager.MainWnd()->AddChild(textBox);

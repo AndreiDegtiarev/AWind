@@ -25,15 +25,17 @@ class TextExampleWindow : public MainWindow
 {
 	TextBoxNumber *_textNumber;
 public:
-	TextExampleWindow(int width,int height):MainWindow(width,height) //(F("TextExampleWindow"),0,0,width,height)
+	TextExampleWindow(int width,int height):MainWindow(width,height) 
 	{
+		AddDecorator(new DecoratorRectFill(Color::Black));
+		AddDecorator(new DecoratorColor(Color::SkyBlue));
 		int x=0;
 		int y=40;
-		TextBoxFString *label=new TextBoxFString(x,y,width/2,25,F("This is label: "),Color::SkyBlue);
+		TextBoxFString *label=new TextBoxFString(x,y,width/2,25,F("This is label: "));
 		label->SetFont(BigFont);
 		x=width*3.0/4;
-		_textNumber=new TextBoxNumber(x,y,width-x,25,0,Color::SkyBlue);
-		_textNumber->SetBackColor(Color::Black);
+		_textNumber=new TextBoxNumber(x,y,width-x,25,0);
+		_textNumber->SetDecorators(GetDecorators()); // here we save one decorator beacuse main window and text window have thae same decorator properties: black background
 		_textNumber->SetFont(BigFont);
 		_textNumber->SetMargins(20,2);
 		_textNumber->SetNumber(4);

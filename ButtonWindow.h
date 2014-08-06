@@ -53,7 +53,7 @@ public:
 	*/
 	void OnDraw(DC *dc)
 	{
-		dc->SetColor(_borderColor);
+		//dc->SetColor(_borderColor);
 		int marg=7;
 		int x1=0,x2=0,x3=0;
 		int y1=0,y2=0,y3=0;

@@ -72,6 +72,20 @@ public:
 	{
 		_lcd->drawRect(ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
 	}
+	void Rectangle3D(int left,int top,int right,int bottom,Color color1,Color color2)
+	{
+		SetColor(color2);
+		MoveTo(left,bottom);
+		LineTo(right,bottom);
+		LineTo(right,top);
+		SetColor(color1);
+		LineTo(left,top);
+		LineTo(left,bottom);
+	}
+	void FillRect(int left,int top,int right,int bottom)
+	{
+		_lcd->fillRect (ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
+	}
 	void FillRoundRect(int left,int top,int right,int bottom)
 	{
 		_lcd->fillRoundRect (ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));

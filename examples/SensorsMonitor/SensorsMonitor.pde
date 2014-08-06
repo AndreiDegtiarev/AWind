@@ -18,6 +18,7 @@
 */
 // DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
 #define DEMO_SENSORS
+//#define DEBUG_AWIND //!<remove comments if name of window is need to known during runtime. Be carrefull about SRAM
 
 #ifndef DEMO_SENSORS
 #include <OneWire.h>
@@ -43,7 +44,7 @@
 #include "MeasurementNode.h"
 
 #include "WindowsManager.h"
-#include "ViewModusWindow.h"
+#include "SensorWindow.h"
 #include "MeasurementNode.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
@@ -122,7 +123,6 @@ void setup()
 	AHelper::LogFreeRam();
 
 	out<<F("End setup")<<endl;
-
 
 }
 

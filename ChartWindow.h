@@ -24,6 +24,7 @@
 #include "IDataBuffer.h"
 #include "TextBoxNumber.h"
 #include "ChartDC.h"
+#include "DecoratorPrimitives.h"
 
 
 extern uint8_t SmallFont[];
@@ -34,13 +35,20 @@ class ChartWindow : public Window
 	ChartDC _dc;
 	float _fix_MinY;
 	float _fix_MaxY;
+	DecoratorAxis *_xAxis;
+	DecoratorAxis *_yAxis;
 public:
-	ChartWindow(int left,int top,int width,int hight):Window(F("chart"),left,top,width,hight)//,_textMinY(TextBoxFloat(left+1,top+1,0,Color::White))
+	ChartWindow(DecoratorAxis *xAxis,DecoratorAxis *yAxis,int left,int top,int width,int hight):Window(F("chart"),left,top,width,hight)//,_textMinY(TextBoxFloat(left+1,top+1,0,Color::White))
 	{
-		this->SetBackColor(Color::Black);
 		_buffer = NULL;
 		_fix_MinY=ChartDC::AutoMin;
 		_fix_MaxY=ChartDC::AutoMax;
+		_xAxis=xAxis;
+		_yAxis=yAxis;
+		if(_yAxis!=NULL)
+		{
+			_yAxis->GetMinMax(_fix_MinY,_fix_MaxY);
+		}
 	}
 	void SetMinMaxY(float min,float max)
 	{
@@ -51,7 +59,22 @@ public:
 	{
 		_buffer=buffer;
 		_last_buffer_change=0;
-		Invalidate();
+		//Invalidate();
+	}
+	void InvalidateOnlyChartArea()
+	{
+		if(_yAxis == NULL)
+		{
+			Invalidate();
+		}
+		else
+		{
+			DC dc;
+			PrepareDC(&dc);
+			dc.SetBackColor(Color::Black);
+			dc.FillRect(_yAxis->EstimateWidth(&dc),2,Width()-2,Height()-2);
+			OnDraw(&dc);
+		}
 	}
 	void OnDraw(DC *dc)
 	{ 
@@ -72,7 +95,10 @@ public:
 			Log::Number(" max_y: ",max_y,true);*/
 			if(_last_buffer_change!=_buffer->X(size-1))
 			{
-				_dc.setScalingX(Width(),min_x,max_x);
+				int xOffset=0;
+				if(_yAxis!=NULL)
+					xOffset=_yAxis->EstimateWidth(dc);
+				_dc.setScalingX(xOffset,Width()-xOffset,min_x,max_x);
 				_dc.setScalingY(Height(),min_y,max_y);
 				_last_buffer_change=max_x;
 				//_textMinY->SetNumber(_dc.MinY());
@@ -85,8 +111,11 @@ public:
 			_dc.LineTo(dc,max(min_x,0),max_y);
 			dc->SetColor(Color::LightBlue);
 			dc->SetFont(SmallFont);
-			dc->DrawNumber(_dc.MaxY(),1,1,1);
-			dc->DrawNumber(_dc.MinY(),1,1,Height()-15);
+			if(_yAxis == NULL)
+			{
+				dc->DrawNumber(_dc.MaxY(),1,1,1);
+				dc->DrawNumber(_dc.MinY(),1,1,Height()-15);
+			}
 			_dc.MoveTo(dc,_buffer->X(_buffer->StartIndex()),_buffer->Y(_buffer->StartIndex()));
 			for(int i=_buffer->StartIndex()+1;i<size;i++)
 			{

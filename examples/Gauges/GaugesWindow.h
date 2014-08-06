@@ -17,7 +17,8 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#include "Gauge.h"
+#include "GaugeBar.h"
+#include "GaugeRadialPointer.h"
 #include "ChartWindow.h"
 #include "TextBoxString.h"
 #include "ButtonWindow.h"
@@ -46,47 +47,65 @@ public:
 	GaugesWindow(int width,int height):MainWindow(width,height)
 	{
 		_sensorManager=NULL;
-		SetBackColor(Color::WhiteSmoke);
+		AddDecorator(new DecoratorRectFill(Color::LightGray,false));
 		_isAuto=false;
 		int x=1;
 		int szx=width/4;
-		_gaugeBar=new Gauge(Gauge::Bar,x,1,szx,height-2);
-		_gaugeBar->SetBackColor(GetBackColor());
-		x+=szx+1;
-		szx=width/2;
-		_gaugeRadialPointer=new Gauge(Gauge::RadialPointer,x,1,szx,height/2-2);
-		_gaugeRadialPointer->SetBackColor(GetBackColor());
-		_chartWindow=new ChartWindow(x,height/2,szx,height/2-2);
+		DecoratorList *gaugeDecorators=new DecoratorList(GetDecorators());
+		gaugeDecorators->Add(new Decorator3DRect(Color::White,Color::Gray));
+		gaugeDecorators->Add(new DecoratorColor(Color::Green));
+		DecoratorList *gaugeRadialPointerDecorators=new DecoratorList(*gaugeDecorators);
+		DecoratorAxis *axis=new DecoratorAxis(DecoratorAxis::VerticalRight,SmallFont,height-8,0,100,5);
+		gaugeDecorators->Add(axis);
+		DC dc;
+		int offsetX=axis->EstimateWidth(&dc);
+		axis->SetOffset(szx-offsetX,4);
+		_gaugeBar=new GaugeBar(axis,x,1,szx,height-2);
+		_gaugeBar->SetDecorators(*gaugeDecorators);
+		_gaugeBar->SetFillColor(Color::LightGray);
 		AddChild(_gaugeBar); 
+		x+=szx+3;
+		szx=width/2;
+		_gaugeRadialPointer=new GaugeRadialPointer(x,1,szx,height/2-2);
+		_gaugeRadialPointer->SetDecorators(*gaugeRadialPointerDecorators);
+		_gaugeRadialPointer->SetFillColor(Color::LightGray);
+		DecoratorAxis *chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft,SmallFont,height/2-4,0,100,5);
+		_chartWindow=new ChartWindow(NULL,chartYAxis,x,height/2+2,szx,height/2-4);
+		_chartWindow->AddDecorator(new DecoratorRectFill(Color::LightGray));
+		_chartWindow->AddDecorator(new Decorator3DRect(Color::White,Color::Gray));
+		_chartWindow->AddDecorator(new DecoratorColor(Color::Black));
+		_chartWindow->AddDecorator(chartYAxis);
 		AddChild(_gaugeRadialPointer);
 		AddChild(_chartWindow);
-		x+=szx+4;
+		x+=szx+2;
 		szx=width/4-6;
-		_btnFast=new TextBoxFString(x,20,szx,30,F("Fast"),Color::Blue);
-		initTextBox(_btnFast);
-		_btnSlow=new TextBoxFString(x,70,szx,30,F("Slow"),Color::Blue);
-		initTextBox(_btnSlow);
+		DecoratorList *txtDecorators=new DecoratorList(GetDecorators());
+		txtDecorators->Add(new Decorator3DRect(Color::White,Color::Gray));
+		txtDecorators->Add(new DecoratorColor(Color::Black));
+		_btnFast=new TextBoxFString(x,20,szx,30,F("Fast"));
+		initTextBox(_btnFast,txtDecorators);
+		_btnSlow=new TextBoxFString(x,70,szx,30,F("Slow"));
+		initTextBox(_btnSlow,txtDecorators);
 		_btnTop=new ButtonWindow(ButtonWindow::TriangleTop,x+15,height/2,40,40);
 		_btnBottom=new ButtonWindow(ButtonWindow::TriangleBottom,x+15,height/2+60,40,40);
-		initButton(_btnTop);
-		initButton(_btnBottom);
+		initButton(_btnTop,txtDecorators);
+		initButton(_btnBottom,txtDecorators);
 	}
 	///Initialize text box windows
-	void initTextBox(TextBoxFString *textBox)
+	void initTextBox(TextBoxFString *textBox,DecoratorList *decorators)
 	{
-		textBox->SetBorder(Color::Green);
+		textBox->SetDecorators(*decorators);
 		textBox->SetFont(BigFont);
 		textBox->SetMargins(0,5);
 		textBox->RegisterTouchEventReceiver(this);
-		textBox->SetBackColor(GetBackColor());
+		//textBox->SetBackColor(GetBackColor());
 		AddChild(textBox);
 	}
 	///Initialize button windows
-	void initButton(ButtonWindow *button)
+	void initButton(ButtonWindow *button,DecoratorList *decorators)
 	{
-		button->SetBorder(Color::Blue);
+		button->SetDecorators(*decorators);
 		button->RegisterTouchEventReceiver(this);
-		button->SetBackColor(GetBackColor());
 		AddChild(button);
 	}
 	///Events routing for gui interaction (see RegisterTouchEventReceiver and public ITouchEventReceiver declaration)
@@ -129,11 +148,11 @@ public:
 		_gaugeRadialPointer->SetValue(value);
 		_sensorManager=sensorManager;
 		_chartWindow->SetBuffer(sensorManager->SecBuffer());
-		_chartWindow->Invalidate();
+		_chartWindow->InvalidateOnlyChartArea();
 	}
 	///Event is generated after each measurement
 	void NotifySensorMeasured(SensorManager *sensorManager)
 	{
-		_chartWindow->Invalidate();
+		_chartWindow->InvalidateOnlyChartArea();
 	}
 };

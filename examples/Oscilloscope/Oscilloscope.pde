@@ -77,6 +77,7 @@ void loop()
 	voltmeter->MeasureBuffer();
 	//initialize chart window with measured data 
 	windowsManager.MainWnd()->ChartWnd()->SetBuffer(voltmeter->Buffer());
+	windowsManager.MainWnd()->ChartWnd()->InvalidateOnlyChartArea();
 	//give window manager an opportunity to update display
 	windowsManager.loop();
 }

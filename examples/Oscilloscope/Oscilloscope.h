@@ -35,6 +35,8 @@ public:
 	}
 	void Initialize(VoltmeterSensor *voltmeter,int buf_size,float minV,float maxV)
 	{
+		AddDecorator(new DecoratorRectFill(Color::Black));
+		AddDecorator(new DecoratorColor(Color::CornflowerBlue));
 		int wnd_width=Width();
 		int wnd_height=Height();
 		_voltmeter=voltmeter;
@@ -43,55 +45,60 @@ public:
 		int width=70;
 		int height=30;
 
-		TextBoxFString *labelTimeSTep=new TextBoxFString(x,y+10,width,height,F("Tstep mus:"),Color::CornflowerBlue);
-		initTextBox(labelTimeSTep,true);
+		LinkedList<Decorator> *txtDecorators= new LinkedList<Decorator>();
+		txtDecorators->Add(new DecoratorRectFill(Color::Black));
+		txtDecorators->Add(new DecoratorRaundRect(Color::CornflowerBlue));
+		txtDecorators->Add(new DecoratorColor(Color::CornflowerBlue));
+
+		TextBoxFString *labelTimeSTep=new TextBoxFString(x,y+10,width,height,F("Tstep mus:"));
+		initTextBox(labelTimeSTep,true,txtDecorators);
 		x+=width;
-		_txtTimeStep=new TextBoxNumber(x,y,width,height,0,Color::CornflowerBlue);
+		_txtTimeStep=new TextBoxNumber(x,y,width,height,0);
 		_txtTimeStep->SetNumber(voltmeter->TimeStep());
-		initTextBox(_txtTimeStep,false);
+		initTextBox(_txtTimeStep,false,txtDecorators);
 		x+=width*1.2;
-		TextBoxFString *labelBufsize=new TextBoxFString(x,y+10,width,height,F("Buf. size:"),Color::CornflowerBlue);
-		initTextBox(labelBufsize,true);
+		TextBoxFString *labelBufsize=new TextBoxFString(x,y+10,width,height,F("Buf. size:"));
+		initTextBox(labelBufsize,true,txtDecorators);
 		x+=width*1.1;
-		_txtBufSize=new TextBoxNumber(x,y,width,height,0,Color::CornflowerBlue);
-		initTextBox(_txtBufSize,false);
+		_txtBufSize=new TextBoxNumber(x,y,width,height,0);
+		initTextBox(_txtBufSize,false,txtDecorators);
 		_txtBufSize->SetNumber(buf_size);
 		x=0;
 		y=_txtBufSize->Top()+_txtBufSize->Height()+1;
-		_chartWnd=new ChartWindow(x,y,wnd_width,wnd_height-y-height*1.2);
+		_chartWnd=new ChartWindow(NULL,NULL,x,y,wnd_width,wnd_height-y-height*1.2);
 		_chartWnd->SetMinMaxY(minV,maxV);
+		_chartWnd->SetDecorators(GetDecorators());
 		AddChild(_chartWnd);
-		SetBackColor(Color::Black);
 		y=_chartWnd->Top()+_chartWnd->Height()+3;
 
-		TextBoxFString *labelMinV=new TextBoxFString(x,y+10,width,height,F("Vmin/max:"),Color::CornflowerBlue);
+		TextBoxFString *labelMinV=new TextBoxFString(x,y+10,width,height,F("Vmin/max:"));
 		x+=width;
-		_txtMinV=new TextBoxNumber(x,y,width-10,height,1,Color::CornflowerBlue);
+		_txtMinV=new TextBoxNumber(x,y,width-10,height,1);
 		_txtMinV->SetNumber(minV);
 		x+=width;
-		_txtMaxV=new TextBoxNumber(x,y,width-10,height,1,Color::CornflowerBlue);
+		_txtMaxV=new TextBoxNumber(x,y,width-10,height,1);
 		_txtMaxV->SetNumber(maxV);
 		x+=width;
 
-		initTextBox(labelMinV,true);
-		initTextBox(_txtMinV,false);
-		initTextBox(_txtMaxV,false);
+		initTextBox(labelMinV,true,txtDecorators);
+		initTextBox(_txtMinV,false,txtDecorators);
+		initTextBox(_txtMaxV,false,txtDecorators);
 	}
-	void initTextBox(TextBox *textBox,bool isLabel)
+	void initTextBox(TextBox *textBox,bool isLabel,LinkedList<Decorator> *decorators)
 	{
 		AddChild(textBox);
 		if(!isLabel)
 		{
 			textBox->RegisterContentChangedReceiver(this);
-			textBox->SetBorder(Color::CornflowerBlue);
+			textBox->SetDecorators(*decorators);
 			textBox->SetMargins(0,7);
 			textBox->SetFont(BigFont);
 			((TextBoxNumber *)textBox)->SetIsReadOnly(false);
 		}
 		else
 			textBox->SetFont(SmallFont);
-		textBox->SetColor(Color::CornflowerBlue);
-		textBox->SetBackColor(Color::Black);
+		if(isLabel)
+			textBox->SetDecorators(GetDecorators());
 
 	}
 	ChartWindow *ChartWnd()

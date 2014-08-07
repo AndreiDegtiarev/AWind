@@ -26,7 +26,7 @@
 #include "ICriticalProcess.h"
 
 UTFT *globalLcd;
-template <class T=MainWindow> class WindowsManager :  public ICriticalProcess
+template <class T=MainWindow> class WindowsManager :  public ICriticalProcess, public ILoopProcess
 {
 	DC _dc;
 	T *_mainWindow;
@@ -40,6 +40,7 @@ public:
 	{
 		_mainWindow=new T(_dc.DeviceWidth(),_dc.DeviceHeight());
 		_mainWindow->Invalidate();
+		_mainWindow->SetLoopProcess(this);
 	}
 	Window *HitTest(int x,int y)
 	{
@@ -103,6 +104,7 @@ protected:
 	}
 	void loopTouch()
 	{
+		//out<<F("Check touch")<<endl;
 		if (_touch->dataAvailable())
 		{
 			_touch->read();
@@ -141,7 +143,9 @@ protected:
 						while(crWindow!=NULL && ((crWindow->IsAwaitTouch()) && !(crWindow)->OnTouch(x,y))||!crWindow->IsAwaitTouch())
 						{
 							crWindow=crWindow->Parent();	
+							//out<<F("Touch while")<<endl;
 						}
+						//out<<F("Touch invalidate")<<endl;
 						touchWnd->Invalidate();
 					}
 				}

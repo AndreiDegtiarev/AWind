@@ -82,7 +82,7 @@ void loop()
 		//following if is only for debugging purposes
 		if(measurementNode.IsChanged())
 		{
-			measurementNode.printSerial();
+			measurementNode.LogResults();
 		}
 
 	}

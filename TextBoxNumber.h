@@ -20,7 +20,6 @@
 */
 #pragma once
 #include "TextBox.h"
-//#include "MainWindow.h"
 
 class TextBoxNumber : public TextBox
 {

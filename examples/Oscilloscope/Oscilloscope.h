@@ -20,6 +20,7 @@
 #include "MainWindow.h"
 #include "ChartWindow.h"
 #include "TextBoxNumber.h"
+///Osciloscope main window
 class Oscilloscope : public MainWindow, IContentChangedEventReceiver
 {
 	VoltmeterSensor *_voltmeter;
@@ -29,26 +30,27 @@ class Oscilloscope : public MainWindow, IContentChangedEventReceiver
 	TextBoxNumber *_txtBuf;
 	TextBoxNumber *_txtMinV;
 	TextBoxNumber *_txtMaxV;
+	DecoratorAxis *_chartYAxis;
 public:
 	Oscilloscope(int wnd_width,int wnd_height):MainWindow(wnd_width,wnd_height)
 	{
 	}
 	void Initialize(VoltmeterSensor *voltmeter,int buf_size,float minV,float maxV)
 	{
-		AddDecorator(new DecoratorRectFill(Color::Black));
-		AddDecorator(new DecoratorColor(Color::CornflowerBlue));
+		AddDecorator(new DecoratorRectFill(Color::LightGray,false));
+		AddDecorator(new DecoratorColor(Color::Black));
 		int wnd_width=Width();
 		int wnd_height=Height();
 		_voltmeter=voltmeter;
 		int x=2;
-		int y=0;
+		int y=2;
 		int width=70;
 		int height=30;
 
 		LinkedList<Decorator> *txtDecorators= new LinkedList<Decorator>();
 		txtDecorators->Add(new DecoratorRectFill(Color::Black));
-		txtDecorators->Add(new DecoratorRaundRect(Color::CornflowerBlue));
-		txtDecorators->Add(new DecoratorColor(Color::CornflowerBlue));
+		txtDecorators->Add(new Decorator3DRect(Color::Gray,Color::White));
+		txtDecorators->Add(new DecoratorColor(Color::White));
 
 		TextBoxFString *labelTimeSTep=new TextBoxFString(x,y+10,width,height,F("Tstep mus:"));
 		initTextBox(labelTimeSTep,true,txtDecorators);
@@ -63,11 +65,17 @@ public:
 		_txtBufSize=new TextBoxNumber(x,y,width,height,0);
 		initTextBox(_txtBufSize,false,txtDecorators);
 		_txtBufSize->SetNumber(buf_size);
-		x=0;
+		x=1;
 		y=_txtBufSize->Top()+_txtBufSize->Height()+1;
-		_chartWnd=new ChartWindow(NULL,NULL,x,y,wnd_width,wnd_height-y-height*1.2);
-		_chartWnd->SetMinMaxY(minV,maxV);
-		_chartWnd->SetDecorators(GetDecorators());
+		int cy=wnd_height-y-height*1.2;
+		int axis_y_margins=2;
+		_chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft,SmallFont,cy-axis_y_margins*2,minV,maxV,5);
+		_chartYAxis->SetOffset(4,axis_y_margins);
+		_chartWnd=new ChartWindow(NULL,_chartYAxis,x,y,wnd_width-2,cy);
+		//_chartWnd->SetMinMaxY(minV,maxV);
+		_chartWnd->AddDecorator(new Decorator3DRect(Color::White,Color::Gray));
+		_chartWnd->AddDecorator(new DecoratorColor(Color::Black));
+		_chartWnd->AddDecorator(_chartYAxis);
 		AddChild(_chartWnd);
 		y=_chartWnd->Top()+_chartWnd->Height()+3;
 
@@ -107,10 +115,9 @@ public:
 	}
 	void NotifyContentChanged(Window *textBox)
 	{
-		out<<"Content changed"<<endl;
 		if(textBox == _txtMinV || textBox == _txtMaxV)
 		{
-			_chartWnd->SetMinMaxY(_txtMinV->GetNumber(),_txtMaxV->GetNumber());
+			_chartYAxis->SetMinMax(_txtMinV->GetNumber(),_txtMaxV->GetNumber());
 			_chartWnd->Invalidate();
 		}
 		else if(textBox == _txtTimeStep)

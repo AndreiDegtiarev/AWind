@@ -31,6 +31,7 @@ class ViewModusWindow : public MainWindow,ITouchEventReceiver
 		Night
 	};
 	DecoratorList _dayLightDecorator;
+	DecoratorList _dayLightSensorWndDecorator;
 	DecoratorList _nightDecorator;
 	DecoratorList _alarmDecorator;
 	DecoratorList _chartDecorator;
@@ -42,18 +43,20 @@ public:
 		AddDecorator(new DecoratorRectFill(Color::Black));
 		_dayLightDecorator.Add(new DecoratorRectFill(Color::CadetBlue));
 		_dayLightDecorator.Add(new DecoratorColor(Color::White));
+		_dayLightSensorWndDecorator.Add(new DecoratorRectFill(Color::CadetBlue));
+		_dayLightSensorWndDecorator.Add(new Decorator3DRect(Color::White,Color::Gray));
+		_dayLightSensorWndDecorator.Add(new DecoratorColor(Color::White));
 		_nightDecorator.Add(new DecoratorRectFill(Color::Black));
 		_nightDecorator.Add(new DecoratorColor(Color::White));
-		_alarmDecorator.Add(new DecoratorRectFill(Color::Red));
+		_alarmDecorator.Add(new DecoratorRectFill(Color::Red,false));
 		_alarmDecorator.Add(new DecoratorColor(Color::White));
-		_chartDecorator.Add(new DecoratorRectFill(Color::Black));
+		_chartDecorator.Add(new DecoratorRectFill(Color::Black,false));
 
 		//SetBackColor(Color::Black);
 		_text=new TextBoxFString(width-100,height-45,95,35,F("Night"));
-		_text->SetDecorators(_dayLightDecorator);
 		_text->SetFont(BigFont);
 		_modus=Day;
-		_text->SetMargins(15,10);
+		_text->SetMargins(12,10);
 		AddChild(_text);
 		this->RegisterTouchEventReceiver(this);
 	}
@@ -61,17 +64,21 @@ public:
 	{
 		updateBackColor();
 	}
-	LinkedList<Decorator> &ChartDecorators()
+	DecoratorList &ChartDecorators()
 	{
 		return _chartDecorator;
 	}
-	LinkedList<Decorator> &AlarmDecorators()
+	DecoratorList &AlarmDecorators()
 	{
 		return _alarmDecorator;
 	}
-	LinkedList<Decorator> &NormalDecorators()
+	DecoratorList &NormalDecorators()
 	{
 		return _modus==Day?_dayLightDecorator:_nightDecorator;
+	}
+	DecoratorList &NormalSensorWndDecorators()
+	{
+		return _modus==Day?_dayLightSensorWndDecorator:_nightDecorator;
 	}
 	void NotifyTouch(Window *wnd)
 	{
@@ -93,8 +100,8 @@ protected:
 	{
 		for(int i=0;i<Children().Count();i++)
 		{
-			//Children()[i]->SetBackColor(_modus==Day?DaylightBkColor:NightBkColor);
 			Children()[i]->SetDecorators(NormalDecorators());
+			_text->SetDecorators(NormalSensorWndDecorators());
 		}
 	}
 };

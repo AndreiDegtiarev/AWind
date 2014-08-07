@@ -21,33 +21,76 @@
 */
 #include "Window.h"
 #include "KeyboardWindow.h"
+#include "ICriticalProcess.h"
+class ILoopProcess
+{
+public:
+	virtual void loop()=0;
+};
+class DialogEntry
+{
+public:
+	const __FlashStringHelper *ID;
+	Window *DlgWindow;
+};
 class TextBoxNumber;
-class MainWindow : public Window, IDialogClosedEventReceiver
+class MainWindow : public Window, IDialogClosedEventReceiver, public IDialogProcessor
 {
 	Window *_modalWindow;
 	KeyboardWindow _keyboardWindow;
+	ILoopProcess *_idleProcess;
+	LinkedList<DialogEntry> _dialogs;
+	IDialogProcessor::DialogResults _lastDialogResults;
 public:
 	MainWindow(int width,int height):Window(F("Main"),0,0,width,height),_keyboardWindow(3,90)
-
 	{
-		_keyboardWindow.SetVisible(false);
-		AddChild(&_keyboardWindow);
 		_keyboardWindow.RegisterEndDialogEventReceiver(this);
 		_modalWindow=NULL;
-		//SetBackColor(Color::Black);
+		RegisterDialog(F("Keyboard"),&_keyboardWindow);
 	}
-	void NotifyDialogClosed(Window *window)
+	void RegisterDialog(const __FlashStringHelper *id,Window * widnow)
 	{
-		if(window == &_keyboardWindow) //End edit
+		DialogEntry *dlgEntry=new DialogEntry();
+		dlgEntry->ID=id;
+		dlgEntry->DlgWindow=widnow;
+		_dialogs.Add(dlgEntry);
+		widnow->SetVisible(false);
+		AddChild(widnow);
+	}
+	Window *FindDialog(const __FlashStringHelper *id)
+	{
+		for(int i=0;i<_dialogs.Count();i++)
+		{
+			out<<"Find dialog: "<<_dialogs[i]->ID<<endl;
+			if(strcmp_P(reinterpret_cast<const char*>(id), reinterpret_cast<const char*>(_dialogs[i]->ID)))
+				return _dialogs[i]->DlgWindow;
+
+		}
+		return NULL;
+	}
+	IDialogProcessor::DialogResults DoDialog(Window *dlg)
+	{
+		//out<<"IDialogProcessor::DialogResults"<<endl;
+		SetModalWindow(dlg);
+		while(_modalWindow!=NULL)
+		{
+			_idleProcess->loop();
+		}
+		Invalidate();
+		return _lastDialogResults;
+	}
+	void SetLoopProcess(ILoopProcess *process)
+	{
+		_idleProcess=process;
+	}
+	void NotifyDialogClosed(Window *window,IDialogProcessor::DialogResults results)
+	{
+		//out<<"NotifyDialogClosed"<<endl;
+		//if(window == &_keyboardWindow) //End edit
 		{
 			SetModalWindow(NULL);
-			Invalidate();
+			_lastDialogResults=results;
 		}
-	}
-	void StartKeyboard(TextBoxNumber *target)
-	{
-		SetModalWindow(MainWnd()->Keyboard());
-		_keyboardWindow.BeginEdit(target);
 	}
 	Window *ModalWnd()
 	{

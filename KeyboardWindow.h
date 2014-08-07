@@ -10,8 +10,7 @@ extern uint8_t SmallFont[];
 
 class KeyboardWindow :  public Window,ITouchEventReceiver
 {
-	TextBoxNumber *_targetTextBox;
-
+	//TextBoxNumber *_targetTextBox;
 	TextBoxString * _editField;
 	TextBoxNumber * _digidWindows[10];
 	TextBoxFString * _enterSymbol;
@@ -28,16 +27,19 @@ class KeyboardWindow :  public Window,ITouchEventReceiver
 public:
 	KeyboardWindow(int left,int top):Window(F("Keyboard"),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
 	{
-		_targetTextBox=NULL;
-		AddDecorator(new DecoratorRectFill(Color::Black));
-		AddDecorator(new DecoratorRaundRect(Color::CornflowerBlue));
-		AddDecorator(new DecoratorColor(Color::CornflowerBlue));
+		//_targetTextBox=NULL;
+		AddDecorator(new DecoratorRectFill(Color::LightGray));
+		AddDecorator(new Decorator3DRect(Color::White,Color::Gray));
+		AddDecorator(new DecoratorColor(Color::Black));
 
 		//SetBorder(Color::CornflowerBlue);
 		//SetBackColor(Color::Black);
 		int x=_buttonDistance;
 		int y=_buttonDistance;
 		_editField=new TextBoxString(x,y,Width()-2*_buttonDistance,_buttonSize,"");
+		_editField->AddDecorator(new DecoratorRectFill(Color::LightGray));
+		_editField->AddDecorator(new Decorator3DRect(Color::Gray,Color::White));
+		_editField->AddDecorator(new DecoratorColor(Color::Black));
 		y+=_buttonSize+_buttonDistance;
 		_backspaceSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("<-"));
 		_enterSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("E"));
@@ -52,7 +54,7 @@ public:
 		}
 		_pointSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("."));
 		_cancelSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("C"));
-		initTextBox(_editField);
+		initTextBox(_editField,&_editField->GetDecorators());
 		initTextBox(_backspaceSymbol);
 		_backspaceSymbol->SetMargins(_textOffset,_textOffset*1.5);
 		_backspaceSymbol->SetFont(SmallFont);
@@ -62,22 +64,20 @@ public:
 		_dialogClosedEventReceiver=NULL;
 	}
 protected:
-	void initTextBox(TextBox *text)
+	void initTextBox(TextBox *text,DecoratorList *decorators=NULL)
 	{
-		//text->SetBorder(Color::CornflowerBlue);
-		//text->SetBackColor(Color::Black);
-		text->SetDecorators(GetDecorators());
+		text->SetDecorators(decorators==NULL?GetDecorators():*decorators);
 		text->SetFont(BigFont);
 		text->SetMargins(_textOffset,_textOffset);
 		text->RegisterTouchEventReceiver(this);
 		AddChild(text);
 	}
 public:
-	void BeginEdit(TextBoxNumber * targetTextBox)
+	void BeginEdit(float value,int precision)
 	{
 		_editPosition=0;
-		_targetTextBox=targetTextBox;
-		dtostrf( _targetTextBox->GetNumber(),0,_targetTextBox->Precission(),_editBuffer);
+		//_targetTextBox=targetTextBox;
+		dtostrf(value,0,precision,_editBuffer);
 		_editField->SetText(_editBuffer);
 		_editField->Invalidate();
 		_editPosition=strlen(_editBuffer);
@@ -88,20 +88,24 @@ public:
 	{
 		_dialogClosedEventReceiver=receiver;
 	}
+	float GetNumber()
+	{
+		return atof(_editBuffer);
+	}
 	void NotifyTouch(Window *window)
 	{
-		out<<F("Keybord notify")<<endl;
+		//out<<F("Keybord notify")<<endl;
 		if(window == _enterSymbol || window == _cancelSymbol)
 		{
 			if(window == _enterSymbol)
 			{
-				float number=atof(_editBuffer);
-				_targetTextBox->SetNumber(number);
-				_targetTextBox->Invalidate();
+				//float number=atof(_editBuffer);
+				//_targetTextBox->SetNumber(number);
+				//_targetTextBox->Invalidate();
 			}
 			SetVisible(false);
 			if(_dialogClosedEventReceiver!=NULL)
-				_dialogClosedEventReceiver->NotifyDialogClosed(this);
+				_dialogClosedEventReceiver->NotifyDialogClosed(this,window == _enterSymbol?IDialogProcessor::OK:IDialogProcessor::Cancel);
 		}
 		else
 		{

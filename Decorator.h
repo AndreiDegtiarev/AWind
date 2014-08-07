@@ -23,13 +23,23 @@
 class Decorator
 {
 public:
-	///Estimates decorator width from reserved dimensions
-	virtual int EstimateWidth(DC *dc)
+	///Estimates decorator left coordinate
+	virtual int EstimateLeft(DC *dc)
 	{
 		return 0;
 	}
-	///Estimates decorator height from reserved dimensions
-	virtual int EstimateHeight(DC *dc)
+	///Estimates decorator right coordinate
+	virtual int EstimateRight(DC *dc)
+	{
+		return 0;
+	}
+	///Estimates decorator top coordinate
+	virtual int EstimateTop(DC *dc)
+	{
+		return 0;
+	}
+	///Estimates decorator bottom coordinate
+	virtual int EstimateBottom(DC *dc)
 	{
 		return 0;
 	}

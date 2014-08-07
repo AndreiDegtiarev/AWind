@@ -61,24 +61,38 @@ void setup()
 	windowsManager.Initialize();
 
 	dataBuffer=new TimeSerieBuffer(time_step,100,1000,1000);
+	//Setup main window background
+	windowsManager.MainWnd()->AddDecorator(new DecoratorRectFill(Color::LightGray));
 
 	int x=0;
-	int y=0;
-	TextBoxFString *textBox=new TextBoxFString(x,y,windowsManager.GetDC()->DeviceWidth()/2,25,F("Scaling factor: "));
-	textBox->AddDecorator(new DecoratorColor(Color::SkyBlue));
+	int y=2;
+	int cy=25;
+	TextBoxFString *textBox=new TextBoxFString(x,y,windowsManager.GetDC()->DeviceWidth()/2,cy,F("Scaling factor: "));
+	//Setup transparent background and green text color
+	textBox->AddDecorator(new DecoratorColor(Color::Green));
 	textBox->SetFont(BigFont);
 	x=windowsManager.GetDC()->DeviceWidth()*3.0/4;
-	textNumber=new TextBoxNumber(x,y,windowsManager.GetDC()->DeviceWidth()-x,25,0);
+	textNumber=new TextBoxNumber(x,y,windowsManager.GetDC()->DeviceWidth()-x-2,cy,0);
+	//Setup background + 3D-look of text box
 	textNumber->AddDecorator(new DecoratorRectFill(Color::Red));
+	textNumber->AddDecorator(new Decorator3DRect(Color::DarkGray,Color::White));
 	textNumber->AddDecorator(new DecoratorColor(Color::SkyBlue));
 	textNumber->SetFont(BigFont);
 	textNumber->SetMargins(20,2);
-	x=0;
-	y+=25;
-	chartWnd=new ChartWindow(NULL,NULL,x,y,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight()-25);
-	chartWnd->AddDecorator(new DecoratorRectFill(Color::Black));
+	x=1;
+	y+=cy+5;
+	cy=windowsManager.GetDC()->DeviceHeight()-y-2;
+	//We create axis decorator separetly because chart need this decorator as well
+	int axis_y_margins=2;
+	DecoratorAxis *chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft,SmallFont,cy-axis_y_margins*2,-1,1,5);
+	chartYAxis->SetOffset(4,axis_y_margins);
+	chartWnd=new ChartWindow(NULL,chartYAxis,x,y,windowsManager.GetDC()->DeviceWidth()-2,cy);
+	//Chart decorators
+	chartWnd->AddDecorator(new Decorator3DRect(Color::White,Color::Gray));
+	chartWnd->AddDecorator(new DecoratorColor(Color::Black));
+	chartWnd->AddDecorator(chartYAxis);
 	chartWnd->SetBuffer(dataBuffer);
-
+	///Attach crated window to the main window
 	windowsManager.MainWnd()->AddChild(textBox);
 	windowsManager.MainWnd()->AddChild(textNumber);
 	windowsManager.MainWnd()->AddChild(chartWnd);
@@ -98,7 +112,8 @@ void loop()
 		dataBuffer->Set(i,sin(2*3.14*(time_step*i)));
 	}
 	textNumber->SetNumber(index);
-	chartWnd->Invalidate();
+	//In order to reduce flickering only chart area is updated
+	chartWnd->InvalidateOnlyChartArea();
 	index/=2;
 	//give window manager an opportunity to update display
 	windowsManager.loop();

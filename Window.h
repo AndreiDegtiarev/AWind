@@ -28,8 +28,19 @@
 #include "ITouchEventReceiver.h"
 #include "Decorator.h"
 
+class IDialogProcessor
+{
+public:
+	enum DialogResults
+	{
+		OK,
+		Cancel
+	};
+	virtual Window * FindDialog(const __FlashStringHelper *dlgID)=0;
+	virtual DialogResults DoDialog(Window *dlg)=0;
+};
 typedef LinkedList<Decorator> DecoratorList;
-class MainWindow;
+//class MainWindow;
 ///Base class for all window objects. Provides basic window functionality
 class Window
 {
@@ -125,14 +136,14 @@ public:
 		return false;
 	}
 	///Returns pointer to root window. MainWindow does not have any parents
-	MainWindow *MainWnd()
+	Window *RootWindow()
 	{
 		Window *parent=this;
 		while(parent->Parent()!=NULL)
 		{
 			parent=parent->Parent();
 		}
-		return (MainWindow *)(parent);
+		return parent;
 	}
 	///Moves and resizes window relativly to the parent window 
 	/**

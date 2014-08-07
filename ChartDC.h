@@ -51,7 +51,7 @@ public:
 		Log::Number(" min: ",min_val);
 		Log::Number(" max: ",max_val,true);*/
 	}
-	void setScalingY(int length,float min_val,float max_val)
+	void setScalingY(int dc_offset,int length,float min_val,float max_val)
 	{
 		_scale_y=calcScaling(length,min_val,max_val);
 		_offset_y=min_val;
@@ -59,7 +59,7 @@ public:
 		Log::Number(" offset: ",_offset_y);
 		Log::Number(" min: ",min_val);
 		Log::Number(" max: ",max_val,true);*/
-		_dc_start_y=length;
+		_dc_start_y=dc_offset;
 		_min_y=min_val;
 		_max_y=max_val;
 	}

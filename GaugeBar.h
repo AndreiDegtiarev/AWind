@@ -45,16 +45,20 @@ public:
 	{
 		//out<<"value :"<<_value<<endl;
 		dc->SetFont(SmallFont);
-		float range=_maxValue-_minValue;
-		int right_offset=Width()-_axis->EstimateWidth(dc);
+		//float range=_maxValue-_minValue;
+		float saling_factor=_axis->GetLength()/(_maxValue-_minValue);
+		int right_offset=_axis->EstimateLeft(dc);
+		int top=_axis->EstimateTop(dc);
+		int bottom=_axis->EstimateBottom(dc);
 		if(!_drawOnlyPointer)
-			dc->DrawRoundRect(2,2,right_offset-1,Height()-3);
+			dc->DrawRoundRect(2,2,right_offset-1,Height()-2);
+		int dc_level=bottom-_value*saling_factor;
 		if(_oldValue>_value)
 		{
 			dc->SetColor(_fillColor);
-			dc->FillRoundRect(4,3,right_offset-3,min(Height()-2,Height()-_value*(Height()-2)/range+2));
+			dc->FillRoundRect(4,bottom-_oldValue*saling_factor,right_offset-3,min(bottom,dc_level+3));
 		}
 		dc->SetColor(Color::Red);
-		dc->FillRoundRect(4,Height()-2-_value*Height()/range,right_offset-3,Height()-4);
+		dc->FillRoundRect(4,dc_level,right_offset-3,bottom);
 	}
 };

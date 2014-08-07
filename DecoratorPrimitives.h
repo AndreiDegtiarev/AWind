@@ -91,29 +91,38 @@ public:
 		dc->Rectangle3D(left, top, left+width, top+height,_color1,_color2);
 	}
 };
-///Decorator primitive for 3D rectangle
+///Axis decorator primitive. It is shared between gauge and chart objects
 ///Overriden members description see Decorator class documentation
 class DecoratorAxis : public Decorator
 {
 public:
 	enum Orientation
 	{
-		HorizontalTop,
-		HorizontalBottom,
-		VerticalLeft,
-		VerticalRight
+		HorizontalTop,     //!<Not implemented yet
+		HorizontalBottom, //!<Not implemented yet
+		VerticalLeft,    //!<Vertcal axis with the labels left to the axis
+		VerticalRight   //!<Vertcal axis with the labels right to the axis
 	};
 private:
-	Orientation _orientation;
-	uint8_t *_font;
-	int _offsetX;
-	int _offsetY;
-	int _length;
-	float _minValue;
-	float _maxValue;
-	int _numTicks;
+	Orientation _orientation; //!< Axis orientation
+	uint8_t *_font;          //!< Labels font
+	int _offsetX;           //!< Horizontal offset of decorator relative to the parent window
+	int _offsetY;          //!< Vertical offset of decorator relative to the parent window
+	int _length;          //!< Length of axis
+	float _minValue;     //!< Min value
+	float _maxValue;    //!< Max value
+	int _numTicks;     //!< Number of short line perpendicular to the axis
 	static const int _tick_length=5;
 public:
+///Constructor
+/**
+\param orientation axis orientation
+\param font labels font
+\param length length of axis
+\param minValue min value
+\param maxValue max value
+\param nTicks number of short line perpendicular to the axis
+*/
 	DecoratorAxis(Orientation orientation,uint8_t *font,int length,float minValue,float maxValue,int nTicks): 
 	                                                                             _orientation(orientation),
 																				 _font(font),
@@ -126,27 +135,61 @@ public:
 	{
 
 	}
+	///Sets decorator offset in the parent window coordinate system
 	void SetOffset(int offsetX,int offsetY)
 	{
 		_offsetX=offsetX;
 		_offsetY=offsetY;
 	}
+	///Return min and max label values
 	void GetMinMax(float &minVal,float &maxVal)
 	{
 		minVal=_minValue;
 		maxVal=_maxValue;
 	}
-	int EstimateWidth(DC *dc)
+	///Sets min and max for label values
+	void SetMinMax(float minVal,float maxVal)
+	{
+		_minValue=minVal;
+		_maxValue=maxVal;
+	}
+	///Returns axis length
+	int GetLength()
+	{
+		return _length;
+	}
+	int EstimateLeft(DC *dc)
+	{
+		return _offsetX;
+	}
+	int EstimateRight(DC *dc)
 	{
 		dc->SetFont(_font);
 		switch(_orientation)
 		{
 		case VerticalRight:
 		case VerticalLeft:
-			return (AHelper::GetNumberLength(max(_minValue,_maxValue),1)*dc->FontWidth()+_tick_length);
+			return (AHelper::GetNumberLength(max(_minValue,_maxValue),1)*dc->FontWidth()+_tick_length)+_offsetX;
 		case HorizontalTop:
 		case HorizontalBottom:
-			return _length;
+			return _length+_offsetX;
+		}
+	}
+	int EstimateTop(DC *dc)
+	{
+		return _offsetY;
+	}
+	int EstimateBottom(DC *dc)
+	{
+		dc->SetFont(_font);
+		switch(_orientation)
+		{
+		case VerticalRight:
+		case VerticalLeft:
+			return _length+_offsetY;
+		case HorizontalTop:
+		case HorizontalBottom:
+			return _offsetY+dc->FontHeight()+_tick_length;
 		}
 	}
 	void Draw(DC *dc,int left,int top,int width,int height)
@@ -160,8 +203,8 @@ public:
 		case VerticalRight:
 			{
 				int y;
-				int scale_step=(_length+_offsetY)/(_numTicks-1);
-				int est_width=EstimateWidth(dc);
+				float scale_step=_length/(_numTicks-1.0);
+				int axis_right=EstimateRight(dc);
 				for(int i=0;i<_numTicks;i++)
 				{
 					y=_length+_offsetY-scale_step*i;
@@ -174,10 +217,10 @@ public:
 					}
 					else
 					{
-						dc->MoveTo(_offsetX+est_width,y);
-						dc->LineTo(_offsetX+est_width-_tick_length,y);
+						dc->MoveTo(axis_right,y);
+						dc->LineTo(axis_right-_tick_length,y);
 						int val_width=AHelper::GetNumberLength(value,1)*dc->FontWidth();
-						dc->DrawNumber(value,1,_offsetX+est_width-val_width,y-(dc->FontHeight()*(i==_numTicks-1?0:1)));
+						dc->DrawNumber(value,1,axis_right-val_width,y-(dc->FontHeight()*(i==_numTicks-1?0:1)));
 					}
 				}
 			}

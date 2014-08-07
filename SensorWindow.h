@@ -94,9 +94,9 @@ public:
 	{
 		return true;
 	}
-	void SetDecorators(LinkedList<Decorator> &decorators)
+	void SetDecorators(DecoratorList &decorators)
 	{
-		Window::SetDecorators(decorators);
+		Window::SetDecorators(((ViewModusWindow *)Parent())->NormalSensorWndDecorators());
 		_textValue->SetDecorators(decorators);
 		_textName->SetDecorators(decorators);
 		_textChartAxis->SetDecorators(decorators);
@@ -146,15 +146,15 @@ public:
 		if(_sensorManager->Status()!=Error)
 		{
 			ViewModusWindow *viewModus=(ViewModusWindow *)Parent();
-			//ARGB oldColor=GetBackColor().GetValue();
-			LinkedList<Decorator> *prevDec=&GetDecorators();
+			DecoratorList *prevDec=&GetDecorators();
 			if(_sensorManager->Status() == ApplicationAlarm)
+			{
 				SetDecorators(viewModus->AlarmDecorators());
-				//Window::SetBackColor(Color::Red);
+				Window::SetDecorators(viewModus->AlarmDecorators());
+			}
 			else
 				SetDecorators(viewModus->NormalDecorators());
-				//Window::SetBackColor(_normalBkColor);
-			_textValue->SetDecorators(GetDecorators());
+			//_textValue->SetDecorators(GetDecorators());
 			if(prevDec != &GetDecorators() && _mode == Text)
 				Invalidate();
 		}

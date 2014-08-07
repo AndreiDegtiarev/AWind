@@ -33,33 +33,19 @@ class ChartWindow : public Window
 	IDataBuffer *_buffer;
 	unsigned long _last_buffer_change;
 	ChartDC _dc;
-	float _fix_MinY;
-	float _fix_MaxY;
 	DecoratorAxis *_xAxis;
 	DecoratorAxis *_yAxis;
 public:
 	ChartWindow(DecoratorAxis *xAxis,DecoratorAxis *yAxis,int left,int top,int width,int hight):Window(F("chart"),left,top,width,hight)//,_textMinY(TextBoxFloat(left+1,top+1,0,Color::White))
 	{
 		_buffer = NULL;
-		_fix_MinY=ChartDC::AutoMin;
-		_fix_MaxY=ChartDC::AutoMax;
 		_xAxis=xAxis;
 		_yAxis=yAxis;
-		if(_yAxis!=NULL)
-		{
-			_yAxis->GetMinMax(_fix_MinY,_fix_MaxY);
-		}
-	}
-	void SetMinMaxY(float min,float max)
-	{
-		_fix_MinY=min;
-		_fix_MaxY=max;
 	}
 	void SetBuffer(IDataBuffer *buffer)
 	{
 		_buffer=buffer;
 		_last_buffer_change=0;
-		//Invalidate();
 	}
 	void InvalidateOnlyChartArea()
 	{
@@ -71,8 +57,6 @@ public:
 		{
 			DC dc;
 			PrepareDC(&dc);
-			dc.SetBackColor(Color::Black);
-			dc.FillRect(_yAxis->EstimateWidth(&dc),2,Width()-2,Height()-2);
 			OnDraw(&dc);
 		}
 	}
@@ -85,30 +69,31 @@ public:
 			float max_x;
 			float min_y;
 			float max_y;
+			int xOffset=1;
 			_buffer->MinMax(min_x,max_x,min_y,max_y);
-			min_y=_fix_MinY==ChartDC::AutoMin?min_y:_fix_MinY;
-			max_y=_fix_MaxY==ChartDC::AutoMax?max_y:_fix_MaxY;
-			/*Log::Number(F("size: "),size);
-			Log::Number(F(" min_x: "),min_x);
-			Log::Number(F(" max_x: "),max_x);
-			Log::Number(" min_y: ",min_y);
-			Log::Number(" max_y: ",max_y,true);*/
+			if(_yAxis!=NULL)
+			{
+				xOffset=_yAxis->EstimateRight(dc);
+				_yAxis->GetMinMax(min_y,max_y);
+			}
 			if(_last_buffer_change!=_buffer->X(size-1))
 			{
-				int xOffset=0;
-				if(_yAxis!=NULL)
-					xOffset=_yAxis->EstimateWidth(dc);
-				_dc.setScalingX(xOffset,Width()-xOffset,min_x,max_x);
-				_dc.setScalingY(Height(),min_y,max_y);
+				_dc.setScalingX(xOffset,Width()-xOffset-1,min_x,max_x);
+				_dc.setScalingY(Height()-1,Height()-2,min_y,max_y);
 				_last_buffer_change=max_x;
-				//_textMinY->SetNumber(_dc.MinY());
-				//_textMaxY->SetNumber(_dc.MaxY());
 			}
+			dc->SetBackColor(Color::Black);
+			dc->FillRect(xOffset+1,2+1,Width()-2-1,Height()-2-1);
+			dc->Rectangle3D(xOffset,2,Width()-2,Height()-2,Color::DarkGray,Color::White);
+
 			dc->SetColor(Color::Yellow);
 			_dc.MoveTo(dc,min_x,max(min_y,0));
 			_dc.LineTo(dc,max_x,max(min_y,0));
-			_dc.MoveTo(dc,max(min_x,0),min_y);
-			_dc.LineTo(dc,max(min_x,0),max_y);
+			if(_yAxis==NULL)
+			{
+				_dc.MoveTo(dc,max(min_x,0),min_y);
+				_dc.LineTo(dc,max(min_x,0),max_y);
+			}
 			dc->SetColor(Color::LightBlue);
 			dc->SetFont(SmallFont);
 			if(_yAxis == NULL)

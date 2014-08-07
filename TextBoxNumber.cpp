@@ -27,8 +27,23 @@ bool TextBoxNumber::OnTouch(int x,int y)
 	bool retCode=TextBox::OnTouch(x,y);
 	if(!_isReadOnly)
 	{
-		MainWnd()->StartKeyboard(this);
-		retCode=true;
+		//MainWnd()->StartKeyboard(this);
+		//retCode=true;
+		IDialogProcessor *dlgProcessor=reinterpret_cast<MainWindow *>(RootWindow());
+		KeyboardWindow * kbrWnd=(KeyboardWindow*)(dlgProcessor->FindDialog(F("Keyboard")));
+		if(kbrWnd!=NULL)
+		{
+			kbrWnd->BeginEdit(GetNumber(),Precission());
+			//out<<"kbrWnd"<<endl;
+			if(dlgProcessor->DoDialog(kbrWnd) == IDialogProcessor::OK)
+			{
+				//out<<"End dialog"<<endl;
+				//out<<"Number :"<<kbrWnd->GetNumber()<<endl;
+				SetNumber(kbrWnd->GetNumber());
+				//Invalidate();
+			}
+		}
+		//out<<"return"<<endl;
 	}
-	return retCode;
+	return true;
 }

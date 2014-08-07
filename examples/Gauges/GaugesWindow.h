@@ -34,6 +34,7 @@ class GaugesWindow : public MainWindow, public ITouchEventReceiver, public ISens
 	ChartWindow *_chartWindow;
 	TextBoxFString *_btnFast;
 	TextBoxFString *_btnSlow;
+	TextBoxNumber  *_txtNumber;
 	ButtonWindow *_btnTop;
 	ButtonWindow *_btnBottom;
 	SensorManager *_sensorManager;
@@ -51,16 +52,18 @@ public:
 		_isAuto=false;
 		int x=1;
 		int szx=width/4;
+		int szy=height-2;
 		DecoratorList *gaugeDecorators=new DecoratorList(GetDecorators());
 		gaugeDecorators->Add(new Decorator3DRect(Color::White,Color::Gray));
 		gaugeDecorators->Add(new DecoratorColor(Color::Green));
 		DecoratorList *gaugeRadialPointerDecorators=new DecoratorList(*gaugeDecorators);
-		DecoratorAxis *axis=new DecoratorAxis(DecoratorAxis::VerticalRight,SmallFont,height-8,0,100,5);
-		gaugeDecorators->Add(axis);
+		int gauge_axis_y_margins=3;
+		DecoratorAxis *gaugeAxis=new DecoratorAxis(DecoratorAxis::VerticalRight,SmallFont,szy-gauge_axis_y_margins*2,0,100,5);
+		gaugeDecorators->Add(gaugeAxis);
 		DC dc;
-		int offsetX=axis->EstimateWidth(&dc);
-		axis->SetOffset(szx-offsetX,4);
-		_gaugeBar=new GaugeBar(axis,x,1,szx,height-2);
+		int offsetX=gaugeAxis->EstimateRight(&dc);
+		gaugeAxis->SetOffset(szx-offsetX,gauge_axis_y_margins);
+		_gaugeBar=new GaugeBar(gaugeAxis,x,1,szx,szy);
 		_gaugeBar->SetDecorators(*gaugeDecorators);
 		_gaugeBar->SetFillColor(Color::LightGray);
 		AddChild(_gaugeBar); 
@@ -69,8 +72,11 @@ public:
 		_gaugeRadialPointer=new GaugeRadialPointer(x,1,szx,height/2-2);
 		_gaugeRadialPointer->SetDecorators(*gaugeRadialPointerDecorators);
 		_gaugeRadialPointer->SetFillColor(Color::LightGray);
-		DecoratorAxis *chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft,SmallFont,height/2-4,0,100,5);
-		_chartWindow=new ChartWindow(NULL,chartYAxis,x,height/2+2,szx,height/2-4);
+		szy=height/2-4;
+		int axis_y_margins=2;
+		DecoratorAxis *chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft,SmallFont,szy-axis_y_margins*2,0,100,5);
+		chartYAxis->SetOffset(4,axis_y_margins);
+		_chartWindow=new ChartWindow(NULL,chartYAxis,x,height/2+2,szx,szy);
 		_chartWindow->AddDecorator(new DecoratorRectFill(Color::LightGray));
 		_chartWindow->AddDecorator(new Decorator3DRect(Color::White,Color::Gray));
 		_chartWindow->AddDecorator(new DecoratorColor(Color::Black));
@@ -79,20 +85,32 @@ public:
 		AddChild(_chartWindow);
 		x+=szx+2;
 		szx=width/4-6;
+		int y=4;
+		szy=30;
+		_txtNumber=new TextBoxNumber(x,y,szx,szy,0);
+		_txtNumber->AddDecorator(new DecoratorRectFill(Color::Black,false));
+		_txtNumber->AddDecorator(new Decorator3DRect(Color::Gray,Color::White));
+		_txtNumber->AddDecorator(new DecoratorColor(Color::White));
+		initTextBox(_txtNumber,&_txtNumber->GetDecorators());
+		y+=szy+13;
 		DecoratorList *txtDecorators=new DecoratorList(GetDecorators());
 		txtDecorators->Add(new Decorator3DRect(Color::White,Color::Gray));
 		txtDecorators->Add(new DecoratorColor(Color::Black));
-		_btnFast=new TextBoxFString(x,20,szx,30,F("Fast"));
+		_btnFast=new TextBoxFString(x,y,szx,szy,F("Fast"));
 		initTextBox(_btnFast,txtDecorators);
-		_btnSlow=new TextBoxFString(x,70,szx,30,F("Slow"));
+		y+=szy+10;
+		_btnSlow=new TextBoxFString(x,y,szx,szy,F("Slow"));
 		initTextBox(_btnSlow,txtDecorators);
-		_btnTop=new ButtonWindow(ButtonWindow::TriangleTop,x+15,height/2,40,40);
-		_btnBottom=new ButtonWindow(ButtonWindow::TriangleBottom,x+15,height/2+60,40,40);
+		y+=szy+10;
+		szx=szy=40;
+		_btnTop=new ButtonWindow(ButtonWindow::TriangleTop,x+15,y,szx,szy);
+		y+=szy+20;
+		_btnBottom=new ButtonWindow(ButtonWindow::TriangleBottom,x+15,y,szx,szy);
 		initButton(_btnTop,txtDecorators);
 		initButton(_btnBottom,txtDecorators);
 	}
 	///Initialize text box windows
-	void initTextBox(TextBoxFString *textBox,DecoratorList *decorators)
+	void initTextBox(TextBox *textBox,DecoratorList *decorators)
 	{
 		textBox->SetDecorators(*decorators);
 		textBox->SetFont(BigFont);
@@ -146,9 +164,10 @@ public:
 		float value=sensorManager->GetData();
 		_gaugeBar->SetValue(value);
 		_gaugeRadialPointer->SetValue(value);
+		_txtNumber->SetNumber(value);
 		_sensorManager=sensorManager;
 		_chartWindow->SetBuffer(sensorManager->SecBuffer());
-		_chartWindow->InvalidateOnlyChartArea();
+		//_chartWindow->InvalidateOnlyChartArea();
 	}
 	///Event is generated after each measurement
 	void NotifySensorMeasured(SensorManager *sensorManager)

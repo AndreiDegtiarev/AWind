@@ -34,13 +34,13 @@ public:
 	Window *DlgWindow;
 };
 class TextBoxNumber;
-class MainWindow : public Window, IDialogClosedEventReceiver, public IDialogProcessor
+class MainWindow : public Window, IDialogClosedEventReceiver
 {
 	Window *_modalWindow;
 	KeyboardWindow _keyboardWindow;
 	ILoopProcess *_idleProcess;
 	LinkedList<DialogEntry> _dialogs;
-	IDialogProcessor::DialogResults _lastDialogResults;
+	DialogResults _lastDialogResults;
 public:
 	MainWindow(int width,int height):Window(F("Main"),0,0,width,height),_keyboardWindow(3,90)
 	{
@@ -61,21 +61,25 @@ public:
 	{
 		for(int i=0;i<_dialogs.Count();i++)
 		{
-			out<<"Find dialog: "<<_dialogs[i]->ID<<endl;
+			//out<<"Find dialog: "<<_dialogs[i]->ID<<endl;
 			if(strcmp_P(reinterpret_cast<const char*>(id), reinterpret_cast<const char*>(_dialogs[i]->ID)))
 				return _dialogs[i]->DlgWindow;
 
 		}
 		return NULL;
 	}
-	IDialogProcessor::DialogResults DoDialog(Window *dlg)
+	DialogResults DoDialog(Window *dlg)
 	{
 		//out<<"IDialogProcessor::DialogResults"<<endl;
 		SetModalWindow(dlg);
+		dlg->SetVisible(true);
+		dlg->Invalidate();
+
 		while(_modalWindow!=NULL)
 		{
 			_idleProcess->loop();
 		}
+		dlg->SetVisible(false);
 		Invalidate();
 		return _lastDialogResults;
 	}
@@ -83,7 +87,7 @@ public:
 	{
 		_idleProcess=process;
 	}
-	void NotifyDialogClosed(Window *window,IDialogProcessor::DialogResults results)
+	void NotifyDialogClosed(Window *window,DialogResults results)
 	{
 		//out<<"NotifyDialogClosed"<<endl;
 		//if(window == &_keyboardWindow) //End edit

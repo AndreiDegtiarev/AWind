@@ -26,27 +26,38 @@
 #include "ChartDC.h"
 #include "DecoratorPrimitives.h"
 
-
-extern uint8_t SmallFont[];
+///Chart window
 class ChartWindow : public Window
 {
-	IDataBuffer *_buffer;
-	unsigned long _last_buffer_change;
-	ChartDC _dc;
-	DecoratorAxis *_xAxis;
-	DecoratorAxis *_yAxis;
+	IDataBuffer *_buffer;               //!< Container for chart data
+	unsigned long _last_buffer_change; //!< Contains last x value if buffer contain different last value, chart scaling will be recalculated
+	ChartDC _dc;                      //!< Chart specific device context. Performs recalculation between window and chart coordinate system
+	DecoratorAxis *_xAxis;           //!< Not implemented yet
+	DecoratorAxis *_yAxis;          //!< Decorator for Y axis. If it is not NULL y values range is received from thid decorator otherweise values range is obtained from data buffer
 public:
-	ChartWindow(DecoratorAxis *xAxis,DecoratorAxis *yAxis,int left,int top,int width,int hight):Window(F("chart"),left,top,width,hight)//,_textMinY(TextBoxFloat(left+1,top+1,0,Color::White))
+	///Constructor
+	///Constructor
+	/**
+	\param xAxis not implemented yet
+	\param yAxis decorator for Y axis. If it is not NULL y values range is received from thid decorator otherweise values range is obtained from data buffer
+	\param left left coordinate relative to parent indow
+	\param top top coordinate relative to parent indow
+	\param width window width
+	\param height window height
+	*/
+	ChartWindow(DecoratorAxis *xAxis,DecoratorAxis *yAxis,int left,int top,int width,int hight):Window(F("chart"),left,top,width,hight)
 	{
 		_buffer = NULL;
 		_xAxis=xAxis;
 		_yAxis=yAxis;
 	}
+	///Sets data buffer
 	void SetBuffer(IDataBuffer *buffer)
 	{
 		_buffer=buffer;
 		_last_buffer_change=0;
 	}
+	///Forces to repain only chart arey (not axises) - reduces flickering 
 	void InvalidateOnlyChartArea()
 	{
 		if(_yAxis == NULL)
@@ -60,6 +71,7 @@ public:
 			OnDraw(&dc);
 		}
 	}
+	///Implement drawing code. Please note axises are plotted as decorators
 	void OnDraw(DC *dc)
 	{ 
 		if(_buffer!=NULL && _buffer->StartIndex()<_buffer->Size()-1)

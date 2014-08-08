@@ -77,7 +77,7 @@ void setup()
 void loop()
 {
 	//measure (if necessary -see delay parameter in sensor manager)
-	if(measurementNode.measure())
+	if(measurementNode.Measure())
 	{
 		//following if is only for debugging purposes
 		if(measurementNode.IsChanged())

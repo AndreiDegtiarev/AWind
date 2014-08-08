@@ -27,13 +27,10 @@ class KeyboardWindow :  public Window,ITouchEventReceiver
 public:
 	KeyboardWindow(int left,int top):Window(F("Keyboard"),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
 	{
-		//_targetTextBox=NULL;
 		AddDecorator(new DecoratorRectFill(Color::LightGray));
 		AddDecorator(new Decorator3DRect(Color::White,Color::Gray));
 		AddDecorator(new DecoratorColor(Color::Black));
 
-		//SetBorder(Color::CornflowerBlue);
-		//SetBackColor(Color::Black);
 		int x=_buttonDistance;
 		int y=_buttonDistance;
 		_editField=new TextBoxString(x,y,Width()-2*_buttonDistance,_buttonSize,"");
@@ -73,16 +70,13 @@ protected:
 		AddChild(text);
 	}
 public:
-	void BeginEdit(float value,int precision)
+	void Initialize(float value,int precision)
 	{
 		_editPosition=0;
-		//_targetTextBox=targetTextBox;
 		dtostrf(value,0,precision,_editBuffer);
 		_editField->SetText(_editBuffer);
 		_editField->Invalidate();
 		_editPosition=strlen(_editBuffer);
-		SetVisible(true);
-		Invalidate();
 	}
 	void RegisterEndDialogEventReceiver(IDialogClosedEventReceiver *receiver)
 	{
@@ -97,15 +91,8 @@ public:
 		//out<<F("Keybord notify")<<endl;
 		if(window == _enterSymbol || window == _cancelSymbol)
 		{
-			if(window == _enterSymbol)
-			{
-				//float number=atof(_editBuffer);
-				//_targetTextBox->SetNumber(number);
-				//_targetTextBox->Invalidate();
-			}
-			SetVisible(false);
 			if(_dialogClosedEventReceiver!=NULL)
-				_dialogClosedEventReceiver->NotifyDialogClosed(this,window == _enterSymbol?IDialogProcessor::OK:IDialogProcessor::Cancel);
+				_dialogClosedEventReceiver->NotifyDialogClosed(this,window == _enterSymbol?IDialogClosedEventReceiver::OK:IDialogClosedEventReceiver::Cancel);
 		}
 		else
 		{

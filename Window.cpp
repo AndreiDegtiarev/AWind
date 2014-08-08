@@ -18,14 +18,17 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#pragma once
+#include "Arduino.h"
 
-class IDataBuffer
+#include "Window.h"
+#include "MainWindow.h"
+
+Window *Window::FindDialog(const __FlashStringHelper *id)
 {
-public:
-	virtual unsigned int StartIndex()=0;
-	virtual unsigned int Size()=0;
-	virtual void MinMax(float &mix_x,float &max_x,float &mix_y,float &max_y)=0;
-	virtual float X(unsigned int index)=0;
-	virtual float Y(unsigned int index)=0;
-};
+	return ((MainWindow *)RootWindow())->FindDialog(id);
+}
+IDialogClosedEventReceiver::DialogResults Window::DoDialog(Window *dlg)
+{
+	return ((MainWindow *)RootWindow())->DoDialog(dlg);
+}
+

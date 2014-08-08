@@ -20,6 +20,7 @@
   examples and tools supplied with the library.
 */
 #include "Color.h"
+#include "UTFT.h"
 class DC
 {
 	UTFT *_lcd;

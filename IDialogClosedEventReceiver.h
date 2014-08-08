@@ -19,10 +19,14 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#include "Window.h"
+class Window;
 class IDialogClosedEventReceiver
 {
 public:
-
-	virtual void NotifyDialogClosed(Window *window,IDialogProcessor::DialogResults results)=0;
+enum DialogResults
+{
+	OK,
+	Cancel
+};
+	virtual void NotifyDialogClosed(Window *window,DialogResults results)=0;
 };

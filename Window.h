@@ -27,20 +27,9 @@
 #include "DC.h"
 #include "ITouchEventReceiver.h"
 #include "Decorator.h"
+#include "IDialogClosedEventReceiver.h"
 
-class IDialogProcessor
-{
-public:
-	enum DialogResults
-	{
-		OK,
-		Cancel
-	};
-	virtual Window * FindDialog(const __FlashStringHelper *dlgID)=0;
-	virtual DialogResults DoDialog(Window *dlg)=0;
-};
 typedef LinkedList<Decorator> DecoratorList;
-//class MainWindow;
 ///Base class for all window objects. Provides basic window functionality
 class Window
 {
@@ -100,6 +89,10 @@ public:
 			_decorators=new DecoratorList();
 		_decorators->Add(decorator);
 	}
+	Window *FindDialog(const __FlashStringHelper *id);
+	IDialogClosedEventReceiver::DialogResults DoDialog(Window *dlg);
+
+
 	///Registers receiver for touch event
     /** Receiver can be a general class that is derived from ITouchEventReceiver. In this calss NotifyTouch virtual function has to be ovveriden */
 	/**

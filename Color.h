@@ -1,3 +1,4 @@
+#pragma once
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
   Copyright (C)2014 Andrei Degtiarev. All right reserved
@@ -18,23 +19,11 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#pragma once
 
 typedef unsigned long ARGB;
 typedef byte BYTE;
 typedef void VOID;
-/*struct Color
-{
-	byte R;
-	byte G;
-	byte B;
-	Color(byte r,byte g, byte b)
-	{
-		R=r;
-		G=g;
-		B=b;
-	}
-};*/
+///Implements definition and operations with color
 class Color
 {
 public:
@@ -44,11 +33,10 @@ public:
         Argb = (ARGB)Color::Black;
     }
 
-    // Construct an opaque Color object with
-    // the specified Red, Green, Blue values.
-    //
-    // Color values are not premultiplied.
-
+    /// Construct an opaque Color object with
+    /// the specified Red, Green, Blue values.
+    ///
+    /// Color values are not premultiplied.
     Color(BYTE r,
           BYTE g,
           BYTE b)
@@ -118,21 +106,10 @@ public:
     {
         Argb = argb;
     }
-/*
-    VOID SetFromCOLORREF(COLORREF rgb)
-    {
-        Argb = MakeARGB(255, GetRValue(rgb), GetGValue(rgb), GetBValue(rgb));
-    }
-
-    COLORREF ToCOLORREF() const
-    {
-        return RGB(GetRed(), GetGreen(), GetBlue());
-    }*/
 
 public:
 
-    // Common color constants
-    
+    /// Common color constants
     enum
     {
         AliceBlue            = 0xFFF0F8FF,
@@ -278,8 +255,7 @@ public:
         YellowGreen          = 0xFF9ACD32
     };
 
-    // Shift count and bit mask for A, R, G, B components
-    
+    /// Shift count and bit mask for A, R, G, B components
     enum
     {
         AlphaShift  = 24,
@@ -296,8 +272,7 @@ public:
         BlueMask    = 0x000000ff
     };
 
-    // Assemble A, R, G, B values into a 32-bit integer
-    
+    /// Assemble A, R, G, B values into a 32-bit integer
     static ARGB MakeARGB(BYTE a,
                          BYTE r,
                          BYTE g,

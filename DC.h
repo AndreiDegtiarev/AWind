@@ -21,34 +21,41 @@
 */
 #include "Color.h"
 #include "UTFT.h"
+///Device context. Abstraction layer to the device specific drawing code.
+///Coordinates in drawing function are in window coordinate system that internaly translated into screen coordinate system
 class DC
 {
-	UTFT *_lcd;
-	int _offset_x;
-	int _offset_y;
-	int _last_x;
-	int _last_y;
-	char _buffer[15];
+	UTFT *_lcd;  //!< Pointer to the UTFT class
+	int _offset_x; //!< Offset of coordinate system alon x axis
+	int _offset_y;//!< Offset of coordinate system along y axis
+	int _last_x;  //!< Last x coordinate. It is needed in MoveTo and LineTo functions
+	int _last_y;  //!< Last x coordinate. It is needed in MoveTo and LineTo functions
+	char _buffer[15]; //!< Internal buffer for numbers convertion into string
 public:
+	///Constructor for global context, that created only once in WindowsManager
 	DC(UTFT *lcd)
 	{
 		_lcd=lcd;
 		Reset();
 	}
+	///Constructor that used locally. This constructor assumes that UTFT library is initialized already
 	DC()
 	{
 		extern UTFT *globalLcd;
 		_lcd=globalLcd;
 		Reset();
 	}
+	///Returns screen width
 	int DeviceWidth()
 	{
 		return _lcd->getDisplayXSize()-1;
 	}
+	///Returns screen height
 	int DeviceHeight()
 	{
 		return _lcd->getDisplayYSize()-1;
 	}
+	///Resets device context into initial condition
 	void Reset()
 	{
 		_offset_x = 0;
@@ -56,23 +63,32 @@ public:
 		_last_x = 0;
 		_last_y = 0;
 	}
+	///Initializes drawing coordinate system offset
+	/**
+	\param offset_x offset in x direction
+	\param offset_y offset in y direction
+	*/
 	void Offset(int offset_x,int offset_y)
 	{
 		_offset_x+=offset_x;
 		_offset_y+=offset_y;
 	}
+	///Converts x coordinate from window into screen coordinate system
 	int ToDC_X(int x)
 	{
 		return x+_offset_x;
 	}
+	///Converts y coordinate from window into screen coordinate system
 	int ToDC_Y(int y)
 	{
 		return y+_offset_y;
 	}
+	///Draws rectangle. Input coordinates have to be defined in the window coordinate system
 	void Rectangle(int left,int top,int right,int bottom)
 	{
 		_lcd->drawRect(ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
 	}
+	///Draws rectangle with 3D border. Input coordinates have to be defined in the window coordinate system
 	void Rectangle3D(int left,int top,int right,int bottom,Color color1,Color color2)
 	{
 		SetColor(color2);
@@ -83,28 +99,38 @@ public:
 		LineTo(left,top);
 		LineTo(left,bottom);
 	}
+	///Fills rectangle. Input coordinates have to be defined in the window coordinate system
 	void FillRect(int left,int top,int right,int bottom)
 	{
 		_lcd->fillRect (ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
 	}
+	///Fills rounded rectangle. Input coordinates have to be defined in the window coordinate system
 	void FillRoundRect(int left,int top,int right,int bottom)
 	{
 		_lcd->fillRoundRect (ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
 	}
+	///Draws rounded rectangle. Input coordinates have to be defined in the window coordinate system
 	void DrawRoundRect(int left,int top,int right,int bottom)
 	{
 		_lcd->drawRoundRect (ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
 	}
+	///Draws integer number. Input coordinates have to be defined in the window coordinate system
 	void DrawNumber(int number,int x,int y)
 	{
 		sprintf(_buffer,"%d",number);
 		DrawText(_buffer,x,y);
 	}
+	///Draws float number. Input coordinates have to be defined in the window coordinate system
+	/**
+	\param number float input value
+	\param dec number decimal places
+	*/
 	void DrawNumber(float number,int dec,int x,int y)
 	{
 		dtostrf(number,0,dec,_buffer);
 		DrawText(_buffer,x,y);
 	}
+	///Draws PROGMEM string. Input coordinates have to be defined in the window coordinate system
 	void DrawText(const __FlashStringHelper * text,int x,int y)
 	{
 		x=ToDC_X(x);
@@ -133,18 +159,22 @@ public:
 		}
 
 	}
+	///Returns symbol width for the current font 
 	int FontWidth()
 	{
 		return _lcd->cfont.x_size;
 	}
+	///Returns symbol jeight for the current font 
 	int FontHeight()
 	{
 		return _lcd->cfont.y_size;
 	}
+	///Draws symbol. Input coordinates have to be defined in the screen system
 	void DrawSymbol(const char c,int dc_x,int dc_y)
 	{
 		_lcd->printChar(c, dc_x, dc_y);
 	}
+	///Draws string. Input coordinates have to be defined in the window coordinate system
 	void DrawText(const char * text,int x,int y)
 	{
 		x=ToDC_X(x);
@@ -159,6 +189,7 @@ public:
 			DrawSymbol(c, x + (i*(_lcd->cfont.x_size)), y);
 		}
 	}
+	///Draws sector. Input coordinates have to be defined in the window coordinate system
 	void Sector(int x0, int y0, int radius,float angle_rad) 
 	{
 		x0=ToDC_X(x0);

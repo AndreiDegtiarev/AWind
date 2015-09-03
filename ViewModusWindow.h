@@ -25,11 +25,13 @@
 
 class ViewModusWindow : public MainWindow,ITouchEventReceiver
 {
+public:
 	enum Modus
 	{
 		Day,
 		Night
 	};
+private:
 	DecoratorList _dayLightDecorator;
 	DecoratorList _dayLightSensorWndDecorator;
 	DecoratorList _nightDecorator;
@@ -55,8 +57,8 @@ public:
 		//SetBackColor(Color::Black);
 		_text=new TextBoxFString(width-100,height-45,95,35,F("Night"));
 		_text->SetFont(BigFont);
-		_modus=Day;
 		_text->SetMargins(12,10);
+		_modus=Day;
 		AddChild(_text);
 		this->RegisterTouchEventReceiver(this);
 	}
@@ -79,6 +81,11 @@ public:
 	DecoratorList &NormalSensorWndDecorators()
 	{
 		return _modus==Day?_dayLightSensorWndDecorator:_nightDecorator;
+	}
+	void SetModus(Modus modus)
+	{
+		if(modus!=_modus)
+			NotifyTouch(NULL);
 	}
 	void NotifyTouch(Window *wnd)
 	{

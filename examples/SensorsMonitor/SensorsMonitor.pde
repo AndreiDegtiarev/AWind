@@ -28,6 +28,8 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BMP085_U.h>
 #include <DHT.h>
+#include "DS1307.h"
+DS1307 clock;
 #endif
 
 #include <UTFT.h>
@@ -62,6 +64,11 @@ MeasurementNode measurementNode(sensors);
 //manager which is responsible for window updating process
 WindowsManager<ViewModusWindow> windowsManager(&myGLCD,&myTouch);
 
+TextBoxString *TxtClock;
+char clock_buf[6];
+int last_minutes=0;
+
+
 void setup()
 {
 	//setup log (out is wrap about Serial class)
@@ -81,13 +88,18 @@ void setup()
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
 
+#ifndef DEMO_SENSORS
+	//Initialize clock
+	clock.begin();
+#endif
+
 	//initialize window manager
 	windowsManager.Initialize();
 
 	//sensors
-	DHTTemperatureSensor *inTempr=new DHTTemperatureSensor(temperature_port+2);
+	DHTTemperatureSensor *inTempr=new DHTTemperatureSensor(temperature_port+2,DHTTemperatureSensor::DHT22);
 	DHTHumiditySensor *inHumidity=new DHTHumiditySensor(inTempr);
-	DHTTemperatureSensor *alkovenTempr=new DHTTemperatureSensor(temperature_port-2);
+	DHTTemperatureSensor *alkovenTempr=new DHTTemperatureSensor(temperature_port-2,DHTTemperatureSensor::DHT11);
 	DHTHumiditySensor *alkovenHumidity=new DHTHumiditySensor(alkovenTempr);
 	BMP085Sensor *pressure=new BMP085Sensor();
 	DS18B20Sensor *fridgeTempr=new DS18B20Sensor(temperature_port,1);
@@ -114,6 +126,12 @@ void setup()
 	modusWindow->AddChild(new SensorWindow(F("Fridge"),sensors[5],third_column,second_row,SensorWindow::Small));
 	modusWindow->AddChild(new SensorWindow(F("Alk Temp"),sensors[2],second_column,third_row,SensorWindow::Small));
 	modusWindow->AddChild(new SensorWindow(F("Alk Humid"),sensors[3],third_column,third_row,SensorWindow::Small));
+	//Create clock window
+	TxtClock=new TextBoxString(115,modusWindow->Height()-45,90,35,"");
+	TxtClock->SetFont(BigFont);
+	TxtClock->SetDecorators(modusWindow->NormalSensorWndDecorators());
+	TxtClock->SetMargins(5,10);
+	modusWindow->AddChild(TxtClock);
 	modusWindow->Initialize();
 	//in order to avoid pause in the touch interactions, windows manager is defined as critical process
 	measurementNode.SetCriticalProcess(&windowsManager);
@@ -137,6 +155,28 @@ void loop()
 			measurementNode.LogResults();
 		}
 
+	}
+	//Process clock
+	int howrs=17;
+	int mins=30;
+#ifndef DEMO_SENSORS
+	clock.getTime();
+	howrs=clock.hour;
+	mins=clock.minute;
+#endif
+	if(last_minutes!=mins)
+	{
+		if(mins<10)
+			sprintf(clock_buf,"%d:0%d",howrs,mins);
+		else
+			sprintf(clock_buf,"%d:%d",howrs,mins);
+		last_minutes=mins;
+		TxtClock->SetText(clock_buf);
+		//Switch visualisation modus (day/night) dependtly from actual time
+		if(howrs<=9&&howrs>=22)
+			windowsManager.MainWnd()->SetModus(ViewModusWindow::Night);
+		else
+			windowsManager.MainWnd()->SetModus(ViewModusWindow::Day);
 	}
 	//give window manager an opportunity to update display
 	windowsManager.loop();

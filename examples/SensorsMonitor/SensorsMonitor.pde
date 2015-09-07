@@ -173,7 +173,7 @@ void loop()
 		last_minutes=mins;
 		TxtClock->SetText(clock_buf);
 		//Switch visualisation modus (day/night) dependtly from actual time
-		if(howrs<=9&&howrs>=22)
+		if(howrs<=9||howrs>=22)
 			windowsManager.MainWnd()->SetModus(ViewModusWindow::Night);
 		else
 			windowsManager.MainWnd()->SetModus(ViewModusWindow::Day);

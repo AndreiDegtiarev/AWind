@@ -24,6 +24,9 @@ Restart the IDE
 
 How to connect TFT-display see the UTFT documentation.
 
+Documentation
+------------
+API documentation: http://andreidegtiarev.github.io/AWind/
 
 Examples
 --------

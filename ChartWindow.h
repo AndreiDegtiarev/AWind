@@ -1,6 +1,6 @@
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
   
 
   You can always find the latest version of the library at 
@@ -26,7 +26,7 @@
 #include "ChartDC.h"
 #include "DecoratorPrimitives.h"
 
-///Chart window
+///Chart window implement XY plots
 class ChartWindow : public Window
 {
 	IDataBuffer *_buffer;               //!< Container for chart data
@@ -36,10 +36,9 @@ class ChartWindow : public Window
 	DecoratorAxis *_yAxis;          //!< Decorator for Y axis. If it is not NULL y values range is received from thid decorator otherweise values range is obtained from data buffer
 public:
 	///Constructor
-	///Constructor
 	/**
 	\param xAxis not implemented yet
-	\param yAxis decorator for Y axis. If it is not NULL y values range is received from thid decorator otherweise values range is obtained from data buffer
+	\param yAxis decorator for Y axis. If it is not NULL y values range is received from third decorator otherweise values range is obtained from data buffer
 	\param left left coordinate relative to parent indow
 	\param top top coordinate relative to parent indow
 	\param width window width
@@ -71,7 +70,7 @@ public:
 			OnDraw(&dc);
 		}
 	}
-	///Implement drawing code. Please note axises are plotted as decorators
+	///Implements drawing code. Please note axises are plotted as decorators
 	void OnDraw(DC *dc)
 	{ 
 		if(_buffer!=NULL && _buffer->StartIndex()<_buffer->Size()-1)

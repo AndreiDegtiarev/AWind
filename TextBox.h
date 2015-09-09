@@ -1,6 +1,6 @@
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
   
 
   You can always find the latest version of the library at 
@@ -23,6 +23,7 @@
 #include "IContentChangedEventReceiver.h"
 extern uint8_t SmallFont[];
 
+///Base class for window with text content
 class TextBox : public Window
 {
 	uint8_t *_font;
@@ -31,6 +32,13 @@ protected:
 	int _offset_y;
 	IContentChangedEventReceiver *_changedEvent;
 public:
+	///Constructor
+	/**
+	\param left left coordinate relative to parent indow
+	\param top top coordinate relative to parent indow
+	\param width window width
+	\param height window height
+	*/
 	TextBox(int left,int top,int width,int height):Window(F("text"),left,top,width,height)
 	{
 		_font = SmallFont;
@@ -38,19 +46,23 @@ public:
 		_offset_y=0;
 		_changedEvent=NULL;
 	}
+	///Application need to call this function if it wants receive notification about this window content changing
 	void RegisterContentChangedReceiver(IContentChangedEventReceiver *event)
 	{
 		_changedEvent=event;
 	}
+	///Defines offset from left and top for text
 	void SetMargins(int offset_x,int offset_y)
 	{
 		_offset_x=offset_x;
 		_offset_y=offset_y;
 	}
+	///Sets font
 	void SetFont(uint8_t *font)
 	{
 		_font = font;
 	}
+	///Implements drawing code
 	void OnDraw(DC *dc)
 	{
 		dc->SetFont(_font);

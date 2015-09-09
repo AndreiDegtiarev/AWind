@@ -1,7 +1,7 @@
 #pragma once
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
   
 
   You can always find the latest version of the library at 
@@ -34,6 +34,7 @@ public:
 	Window *DlgWindow;
 };
 class TextBoxNumber;
+///Base class for main application window. Each  application has to have one main window, which is root parent for all other application windows
 class MainWindow : public Window, IDialogClosedEventReceiver
 {
 	Window *_modalWindow;
@@ -42,12 +43,18 @@ class MainWindow : public Window, IDialogClosedEventReceiver
 	LinkedList<DialogEntry> _dialogs;
 	DialogResults _lastDialogResults;
 public:
+	///Constructor
+	/**
+	\param width screen width
+	\param height screen height
+	*/
 	MainWindow(int width,int height):Window(F("Main"),0,0,width,height),_keyboardWindow(3,90)
 	{
 		_keyboardWindow.RegisterEndDialogEventReceiver(this);
 		_modalWindow=NULL;
 		RegisterDialog(F("Keyboard"),&_keyboardWindow);
 	}
+	///Registers dialog window. All application dialogs have to be registered
 	void RegisterDialog(const __FlashStringHelper *id,Window * widnow)
 	{
 		DialogEntry *dlgEntry=new DialogEntry();
@@ -57,6 +64,7 @@ public:
 		widnow->SetVisible(false);
 		AddChild(widnow);
 	}
+	///Finds registered dialog by the name
 	Window *FindDialog(const __FlashStringHelper *id)
 	{
 		for(int i=0;i<_dialogs.Count();i++)
@@ -68,6 +76,7 @@ public:
 		}
 		return NULL;
 	}
+	///Starts dialog
 	DialogResults DoDialog(Window *dlg)
 	{
 		//out<<"IDialogProcessor::DialogResults"<<endl;
@@ -87,6 +96,7 @@ public:
 	{
 		_idleProcess=process;
 	}
+	///Process dialog closed notification
 	void NotifyDialogClosed(Window *window,DialogResults results)
 	{
 		//out<<"NotifyDialogClosed"<<endl;
@@ -96,18 +106,22 @@ public:
 			_lastDialogResults=results;
 		}
 	}
+	///Returns pointer to active modal (window that received all user input, like dialog window) window
 	Window *ModalWnd()
 	{
 		return _modalWindow;
 	}
+	///Sets active modal (window that received all user input, like dialog window) window
 	void SetModalWindow(Window * modalWindow)
 	{
 		_modalWindow=modalWindow;
 	}
+	///Changes position and size
 	void Move(int left,int top,int width,int height)
 	{
 		Window::Move(left,top,width,height);
 	}
+	///Returns pointer to keyboard window
 	KeyboardWindow * Keyboard()
 	{
 		return &_keyboardWindow;

@@ -1,4 +1,25 @@
 #pragma once
+/*
+  AWind.h - Arduino window library support for Color TFT LCD Boards
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
+  
+
+  You can always find the latest version of the library at 
+  https://github.com/AndreiDegtiarev/AWind
+
+
+  This library is free software; you can redistribute it and/or
+  modify it under the terms of the CC BY-NC-SA 3.0 license.
+  Please see the included documents for further information.
+
+  Commercial use of this library requires you to buy a license that
+  will allow commercial use. This includes using the library,
+  modified or not, as a tool to sell products.
+
+  The license applies to all part of the library including the 
+  examples and tools supplied with the library.
+*/
+///Device context for chart window. Implement transformation of logic coordinates into window coordinates 
 class ChartDC
 {
 	float _last_y;
@@ -13,7 +34,7 @@ class ChartDC
 public:
 	static const float AutoMin=1e-8;
 	static const float AutoMax=1e8;
-
+	///Constructor
 	ChartDC()
 	{
 		_scale_x=1;
@@ -71,14 +92,17 @@ public:
 	{
 		return _max_y;
 	}
+	///Converts logic x into window x
 	float LCtoDC_x(float x)
 	{
 		return _dc_start_x+(x-_offset_x)*_scale_x;
 	}
+	///Converts logic y into window y
 	float LCtoDC_y(float y)
 	{
 		return _dc_start_y-(y-_offset_y)*_scale_y;
 	}
+	///Moves actual position in logic coordinates
 	void MoveTo(DC *dc,float x,float y)
 	{
 		_last_y=y;
@@ -86,6 +110,7 @@ public:
 		//Log::Number("Move to x: ",x);
 		//Log::Number(" y: ",y,true);
 	}
+	///Draws line from actual position to the new position
 	void LineTo(DC *dc,float x,float y)
 	{
 		if(y<_min_y || y> _max_y || _last_y<_min_y || _last_y> _max_y)

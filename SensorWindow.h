@@ -1,6 +1,6 @@
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
   
 
   You can always find the latest version of the library at 
@@ -32,7 +32,7 @@ extern uint8_t ArialNumFontPlus[];
 extern uint8_t BigFont[];
 extern uint8_t SmallFont[];
 
-
+///Window that visualizes data from sensor in from from text or chart with different time scala (See example Sensors monitor)
 class SensorWindow : public Window, ISensorHasDataEventReceiver
 {
 public:
@@ -64,6 +64,14 @@ protected:
 	VisMode _mode;
 
 public:
+	///Constructor
+	/**
+	\param name window title
+	\param sensorManager provide interface to sensor object
+	\param left left coordinate relative to parent indow
+	\param top top coordinate relative to parent indow
+	\param size window size (big or small)
+	*/	
 	SensorWindow(const __FlashStringHelper * name,SensorManager *sensorManager,int left,int top,WindowSize size=Big):Window(name,left,top,size == Big?BigWindowWidth:SmallWindowWidth,size == Big?BigWindowHeight:SmallWindowHeight)
 	{
 		_sensorManager = sensorManager;
@@ -94,6 +102,7 @@ public:
 	{
 		return true;
 	}
+	///Sets appearance settings
 	void SetDecorators(DecoratorList &decorators)
 	{
 		Window::SetDecorators(((ViewModusWindow *)Parent())->NormalSensorWndDecorators());
@@ -102,7 +111,7 @@ public:
 		_textChartAxis->SetDecorators(decorators);
 		_chartWnd->SetDecorators(((ViewModusWindow *)Parent())->ChartDecorators());
 	}
-
+	///Process touch event
 	virtual bool OnTouch(int x, int y)
 	{
 		if(_mode == ChartHowr)
@@ -139,6 +148,7 @@ public:
 		Invalidate();
 		return true;
 	}
+	///If sensor data was changed this notification is call
 	void NotifySensorHasData(SensorManager *sensorManager)
 	{
 		_textValue->SetStatus(_sensorManager->Status()!=Error);

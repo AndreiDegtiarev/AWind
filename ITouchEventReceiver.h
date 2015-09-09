@@ -1,7 +1,7 @@
 #pragma once
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
   
 
   You can always find the latest version of the library at 
@@ -20,8 +20,14 @@
   examples and tools supplied with the library.
 */
 class Window;
+///Interface that provides screen touch notifications. 
+///If you want receive this notification in the target or parent window you need derive you window class from interface class and implement NotifyTouch member function
 class ITouchEventReceiver
 {
 public:
+	///Has to be implemented in target class
+    /**
+	\param window pointer to window (like TextBox) wich content was changed 
+    */
 	virtual void NotifyTouch(Window *window)=0;
 };

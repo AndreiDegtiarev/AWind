@@ -1,6 +1,6 @@
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
   
 
   You can always find the latest version of the library at 
@@ -24,7 +24,7 @@
 #include "Log.h"
 #include "IDataBuffer.h"
 
-
+///Buffer for sensor data. It is used by chart control.
 class TimeSerieBuffer : public IDataBuffer
 {
 	int _reserved_size;
@@ -33,16 +33,30 @@ class TimeSerieBuffer : public IDataBuffer
 	float _time_step;
 	float _factor_y;
 public:
+	///Constructor
+	/**
+	\param time_step time interval between samples in buffer 
+	\param factor_y scale factor for measurements. Data can be stored as volts measured directly on board pins and this factor transform them into phisical units
+	\param reserved_size expected buffer size. This value allows buffer allocation only once. This is highly recomended because memory allocation is expencive operation. Mutiple allocation leads also to memory fragmentation.
+	\param size actual buffer size
+	*/
 	TimeSerieBuffer(float time_step,float factor_y,int reserved_size,int size)
 	{
 		initialize(time_step,factor_y,reserved_size,size);
 	}
+	///Constructor
+	/**
+	\param time_step time interval between samples in buffer 
+	\param factor_y scale factor for measurements. Data can be stored as volts measured directly on board pins and this factor transform them into phisical units
+	\param size actual buffer size. reserved_size=size
+	*/
 	TimeSerieBuffer(float time_step,float factor_y,int size)
 	{
 		initialize(time_step,factor_y,size,size);
 
 	}
 protected:
+	///Initialize internal buffer
 	void initialize(float time_step,float factor_y,int reserved_size,int size)
 	{
 		_factor_y=factor_y;
@@ -54,25 +68,33 @@ protected:
 			_data_y[i]=0;
 	}
 public:
+	///Sets actual buffer size. It has to be less or equal to reserved_size  
 	bool SetSize(int size)
 	{
 		if(size<=_reserved_size)
 			_size=size;
 		else
 		{
-			Serial.println("Error: buffer size is too big");
+			out<<F("Error: buffer size is too big")<<endl;
 			return false;
 		}
 		return true;
 	}
+	///Sets time interval between samples in buffer 
 	float SetTimeStep(float time_step)
 	{
 		_time_step=time_step;
 	}
+	///Sets scale factor for mesaurements
 	float SetFactorY(float factor_y)
 	{
 		_factor_y=factor_y;
 	}
+	///Puts value into buffer
+	/**
+	\param index index in buffer. It has to be less than size
+	\param value value to save in the buffer
+	*/
 	void Set(unsigned int index,float value)
 	{
 		if(index>=Size())
@@ -82,10 +104,12 @@ public:
 		}
 		_data_y[index]=(value*_factor_y);
 	}
+	///Returns point to vaues array. It is used for direct access to internal buffer
 	int *Y()
 	{
 		return _data_y;
 	}
+	///Returns min and max value for buffer data
 	void MinMax(float &min_x,float &max_x,float &min_y,float &max_y)
 	{
  		min_x=0;
@@ -100,6 +124,7 @@ public:
 		min_y/=_factor_y;
 		max_y/=_factor_y;
 	}
+	///Returns X that is calculated from index in buffer (see time_step parameter)
 	float X(unsigned int index)
 	{
 		if(index>=Size())
@@ -109,6 +134,7 @@ public:
 		}
 		return _time_step*index;
 	}
+	///Returns  scaled value Y from buffer for specified index
 	float Y(unsigned int index)
 	{
 		if(index>=Size())
@@ -118,10 +144,12 @@ public:
 		}
 		return _data_y[index]/_factor_y;
 	}
+	///Returns start index in buffer. For this class is always 0
 	unsigned int StartIndex()
 	{
 		return 0;
 	}
+	///Returns buffer size
 	unsigned int Size()
 	{
 		return _size;

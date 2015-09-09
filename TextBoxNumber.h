@@ -1,6 +1,6 @@
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
   
 
   You can always find the latest version of the library at 
@@ -20,7 +20,7 @@
 */
 #pragma once
 #include "TextBox.h"
-
+///Text box for numbers
 class TextBoxNumber : public TextBox
 {
 	float _number;
@@ -28,6 +28,14 @@ class TextBoxNumber : public TextBox
 	int _precission;
 	bool _isReadOnly;
 public:
+	///Constructor
+	/**
+	\param left left coordinate relative to parent indow
+	\param top top coordinate relative to parent indow
+	\param width window width
+	\param height window height
+	\param precission number of digits after decimal point
+	*/
 	TextBoxNumber(int left,int top,int width,int height,int precission):TextBox(left,top,width,height)
 	{
 		_precission=precission;
@@ -35,6 +43,7 @@ public:
 		_number=0;
 		_isReadOnly=true;
 	}
+	///Returns actual number of digits after decimal point
 	int Precission()
 	{
 		return _precission;
@@ -44,6 +53,7 @@ public:
 		return !_isReadOnly||TextBox::IsAwaitTouch();
 	}
 	bool OnTouch(int x,int y);
+	///Defines whether window is readonly
 	void SetIsReadOnly(bool isReadOnly)
 	{
 		_isReadOnly=isReadOnly;
@@ -52,6 +62,7 @@ public:
 	{
 		return _isReadOnly;
 	}
+	///Initialize window with number
 	void SetNumber(float number)
 	{
 		if(_number!=number)
@@ -70,6 +81,7 @@ public:
 	{
 		_isOK = isOK;
 	}
+	///Implements drawing code
 	virtual void OnDraw(DC *dc)
 	{
 		TextBox::OnDraw(dc);

@@ -1,4 +1,24 @@
 #pragma once
+/*
+  AWind.h - Arduino window library support for Color TFT LCD Boards
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
+  
+
+  You can always find the latest version of the library at 
+  https://github.com/AndreiDegtiarev/AWind
+
+
+  This library is free software; you can redistribute it and/or
+  modify it under the terms of the CC BY-NC-SA 3.0 license.
+  Please see the included documents for further information.
+
+  Commercial use of this library requires you to buy a license that
+  will allow commercial use. This includes using the library,
+  modified or not, as a tool to sell products.
+
+  The license applies to all part of the library including the 
+  examples and tools supplied with the library.
+*/
 #include "TextBoxNumber.h"
 #include "TextBoxString.h"
 #include "IDialogClosedEventReceiver.h"
@@ -7,7 +27,7 @@
 
 extern uint8_t BigFont[];
 extern uint8_t SmallFont[];
-
+///Implements Keyboard window, that helps to enter text/number information into text fields
 class KeyboardWindow :  public Window,ITouchEventReceiver
 {
 	//TextBoxNumber *_targetTextBox;
@@ -25,6 +45,12 @@ class KeyboardWindow :  public Window,ITouchEventReceiver
 	const static int _textOffset=9;
 	IDialogClosedEventReceiver *_dialogClosedEventReceiver;
 public:
+	///Constructor
+	/**
+	\param left left coordinate relative to screen
+	\param top top coordinate relative to screen
+	*/
+
 	KeyboardWindow(int left,int top):Window(F("Keyboard"),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
 	{
 		AddDecorator(new DecoratorRectFill(Color::LightGray));
@@ -70,6 +96,7 @@ protected:
 		AddChild(text);
 	}
 public:
+	///Initializes edit field with float value of desired precission
 	void Initialize(float value,int precision)
 	{
 		_editPosition=0;
@@ -78,14 +105,17 @@ public:
 		_editField->Invalidate();
 		_editPosition=strlen(_editBuffer);
 	}
+	///Registers extern interface that will be called if keyboard window is closed
 	void RegisterEndDialogEventReceiver(IDialogClosedEventReceiver *receiver)
 	{
 		_dialogClosedEventReceiver=receiver;
 	}
+	///Returns number from edit window
 	float GetNumber()
 	{
 		return atof(_editBuffer);
 	}
+	///Process touch notifications
 	void NotifyTouch(Window *window)
 	{
 		//out<<F("Keybord notify")<<endl;

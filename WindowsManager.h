@@ -1,6 +1,6 @@
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
   
 
   You can always find the latest version of the library at 
@@ -26,22 +26,30 @@
 #include "ICriticalProcess.h"
 
 UTFT *globalLcd;
+///Main window manager. Implement core funcctionality of AWind library. It is tempate class that has to be parametrized with main window class
 template <class T=MainWindow> class WindowsManager :  public ICriticalProcess, public ILoopProcess
 {
 	DC _dc;
 	T *_mainWindow;
 	UTouch  *_touch;
 public:
+	///Constructor
+	/**
+	\param lcd pointer to UTFT object (see UTFT library)
+	\param touch pointer to UTouch object (see UTouch library)
+	*/	
 	WindowsManager(UTFT *lcd,UTouch *touch=NULL):_dc(lcd),_touch(touch)
 	{
 		globalLcd=lcd;
 	}
+	///Initialization procedure. Has to be call once
 	void Initialize()
 	{
 		_mainWindow=new T(_dc.DeviceWidth(),_dc.DeviceHeight());
 		_mainWindow->Invalidate();
 		_mainWindow->SetLoopProcess(this);
 	}
+	///Returns topmost window that lais under x,y screen coordinate
 	Window *HitTest(int x,int y)
 	{
 		if(MainWnd()->ModalWnd()!=NULL)
@@ -49,6 +57,7 @@ public:
 		else
 			return HitTest(MainWnd(),x,y);
 	}
+	///For defined window return topmost child window that lais under x,y screen coordinate
 	Window *HitTest(Window *window,int x,int y)
 	{
 		if(window->IsVisible()
@@ -65,6 +74,7 @@ public:
 		}
 		return NULL;
 	}
+	///Main loop where drawing code only for "dirty" window is called
 	void loop()
 	{
 		if(MainWnd()->ModalWnd() == NULL)
@@ -76,16 +86,19 @@ public:
 	{
 		return _mainWindow;
 	}
+	///Returns device context (interface class to UTFT library)
 	DC *GetDC()
 	{
 		return &_dc;
 	}
+	///If nothing happens, the touch event is checked
 	void Idle()
 	{
 		if(_touch!=NULL)
 			loopTouch();
 	}
 protected:
+	///Internal draw code
 	void redraw(Window *window,bool isForceRedraw)
 	{
 		Idle();
@@ -102,6 +115,7 @@ protected:
 		}
 
 	}
+	///Checks touch event
 	void loopTouch()
 	{
 		//out<<F("Check touch")<<endl;

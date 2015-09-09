@@ -1,7 +1,7 @@
 #pragma once
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
   
 
   You can always find the latest version of the library at 
@@ -20,13 +20,20 @@
   examples and tools supplied with the library.
 */
 class Window;
+///Interface that provides dialog closed notifications (user closes dialog window, by pressing OK or cancel button). 
+///If you want receive notification this notification you need derive you dialog class from interface class and implement NotifyDialogClosed member function
 class IDialogClosedEventReceiver
 {
 public:
-enum DialogResults
-{
-	OK,
-	Cancel
-};
+	enum DialogResults
+	{
+		OK,
+		Cancel
+	};
+	///Has to be implemented in target class
+    /**
+	\param window pointer to dialog
+	\param results defines how dialog was closed with OK or Cancel
+    */
 	virtual void NotifyDialogClosed(Window *window,DialogResults results)=0;
 };

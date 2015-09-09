@@ -1,6 +1,6 @@
 /*
   AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
+  Copyright (C)2015 Andrei Degtiarev. All right reserved
   
 
   You can always find the latest version of the library at 
@@ -23,6 +23,8 @@
 #include "TextBoxString.h"
 #include "DecoratorPrimitives.h"
 
+///Main window that controls child window appearance (day/night/alarm) for windows like sensor window. See sensors monitor example.
+///To save board memory this class shares decoration code for child windows
 class ViewModusWindow : public MainWindow,ITouchEventReceiver
 {
 public:
@@ -40,6 +42,11 @@ private:
 	TextBoxFString *_text;
 	Modus _modus;
 public:
+	///Constructor
+	/**
+	\param width screen width
+	\param height screen height
+	*/	
 	ViewModusWindow(int width,int height):MainWindow(width,height)
 	{
 		AddDecorator(new DecoratorRectFill(Color::Black));
@@ -87,6 +94,7 @@ public:
 		if(modus!=_modus)
 			NotifyTouch(NULL);
 	}
+	///Switcher for day and night modus
 	void NotifyTouch(Window *wnd)
 	{
 		if(_modus==Day)

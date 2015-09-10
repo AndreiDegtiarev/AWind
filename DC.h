@@ -21,8 +21,7 @@
 */
 #include "Color.h"
 #include "UTFT.h"
-///Device context. Abstraction layer to the device specific drawing code.
-///Coordinates in drawing function are in window coordinate system that internaly translated into screen coordinate system
+///Device context. Abstraction layer to the device specific drawing code. Coordinates in drawing function are in window coordinate system that internaly translated into screen coordinate system
 class DC
 {
 	UTFT *_lcd;  //!< Pointer to the UTFT class

@@ -20,8 +20,7 @@
   examples and tools supplied with the library.
 */
 class Window;
-///Interface that provides screen touch notifications. 
-///If you want receive this notification in the target or parent window you need derive you window class from interface class and implement NotifyTouch member function
+///Interface that provides screen touch notifications. If you want receive this notification in the target or parent window you need derive you window class from interface class and implement NotifyTouch member function
 class ITouchEventReceiver
 {
 public:

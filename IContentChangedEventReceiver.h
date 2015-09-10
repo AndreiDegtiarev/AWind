@@ -20,8 +20,7 @@
   examples and tools supplied with the library.
 */
 class Window;
-///Interface that provides content change notifications (like text is changed in text box) from child window to parent window. 
-///If you want receive notification in the parent window you need derive you window class from interface class and implement NotifyContentChanged member function
+///Interface that provides content change notifications (like text is changed in text box) from child window to parent window. If you want receive notification in the parent window you need derive you window class from interface class and implement NotifyContentChanged member function
 class IContentChangedEventReceiver
 {
 public:

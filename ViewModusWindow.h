@@ -23,8 +23,7 @@
 #include "TextBoxString.h"
 #include "DecoratorPrimitives.h"
 
-///Main window that controls child window appearance (day/night/alarm) for windows like sensor window. See sensors monitor example.
-///To save board memory this class shares decoration code for child windows
+///Main window that controls child window appearance (day/night/alarm) for windows like sensor window. See sensors monitor example. To save board memory this class shares decoration code for child windows
 class ViewModusWindow : public MainWindow,ITouchEventReceiver
 {
 public:

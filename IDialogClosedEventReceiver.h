@@ -20,8 +20,7 @@
   examples and tools supplied with the library.
 */
 class Window;
-///Interface that provides dialog closed notifications (user closes dialog window, by pressing OK or cancel button). 
-///If you want receive notification this notification you need derive you dialog class from interface class and implement NotifyDialogClosed member function
+///Interface that provides dialog closed notifications (user closes dialog window, by pressing OK or cancel button). If you want receive notification this notification you need derive you dialog class from interface class and implement NotifyDialogClosed member function
 class IDialogClosedEventReceiver
 {
 public:

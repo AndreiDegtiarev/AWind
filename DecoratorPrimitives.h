@@ -20,8 +20,7 @@
   examples and tools supplied with the library.
 */
 #include "AHelper.h"
-///Decorator primitive that sets current color
-///Overriden members description see Decorator class documentation
+///Decorator primitive that sets current color. Overriden members description see Decorator class documentation
 class DecoratorColor : public Decorator
 {
 	Color _color;
@@ -39,8 +38,7 @@ public:
 		dc->SetColor(_color);
 	}
 };
-///Decorator primitive for raund rect filled area
-///Overriden members description see Decorator class documentation
+///Decorator primitive for raund rect filled area. Overriden members description see Decorator class documentation
 class DecoratorRectFill : public Decorator
 {
 	Color _color;
@@ -59,8 +57,7 @@ public:
 			dc->FillRect (left, top, left+width, top+height);
 	}
 };
-///Decorator primitive for raund rectangle
-///Overriden members description see Decorator class documentation
+///Decorator primitive for raund rectangle. Overriden members description see Decorator class documentation
 class DecoratorRaundRect : public Decorator
 {
 	Color _color;
@@ -75,8 +72,7 @@ public:
 		dc->DrawRoundRect (left, top, width+left, height+top);
 	}
 };
-///Decorator primitive for 3D rectangle
-///Overriden members description see Decorator class documentation
+///Decorator primitive for 3D rectangle. Overriden members description see Decorator class documentation
 class Decorator3DRect : public Decorator
 {
 	Color _color1;
@@ -91,8 +87,7 @@ public:
 		dc->Rectangle3D(left, top, left+width, top+height,_color1,_color2);
 	}
 };
-///Axis decorator primitive. It is shared between gauge and chart objects
-///Overriden members description see Decorator class documentation
+///Axis decorator primitive. It is shared between gauge and chart objects. Overriden members description see Decorator class documentation
 class DecoratorAxis : public Decorator
 {
 public:

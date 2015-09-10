@@ -91,6 +91,11 @@ void setup()
 #ifndef DEMO_SENSORS
 	//Initialize clock
 	clock.begin();
+
+	//uncomment if time need to be initialized
+	//clock.getTime();
+	//clock.fillByHMS(10,30,0);
+	//clock.setTime();
 #endif
 
 	//initialize window manager

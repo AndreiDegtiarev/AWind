@@ -10,8 +10,8 @@ At this moment only TFT with 320x240 resolution on Arduiono Mega is tested, but 
 Installation
 ------------
 AWind library is build on top of Henning Karlsen libraries (many thanks for that libraries. It have saved pretty much of my time): 
-* [UTFT] (http://www.henningkarlsen.com/electronics/library.php?id=51)
-* [UTouch] (http://www.henningkarlsen.com/electronics/library.php?id=55)
+* [UTFT] (http://www.rinkydinkelectronics.com/library.php?id=87)
+* [UTouch] (http://www.rinkydinkelectronics.com/library.php?id=88)
 
 You need uncompressed them into  arduinosketchfolder/libraries/ folder
 

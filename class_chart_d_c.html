@@ -111,9 +111,18 @@ $(document).ready(function(){initNavTree('class_chart_d_c.html','');});
 <div class="title">ChartDC Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Device context for chart window. Implement transformation of logic coordinates into window coordinates.  
+ <a href="class_chart_d_c.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_chart_d_c_8h_source.html">ChartDC.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a49c2fab9bb501d6f6be97626457fe51a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49c2fab9bb501d6f6be97626457fe51a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chart_d_c.html#a49c2fab9bb501d6f6be97626457fe51a">ChartDC</a> ()</td></tr>
+<tr class="memdesc:a49c2fab9bb501d6f6be97626457fe51a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
+<tr class="separator:a49c2fab9bb501d6f6be97626457fe51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2ca33b6683a86bbb54674633f439023"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2ca33b6683a86bbb54674633f439023"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>calcScaling</b> (int length, float &amp;min_val, float &amp;max_val)</td></tr>
 <tr class="separator:ac2ca33b6683a86bbb54674633f439023"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,16 +139,20 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>MinY</b> ()</td></tr
 float&#160;</td><td class="memItemRight" valign="bottom"><b>MaxY</b> ()</td></tr>
 <tr class="separator:ab503261d0b9b9fc3d0f36a2699194c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9926b4f67869120674ab0600f7e31c11"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9926b4f67869120674ab0600f7e31c11"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>LCtoDC_x</b> (float x)</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chart_d_c.html#a9926b4f67869120674ab0600f7e31c11">LCtoDC_x</a> (float x)</td></tr>
+<tr class="memdesc:a9926b4f67869120674ab0600f7e31c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts logic x into window x. <br /></td></tr>
 <tr class="separator:a9926b4f67869120674ab0600f7e31c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dedd9ec36a4c99126353fa40ad9e656"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8dedd9ec36a4c99126353fa40ad9e656"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>LCtoDC_y</b> (float y)</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chart_d_c.html#a8dedd9ec36a4c99126353fa40ad9e656">LCtoDC_y</a> (float y)</td></tr>
+<tr class="memdesc:a8dedd9ec36a4c99126353fa40ad9e656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts logic y into window y. <br /></td></tr>
 <tr class="separator:a8dedd9ec36a4c99126353fa40ad9e656"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25c116514041efcc80f22fabf3680b3e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25c116514041efcc80f22fabf3680b3e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveTo</b> (<a class="el" href="class_d_c.html">DC</a> *dc, float x, float y)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chart_d_c.html#a25c116514041efcc80f22fabf3680b3e">MoveTo</a> (<a class="el" href="class_d_c.html">DC</a> *dc, float x, float y)</td></tr>
+<tr class="memdesc:a25c116514041efcc80f22fabf3680b3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves actual position in logic coordinates. <br /></td></tr>
 <tr class="separator:a25c116514041efcc80f22fabf3680b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8820b1cdf0d062479cb9b1583328bb5f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8820b1cdf0d062479cb9b1583328bb5f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>LineTo</b> (<a class="el" href="class_d_c.html">DC</a> *dc, float x, float y)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chart_d_c.html#a8820b1cdf0d062479cb9b1583328bb5f">LineTo</a> (<a class="el" href="class_d_c.html">DC</a> *dc, float x, float y)</td></tr>
+<tr class="memdesc:a8820b1cdf0d062479cb9b1583328bb5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws line from actual position to the new position. <br /></td></tr>
 <tr class="separator:a8820b1cdf0d062479cb9b1583328bb5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -151,7 +164,9 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>AutoMin
 static const float&#160;</td><td class="memItemRight" valign="bottom"><b>AutoMax</b> =1e8</td></tr>
 <tr class="separator:afb290e368c030635f0b8e253c1f490c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Device context for chart window. Implement transformation of logic coordinates into window coordinates. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="_chart_d_c_8h_source.html">ChartDC.h</a></li>
 </ul>
 </div><!-- contents -->
@@ -160,7 +175,7 @@ static const float&#160;</td><td class="memItemRight" valign="bottom"><b>AutoMax
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_chart_d_c.html">ChartDC</a></li>
-    <li class="footer">Generated on Wed Sep 9 2015 12:48:36 for AWind by
+    <li class="footer">Generated on Thu Sep 10 2015 17:47:59 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

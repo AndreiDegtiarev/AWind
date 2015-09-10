@@ -13,7 +13,7 @@ var indexSectionsWithContent =
   3: "_",
   4: "o",
   5: "hv",
-  6: "cgmostw"
+  6: "cgostw"
 };
 
 var indexSectionNames =

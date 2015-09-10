@@ -105,120 +105,144 @@ $(document).ready(function(){initNavTree('_chart_d_c_8h_source.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno"><a class="line" href="class_chart_d_c.html">    2</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_chart_d_c.html">ChartDC</a></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;{</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    <span class="keywordtype">float</span> _last_y;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keywordtype">float</span> _scale_x;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordtype">float</span> _scale_y;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordtype">float</span> _offset_x;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordtype">float</span> _offset_y;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">float</span> _min_y;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">float</span> _max_y;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">int</span>   _dc_start_x;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">int</span>   _dc_start_y;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> AutoMin=1e-8;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> AutoMax=1e8;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_chart_d_c.html">ChartDC</a>()</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        _scale_x=1;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        _scale_y=1;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        _offset_x=0;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        _offset_y=0;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        _dc_start_x=0;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        _dc_start_y=0;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        _min_y=0;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        _max_y=0;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">float</span> calcScaling(<span class="keywordtype">int</span> length,<span class="keywordtype">float</span> &amp;min_val,<span class="keywordtype">float</span> &amp;max_val)</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">if</span>(min_val == max_val)</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span>(min_val == 0)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                min_val=-1;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                max_val=1;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(min_val&lt;0)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                max_val = 0;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(min_val&gt;0)</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                min_val = 0;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">return</span> length/(max_val-min_val);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> setScalingX(<span class="keywordtype">int</span> dc_offset,<span class="keywordtype">int</span> length,<span class="keywordtype">float</span> min_val,<span class="keywordtype">float</span> max_val)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        _scale_x=calcScaling(length,min_val,max_val);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        _offset_x=min_val;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        _dc_start_x=dc_offset;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="comment">/*Log::Number(&quot;Set scale x scale: &quot;,_scale_x);</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">        Log::Number(&quot; offset: &quot;,_offset_x);</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">        Log::Number(&quot; min: &quot;,min_val);</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">        Log::Number(&quot; max: &quot;,max_val,true);*/</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> setScalingY(<span class="keywordtype">int</span> dc_offset,<span class="keywordtype">int</span> length,<span class="keywordtype">float</span> min_val,<span class="keywordtype">float</span> max_val)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        _scale_y=calcScaling(length,min_val,max_val);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        _offset_y=min_val;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">/*Log::Number(&quot;Set scale y scale: &quot;,_scale_y);</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">        Log::Number(&quot; offset: &quot;,_offset_y);</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">        Log::Number(&quot; min: &quot;,min_val);</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">        Log::Number(&quot; max: &quot;,max_val,true);*/</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        _dc_start_y=dc_offset;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        _min_y=min_val;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        _max_y=max_val;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">float</span> MinY()</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> _min_y;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">float</span> MaxY()</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> _max_y;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">float</span> LCtoDC_x(<span class="keywordtype">float</span> x)</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> _dc_start_x+(x-_offset_x)*_scale_x;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">float</span> LCtoDC_y(<span class="keywordtype">float</span> y)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">return</span> _dc_start_y-(y-_offset_y)*_scale_y;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> MoveTo(<a class="code" href="class_d_c.html">DC</a> *dc,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        _last_y=y;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        dc-&gt;MoveTo(LCtoDC_x(x),LCtoDC_y(y));</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="comment">//Log::Number(&quot;Move to x: &quot;,x);</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment">//Log::Number(&quot; y: &quot;,y,true);</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> LineTo(<a class="code" href="class_d_c.html">DC</a> *dc,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y)</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">if</span>(y&lt;_min_y || y&gt; _max_y || _last_y&lt;_min_y || _last_y&gt; _max_y)</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            dc-&gt;MoveTo(LCtoDC_x(x),LCtoDC_y(y));</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            dc-&gt;LineTo(LCtoDC_x(x),LCtoDC_y(y));</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        _last_y=y;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="comment">//Log::Number(&quot; min_y: &quot;,_min_y);</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="comment">//Log::Number(&quot; max_y: &quot;,_max_y,true);</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="comment">/*Log::Number(&quot;Line: &quot;,_last_x);</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">        Log::Number(&quot; &quot;,_last_y);</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">        Log::Number(&quot; &quot;,new_x);</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">        Log::Number(&quot; &quot;,new_y,&quot;&quot;);</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">        Log::Number(&quot; lc: &quot;,x);</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">        Log::Number(&quot;,&quot;,y,true);*/</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;};</div>
-<div class="ttc" id="class_chart_d_c_html"><div class="ttname"><a href="class_chart_d_c.html">ChartDC</a></div><div class="ttdef"><b>Definition:</b> ChartDC.h:2</div></div>
-<div class="ttc" id="class_d_c_html"><div class="ttname"><a href="class_d_c.html">DC</a></div><div class="ttdef"><b>Definition:</b> DC.h:26</div></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">  AWind.h - Arduino window library support for Color TFT LCD Boards</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">  Copyright (C)2015 Andrei Degtiarev. All right reserved</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">  </span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">  You can always find the latest version of the library at </span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">  https://github.com/AndreiDegtiarev/AWind</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">  This library is free software; you can redistribute it and/or</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">  modify it under the terms of the CC BY-NC-SA 3.0 license.</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">  Please see the included documents for further information.</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">  Commercial use of this library requires you to buy a license that</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">  will allow commercial use. This includes using the library,</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">  modified or not, as a tool to sell products.</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">  The license applies to all part of the library including the </span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">  examples and tools supplied with the library.</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_chart_d_c.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_chart_d_c.html">ChartDC</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">float</span> _last_y;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">float</span> _scale_x;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">float</span> _scale_y;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">float</span> _offset_x;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">float</span> _offset_y;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">float</span> _min_y;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">float</span> _max_y;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">int</span>   _dc_start_x;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">int</span>   _dc_start_y;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> AutoMin=1e-8;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> AutoMax=1e8;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_chart_d_c.html#a49c2fab9bb501d6f6be97626457fe51a">   38</a></span>&#160;    <a class="code" href="class_chart_d_c.html#a49c2fab9bb501d6f6be97626457fe51a">ChartDC</a>()</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        _scale_x=1;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        _scale_y=1;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        _offset_x=0;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        _offset_y=0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        _dc_start_x=0;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        _dc_start_y=0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        _min_y=0;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        _max_y=0;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">float</span> calcScaling(<span class="keywordtype">int</span> length,<span class="keywordtype">float</span> &amp;min_val,<span class="keywordtype">float</span> &amp;max_val)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">if</span>(min_val == max_val)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">if</span>(min_val == 0)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                min_val=-1;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                max_val=1;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(min_val&lt;0)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                max_val = 0;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(min_val&gt;0)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                min_val = 0;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> length/(max_val-min_val);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> setScalingX(<span class="keywordtype">int</span> dc_offset,<span class="keywordtype">int</span> length,<span class="keywordtype">float</span> min_val,<span class="keywordtype">float</span> max_val)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        _scale_x=calcScaling(length,min_val,max_val);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        _offset_x=min_val;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        _dc_start_x=dc_offset;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="comment">/*Log::Number(&quot;Set scale x scale: &quot;,_scale_x);</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">        Log::Number(&quot; offset: &quot;,_offset_x);</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">        Log::Number(&quot; min: &quot;,min_val);</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">        Log::Number(&quot; max: &quot;,max_val,true);*/</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> setScalingY(<span class="keywordtype">int</span> dc_offset,<span class="keywordtype">int</span> length,<span class="keywordtype">float</span> min_val,<span class="keywordtype">float</span> max_val)</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        _scale_y=calcScaling(length,min_val,max_val);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        _offset_y=min_val;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="comment">/*Log::Number(&quot;Set scale y scale: &quot;,_scale_y);</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">        Log::Number(&quot; offset: &quot;,_offset_y);</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">        Log::Number(&quot; min: &quot;,min_val);</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">        Log::Number(&quot; max: &quot;,max_val,true);*/</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        _dc_start_y=dc_offset;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        _min_y=min_val;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        _max_y=max_val;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">float</span> MinY()</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">return</span> _min_y;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">float</span> MaxY()</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">return</span> _max_y;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="class_chart_d_c.html#a9926b4f67869120674ab0600f7e31c11">   96</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_chart_d_c.html#a9926b4f67869120674ab0600f7e31c11">LCtoDC_x</a>(<span class="keywordtype">float</span> x)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">return</span> _dc_start_x+(x-_offset_x)*_scale_x;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="class_chart_d_c.html#a8dedd9ec36a4c99126353fa40ad9e656">  101</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_chart_d_c.html#a8dedd9ec36a4c99126353fa40ad9e656">LCtoDC_y</a>(<span class="keywordtype">float</span> y)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">return</span> _dc_start_y-(y-_offset_y)*_scale_y;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="class_chart_d_c.html#a25c116514041efcc80f22fabf3680b3e">  106</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_chart_d_c.html#a25c116514041efcc80f22fabf3680b3e">MoveTo</a>(<a class="code" href="class_d_c.html">DC</a> *dc,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y)</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        _last_y=y;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        dc-&gt;MoveTo(<a class="code" href="class_chart_d_c.html#a9926b4f67869120674ab0600f7e31c11">LCtoDC_x</a>(x),<a class="code" href="class_chart_d_c.html#a8dedd9ec36a4c99126353fa40ad9e656">LCtoDC_y</a>(y));</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="comment">//Log::Number(&quot;Move to x: &quot;,x);</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="comment">//Log::Number(&quot; y: &quot;,y,true);</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="class_chart_d_c.html#a8820b1cdf0d062479cb9b1583328bb5f">  114</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_chart_d_c.html#a8820b1cdf0d062479cb9b1583328bb5f">LineTo</a>(<a class="code" href="class_d_c.html">DC</a> *dc,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">if</span>(y&lt;_min_y || y&gt; _max_y || _last_y&lt;_min_y || _last_y&gt; _max_y)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            dc-&gt;MoveTo(<a class="code" href="class_chart_d_c.html#a9926b4f67869120674ab0600f7e31c11">LCtoDC_x</a>(x),<a class="code" href="class_chart_d_c.html#a8dedd9ec36a4c99126353fa40ad9e656">LCtoDC_y</a>(y));</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            dc-&gt;LineTo(<a class="code" href="class_chart_d_c.html#a9926b4f67869120674ab0600f7e31c11">LCtoDC_x</a>(x),<a class="code" href="class_chart_d_c.html#a8dedd9ec36a4c99126353fa40ad9e656">LCtoDC_y</a>(y));</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        _last_y=y;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="comment">//Log::Number(&quot; min_y: &quot;,_min_y);</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="comment">//Log::Number(&quot; max_y: &quot;,_max_y,true);</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="comment">/*Log::Number(&quot;Line: &quot;,_last_x);</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">        Log::Number(&quot; &quot;,_last_y);</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">        Log::Number(&quot; &quot;,new_x);</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">        Log::Number(&quot; &quot;,new_y,&quot;&quot;);</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">        Log::Number(&quot; lc: &quot;,x);</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">        Log::Number(&quot;,&quot;,y,true);*/</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    }</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;};</div>
+<div class="ttc" id="class_chart_d_c_html_a9926b4f67869120674ab0600f7e31c11"><div class="ttname"><a href="class_chart_d_c.html#a9926b4f67869120674ab0600f7e31c11">ChartDC::LCtoDC_x</a></div><div class="ttdeci">float LCtoDC_x(float x)</div><div class="ttdoc">Converts logic x into window x. </div><div class="ttdef"><b>Definition:</b> ChartDC.h:96</div></div>
+<div class="ttc" id="class_chart_d_c_html"><div class="ttname"><a href="class_chart_d_c.html">ChartDC</a></div><div class="ttdoc">Device context for chart window. Implement transformation of logic coordinates into window coordinate...</div><div class="ttdef"><b>Definition:</b> ChartDC.h:23</div></div>
+<div class="ttc" id="class_chart_d_c_html_a49c2fab9bb501d6f6be97626457fe51a"><div class="ttname"><a href="class_chart_d_c.html#a49c2fab9bb501d6f6be97626457fe51a">ChartDC::ChartDC</a></div><div class="ttdeci">ChartDC()</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> ChartDC.h:38</div></div>
+<div class="ttc" id="class_d_c_html"><div class="ttname"><a href="class_d_c.html">DC</a></div><div class="ttdoc">Device context. Abstraction layer to the device specific drawing code. Coordinates in drawing functio...</div><div class="ttdef"><b>Definition:</b> DC.h:25</div></div>
+<div class="ttc" id="class_chart_d_c_html_a25c116514041efcc80f22fabf3680b3e"><div class="ttname"><a href="class_chart_d_c.html#a25c116514041efcc80f22fabf3680b3e">ChartDC::MoveTo</a></div><div class="ttdeci">void MoveTo(DC *dc, float x, float y)</div><div class="ttdoc">Moves actual position in logic coordinates. </div><div class="ttdef"><b>Definition:</b> ChartDC.h:106</div></div>
+<div class="ttc" id="class_chart_d_c_html_a8dedd9ec36a4c99126353fa40ad9e656"><div class="ttname"><a href="class_chart_d_c.html#a8dedd9ec36a4c99126353fa40ad9e656">ChartDC::LCtoDC_y</a></div><div class="ttdeci">float LCtoDC_y(float y)</div><div class="ttdoc">Converts logic y into window y. </div><div class="ttdef"><b>Definition:</b> ChartDC.h:101</div></div>
+<div class="ttc" id="class_chart_d_c_html_a8820b1cdf0d062479cb9b1583328bb5f"><div class="ttname"><a href="class_chart_d_c.html#a8820b1cdf0d062479cb9b1583328bb5f">ChartDC::LineTo</a></div><div class="ttdeci">void LineTo(DC *dc, float x, float y)</div><div class="ttdoc">Draws line from actual position to the new position. </div><div class="ttdef"><b>Definition:</b> ChartDC.h:114</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>ChartDC.h</b></li>
-    <li class="footer">Generated on Wed Sep 9 2015 12:48:36 for AWind by
+    <li class="footer">Generated on Thu Sep 10 2015 17:47:58 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

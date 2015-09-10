@@ -1,7 +1,7 @@
 var NAVTREE =
 [
   [ "AWind", "index.html", [
-    [ "Main", "md_docs__main.html", null ],
+    [ "Overview", "md_docs__main.html", null ],
     [ "Charts", "md_examples__charts__r_e_a_d_m_e.html", null ],
     [ "Gauges", "md_examples__gauges__r_e_a_d_m_e.html", null ],
     [ "Oscilloscope", "md_examples__oscilloscope__r_e_a_d_m_e.html", null ],

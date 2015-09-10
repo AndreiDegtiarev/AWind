@@ -1,6 +1,6 @@
 var class_text_box_number =
 [
-    [ "TextBoxNumber", "class_text_box_number.html#a59372737d032687ca7d6346629897dc6", null ],
+    [ "TextBoxNumber", "class_text_box_number.html#a69a0c77b90f220b1b78d6b8e7e10e5a8", null ],
     [ "GetNumber", "class_text_box_number.html#a722fcabb5031207b6900f3839b8d9414", null ],
     [ "IsAwaitTouch", "class_text_box_number.html#a36d9a1a691d9ba0305c28c48a3e0ed0b", null ],
     [ "IsReadOnly", "class_text_box_number.html#a1496289aef6765924f781fda047b9600", null ],

@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['gauge',['Gauge',['../class_gauge.html',1,'Gauge'],['../class_gauge.html#a9199bbabf1dae81ab72f815335bde427',1,'Gauge::Gauge()']]],
-  ['gaugeswindow',['GaugesWindow',['../class_gauges_window.html',1,'GaugesWindow'],['../class_gauges_window.html#ace5a4267668747f45c510e7cbfa22faf',1,'GaugesWindow::GaugesWindow()']]],
-  ['getbackcolor',['GetBackColor',['../class_window.html#a05c5e45a3959382b18ee76701a20f601',1,'Window']]],
-  ['gauges',['Gauges',['../md_examples__gauges__r_e_a_d_m_e.html',1,'']]]
+  ['fakesensor',['FakeSensor',['../class_fake_sensor.html',1,'']]],
+  ['fillrect',['FillRect',['../class_d_c.html#a97b9f9e51a6af7fbf01fb01c48a93da9',1,'DC']]],
+  ['fillroundrect',['FillRoundRect',['../class_d_c.html#a6ef009cea3292b4bf3dfd551a49976fe',1,'DC']]],
+  ['finddialog',['FindDialog',['../class_main_window.html#a7ca912c5b4dcbfe75d7911942305a9bf',1,'MainWindow']]],
+  ['fontheight',['FontHeight',['../class_d_c.html#ad52626d25820e65425807ce4b0175a6f',1,'DC']]],
+  ['fontwidth',['FontWidth',['../class_d_c.html#ad8250094b2666462dcce00469affd73f',1,'DC']]]
 ];

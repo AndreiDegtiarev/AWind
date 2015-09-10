@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['setbackcolor',['SetBackColor',['../class_sensor_window.html#a6af8625176b187c26fbaba2d8ef08567',1,'SensorWindow::SetBackColor()'],['../class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f',1,'Window::SetBackColor()']]],
-  ['setborder',['SetBorder',['../class_window.html#a9e7671f83805ecc64b98c07f1677e032',1,'Window']]],
-  ['setcolor',['SetColor',['../class_gauge.html#a888c93e12d24c8a39ba9d1d3ce294e04',1,'Gauge']]],
-  ['setminmax',['SetMinMax',['../class_gauge.html#a7f17c7da260b82effef1d07954ce0257',1,'Gauge']]],
-  ['setnumberofticks',['SetNumberOfTicks',['../class_gauge.html#a6e47deb86125c277ab0ddd6d2040f671',1,'Gauge']]],
-  ['setvalue',['SetValue',['../class_gauge.html#a86ec2b7697077785365aabf0963db967',1,'Gauge']]],
-  ['setvisible',['SetVisible',['../class_window.html#a76c231e52092718f7adf5006c22d73cb',1,'Window']]]
+  ['offset',['Offset',['../class_d_c.html#a2aff64d63739c4f265ee2c4d0832eea6',1,'DC']]],
+  ['ondraw',['OnDraw',['../class_button_window.html#a6939033bc2f863136f3ddb971dc9458a',1,'ButtonWindow::OnDraw()'],['../class_chart_window.html#ac99d6374ca91fd4ca2ce4b0eaf026c2c',1,'ChartWindow::OnDraw()'],['../class_gauge_bar.html#a35c2796497b3286ba83267ddf456cf34',1,'GaugeBar::OnDraw()'],['../class_gauge_radial_pointer.html#a0e73a2457df6a2aa52c74b0dcda7ab99',1,'GaugeRadialPointer::OnDraw()'],['../class_text_box.html#a14cc4d27fc89ad69b930f387c3b9335b',1,'TextBox::OnDraw()'],['../class_text_box_number.html#a217238e7f9fb168c1d891d8b9eb084b6',1,'TextBoxNumber::OnDraw()'],['../class_text_box_t_string.html#accd76c99aea89979dd891a8de21cebe3',1,'TextBoxTString::OnDraw()'],['../class_window.html#ac6a82bd2b3e8e2c7122e4a536a52c9ff',1,'Window::OnDraw()']]],
+  ['ontouch',['OnTouch',['../class_sensor_window.html#afa85cfe97a395aeb4cc801161f617a4f',1,'SensorWindow::OnTouch()'],['../class_text_box_number.html#a94e0cf360d55d0071e71915ab0e7ea8a',1,'TextBoxNumber::OnTouch()'],['../class_window.html#aecde873d6304c2131120900861a9a325',1,'Window::OnTouch()']]],
+  ['ontouching',['OnTouching',['../class_window.html#ab7a61af9a0410aa716ba15934e0ce056',1,'Window']]]
 ];

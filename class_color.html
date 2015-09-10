@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('class_color.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -113,6 +113,11 @@ $(document).ready(function(){initNavTree('class_color.html','');});
 <div class="title">Color Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implements definition and operations with color.  
+ <a href="class_color.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_color_8h_source.html">Color.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -295,12 +300,14 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>YellowGreen</b> = 0xFF9ACD32
 <br />
  }</td></tr>
+<tr class="memdesc:a40a4a4fed84b1d503ccc5be8c5a19c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common color constants. <br /></td></tr>
 <tr class="separator:a40a4a4fed84b1d503ccc5be8c5a19c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a064cb8d30cd74bbb2abf700b6cbf493c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a064cb8d30cd74bbb2abf700b6cbf493c"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>AlphaShift</b> = 24, 
 <b>RedShift</b> = 16, 
 <b>GreenShift</b> = 8, 
 <b>BlueShift</b> = 0
  }</td></tr>
+<tr class="memdesc:a064cb8d30cd74bbb2abf700b6cbf493c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shift count and bit mask for A, R, G, B components. <br /></td></tr>
 <tr class="separator:a064cb8d30cd74bbb2abf700b6cbf493c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a191f5eff213061fc0c64cfbe5b8a8d66"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a191f5eff213061fc0c64cfbe5b8a8d66"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>AlphaMask</b> = 0xff000000, 
 <b>RedMask</b> = 0x00ff0000, 
@@ -311,8 +318,7 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a00eb0d32e1a14612ea76a4babea6d71a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00eb0d32e1a14612ea76a4babea6d71a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Color</b> (BYTE r, BYTE g, BYTE b)</td></tr>
+<tr class="memitem:a00eb0d32e1a14612ea76a4babea6d71a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_color.html#a00eb0d32e1a14612ea76a4babea6d71a">Color</a> (BYTE r, BYTE g, BYTE b)</td></tr>
 <tr class="separator:a00eb0d32e1a14612ea76a4babea6d71a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcff2a8193ebdc49c7ba9e546e7a4d2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcff2a8193ebdc49c7ba9e546e7a4d2a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Color</b> (BYTE a, BYTE r, BYTE g, BYTE b)</td></tr>
@@ -354,7 +360,8 @@ VOID&#160;</td><td class="memItemRight" valign="bottom"><b>SetValue</b> (ARGB ar
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ab70c3c6a3b448a840b197abc7f0036fc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab70c3c6a3b448a840b197abc7f0036fc"></a>
-static ARGB&#160;</td><td class="memItemRight" valign="bottom"><b>MakeARGB</b> (BYTE a, BYTE r, BYTE g, BYTE b)</td></tr>
+static ARGB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_color.html#ab70c3c6a3b448a840b197abc7f0036fc">MakeARGB</a> (BYTE a, BYTE r, BYTE g, BYTE b)</td></tr>
+<tr class="memdesc:ab70c3c6a3b448a840b197abc7f0036fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assemble A, R, G, B values into a 32-bit integer. <br /></td></tr>
 <tr class="separator:ab70c3c6a3b448a840b197abc7f0036fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -363,6 +370,51 @@ Protected Attributes</h2></td></tr>
 ARGB&#160;</td><td class="memItemRight" valign="bottom"><b>Argb</b></td></tr>
 <tr class="separator:aae174ef9a27eb84b136c2a650d854f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements definition and operations with color. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a00eb0d32e1a14612ea76a4babea6d71a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Color::Color </td>
+          <td>(</td>
+          <td class="paramtype">BYTE&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BYTE&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BYTE&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Construct an opaque <a class="el" href="class_color.html" title="Implements definition and operations with color. ">Color</a> object with the specified Red, Green, Blue values.</p>
+<p><a class="el" href="class_color.html" title="Implements definition and operations with color. ">Color</a> values are not premultiplied. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="_color_8h_source.html">Color.h</a></li>
 </ul>
@@ -372,7 +424,7 @@ ARGB&#160;</td><td class="memItemRight" valign="bottom"><b>Argb</b></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_color.html">Color</a></li>
-    <li class="footer">Generated on Mon Aug 4 2014 17:28:44 for AWind by
+    <li class="footer">Generated on Wed Sep 9 2015 12:48:36 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -1,10 +1,12 @@
 var searchData=
 [
-  ['increase',['Increase',['../class_fake_sensor.html#ac76827ca85e3d2afe4a1c91babe5a4e4',1,'FakeSensor']]],
-  ['initbutton',['initButton',['../class_gauges_window.html#a31a9daec764fec584716b085f13c69c3',1,'GaugesWindow']]],
-  ['inittextbox',['initTextBox',['../class_gauges_window.html#a58d76f3a8e3a869b5a8f9092c14d571e',1,'GaugesWindow']]],
-  ['invalidate',['Invalidate',['../class_window.html#ada96195db4ae77ac0ddb6a40c529610c',1,'Window']]],
-  ['isawaittouch',['IsAwaitTouch',['../class_sensor_window.html#a1ed5102f60a0771f1e9ce785e92e7271',1,'SensorWindow::IsAwaitTouch()'],['../class_text_box_number.html#a36d9a1a691d9ba0305c28c48a3e0ed0b',1,'TextBoxNumber::IsAwaitTouch()'],['../class_window.html#aa9b74d1c1a5760972f0e1c206ee304c3',1,'Window::IsAwaitTouch()']]],
-  ['isdirty',['IsDirty',['../class_window.html#ae57b1d6867510e35c4faec29f48ec171',1,'Window']]],
-  ['isvisible',['IsVisible',['../class_window.html#ad535733ae12c8ed1119fe7f9d75b6d42',1,'Window']]]
+  ['gauge',['Gauge',['../class_gauge.html#a0876b241cbe4fe0af2cc671819855934',1,'Gauge']]],
+  ['gaugebar',['GaugeBar',['../class_gauge_bar.html#a0bf37caaa7ca17431e59e29a7200ec04',1,'GaugeBar']]],
+  ['gaugeradialpointer',['GaugeRadialPointer',['../class_gauge_radial_pointer.html#a97cb922f6cc71cc46e98d38124cadcda',1,'GaugeRadialPointer']]],
+  ['gaugeswindow',['GaugesWindow',['../class_gauges_window.html#ace5a4267668747f45c510e7cbfa22faf',1,'GaugesWindow']]],
+  ['getdc',['GetDC',['../class_windows_manager.html#a76d1170d9cc310884f095a5cf6d17689',1,'WindowsManager']]],
+  ['getdecorators',['GetDecorators',['../class_window.html#a8e466d562ec549097f36bcb760b223c0',1,'Window']]],
+  ['getlength',['GetLength',['../class_decorator_axis.html#a09da63c3a18685fce31c87147a97527b',1,'DecoratorAxis']]],
+  ['getminmax',['GetMinMax',['../class_decorator_axis.html#af75b1b0c99dd5cbb3527413497731f34',1,'DecoratorAxis']]],
+  ['getnumber',['GetNumber',['../class_keyboard_window.html#ab7f1d985a6ef0894927fd7a9ac0ea4fc',1,'KeyboardWindow']]]
 ];

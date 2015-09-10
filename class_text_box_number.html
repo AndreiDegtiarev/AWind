@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('class_text_box_number.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,24 +110,30 @@ $(document).ready(function(){initNavTree('class_text_box_number.html','');});
 <div class="title">TextBoxNumber Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Text box for numbers.  
+ <a href="class_text_box_number.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_text_box_number_8h_source.html">TextBoxNumber.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for TextBoxNumber:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_text_box_number.png" usemap="#TextBoxNumber_map" alt=""/>
   <map id="TextBoxNumber_map" name="TextBoxNumber_map">
-<area href="class_text_box.html" alt="TextBox" shape="rect" coords="0,56,100,80"/>
+<area href="class_text_box.html" title="Base class for window with text content. " alt="TextBox" shape="rect" coords="0,56,100,80"/>
 <area href="class_window.html" title="Base class for all window objects. Provides basic window functionality. " alt="Window" shape="rect" coords="0,0,100,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a59372737d032687ca7d6346629897dc6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59372737d032687ca7d6346629897dc6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TextBoxNumber</b> (int left, int top, int width, int height, int precission, <a class="el" href="class_color.html">Color</a> textColor)</td></tr>
-<tr class="separator:a59372737d032687ca7d6346629897dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69a0c77b90f220b1b78d6b8e7e10e5a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box_number.html#a69a0c77b90f220b1b78d6b8e7e10e5a8">TextBoxNumber</a> (int left, int top, int width, int height, int precission)</td></tr>
+<tr class="memdesc:a69a0c77b90f220b1b78d6b8e7e10e5a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a69a0c77b90f220b1b78d6b8e7e10e5a8">More...</a><br /></td></tr>
+<tr class="separator:a69a0c77b90f220b1b78d6b8e7e10e5a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d1638b3fe4fce513dd2051c81792eb3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d1638b3fe4fce513dd2051c81792eb3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Precission</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box_number.html#a8d1638b3fe4fce513dd2051c81792eb3">Precission</a> ()</td></tr>
+<tr class="memdesc:a8d1638b3fe4fce513dd2051c81792eb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns actual number of digits after decimal point. <br /></td></tr>
 <tr class="separator:a8d1638b3fe4fce513dd2051c81792eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36d9a1a691d9ba0305c28c48a3e0ed0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36d9a1a691d9ba0305c28c48a3e0ed0b"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box_number.html#a36d9a1a691d9ba0305c28c48a3e0ed0b">IsAwaitTouch</a> ()</td></tr>
@@ -138,13 +144,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a94e0cf360d55d0071e71915ab0e7ea8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Touch manager calls this function right after touch is released. <br /></td></tr>
 <tr class="separator:a94e0cf360d55d0071e71915ab0e7ea8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7470a370fd3d4977fe644c0cbeb336b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7470a370fd3d4977fe644c0cbeb336b6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetIsReadOnly</b> (bool isReadOnly)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box_number.html#a7470a370fd3d4977fe644c0cbeb336b6">SetIsReadOnly</a> (bool isReadOnly)</td></tr>
+<tr class="memdesc:a7470a370fd3d4977fe644c0cbeb336b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines whether window is readonly. <br /></td></tr>
 <tr class="separator:a7470a370fd3d4977fe644c0cbeb336b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1496289aef6765924f781fda047b9600"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1496289aef6765924f781fda047b9600"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsReadOnly</b> ()</td></tr>
 <tr class="separator:a1496289aef6765924f781fda047b9600"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a490a72eb2c40a4f8d47d0e23b6e88f4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a490a72eb2c40a4f8d47d0e23b6e88f4f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetNumber</b> (float number)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box_number.html#a490a72eb2c40a4f8d47d0e23b6e88f4f">SetNumber</a> (float number)</td></tr>
+<tr class="memdesc:a490a72eb2c40a4f8d47d0e23b6e88f4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize window with number. <br /></td></tr>
 <tr class="separator:a490a72eb2c40a4f8d47d0e23b6e88f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a722fcabb5031207b6900f3839b8d9414"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a722fcabb5031207b6900f3839b8d9414"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>GetNumber</b> ()</td></tr>
@@ -152,29 +160,48 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>GetNumber</b> ()</td
 <tr class="memitem:afce2967435eecfd39825921f1c98e4a9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afce2967435eecfd39825921f1c98e4a9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetStatus</b> (bool isOK)</td></tr>
 <tr class="separator:afce2967435eecfd39825921f1c98e4a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a217238e7f9fb168c1d891d8b9eb084b6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box_number.html#a217238e7f9fb168c1d891d8b9eb084b6">OnDraw</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
-<tr class="memdesc:a217238e7f9fb168c1d891d8b9eb084b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">If derived class needs to draw something in window client area, this function has to be ovverriden.  <a href="#a217238e7f9fb168c1d891d8b9eb084b6">More...</a><br /></td></tr>
+<tr class="memitem:a217238e7f9fb168c1d891d8b9eb084b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a217238e7f9fb168c1d891d8b9eb084b6"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box_number.html#a217238e7f9fb168c1d891d8b9eb084b6">OnDraw</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
+<tr class="memdesc:a217238e7f9fb168c1d891d8b9eb084b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements drawing code. <br /></td></tr>
 <tr class="separator:a217238e7f9fb168c1d891d8b9eb084b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_text_box"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_text_box')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_text_box.html">TextBox</a></td></tr>
-<tr class="memitem:a5dfc579275efaf3bab819047f273efff inherit pub_methods_class_text_box"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5dfc579275efaf3bab819047f273efff"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TextBox</b> (int left, int top, int width, int height, <a class="el" href="class_color.html">Color</a> textColor)</td></tr>
-<tr class="separator:a5dfc579275efaf3bab819047f273efff inherit pub_methods_class_text_box"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aded2f631fad304327d74a2de18e04728 inherit pub_methods_class_text_box"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box.html#aded2f631fad304327d74a2de18e04728">TextBox</a> (int left, int top, int width, int height)</td></tr>
+<tr class="memdesc:aded2f631fad304327d74a2de18e04728 inherit pub_methods_class_text_box"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#aded2f631fad304327d74a2de18e04728">More...</a><br /></td></tr>
+<tr class="separator:aded2f631fad304327d74a2de18e04728 inherit pub_methods_class_text_box"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f0a71edbf80e614a3e6fc8db1e39bdf inherit pub_methods_class_text_box"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f0a71edbf80e614a3e6fc8db1e39bdf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>RegisterContentChangedReceiver</b> (<a class="el" href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a> *event)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box.html#a6f0a71edbf80e614a3e6fc8db1e39bdf">RegisterContentChangedReceiver</a> (<a class="el" href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a> *event)</td></tr>
+<tr class="memdesc:a6f0a71edbf80e614a3e6fc8db1e39bdf inherit pub_methods_class_text_box"><td class="mdescLeft">&#160;</td><td class="mdescRight">Application need to call this function if it wants receive notification about this window content changing. <br /></td></tr>
 <tr class="separator:a6f0a71edbf80e614a3e6fc8db1e39bdf inherit pub_methods_class_text_box"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a046c9843f9252731230d4c07afa69897 inherit pub_methods_class_text_box"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a046c9843f9252731230d4c07afa69897"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMargins</b> (int offset_x, int offset_y)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box.html#a046c9843f9252731230d4c07afa69897">SetMargins</a> (int offset_x, int offset_y)</td></tr>
+<tr class="memdesc:a046c9843f9252731230d4c07afa69897 inherit pub_methods_class_text_box"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines offset from left and top for text. <br /></td></tr>
 <tr class="separator:a046c9843f9252731230d4c07afa69897 inherit pub_methods_class_text_box"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72904dd08d50626b234d5e752afb0af6 inherit pub_methods_class_text_box"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72904dd08d50626b234d5e752afb0af6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetFont</b> (uint8_t *font)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text_box.html#a72904dd08d50626b234d5e752afb0af6">SetFont</a> (uint8_t *font)</td></tr>
+<tr class="memdesc:a72904dd08d50626b234d5e752afb0af6 inherit pub_methods_class_text_box"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets font. <br /></td></tr>
 <tr class="separator:a72904dd08d50626b234d5e752afb0af6 inherit pub_methods_class_text_box"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e0c175fd23aa081d786d4e45fdca3ef inherit pub_methods_class_text_box"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e0c175fd23aa081d786d4e45fdca3ef"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetColor</b> (<a class="el" href="class_color.html">Color</a> textColor)</td></tr>
-<tr class="separator:a1e0c175fd23aa081d786d4e45fdca3ef inherit pub_methods_class_text_box"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_window"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_window')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_window.html">Window</a></td></tr>
 <tr class="memitem:aaa4ac4e2ab3c69b2380ef738de35b972 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a> (const __FlashStringHelper *name, int left, int top, int width, int height)</td></tr>
 <tr class="memdesc:aaa4ac4e2ab3c69b2380ef738de35b972 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#aaa4ac4e2ab3c69b2380ef738de35b972">More...</a><br /></td></tr>
 <tr class="separator:aaa4ac4e2ab3c69b2380ef738de35b972 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a784f140b26bd299b01f77f15e96bc62c inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a784f140b26bd299b01f77f15e96bc62c"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a784f140b26bd299b01f77f15e96bc62c">SetDecorators</a> (DecoratorList &amp;decorators)</td></tr>
+<tr class="memdesc:a784f140b26bd299b01f77f15e96bc62c inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets window decorators list. <br /></td></tr>
+<tr class="separator:a784f140b26bd299b01f77f15e96bc62c inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e466d562ec549097f36bcb760b223c0 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e466d562ec549097f36bcb760b223c0"></a>
+DecoratorList &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a8e466d562ec549097f36bcb760b223c0">GetDecorators</a> ()</td></tr>
+<tr class="memdesc:a8e466d562ec549097f36bcb760b223c0 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns window decorators list. <br /></td></tr>
+<tr class="separator:a8e466d562ec549097f36bcb760b223c0 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a231b9037bc152a853ccb2fb3c2b0df37 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a231b9037bc152a853ccb2fb3c2b0df37"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">AddDecorator</a> (<a class="el" href="class_decorator.html">Decorator</a> *decorator)</td></tr>
+<tr class="memdesc:a231b9037bc152a853ccb2fb3c2b0df37 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds decorator to the decaorator list. <br /></td></tr>
+<tr class="separator:a231b9037bc152a853ccb2fb3c2b0df37 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60a7d89e4bd8061c8f2731acdbf9cede inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60a7d89e4bd8061c8f2731acdbf9cede"></a>
+<a class="el" href="class_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>FindDialog</b> (const __FlashStringHelper *id)</td></tr>
+<tr class="separator:a60a7d89e4bd8061c8f2731acdbf9cede inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad44a332b3d854ec997c2288b7eecc686 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad44a332b3d854ec997c2288b7eecc686"></a>
+IDialogClosedEventReceiver::DialogResults&#160;</td><td class="memItemRight" valign="bottom"><b>DoDialog</b> (<a class="el" href="class_window.html">Window</a> *dlg)</td></tr>
+<tr class="separator:ad44a332b3d854ec997c2288b7eecc686 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeec02fbd78ad4c37722002577211226e inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aeec02fbd78ad4c37722002577211226e">RegisterTouchEventReceiver</a> (<a class="el" href="class_i_touch_event_receiver.html">ITouchEventReceiver</a> *touchEventReceiver)</td></tr>
 <tr class="memdesc:aeec02fbd78ad4c37722002577211226e inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers receiver for touch event.  <a href="#aeec02fbd78ad4c37722002577211226e">More...</a><br /></td></tr>
 <tr class="separator:aeec02fbd78ad4c37722002577211226e inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,10 +209,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetColor</b> (<a clas
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ab7a61af9a0410aa716ba15934e0ce056">OnTouching</a> (<a class="el" href="class_d_c.html">DC</a> *dc)</td></tr>
 <tr class="memdesc:ab7a61af9a0410aa716ba15934e0ce056 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Touch manager calls this function in the loop as long as touch action proceeds. <br /></td></tr>
 <tr class="separator:ab7a61af9a0410aa716ba15934e0ce056 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc04cd965a83cacce99d1e3ddcd01cdf inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc04cd965a83cacce99d1e3ddcd01cdf"></a>
-<a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#acc04cd965a83cacce99d1e3ddcd01cdf">MainWnd</a> ()</td></tr>
-<tr class="memdesc:acc04cd965a83cacce99d1e3ddcd01cdf inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns pointer to root window. <a class="el" href="class_main_window.html">MainWindow</a> does not have any parents. <br /></td></tr>
-<tr class="separator:acc04cd965a83cacce99d1e3ddcd01cdf inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5a130d87cffe62f5daa7e5e651b36de inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5a130d87cffe62f5daa7e5e651b36de"></a>
+<a class="el" href="class_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ae5a130d87cffe62f5daa7e5e651b36de">RootWindow</a> ()</td></tr>
+<tr class="memdesc:ae5a130d87cffe62f5daa7e5e651b36de inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns pointer to root window. <a class="el" href="class_main_window.html" title="Base class for main application window. Each application has to have one main window, which is root parent for all other application windows. ">MainWindow</a> does not have any parents. <br /></td></tr>
+<tr class="separator:ae5a130d87cffe62f5daa7e5e651b36de inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4770a12f1846b07d0673667f6d1860ee inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a4770a12f1846b07d0673667f6d1860ee">Move</a> (int left, int top, int width, int height)</td></tr>
 <tr class="memdesc:a4770a12f1846b07d0673667f6d1860ee inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves and resizes window relativly to the parent window.  <a href="#a4770a12f1846b07d0673667f6d1860ee">More...</a><br /></td></tr>
 <tr class="separator:a4770a12f1846b07d0673667f6d1860ee inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,10 +224,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ae57b1d6867510e35c4faec29f48ec171">IsDirty</a> ()</td></tr>
 <tr class="memdesc:ae57b1d6867510e35c4faec29f48ec171 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if window has to be updated. <br /></td></tr>
 <tr class="separator:ae57b1d6867510e35c4faec29f48ec171 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada96429ada31d26dd8164f13ccbfabeb inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada96429ada31d26dd8164f13ccbfabeb"></a>
-const __FlashStringHelper *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ada96429ada31d26dd8164f13ccbfabeb">Name</a> ()</td></tr>
-<tr class="memdesc:ada96429ada31d26dd8164f13ccbfabeb inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns internal window name. <br /></td></tr>
-<tr class="separator:ada96429ada31d26dd8164f13ccbfabeb inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af607e4331611bb9a2307fb3d79a2d67f inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af607e4331611bb9a2307fb3d79a2d67f"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#af607e4331611bb9a2307fb3d79a2d67f">Left</a> ()</td></tr>
 <tr class="memdesc:af607e4331611bb9a2307fb3d79a2d67f inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns window left coordinate relative to the parent window. <br /></td></tr>
@@ -225,18 +248,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="el" href="class_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ab70ad121019c7044aabca5b28b0bf85c">Parent</a> ()</td></tr>
 <tr class="memdesc:ab70ad121019c7044aabca5b28b0bf85c inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns Parent window. <br /></td></tr>
 <tr class="separator:ab70ad121019c7044aabca5b28b0bf85c inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b95e307920f9fa1b5bf06a6dde6c96f inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b95e307920f9fa1b5bf06a6dde6c96f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a> (<a class="el" href="class_color.html">Color</a> color)</td></tr>
-<tr class="memdesc:a0b95e307920f9fa1b5bf06a6dde6c96f inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets window background color (default background is transparent) <br /></td></tr>
-<tr class="separator:a0b95e307920f9fa1b5bf06a6dde6c96f inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05c5e45a3959382b18ee76701a20f601 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05c5e45a3959382b18ee76701a20f601"></a>
-<a class="el" href="class_color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a05c5e45a3959382b18ee76701a20f601">GetBackColor</a> ()</td></tr>
-<tr class="memdesc:a05c5e45a3959382b18ee76701a20f601 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns window background color. <br /></td></tr>
-<tr class="separator:a05c5e45a3959382b18ee76701a20f601 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e7671f83805ecc64b98c07f1677e032 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e7671f83805ecc64b98c07f1677e032"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a9e7671f83805ecc64b98c07f1677e032">SetBorder</a> (<a class="el" href="class_color.html">Color</a> color)</td></tr>
-<tr class="memdesc:a9e7671f83805ecc64b98c07f1677e032 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets window border color (default no border) <br /></td></tr>
-<tr class="separator:a9e7671f83805ecc64b98c07f1677e032 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76c231e52092718f7adf5006c22d73cb inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76c231e52092718f7adf5006c22d73cb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a76c231e52092718f7adf5006c22d73cb">SetVisible</a> (bool isVisible)</td></tr>
 <tr class="memdesc:a76c231e52092718f7adf5006c22d73cb inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets window visibility status. <br /></td></tr>
@@ -290,14 +301,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aed3365e065d26516a415a1d91e6958d8">_isVisible</a></td></tr>
 <tr class="memdesc:aed3365e065d26516a415a1d91e6958d8 inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">if this variable is false this window and all child windows are not visualized <br /></td></tr>
 <tr class="separator:aed3365e065d26516a415a1d91e6958d8 inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0eb3385bc6d047e0a9902d35e31fbd0 inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0eb3385bc6d047e0a9902d35e31fbd0"></a>
-<a class="el" href="class_color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ac0eb3385bc6d047e0a9902d35e31fbd0">_borderColor</a></td></tr>
-<tr class="memdesc:ac0eb3385bc6d047e0a9902d35e31fbd0 inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">window border color, default value is VGA_TRANSPARENT that means no border <br /></td></tr>
-<tr class="separator:ac0eb3385bc6d047e0a9902d35e31fbd0 inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae738041636cb7687c5629ca44780a472 inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae738041636cb7687c5629ca44780a472"></a>
-<a class="el" href="class_color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ae738041636cb7687c5629ca44780a472">_backColor</a></td></tr>
-<tr class="memdesc:ae738041636cb7687c5629ca44780a472 inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">window background color, default value is VGA_TRANSPARENT that means no border <br /></td></tr>
-<tr class="separator:ae738041636cb7687c5629ca44780a472 inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bac94cc8bd92124c5a7e8e84c7ceff0 inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0bac94cc8bd92124c5a7e8e84c7ceff0"></a>
 LinkedList&lt; <a class="el" href="class_window.html">Window</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a0bac94cc8bd92124c5a7e8e84c7ceff0">_children</a></td></tr>
 <tr class="memdesc:a0bac94cc8bd92124c5a7e8e84c7ceff0 inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">list of children windows. All children window are positioned relative to parent window <br /></td></tr>
@@ -306,21 +309,23 @@ LinkedList&lt; <a class="el" href="class_window.html">Window</a> &gt;&#160;</td>
 <a class="el" href="class_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a9e41d079d07336364dc5c37e24f701f4">_parent</a></td></tr>
 <tr class="memdesc:a9e41d079d07336364dc5c37e24f701f4 inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to parent window <br /></td></tr>
 <tr class="separator:a9e41d079d07336364dc5c37e24f701f4 inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08048f17fb64c3463c76a3706b1e1ddb inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08048f17fb64c3463c76a3706b1e1ddb"></a>
-const __FlashStringHelper *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a08048f17fb64c3463c76a3706b1e1ddb">_name</a></td></tr>
-<tr class="memdesc:a08048f17fb64c3463c76a3706b1e1ddb inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">internal window name that helps by debugging <br /></td></tr>
-<tr class="separator:a08048f17fb64c3463c76a3706b1e1ddb inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa007fcc900e3609e2cfff3cefb577c31 inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa007fcc900e3609e2cfff3cefb577c31"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aa007fcc900e3609e2cfff3cefb577c31">_isDirty</a></td></tr>
 <tr class="memdesc:aa007fcc900e3609e2cfff3cefb577c31 inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">if true than window manager will redraw this window. <br /></td></tr>
 <tr class="separator:aa007fcc900e3609e2cfff3cefb577c31 inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafa80f039ec28dabc0d36e3392dbd141 inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aafa80f039ec28dabc0d36e3392dbd141"></a>
+DecoratorList *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aafa80f039ec28dabc0d36e3392dbd141">_decorators</a></td></tr>
+<tr class="memdesc:aafa80f039ec28dabc0d36e3392dbd141 inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">contains list of drawig commands. If they are shared between more than one window -&gt; SRAM usage optimisation <br /></td></tr>
+<tr class="separator:aafa80f039ec28dabc0d36e3392dbd141 inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55139a4a47d0c792a67c80f42f0f49bd inherit pro_attribs_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55139a4a47d0c792a67c80f42f0f49bd"></a>
 <a class="el" href="class_i_touch_event_receiver.html">ITouchEventReceiver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a55139a4a47d0c792a67c80f42f0f49bd">_touchEventReceiver</a></td></tr>
 <tr class="memdesc:a55139a4a47d0c792a67c80f42f0f49bd inherit pro_attribs_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">call back event receiver for touch actions <br /></td></tr>
 <tr class="separator:a55139a4a47d0c792a67c80f42f0f49bd inherit pro_attribs_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a217238e7f9fb168c1d891d8b9eb084b6"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Text box for numbers. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a69a0c77b90f220b1b78d6b8e7e10e5a8"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -328,29 +333,59 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void TextBoxNumber::OnDraw </td>
+          <td class="memname">TextBoxNumber::TextBoxNumber </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_d_c.html">DC</a> *&#160;</td>
-          <td class="paramname"><em>dc</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>top</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>precission</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>If derived class needs to draw something in window client area, this function has to be ovverriden. </p>
+<p>Constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dc</td><td>device context </td></tr>
+    <tr><td class="paramname">left</td><td>left coordinate relative to parent indow </td></tr>
+    <tr><td class="paramname">top</td><td>top coordinate relative to parent indow </td></tr>
+    <tr><td class="paramname">width</td><td>window width </td></tr>
+    <tr><td class="paramname">height</td><td>window height </td></tr>
+    <tr><td class="paramname">precission</td><td>number of digits after decimal point </td></tr>
   </table>
   </dd>
 </dl>
-
-<p>Reimplemented from <a class="el" href="class_text_box.html#a14cc4d27fc89ad69b930f387c3b9335b">TextBox</a>.</p>
 
 </div>
 </div>
@@ -364,7 +399,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_text_box_number.html">TextBoxNumber</a></li>
-    <li class="footer">Generated on Mon Aug 4 2014 17:28:45 for AWind by
+    <li class="footer">Generated on Wed Sep 9 2015 12:48:36 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

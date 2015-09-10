@@ -8,6 +8,6 @@ var class_chart_d_c =
     [ "MaxY", "class_chart_d_c.html#ab503261d0b9b9fc3d0f36a2699194c94", null ],
     [ "MinY", "class_chart_d_c.html#acf628d073651799acc14d3a1822e8866", null ],
     [ "MoveTo", "class_chart_d_c.html#a25c116514041efcc80f22fabf3680b3e", null ],
-    [ "setScalingX", "class_chart_d_c.html#a8fca2de25a4505a0c23406bf058a0dab", null ],
-    [ "setScalingY", "class_chart_d_c.html#a983db3e489596e7c9c3b134b9d303e0e", null ]
+    [ "setScalingX", "class_chart_d_c.html#a222a52f57e6881472e22f2e9437086a2", null ],
+    [ "setScalingY", "class_chart_d_c.html#ae115bb7cd7b4c9f94563e758569720f4", null ]
 ];

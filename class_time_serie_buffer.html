@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('class_time_serie_buffer.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,61 +111,229 @@ $(document).ready(function(){initNavTree('class_time_serie_buffer.html','');});
 <div class="title">TimeSerieBuffer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Buffer for sensor data. It is used by chart control.  
+ <a href="class_time_serie_buffer.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_time_serie_buffer_8h_source.html">TimeSerieBuffer.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for TimeSerieBuffer:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_time_serie_buffer.png" usemap="#TimeSerieBuffer_map" alt=""/>
   <map id="TimeSerieBuffer_map" name="TimeSerieBuffer_map">
-<area href="class_i_data_buffer.html" alt="IDataBuffer" shape="rect" coords="0,0,103,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af19bb6a1389c01206143059445eb1855"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af19bb6a1389c01206143059445eb1855"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TimeSerieBuffer</b> (float time_step, float factor_y, int reserved_size, int size)</td></tr>
+<tr class="memitem:af19bb6a1389c01206143059445eb1855"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#af19bb6a1389c01206143059445eb1855">TimeSerieBuffer</a> (float time_step, float factor_y, int reserved_size, int size)</td></tr>
+<tr class="memdesc:af19bb6a1389c01206143059445eb1855"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#af19bb6a1389c01206143059445eb1855">More...</a><br /></td></tr>
 <tr class="separator:af19bb6a1389c01206143059445eb1855"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9218e86010bbb34237b91ee98107124f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9218e86010bbb34237b91ee98107124f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>TimeSerieBuffer</b> (float time_step, float factor_y, int size)</td></tr>
+<tr class="memitem:a9218e86010bbb34237b91ee98107124f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#a9218e86010bbb34237b91ee98107124f">TimeSerieBuffer</a> (float time_step, float factor_y, int size)</td></tr>
+<tr class="memdesc:a9218e86010bbb34237b91ee98107124f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a9218e86010bbb34237b91ee98107124f">More...</a><br /></td></tr>
 <tr class="separator:a9218e86010bbb34237b91ee98107124f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01189dac0ef424e2779bc68e2634d093"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01189dac0ef424e2779bc68e2634d093"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>SetSize</b> (int size)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#a01189dac0ef424e2779bc68e2634d093">SetSize</a> (int size)</td></tr>
+<tr class="memdesc:a01189dac0ef424e2779bc68e2634d093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets actual buffer size. It has to be less or equal to reserved_size. <br /></td></tr>
 <tr class="separator:a01189dac0ef424e2779bc68e2634d093"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2563122515c4735a35d907d115c607c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2563122515c4735a35d907d115c607c"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>SetTimeStep</b> (float time_step)</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#ad2563122515c4735a35d907d115c607c">SetTimeStep</a> (float time_step)</td></tr>
+<tr class="memdesc:ad2563122515c4735a35d907d115c607c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets time interval between samples in buffer. <br /></td></tr>
 <tr class="separator:ad2563122515c4735a35d907d115c607c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac79576faa058ffe865e7e6e112503852"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac79576faa058ffe865e7e6e112503852"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>SetFactorY</b> (float factor_y)</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#ac79576faa058ffe865e7e6e112503852">SetFactorY</a> (float factor_y)</td></tr>
+<tr class="memdesc:ac79576faa058ffe865e7e6e112503852"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets scale factor for mesaurements. <br /></td></tr>
 <tr class="separator:ac79576faa058ffe865e7e6e112503852"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87dc471527f8ad54e57645e0ac548b07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87dc471527f8ad54e57645e0ac548b07"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Set</b> (unsigned int index, float value)</td></tr>
+<tr class="memitem:a87dc471527f8ad54e57645e0ac548b07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#a87dc471527f8ad54e57645e0ac548b07">Set</a> (unsigned int index, float value)</td></tr>
+<tr class="memdesc:a87dc471527f8ad54e57645e0ac548b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts value into buffer.  <a href="#a87dc471527f8ad54e57645e0ac548b07">More...</a><br /></td></tr>
 <tr class="separator:a87dc471527f8ad54e57645e0ac548b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc9de4f891007abd0f06577cebde9f49"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc9de4f891007abd0f06577cebde9f49"></a>
-int *&#160;</td><td class="memItemRight" valign="bottom"><b>Y</b> ()</td></tr>
+int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#abc9de4f891007abd0f06577cebde9f49">Y</a> ()</td></tr>
+<tr class="memdesc:abc9de4f891007abd0f06577cebde9f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns point to vaues array. It is used for direct access to internal buffer. <br /></td></tr>
 <tr class="separator:abc9de4f891007abd0f06577cebde9f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3291641aa7502a412a6b7d04d54bfd46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3291641aa7502a412a6b7d04d54bfd46"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>MinMax</b> (float &amp;min_x, float &amp;max_x, float &amp;min_y, float &amp;max_y)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#a3291641aa7502a412a6b7d04d54bfd46">MinMax</a> (float &amp;min_x, float &amp;max_x, float &amp;min_y, float &amp;max_y)</td></tr>
+<tr class="memdesc:a3291641aa7502a412a6b7d04d54bfd46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns min and max value for buffer data. <br /></td></tr>
 <tr class="separator:a3291641aa7502a412a6b7d04d54bfd46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05767ad7706bfbd60cd47e14ad53b84b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05767ad7706bfbd60cd47e14ad53b84b"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>X</b> (unsigned int index)</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#a05767ad7706bfbd60cd47e14ad53b84b">X</a> (unsigned int index)</td></tr>
+<tr class="memdesc:a05767ad7706bfbd60cd47e14ad53b84b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns X that is calculated from index in buffer (see time_step parameter) <br /></td></tr>
 <tr class="separator:a05767ad7706bfbd60cd47e14ad53b84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae38d2211fa954336c718811dc2ea8123"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae38d2211fa954336c718811dc2ea8123"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>Y</b> (unsigned int index)</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#ae38d2211fa954336c718811dc2ea8123">Y</a> (unsigned int index)</td></tr>
+<tr class="memdesc:ae38d2211fa954336c718811dc2ea8123"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns scaled value Y from buffer for specified index. <br /></td></tr>
 <tr class="separator:ae38d2211fa954336c718811dc2ea8123"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4689bd9805ec4d2de2430cd8285637ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4689bd9805ec4d2de2430cd8285637ac"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>StartIndex</b> ()</td></tr>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#a4689bd9805ec4d2de2430cd8285637ac">StartIndex</a> ()</td></tr>
+<tr class="memdesc:a4689bd9805ec4d2de2430cd8285637ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns start index in buffer. For this class is always 0. <br /></td></tr>
 <tr class="separator:a4689bd9805ec4d2de2430cd8285637ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3d28778cc26769f8ff1499533a9df75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3d28778cc26769f8ff1499533a9df75"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Size</b> ()</td></tr>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">Size</a> ()</td></tr>
+<tr class="memdesc:aa3d28778cc26769f8ff1499533a9df75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns buffer size. <br /></td></tr>
 <tr class="separator:aa3d28778cc26769f8ff1499533a9df75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:aa1eb27d4e9c1cf34bfa289b101d3e2e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1eb27d4e9c1cf34bfa289b101d3e2e5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> (float time_step, float factor_y, int reserved_size, int size)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">initialize</a> (float time_step, float factor_y, int reserved_size, int size)</td></tr>
+<tr class="memdesc:aa1eb27d4e9c1cf34bfa289b101d3e2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize internal buffer. <br /></td></tr>
 <tr class="separator:aa1eb27d4e9c1cf34bfa289b101d3e2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Buffer for sensor data. It is used by chart control. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af19bb6a1389c01206143059445eb1855"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TimeSerieBuffer::TimeSerieBuffer </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>time_step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>factor_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>reserved_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time_step</td><td>time interval between samples in buffer </td></tr>
+    <tr><td class="paramname">factor_y</td><td>scale factor for measurements. Data can be stored as volts measured directly on board pins and this factor transform them into phisical units </td></tr>
+    <tr><td class="paramname">reserved_size</td><td>expected buffer size. This value allows buffer allocation only once. This is highly recomended because memory allocation is expencive operation. Mutiple allocation leads also to memory fragmentation. </td></tr>
+    <tr><td class="paramname">size</td><td>actual buffer size </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9218e86010bbb34237b91ee98107124f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TimeSerieBuffer::TimeSerieBuffer </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>time_step</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>factor_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time_step</td><td>time interval between samples in buffer </td></tr>
+    <tr><td class="paramname">factor_y</td><td>scale factor for measurements. Data can be stored as volts measured directly on board pins and this factor transform them into phisical units </td></tr>
+    <tr><td class="paramname">size</td><td>actual buffer size. reserved_size=size </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a87dc471527f8ad54e57645e0ac548b07"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TimeSerieBuffer::Set </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Puts value into buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>index in buffer. It has to be less than size </td></tr>
+    <tr><td class="paramname">value</td><td>value to save in the buffer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="_time_serie_buffer_8h_source.html">TimeSerieBuffer.h</a></li>
 </ul>
@@ -175,7 +343,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> (float
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_time_serie_buffer.html">TimeSerieBuffer</a></li>
-    <li class="footer">Generated on Mon Aug 4 2014 17:28:45 for AWind by
+    <li class="footer">Generated on Wed Sep 9 2015 12:48:36 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -78,6 +78,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -100,7 +102,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,23 +113,20 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 
 <div class="contents">
 &#160;<ul>
-<li>_backColor
-: <a class="el" href="class_window.html#ae738041636cb7687c5629ca44780a472">Window</a>
-</li>
-<li>_borderColor
-: <a class="el" href="class_window.html#ac0eb3385bc6d047e0a9902d35e31fbd0">Window</a>
+<li>_axis
+: <a class="el" href="class_gauge_bar.html#a66405cba41a3a3c71c78b00dfa9ca9f1">GaugeBar</a>
 </li>
 <li>_children
 : <a class="el" href="class_window.html#a0bac94cc8bd92124c5a7e8e84c7ceff0">Window</a>
 </li>
-<li>_color
-: <a class="el" href="class_gauge.html#afda014c03f9b51b0c49251bd7336e91e">Gauge</a>
+<li>_decorators
+: <a class="el" href="class_window.html#aafa80f039ec28dabc0d36e3392dbd141">Window</a>
 </li>
 <li>_drawOnlyPointer
 : <a class="el" href="class_gauge.html#a7823db3cf2743cb0146dc186f95d13fd">Gauge</a>
 </li>
-<li>_gaugeType
-: <a class="el" href="class_gauge.html#a2dd4176995b6dc0daa6c48377f452f92">Gauge</a>
+<li>_fillColor
+: <a class="el" href="class_gauge.html#ac25657f7d9c780f960ecca4dfb4c0c5f">Gauge</a>
 </li>
 <li>_height
 : <a class="el" href="class_window.html#aa68001bc905c217d9a82bbcced22b585">Window</a>
@@ -146,12 +145,6 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 </li>
 <li>_minValue
 : <a class="el" href="class_gauge.html#adcb399969bc40381c45e6f3e1f44d724">Gauge</a>
-</li>
-<li>_name
-: <a class="el" href="class_window.html#a08048f17fb64c3463c76a3706b1e1ddb">Window</a>
-</li>
-<li>_numTicks
-: <a class="el" href="class_gauge.html#a66fbf830c692a40b021eac6d680d0812">Gauge</a>
 </li>
 <li>_oldValue
 : <a class="el" href="class_gauge.html#a8c99ee4ec89224d1510d63dc9fabde04">Gauge</a>
@@ -177,7 +170,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2014 17:28:45 for AWind by
+    <li class="footer">Generated on Wed Sep 9 2015 12:48:36 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

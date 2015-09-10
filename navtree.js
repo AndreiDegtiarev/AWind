@@ -7,6 +7,7 @@ var NAVTREE =
     [ "Oscilloscope", "md_examples__oscilloscope__r_e_a_d_m_e.html", null ],
     [ "SensorsMonitor", "md_examples__sensors_monitor__r_e_a_d_m_e.html", null ],
     [ "Text", "md_examples__text__r_e_a_d_m_e.html", null ],
+    [ "Window selector", "md_examples__window_selector__r_e_a_d_m_e.html", null ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
@@ -14,7 +15,9 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", null ],
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "Files", null, [
@@ -25,8 +28,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_8_charts_8vsarduino_8h_source.html",
-"class_fake_sensor.html#a34a025b0ebe78f06e748f27f16d2db8e"
+"_button_window_8h_source.html",
+"class_decorator.html",
+"functions_eval.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

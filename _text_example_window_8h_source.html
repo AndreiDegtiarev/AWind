@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('_text_example_window_8h_source.html','
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -131,48 +131,59 @@ $(document).ready(function(){initNavTree('_text_example_window_8h_source.html','
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_textNumber;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_text_example_window.html">TextExampleWindow</a>(<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_main_window.html">MainWindow</a>(width,height) <span class="comment">//(F(&quot;TextExampleWindow&quot;),0,0,width,height)</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_text_example_window.html">TextExampleWindow</a>(<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c">MainWindow</a>(width,height) </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">int</span> x=0;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">int</span> y=40;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="class_text_box_t_string.html">TextBoxFString</a> *label=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(x,y,width/2,25,F(<span class="stringliteral">&quot;This is label: &quot;</span>),Color::SkyBlue);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        label-&gt;SetFont(BigFont);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        x=width*3.0/4;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        _textNumber=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width-x,25,0,Color::SkyBlue);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        _textNumber-&gt;<a class="code" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a>(Color::Black);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        _textNumber-&gt;SetFont(BigFont);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        _textNumber-&gt;SetMargins(20,2);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        _textNumber-&gt;SetNumber(4);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        _textNumber-&gt;SetIsReadOnly(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(label);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(_textNumber);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> Create()</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> Notify(<a class="code" href="class_window.html">Window</a> * wnd)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">if</span>(wnd == _textNumber)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Value changed&quot;</span>)&lt;&lt;((<a class="code" href="class_text_box_number.html">TextBoxNumber</a> *)_textNumber)-&gt;GetNumber()&lt;&lt;endl;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div>
-<div class="ttc" id="class_window_html_a0b95e307920f9fa1b5bf06a6dde6c96f"><div class="ttname"><a href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">Window::SetBackColor</a></div><div class="ttdeci">virtual void SetBackColor(Color color)</div><div class="ttdoc">Sets window background color (default background is transparent) </div><div class="ttdef"><b>Definition:</b> Window.h:178</div></div>
-<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provides basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:32</div></div>
-<div class="ttc" id="class_text_box_t_string_html"><div class="ttname"><a href="class_text_box_t_string.html">TextBoxTString</a></div><div class="ttdef"><b>Definition:</b> TextBoxString.h:25</div></div>
-<div class="ttc" id="class_text_box_number_html"><div class="ttname"><a href="class_text_box_number.html">TextBoxNumber</a></div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:25</div></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">AddDecorator</a>(<span class="keyword">new</span> <a class="code" href="class_decorator_rect_fill.html">DecoratorRectFill</a>(Color::Black));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">AddDecorator</a>(<span class="keyword">new</span> <a class="code" href="class_decorator_color.html">DecoratorColor</a>(Color::SkyBlue));</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">int</span> x=0;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">int</span> y=40;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="class_text_box_t_string.html">TextBoxFString</a> *label=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(x,y,width/2,25,F(<span class="stringliteral">&quot;This is label: &quot;</span>));</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        label-&gt;<a class="code" href="class_text_box.html#a72904dd08d50626b234d5e752afb0af6">SetFont</a>(BigFont);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        x=width*3.0/4;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        _textNumber=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width-x,25,0);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        _textNumber-&gt;<a class="code" href="class_window.html#a784f140b26bd299b01f77f15e96bc62c">SetDecorators</a>(<a class="code" href="class_window.html#a8e466d562ec549097f36bcb760b223c0">GetDecorators</a>()); <span class="comment">// here we save one decorator beacuse main window and text window have thae same decorator properties: black background</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        _textNumber-&gt;<a class="code" href="class_text_box.html#a72904dd08d50626b234d5e752afb0af6">SetFont</a>(BigFont);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        _textNumber-&gt;<a class="code" href="class_text_box.html#a046c9843f9252731230d4c07afa69897">SetMargins</a>(20,2);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        _textNumber-&gt;<a class="code" href="class_text_box_number.html#a490a72eb2c40a4f8d47d0e23b6e88f4f">SetNumber</a>(4);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        _textNumber-&gt;<a class="code" href="class_text_box_number.html#a7470a370fd3d4977fe644c0cbeb336b6">SetIsReadOnly</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(label);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(_textNumber);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> Create()</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> Notify(<a class="code" href="class_window.html">Window</a> * wnd)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span>(wnd == _textNumber)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Value changed&quot;</span>)&lt;&lt;((<a class="code" href="class_text_box_number.html">TextBoxNumber</a> *)_textNumber)-&gt;GetNumber()&lt;&lt;endl;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
+<div class="ttc" id="class_window_html_a784f140b26bd299b01f77f15e96bc62c"><div class="ttname"><a href="class_window.html#a784f140b26bd299b01f77f15e96bc62c">Window::SetDecorators</a></div><div class="ttdeci">virtual void SetDecorators(DecoratorList &amp;decorators)</div><div class="ttdoc">Sets window decorators list. </div><div class="ttdef"><b>Definition:</b> Window.h:76</div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provides basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
+<div class="ttc" id="class_text_box_html_a72904dd08d50626b234d5e752afb0af6"><div class="ttname"><a href="class_text_box.html#a72904dd08d50626b234d5e752afb0af6">TextBox::SetFont</a></div><div class="ttdeci">void SetFont(uint8_t *font)</div><div class="ttdoc">Sets font. </div><div class="ttdef"><b>Definition:</b> TextBox.h:61</div></div>
+<div class="ttc" id="class_text_box_number_html_a7470a370fd3d4977fe644c0cbeb336b6"><div class="ttname"><a href="class_text_box_number.html#a7470a370fd3d4977fe644c0cbeb336b6">TextBoxNumber::SetIsReadOnly</a></div><div class="ttdeci">void SetIsReadOnly(bool isReadOnly)</div><div class="ttdoc">Defines whether window is readonly. </div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:57</div></div>
+<div class="ttc" id="class_text_box_t_string_html"><div class="ttname"><a href="class_text_box_t_string.html">TextBoxTString</a></div><div class="ttdoc">Text box for string. It is templat class and can be used for differnt type of string (see bellow type...</div><div class="ttdef"><b>Definition:</b> TextBoxString.h:25</div></div>
+<div class="ttc" id="class_text_box_number_html"><div class="ttname"><a href="class_text_box_number.html">TextBoxNumber</a></div><div class="ttdoc">Text box for numbers. </div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:24</div></div>
+<div class="ttc" id="class_decorator_color_html"><div class="ttname"><a href="class_decorator_color.html">DecoratorColor</a></div><div class="ttdef"><b>Definition:</b> DecoratorPrimitives.h:25</div></div>
 <div class="ttc" id="class_text_example_window_html"><div class="ttname"><a href="class_text_example_window.html">TextExampleWindow</a></div><div class="ttdef"><b>Definition:</b> TextExampleWindow.h:24</div></div>
-<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:167</div></div>
-<div class="ttc" id="class_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition:</b> MainWindow.h:25</div></div>
+<div class="ttc" id="class_decorator_rect_fill_html"><div class="ttname"><a href="class_decorator_rect_fill.html">DecoratorRectFill</a></div><div class="ttdef"><b>Definition:</b> DecoratorPrimitives.h:44</div></div>
+<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:193</div></div>
+<div class="ttc" id="class_text_box_number_html_a490a72eb2c40a4f8d47d0e23b6e88f4f"><div class="ttname"><a href="class_text_box_number.html#a490a72eb2c40a4f8d47d0e23b6e88f4f">TextBoxNumber::SetNumber</a></div><div class="ttdeci">void SetNumber(float number)</div><div class="ttdoc">Initialize window with number. </div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:66</div></div>
+<div class="ttc" id="class_window_html_a231b9037bc152a853ccb2fb3c2b0df37"><div class="ttname"><a href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">Window::AddDecorator</a></div><div class="ttdeci">void AddDecorator(Decorator *decorator)</div><div class="ttdoc">Adds decorator to the decaorator list. </div><div class="ttdef"><b>Definition:</b> Window.h:86</div></div>
+<div class="ttc" id="class_main_window_html_a38289cd98cc39d9ee86cfc0ce48a1c3c"><div class="ttname"><a href="class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:51</div></div>
+<div class="ttc" id="class_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdoc">Base class for main application window. Each application has to have one main window, which is root parent for all other application windows. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:38</div></div>
+<div class="ttc" id="class_window_html_a8e466d562ec549097f36bcb760b223c0"><div class="ttname"><a href="class_window.html#a8e466d562ec549097f36bcb760b223c0">Window::GetDecorators</a></div><div class="ttdeci">DecoratorList &amp; GetDecorators()</div><div class="ttdoc">Returns window decorators list. </div><div class="ttdef"><b>Definition:</b> Window.h:81</div></div>
+<div class="ttc" id="class_text_box_html_a046c9843f9252731230d4c07afa69897"><div class="ttname"><a href="class_text_box.html#a046c9843f9252731230d4c07afa69897">TextBox::SetMargins</a></div><div class="ttdeci">void SetMargins(int offset_x, int offset_y)</div><div class="ttdoc">Defines offset from left and top for text. </div><div class="ttdef"><b>Definition:</b> TextBox.h:55</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="dir_96ed6c72ffe6d0d5628c00990c7a056f.html">Text</a></li><li class="navelem"><b>TextExampleWindow.h</b></li>
-    <li class="footer">Generated on Mon Aug 4 2014 17:28:44 for AWind by
+    <li class="footer">Generated on Wed Sep 9 2015 12:48:36 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

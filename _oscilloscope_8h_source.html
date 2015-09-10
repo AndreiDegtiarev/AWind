@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('_oscilloscope_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -126,125 +126,152 @@ $(document).ready(function(){initNavTree('_oscilloscope_8h_source.html','');});
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;MainWindow.h&quot;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;ChartWindow.h&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;TextBoxNumber.h&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_oscilloscope.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_oscilloscope.html">Oscilloscope</a> : <span class="keyword">public</span> <a class="code" href="class_main_window.html">MainWindow</a>, <a class="code" href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    VoltmeterSensor *_voltmeter;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_chart_window.html">ChartWindow</a> *_chartWnd;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtTimeStep;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtBufSize;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtBuf;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtMinV;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtMaxV;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_oscilloscope.html">Oscilloscope</a>(<span class="keywordtype">int</span> wnd_width,<span class="keywordtype">int</span> wnd_height):<a class="code" href="class_main_window.html">MainWindow</a>(wnd_width,wnd_height)</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> Initialize(VoltmeterSensor *voltmeter,<span class="keywordtype">int</span> buf_size,<span class="keywordtype">float</span> minV,<span class="keywordtype">float</span> maxV)</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">int</span> wnd_width=<a class="code" href="class_window.html#af0e26e4066865471331229f574b91140">Width</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">int</span> wnd_height=<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        _voltmeter=voltmeter;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">int</span> x=2;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">int</span> y=0;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">int</span> width=70;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">int</span> height=30;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="class_text_box_t_string.html">TextBoxFString</a> *labelTimeSTep=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(x,y+10,width,height,F(<span class="stringliteral">&quot;Tstep mus:&quot;</span>),Color::CornflowerBlue);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        initTextBox(labelTimeSTep,<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        x+=width;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        _txtTimeStep=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width,height,0,Color::CornflowerBlue);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        _txtTimeStep-&gt;SetNumber(voltmeter-&gt;TimeStep());</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        initTextBox(_txtTimeStep,<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        x+=width*1.2;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="class_text_box_t_string.html">TextBoxFString</a> *labelBufsize=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(x,y+10,width,height,F(<span class="stringliteral">&quot;Buf. size:&quot;</span>),Color::CornflowerBlue);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        initTextBox(labelBufsize,<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        x+=width*1.1;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        _txtBufSize=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width,height,0,Color::CornflowerBlue);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        initTextBox(_txtBufSize,<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        _txtBufSize-&gt;SetNumber(buf_size);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        x=0;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        y=_txtBufSize-&gt;<a class="code" href="class_window.html#a537345dfd19896df637b8aa1b7dadb73">Top</a>()+_txtBufSize-&gt;<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>()+1;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        _chartWnd=<span class="keyword">new</span> <a class="code" href="class_chart_window.html">ChartWindow</a>(x,y,wnd_width,wnd_height-y-height*1.2);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        _chartWnd-&gt;SetMinMaxY(minV,maxV);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(_chartWnd);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a>(Color::Black);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        y=_chartWnd-&gt;<a class="code" href="class_window.html#a537345dfd19896df637b8aa1b7dadb73">Top</a>()+_chartWnd-&gt;<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>()+3;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="class_text_box_t_string.html">TextBoxFString</a> *labelMinV=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(x,y+10,width,height,F(<span class="stringliteral">&quot;Vmin/max:&quot;</span>),Color::CornflowerBlue);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        x+=width;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        _txtMinV=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width-10,height,1,Color::CornflowerBlue);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        _txtMinV-&gt;SetNumber(minV);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        x+=width;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        _txtMaxV=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width-10,height,1,Color::CornflowerBlue);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        _txtMaxV-&gt;SetNumber(maxV);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        x+=width;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        initTextBox(labelMinV,<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        initTextBox(_txtMinV,<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        initTextBox(_txtMaxV,<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> initTextBox(<a class="code" href="class_text_box.html">TextBox</a> *textBox,<span class="keywordtype">bool</span> isLabel)</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(textBox);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">if</span>(!isLabel)</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            textBox-&gt;RegisterContentChangedReceiver(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            textBox-&gt;<a class="code" href="class_window.html#a9e7671f83805ecc64b98c07f1677e032">SetBorder</a>(Color::CornflowerBlue);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            textBox-&gt;SetMargins(0,7);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            textBox-&gt;SetFont(BigFont);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            ((<a class="code" href="class_text_box_number.html">TextBoxNumber</a> *)textBox)-&gt;SetIsReadOnly(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            textBox-&gt;SetFont(SmallFont);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        textBox-&gt;SetColor(Color::CornflowerBlue);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        textBox-&gt;<a class="code" href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">SetBackColor</a>(Color::Black);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="class_chart_window.html">ChartWindow</a> *ChartWnd()</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">return</span> _chartWnd;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> NotifyContentChanged(<a class="code" href="class_window.html">Window</a> *textBox)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        out&lt;&lt;<span class="stringliteral">&quot;Content changed&quot;</span>&lt;&lt;endl;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">if</span>(textBox == _txtMinV || textBox == _txtMaxV)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            _chartWnd-&gt;SetMinMaxY(_txtMinV-&gt;GetNumber(),_txtMaxV-&gt;GetNumber());</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            _chartWnd-&gt;<a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(textBox == _txtTimeStep)</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        {</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            _voltmeter-&gt;SetTimeStep(_txtTimeStep-&gt;GetNumber());</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(textBox == _txtBufSize)</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        {</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            _voltmeter-&gt;Buffer()-&gt;SetSize(_txtBufSize-&gt;GetNumber());</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            _txtBufSize-&gt;SetNumber(_voltmeter-&gt;Buffer()-&gt;Size());</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;};</div>
-<div class="ttc" id="class_window_html_a0b95e307920f9fa1b5bf06a6dde6c96f"><div class="ttname"><a href="class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f">Window::SetBackColor</a></div><div class="ttdeci">virtual void SetBackColor(Color color)</div><div class="ttdoc">Sets window background color (default background is transparent) </div><div class="ttdef"><b>Definition:</b> Window.h:178</div></div>
-<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provides basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:32</div></div>
-<div class="ttc" id="class_oscilloscope_html"><div class="ttname"><a href="class_oscilloscope.html">Oscilloscope</a></div><div class="ttdef"><b>Definition:</b> Oscilloscope.h:23</div></div>
-<div class="ttc" id="class_text_box_html"><div class="ttname"><a href="class_text_box.html">TextBox</a></div><div class="ttdef"><b>Definition:</b> TextBox.h:26</div></div>
-<div class="ttc" id="class_text_box_t_string_html"><div class="ttname"><a href="class_text_box_t_string.html">TextBoxTString</a></div><div class="ttdef"><b>Definition:</b> TextBoxString.h:25</div></div>
-<div class="ttc" id="class_i_content_changed_event_receiver_html"><div class="ttname"><a href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a></div><div class="ttdef"><b>Definition:</b> IContentChangedEventReceiver.h:23</div></div>
-<div class="ttc" id="class_text_box_number_html"><div class="ttname"><a href="class_text_box_number.html">TextBoxNumber</a></div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:25</div></div>
-<div class="ttc" id="class_chart_window_html"><div class="ttname"><a href="class_chart_window.html">ChartWindow</a></div><div class="ttdef"><b>Definition:</b> ChartWindow.h:30</div></div>
-<div class="ttc" id="class_window_html_a0718d9a46b881ede120e51539c2aea1f"><div class="ttname"><a href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Window::Height</a></div><div class="ttdeci">int Height()</div><div class="ttdoc">Returns window height. </div><div class="ttdef"><b>Definition:</b> Window.h:162</div></div>
-<div class="ttc" id="class_window_html_ada96195db4ae77ac0ddb6a40c529610c"><div class="ttname"><a href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Window::Invalidate</a></div><div class="ttdeci">void Invalidate()</div><div class="ttdoc">If function is called than the window manager updates the window. </div><div class="ttdef"><b>Definition:</b> Window.h:132</div></div>
-<div class="ttc" id="class_window_html_a9e7671f83805ecc64b98c07f1677e032"><div class="ttname"><a href="class_window.html#a9e7671f83805ecc64b98c07f1677e032">Window::SetBorder</a></div><div class="ttdeci">void SetBorder(Color color)</div><div class="ttdoc">Sets window border color (default no border) </div><div class="ttdef"><b>Definition:</b> Window.h:188</div></div>
-<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:167</div></div>
-<div class="ttc" id="class_window_html_a537345dfd19896df637b8aa1b7dadb73"><div class="ttname"><a href="class_window.html#a537345dfd19896df637b8aa1b7dadb73">Window::Top</a></div><div class="ttdeci">int Top()</div><div class="ttdoc">Returns window top coordinate relative to the parent window. </div><div class="ttdef"><b>Definition:</b> Window.h:152</div></div>
-<div class="ttc" id="class_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition:</b> MainWindow.h:25</div></div>
-<div class="ttc" id="class_window_html_af0e26e4066865471331229f574b91140"><div class="ttname"><a href="class_window.html#af0e26e4066865471331229f574b91140">Window::Width</a></div><div class="ttdeci">int Width()</div><div class="ttdoc">Returns window width. </div><div class="ttdef"><b>Definition:</b> Window.h:157</div></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_oscilloscope.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_oscilloscope.html">Oscilloscope</a> : <span class="keyword">public</span> <a class="code" href="class_main_window.html">MainWindow</a>, <a class="code" href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    VoltmeterSensor *_voltmeter;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_chart_window.html">ChartWindow</a> *_chartWnd;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtTimeStep;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtBufSize;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtBuf;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtMinV;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_text_box_number.html">TextBoxNumber</a> *_txtMaxV;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_decorator_axis.html">DecoratorAxis</a> *_chartYAxis;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_oscilloscope.html">Oscilloscope</a>(<span class="keywordtype">int</span> wnd_width,<span class="keywordtype">int</span> wnd_height):<a class="code" href="class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c">MainWindow</a>(wnd_width,wnd_height)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> Initialize(VoltmeterSensor *voltmeter,<span class="keywordtype">int</span> buf_size,<span class="keywordtype">float</span> minV,<span class="keywordtype">float</span> maxV)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">AddDecorator</a>(<span class="keyword">new</span> <a class="code" href="class_decorator_rect_fill.html">DecoratorRectFill</a>(Color::LightGray,<span class="keyword">false</span>));</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">AddDecorator</a>(<span class="keyword">new</span> <a class="code" href="class_decorator_color.html">DecoratorColor</a>(Color::Black));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">int</span> wnd_width=<a class="code" href="class_window.html#af0e26e4066865471331229f574b91140">Width</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">int</span> wnd_height=<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        _voltmeter=voltmeter;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">int</span> x=2;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">int</span> y=2;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">int</span> width=70;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">int</span> height=30;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        LinkedList&lt;Decorator&gt; *txtDecorators= <span class="keyword">new</span> LinkedList&lt;Decorator&gt;();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        txtDecorators-&gt;Add(<span class="keyword">new</span> <a class="code" href="class_decorator_rect_fill.html">DecoratorRectFill</a>(Color::Black));</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        txtDecorators-&gt;Add(<span class="keyword">new</span> <a class="code" href="class_decorator3_d_rect.html">Decorator3DRect</a>(Color::Gray,Color::White));</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        txtDecorators-&gt;Add(<span class="keyword">new</span> <a class="code" href="class_decorator_color.html">DecoratorColor</a>(Color::White));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_text_box_t_string.html">TextBoxFString</a> *labelTimeSTep=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(x,y+10,width,height,F(<span class="stringliteral">&quot;Tstep mus:&quot;</span>));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        initTextBox(labelTimeSTep,<span class="keyword">true</span>,txtDecorators);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        x+=width;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        _txtTimeStep=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width,height,0);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        _txtTimeStep-&gt;<a class="code" href="class_text_box_number.html#a490a72eb2c40a4f8d47d0e23b6e88f4f">SetNumber</a>(voltmeter-&gt;TimeStep());</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        initTextBox(_txtTimeStep,<span class="keyword">false</span>,txtDecorators);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        x+=width*1.2;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="class_text_box_t_string.html">TextBoxFString</a> *labelBufsize=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(x,y+10,width,height,F(<span class="stringliteral">&quot;Buf. size:&quot;</span>));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        initTextBox(labelBufsize,<span class="keyword">true</span>,txtDecorators);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        x+=width*1.1;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        _txtBufSize=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width,height,0);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        initTextBox(_txtBufSize,<span class="keyword">false</span>,txtDecorators);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        _txtBufSize-&gt;<a class="code" href="class_text_box_number.html#a490a72eb2c40a4f8d47d0e23b6e88f4f">SetNumber</a>(buf_size);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        x=1;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        y=_txtBufSize-&gt;<a class="code" href="class_window.html#a537345dfd19896df637b8aa1b7dadb73">Top</a>()+_txtBufSize-&gt;<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>()+1;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">int</span> cy=wnd_height-y-height*1.2;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">int</span> axis_y_margins=2;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        _chartYAxis=<span class="keyword">new</span> <a class="code" href="class_decorator_axis.html">DecoratorAxis</a>(<a class="code" href="class_decorator_axis.html#a449f0559509406b8bddb378500c1f654a8bb2c5f80a95e2a63de3be687e7d667b">DecoratorAxis::VerticalLeft</a>,SmallFont,cy-axis_y_margins*2,minV,maxV,5);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        _chartYAxis-&gt;<a class="code" href="class_decorator_axis.html#a1ea77d5fc6d6e0d5f4b39bd0790b663f">SetOffset</a>(4,axis_y_margins);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        _chartWnd=<span class="keyword">new</span> <a class="code" href="class_chart_window.html">ChartWindow</a>(NULL,_chartYAxis,x,y,wnd_width-2,cy);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">//_chartWnd-&gt;SetMinMaxY(minV,maxV);</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        _chartWnd-&gt;<a class="code" href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">AddDecorator</a>(<span class="keyword">new</span> <a class="code" href="class_decorator3_d_rect.html">Decorator3DRect</a>(Color::White,Color::Gray));</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        _chartWnd-&gt;<a class="code" href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">AddDecorator</a>(<span class="keyword">new</span> <a class="code" href="class_decorator_color.html">DecoratorColor</a>(Color::Black));</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        _chartWnd-&gt;<a class="code" href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">AddDecorator</a>(_chartYAxis);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(_chartWnd);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        y=_chartWnd-&gt;<a class="code" href="class_window.html#a537345dfd19896df637b8aa1b7dadb73">Top</a>()+_chartWnd-&gt;<a class="code" href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Height</a>()+3;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_text_box_t_string.html">TextBoxFString</a> *labelMinV=<span class="keyword">new</span> <a class="code" href="class_text_box_t_string.html">TextBoxFString</a>(x,y+10,width,height,F(<span class="stringliteral">&quot;Vmin/max:&quot;</span>));</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        x+=width;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        _txtMinV=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width-10,height,1);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        _txtMinV-&gt;<a class="code" href="class_text_box_number.html#a490a72eb2c40a4f8d47d0e23b6e88f4f">SetNumber</a>(minV);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        x+=width;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        _txtMaxV=<span class="keyword">new</span> <a class="code" href="class_text_box_number.html">TextBoxNumber</a>(x,y,width-10,height,1);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        _txtMaxV-&gt;<a class="code" href="class_text_box_number.html#a490a72eb2c40a4f8d47d0e23b6e88f4f">SetNumber</a>(maxV);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        x+=width;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        initTextBox(labelMinV,<span class="keyword">true</span>,txtDecorators);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        initTextBox(_txtMinV,<span class="keyword">false</span>,txtDecorators);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        initTextBox(_txtMaxV,<span class="keyword">false</span>,txtDecorators);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> initTextBox(<a class="code" href="class_text_box.html">TextBox</a> *textBox,<span class="keywordtype">bool</span> isLabel,LinkedList&lt;Decorator&gt; *decorators)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(textBox);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">if</span>(!isLabel)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            textBox-&gt;<a class="code" href="class_text_box.html#a6f0a71edbf80e614a3e6fc8db1e39bdf">RegisterContentChangedReceiver</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            textBox-&gt;<a class="code" href="class_window.html#a784f140b26bd299b01f77f15e96bc62c">SetDecorators</a>(*decorators);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            textBox-&gt;<a class="code" href="class_text_box.html#a046c9843f9252731230d4c07afa69897">SetMargins</a>(0,7);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            textBox-&gt;<a class="code" href="class_text_box.html#a72904dd08d50626b234d5e752afb0af6">SetFont</a>(BigFont);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            ((<a class="code" href="class_text_box_number.html">TextBoxNumber</a> *)textBox)-&gt;SetIsReadOnly(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            textBox-&gt;<a class="code" href="class_text_box.html#a72904dd08d50626b234d5e752afb0af6">SetFont</a>(SmallFont);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">if</span>(isLabel)</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            textBox-&gt;<a class="code" href="class_window.html#a784f140b26bd299b01f77f15e96bc62c">SetDecorators</a>(<a class="code" href="class_window.html#a8e466d562ec549097f36bcb760b223c0">GetDecorators</a>());</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <a class="code" href="class_chart_window.html">ChartWindow</a> *ChartWnd()</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">return</span> _chartWnd;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="class_oscilloscope.html#a26ab0e996c339435945089cc1493a870">  116</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_oscilloscope.html#a26ab0e996c339435945089cc1493a870">NotifyContentChanged</a>(<a class="code" href="class_window.html">Window</a> *textBox)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">if</span>(textBox == _txtMinV || textBox == _txtMaxV)</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            _chartYAxis-&gt;<a class="code" href="class_decorator_axis.html#a7043e611e07160066ea8a4e1404cd0d7">SetMinMax</a>(_txtMinV-&gt;GetNumber(),_txtMaxV-&gt;GetNumber());</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            _chartWnd-&gt;<a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(textBox == _txtTimeStep)</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            _voltmeter-&gt;SetTimeStep(_txtTimeStep-&gt;GetNumber());</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        }</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(textBox == _txtBufSize)</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            _voltmeter-&gt;Buffer()-&gt;SetSize(_txtBufSize-&gt;GetNumber());</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            _txtBufSize-&gt;<a class="code" href="class_text_box_number.html#a490a72eb2c40a4f8d47d0e23b6e88f4f">SetNumber</a>(_voltmeter-&gt;Buffer()-&gt;Size());</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;};</div>
+<div class="ttc" id="class_window_html_a784f140b26bd299b01f77f15e96bc62c"><div class="ttname"><a href="class_window.html#a784f140b26bd299b01f77f15e96bc62c">Window::SetDecorators</a></div><div class="ttdeci">virtual void SetDecorators(DecoratorList &amp;decorators)</div><div class="ttdoc">Sets window decorators list. </div><div class="ttdef"><b>Definition:</b> Window.h:76</div></div>
+<div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provides basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
+<div class="ttc" id="class_oscilloscope_html"><div class="ttname"><a href="class_oscilloscope.html">Oscilloscope</a></div><div class="ttdoc">Osciloscope main window. </div><div class="ttdef"><b>Definition:</b> Oscilloscope.h:24</div></div>
+<div class="ttc" id="class_text_box_html_a72904dd08d50626b234d5e752afb0af6"><div class="ttname"><a href="class_text_box.html#a72904dd08d50626b234d5e752afb0af6">TextBox::SetFont</a></div><div class="ttdeci">void SetFont(uint8_t *font)</div><div class="ttdoc">Sets font. </div><div class="ttdef"><b>Definition:</b> TextBox.h:61</div></div>
+<div class="ttc" id="class_text_box_html"><div class="ttname"><a href="class_text_box.html">TextBox</a></div><div class="ttdoc">Base class for window with text content. </div><div class="ttdef"><b>Definition:</b> TextBox.h:27</div></div>
+<div class="ttc" id="class_text_box_t_string_html"><div class="ttname"><a href="class_text_box_t_string.html">TextBoxTString</a></div><div class="ttdoc">Text box for string. It is templat class and can be used for differnt type of string (see bellow type...</div><div class="ttdef"><b>Definition:</b> TextBoxString.h:25</div></div>
+<div class="ttc" id="class_i_content_changed_event_receiver_html"><div class="ttname"><a href="class_i_content_changed_event_receiver.html">IContentChangedEventReceiver</a></div><div class="ttdef"><b>Definition:</b> IContentChangedEventReceiver.h:25</div></div>
+<div class="ttc" id="class_decorator_axis_html_a449f0559509406b8bddb378500c1f654a8bb2c5f80a95e2a63de3be687e7d667b"><div class="ttname"><a href="class_decorator_axis.html#a449f0559509406b8bddb378500c1f654a8bb2c5f80a95e2a63de3be687e7d667b">DecoratorAxis::VerticalLeft</a></div><div class="ttdoc">Vertcal axis with the labels left to the axis. </div><div class="ttdef"><b>Definition:</b> DecoratorPrimitives.h:103</div></div>
+<div class="ttc" id="class_text_box_number_html"><div class="ttname"><a href="class_text_box_number.html">TextBoxNumber</a></div><div class="ttdoc">Text box for numbers. </div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:24</div></div>
+<div class="ttc" id="class_decorator_axis_html_a1ea77d5fc6d6e0d5f4b39bd0790b663f"><div class="ttname"><a href="class_decorator_axis.html#a1ea77d5fc6d6e0d5f4b39bd0790b663f">DecoratorAxis::SetOffset</a></div><div class="ttdeci">void SetOffset(int offsetX, int offsetY)</div><div class="ttdoc">Sets decorator offset in the parent window coordinate system. </div><div class="ttdef"><b>Definition:</b> DecoratorPrimitives.h:139</div></div>
+<div class="ttc" id="class_decorator_axis_html"><div class="ttname"><a href="class_decorator_axis.html">DecoratorAxis</a></div><div class="ttdef"><b>Definition:</b> DecoratorPrimitives.h:96</div></div>
+<div class="ttc" id="class_chart_window_html"><div class="ttname"><a href="class_chart_window.html">ChartWindow</a></div><div class="ttdoc">Chart window implement XY plots. </div><div class="ttdef"><b>Definition:</b> ChartWindow.h:30</div></div>
+<div class="ttc" id="class_window_html_a0718d9a46b881ede120e51539c2aea1f"><div class="ttname"><a href="class_window.html#a0718d9a46b881ede120e51539c2aea1f">Window::Height</a></div><div class="ttdeci">int Height()</div><div class="ttdoc">Returns window height. </div><div class="ttdef"><b>Definition:</b> Window.h:188</div></div>
+<div class="ttc" id="class_window_html_ada96195db4ae77ac0ddb6a40c529610c"><div class="ttname"><a href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Window::Invalidate</a></div><div class="ttdeci">void Invalidate()</div><div class="ttdoc">If function is called than the window manager updates the window. </div><div class="ttdef"><b>Definition:</b> Window.h:156</div></div>
+<div class="ttc" id="class_decorator3_d_rect_html"><div class="ttname"><a href="class_decorator3_d_rect.html">Decorator3DRect</a></div><div class="ttdef"><b>Definition:</b> DecoratorPrimitives.h:80</div></div>
+<div class="ttc" id="class_decorator_color_html"><div class="ttname"><a href="class_decorator_color.html">DecoratorColor</a></div><div class="ttdef"><b>Definition:</b> DecoratorPrimitives.h:25</div></div>
+<div class="ttc" id="class_decorator_rect_fill_html"><div class="ttname"><a href="class_decorator_rect_fill.html">DecoratorRectFill</a></div><div class="ttdef"><b>Definition:</b> DecoratorPrimitives.h:44</div></div>
+<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:193</div></div>
+<div class="ttc" id="class_text_box_html_a6f0a71edbf80e614a3e6fc8db1e39bdf"><div class="ttname"><a href="class_text_box.html#a6f0a71edbf80e614a3e6fc8db1e39bdf">TextBox::RegisterContentChangedReceiver</a></div><div class="ttdeci">void RegisterContentChangedReceiver(IContentChangedEventReceiver *event)</div><div class="ttdoc">Application need to call this function if it wants receive notification about this window content cha...</div><div class="ttdef"><b>Definition:</b> TextBox.h:50</div></div>
+<div class="ttc" id="class_text_box_number_html_a490a72eb2c40a4f8d47d0e23b6e88f4f"><div class="ttname"><a href="class_text_box_number.html#a490a72eb2c40a4f8d47d0e23b6e88f4f">TextBoxNumber::SetNumber</a></div><div class="ttdeci">void SetNumber(float number)</div><div class="ttdoc">Initialize window with number. </div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:66</div></div>
+<div class="ttc" id="class_window_html_a231b9037bc152a853ccb2fb3c2b0df37"><div class="ttname"><a href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">Window::AddDecorator</a></div><div class="ttdeci">void AddDecorator(Decorator *decorator)</div><div class="ttdoc">Adds decorator to the decaorator list. </div><div class="ttdef"><b>Definition:</b> Window.h:86</div></div>
+<div class="ttc" id="class_main_window_html_a38289cd98cc39d9ee86cfc0ce48a1c3c"><div class="ttname"><a href="class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:51</div></div>
+<div class="ttc" id="class_window_html_a537345dfd19896df637b8aa1b7dadb73"><div class="ttname"><a href="class_window.html#a537345dfd19896df637b8aa1b7dadb73">Window::Top</a></div><div class="ttdeci">int Top()</div><div class="ttdoc">Returns window top coordinate relative to the parent window. </div><div class="ttdef"><b>Definition:</b> Window.h:178</div></div>
+<div class="ttc" id="class_decorator_axis_html_a7043e611e07160066ea8a4e1404cd0d7"><div class="ttname"><a href="class_decorator_axis.html#a7043e611e07160066ea8a4e1404cd0d7">DecoratorAxis::SetMinMax</a></div><div class="ttdeci">void SetMinMax(float minVal, float maxVal)</div><div class="ttdoc">Sets min and max for label values. </div><div class="ttdef"><b>Definition:</b> DecoratorPrimitives.h:151</div></div>
+<div class="ttc" id="class_oscilloscope_html_a26ab0e996c339435945089cc1493a870"><div class="ttname"><a href="class_oscilloscope.html#a26ab0e996c339435945089cc1493a870">Oscilloscope::NotifyContentChanged</a></div><div class="ttdeci">void NotifyContentChanged(Window *textBox)</div><div class="ttdoc">Has to be implemented in target class. </div><div class="ttdef"><b>Definition:</b> Oscilloscope.h:116</div></div>
+<div class="ttc" id="class_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdoc">Base class for main application window. Each application has to have one main window, which is root parent for all other application windows. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:38</div></div>
+<div class="ttc" id="class_window_html_a8e466d562ec549097f36bcb760b223c0"><div class="ttname"><a href="class_window.html#a8e466d562ec549097f36bcb760b223c0">Window::GetDecorators</a></div><div class="ttdeci">DecoratorList &amp; GetDecorators()</div><div class="ttdoc">Returns window decorators list. </div><div class="ttdef"><b>Definition:</b> Window.h:81</div></div>
+<div class="ttc" id="class_window_html_af0e26e4066865471331229f574b91140"><div class="ttname"><a href="class_window.html#af0e26e4066865471331229f574b91140">Window::Width</a></div><div class="ttdeci">int Width()</div><div class="ttdoc">Returns window width. </div><div class="ttdef"><b>Definition:</b> Window.h:183</div></div>
+<div class="ttc" id="class_text_box_html_a046c9843f9252731230d4c07afa69897"><div class="ttname"><a href="class_text_box.html#a046c9843f9252731230d4c07afa69897">TextBox::SetMargins</a></div><div class="ttdeci">void SetMargins(int offset_x, int offset_y)</div><div class="ttdoc">Defines offset from left and top for text. </div><div class="ttdef"><b>Definition:</b> TextBox.h:55</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="dir_14b066d395826e73f1776575f7ecd0a2.html">Oscilloscope</a></li><li class="navelem"><b>Oscilloscope.h</b></li>
-    <li class="footer">Generated on Mon Aug 4 2014 17:28:44 for AWind by
+    <li class="footer">Generated on Wed Sep 9 2015 12:48:36 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -1,13 +1,12 @@
 var searchData=
 [
-  ['sensorsmonitor',['SensorsMonitor',['../md_examples__sensors_monitor__r_e_a_d_m_e.html',1,'']]],
-  ['sensordatabuffer',['SensorDataBuffer',['../class_sensor_data_buffer.html',1,'']]],
-  ['sensorwindow',['SensorWindow',['../class_sensor_window.html',1,'']]],
-  ['setbackcolor',['SetBackColor',['../class_sensor_window.html#a6af8625176b187c26fbaba2d8ef08567',1,'SensorWindow::SetBackColor()'],['../class_window.html#a0b95e307920f9fa1b5bf06a6dde6c96f',1,'Window::SetBackColor()']]],
-  ['setborder',['SetBorder',['../class_window.html#a9e7671f83805ecc64b98c07f1677e032',1,'Window']]],
-  ['setcolor',['SetColor',['../class_gauge.html#a888c93e12d24c8a39ba9d1d3ce294e04',1,'Gauge']]],
-  ['setminmax',['SetMinMax',['../class_gauge.html#a7f17c7da260b82effef1d07954ce0257',1,'Gauge']]],
-  ['setnumberofticks',['SetNumberOfTicks',['../class_gauge.html#a6e47deb86125c277ab0ddd6d2040f671',1,'Gauge']]],
-  ['setvalue',['SetValue',['../class_gauge.html#a86ec2b7697077785365aabf0963db967',1,'Gauge']]],
-  ['setvisible',['SetVisible',['../class_window.html#a76c231e52092718f7adf5006c22d73cb',1,'Window']]]
+  ['rectangle',['Rectangle',['../class_d_c.html#ab700227b66b983269727d54a50c74300',1,'DC']]],
+  ['rectangle3d',['Rectangle3D',['../class_d_c.html#a9ec8fd65bcdcf68a01aca019323e7c2f',1,'DC']]],
+  ['redraw',['Redraw',['../class_window.html#a2b66845ba516c8d5022ecbc052967079',1,'Window::Redraw()'],['../class_windows_manager.html#a7252ead029fc3671667d859e69105f80',1,'WindowsManager::redraw()']]],
+  ['registercontentchangedreceiver',['RegisterContentChangedReceiver',['../class_text_box.html#a6f0a71edbf80e614a3e6fc8db1e39bdf',1,'TextBox']]],
+  ['registerdialog',['RegisterDialog',['../class_main_window.html#af21bb842941c37a822d110522ac353f2',1,'MainWindow']]],
+  ['registerenddialogeventreceiver',['RegisterEndDialogEventReceiver',['../class_keyboard_window.html#aacd40a1b306164ce0d94479f1c509095',1,'KeyboardWindow']]],
+  ['registertoucheventreceiver',['RegisterTouchEventReceiver',['../class_window.html#aeec02fbd78ad4c37722002577211226e',1,'Window']]],
+  ['reset',['Reset',['../class_d_c.html#a97b8ca12e22545b718ebfb5f70deeec9',1,'DC']]],
+  ['rootwindow',['RootWindow',['../class_window.html#ae5a130d87cffe62f5daa7e5e651b36de',1,'Window']]]
 ];

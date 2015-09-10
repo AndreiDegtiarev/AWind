@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['name',['Name',['../class_fake_sensor.html#a844da4477fe16ad4bd2e8587e8b645a6',1,'FakeSensor::Name()'],['../class_window.html#ada96429ada31d26dd8164f13ccbfabeb',1,'Window::Name()']]],
-  ['notifysensorhasdata',['NotifySensorHasData',['../class_gauges_window.html#a7fee492d93a2867bc8f24c9ec60d2e29',1,'GaugesWindow']]],
-  ['notifysensormeasured',['NotifySensorMeasured',['../class_gauges_window.html#aaf7e4328d9483d3d253f159f9488af48',1,'GaugesWindow']]],
-  ['notifytouch',['NotifyTouch',['../class_gauges_window.html#a86c01978aa83b0f009c3f8dff21fe044',1,'GaugesWindow']]]
+  ['mainwindow',['MainWindow',['../class_main_window.html',1,'MainWindow'],['../class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c',1,'MainWindow::MainWindow()']]],
+  ['makeargb',['MakeARGB',['../class_color.html#ab70c3c6a3b448a840b197abc7f0036fc',1,'Color']]],
+  ['main',['Main',['../md_docs__main.html',1,'']]],
+  ['measure',['Measure',['../class_fake_sensor.html#a34a025b0ebe78f06e748f27f16d2db8e',1,'FakeSensor']]],
+  ['minmax',['MinMax',['../class_time_serie_buffer.html#a3291641aa7502a412a6b7d04d54bfd46',1,'TimeSerieBuffer']]],
+  ['modalwnd',['ModalWnd',['../class_main_window.html#a88c6a33b0b02715bdf279aaf51f66868',1,'MainWindow']]],
+  ['move',['Move',['../class_main_window.html#acbe1429833d99a23a72ca0310312ac45',1,'MainWindow::Move()'],['../class_window.html#a4770a12f1846b07d0673667f6d1860ee',1,'Window::Move()']]]
 ];

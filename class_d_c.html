@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('class_d_c.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,62 +110,92 @@ $(document).ready(function(){initNavTree('class_d_c.html','');});
 <div class="title">DC Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_d_c_8h_source.html">DC.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac7b081e1019a5619eecaf7781363af67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7b081e1019a5619eecaf7781363af67"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DC</b> (UTFT *lcd)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#ac7b081e1019a5619eecaf7781363af67">DC</a> (UTFT *lcd)</td></tr>
+<tr class="memdesc:ac7b081e1019a5619eecaf7781363af67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for global context, that created only once in <a class="el" href="class_windows_manager.html" title="Main window manager. Implement core funcctionality of AWind library. It is tempate class that has to ...">WindowsManager</a>. <br /></td></tr>
 <tr class="separator:ac7b081e1019a5619eecaf7781363af67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a921648df43516afc9b7ffa044ce6f4a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a921648df43516afc9b7ffa044ce6f4a8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a921648df43516afc9b7ffa044ce6f4a8">DC</a> ()</td></tr>
+<tr class="memdesc:a921648df43516afc9b7ffa044ce6f4a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that used locally. This constructor assumes that UTFT library is initialized already. <br /></td></tr>
+<tr class="separator:a921648df43516afc9b7ffa044ce6f4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca54863d7a93734b134d797b2adca341"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca54863d7a93734b134d797b2adca341"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>DeviceWidth</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#aca54863d7a93734b134d797b2adca341">DeviceWidth</a> ()</td></tr>
+<tr class="memdesc:aca54863d7a93734b134d797b2adca341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns screen width. <br /></td></tr>
 <tr class="separator:aca54863d7a93734b134d797b2adca341"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22e32908237fac6c3a91736712c96bdd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22e32908237fac6c3a91736712c96bdd"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>DeviceHeight</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a22e32908237fac6c3a91736712c96bdd">DeviceHeight</a> ()</td></tr>
+<tr class="memdesc:a22e32908237fac6c3a91736712c96bdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns screen height. <br /></td></tr>
 <tr class="separator:a22e32908237fac6c3a91736712c96bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97b8ca12e22545b718ebfb5f70deeec9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97b8ca12e22545b718ebfb5f70deeec9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Reset</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a97b8ca12e22545b718ebfb5f70deeec9">Reset</a> ()</td></tr>
+<tr class="memdesc:a97b8ca12e22545b718ebfb5f70deeec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets device context into initial condition. <br /></td></tr>
 <tr class="separator:a97b8ca12e22545b718ebfb5f70deeec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2aff64d63739c4f265ee2c4d0832eea6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aff64d63739c4f265ee2c4d0832eea6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Offset</b> (int offset_x, int offset_y)</td></tr>
+<tr class="memitem:a2aff64d63739c4f265ee2c4d0832eea6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a2aff64d63739c4f265ee2c4d0832eea6">Offset</a> (int offset_x, int offset_y)</td></tr>
+<tr class="memdesc:a2aff64d63739c4f265ee2c4d0832eea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes drawing coordinate system offset.  <a href="#a2aff64d63739c4f265ee2c4d0832eea6">More...</a><br /></td></tr>
 <tr class="separator:a2aff64d63739c4f265ee2c4d0832eea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcd6b2eafd03a2fa592408a9477a5a47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcd6b2eafd03a2fa592408a9477a5a47"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ToDC_X</b> (int x)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#abcd6b2eafd03a2fa592408a9477a5a47">ToDC_X</a> (int x)</td></tr>
+<tr class="memdesc:abcd6b2eafd03a2fa592408a9477a5a47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts x coordinate from window into screen coordinate system. <br /></td></tr>
 <tr class="separator:abcd6b2eafd03a2fa592408a9477a5a47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab328270f0d93e0dd6fb853084f823467"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab328270f0d93e0dd6fb853084f823467"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ToDC_Y</b> (int y)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#ab328270f0d93e0dd6fb853084f823467">ToDC_Y</a> (int y)</td></tr>
+<tr class="memdesc:ab328270f0d93e0dd6fb853084f823467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts y coordinate from window into screen coordinate system. <br /></td></tr>
 <tr class="separator:ab328270f0d93e0dd6fb853084f823467"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab700227b66b983269727d54a50c74300"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab700227b66b983269727d54a50c74300"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Rectangle</b> (int left, int top, int right, int bottom)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#ab700227b66b983269727d54a50c74300">Rectangle</a> (int left, int top, int right, int bottom)</td></tr>
+<tr class="memdesc:ab700227b66b983269727d54a50c74300"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws rectangle. Input coordinates have to be defined in the window coordinate system. <br /></td></tr>
 <tr class="separator:ab700227b66b983269727d54a50c74300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ec8fd65bcdcf68a01aca019323e7c2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ec8fd65bcdcf68a01aca019323e7c2f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a9ec8fd65bcdcf68a01aca019323e7c2f">Rectangle3D</a> (int left, int top, int right, int bottom, <a class="el" href="class_color.html">Color</a> color1, <a class="el" href="class_color.html">Color</a> color2)</td></tr>
+<tr class="memdesc:a9ec8fd65bcdcf68a01aca019323e7c2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws rectangle with 3D border. Input coordinates have to be defined in the window coordinate system. <br /></td></tr>
+<tr class="separator:a9ec8fd65bcdcf68a01aca019323e7c2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97b9f9e51a6af7fbf01fb01c48a93da9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97b9f9e51a6af7fbf01fb01c48a93da9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a97b9f9e51a6af7fbf01fb01c48a93da9">FillRect</a> (int left, int top, int right, int bottom)</td></tr>
+<tr class="memdesc:a97b9f9e51a6af7fbf01fb01c48a93da9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills rectangle. Input coordinates have to be defined in the window coordinate system. <br /></td></tr>
+<tr class="separator:a97b9f9e51a6af7fbf01fb01c48a93da9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ef009cea3292b4bf3dfd551a49976fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ef009cea3292b4bf3dfd551a49976fe"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>FillRoundRect</b> (int left, int top, int right, int bottom)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a6ef009cea3292b4bf3dfd551a49976fe">FillRoundRect</a> (int left, int top, int right, int bottom)</td></tr>
+<tr class="memdesc:a6ef009cea3292b4bf3dfd551a49976fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills rounded rectangle. Input coordinates have to be defined in the window coordinate system. <br /></td></tr>
 <tr class="separator:a6ef009cea3292b4bf3dfd551a49976fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26effd78db2e847af90fd49dad32ea7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26effd78db2e847af90fd49dad32ea7a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawRoundRect</b> (int left, int top, int right, int bottom)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a26effd78db2e847af90fd49dad32ea7a">DrawRoundRect</a> (int left, int top, int right, int bottom)</td></tr>
+<tr class="memdesc:a26effd78db2e847af90fd49dad32ea7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws rounded rectangle. Input coordinates have to be defined in the window coordinate system. <br /></td></tr>
 <tr class="separator:a26effd78db2e847af90fd49dad32ea7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e0cd07165a0338cc45d24b310081cea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e0cd07165a0338cc45d24b310081cea"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawNumber</b> (int number, int x, int y)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a3e0cd07165a0338cc45d24b310081cea">DrawNumber</a> (int number, int x, int y)</td></tr>
+<tr class="memdesc:a3e0cd07165a0338cc45d24b310081cea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws integer number. Input coordinates have to be defined in the window coordinate system. <br /></td></tr>
 <tr class="separator:a3e0cd07165a0338cc45d24b310081cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a953cb30d9f6833861cdc65d32a8f6ba4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a953cb30d9f6833861cdc65d32a8f6ba4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawNumber</b> (float number, int dec, int x, int y)</td></tr>
+<tr class="memitem:a953cb30d9f6833861cdc65d32a8f6ba4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a953cb30d9f6833861cdc65d32a8f6ba4">DrawNumber</a> (float number, int dec, int x, int y)</td></tr>
+<tr class="memdesc:a953cb30d9f6833861cdc65d32a8f6ba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws float number. Input coordinates have to be defined in the window coordinate system.  <a href="#a953cb30d9f6833861cdc65d32a8f6ba4">More...</a><br /></td></tr>
 <tr class="separator:a953cb30d9f6833861cdc65d32a8f6ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a334854704fe3887995a1d936f9391264"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a334854704fe3887995a1d936f9391264"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawText</b> (const __FlashStringHelper *text, int x, int y)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a334854704fe3887995a1d936f9391264">DrawText</a> (const __FlashStringHelper *text, int x, int y)</td></tr>
+<tr class="memdesc:a334854704fe3887995a1d936f9391264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws PROGMEM string. Input coordinates have to be defined in the window coordinate system. <br /></td></tr>
 <tr class="separator:a334854704fe3887995a1d936f9391264"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8250094b2666462dcce00469affd73f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8250094b2666462dcce00469affd73f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>FontWidth</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#ad8250094b2666462dcce00469affd73f">FontWidth</a> ()</td></tr>
+<tr class="memdesc:ad8250094b2666462dcce00469affd73f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns symbol width for the current font. <br /></td></tr>
 <tr class="separator:ad8250094b2666462dcce00469affd73f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad52626d25820e65425807ce4b0175a6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad52626d25820e65425807ce4b0175a6f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>FontHeight</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#ad52626d25820e65425807ce4b0175a6f">FontHeight</a> ()</td></tr>
+<tr class="memdesc:ad52626d25820e65425807ce4b0175a6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns symbol jeight for the current font. <br /></td></tr>
 <tr class="separator:ad52626d25820e65425807ce4b0175a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9303c29cdc1dff9bbdc7f15e476e7081"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9303c29cdc1dff9bbdc7f15e476e7081"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawSymbol</b> (const char c, int dc_x, int dc_y)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a9303c29cdc1dff9bbdc7f15e476e7081">DrawSymbol</a> (const char c, int dc_x, int dc_y)</td></tr>
+<tr class="memdesc:a9303c29cdc1dff9bbdc7f15e476e7081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws symbol. Input coordinates have to be defined in the screen system. <br /></td></tr>
 <tr class="separator:a9303c29cdc1dff9bbdc7f15e476e7081"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6931e7ed0cf98e8000a8ae8176f4d8ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6931e7ed0cf98e8000a8ae8176f4d8ad"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawText</b> (const char *text, int x, int y)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a6931e7ed0cf98e8000a8ae8176f4d8ad">DrawText</a> (const char *text, int x, int y)</td></tr>
+<tr class="memdesc:a6931e7ed0cf98e8000a8ae8176f4d8ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws string. Input coordinates have to be defined in the window coordinate system. <br /></td></tr>
 <tr class="separator:a6931e7ed0cf98e8000a8ae8176f4d8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e0f84495366a90f13403eaeb6255508"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e0f84495366a90f13403eaeb6255508"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Sector</b> (int x0, int y0, int radius, float angle_rad)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_c.html#a5e0f84495366a90f13403eaeb6255508">Sector</a> (int x0, int y0, int radius, float angle_rad)</td></tr>
+<tr class="memdesc:a5e0f84495366a90f13403eaeb6255508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws sector. Input coordinates have to be defined in the window coordinate system. <br /></td></tr>
 <tr class="separator:a5e0f84495366a90f13403eaeb6255508"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a671fd90030766599e9db042453285097"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a671fd90030766599e9db042453285097"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetDeviceColor</b> (<a class="el" href="class_color.html">Color</a> color)</td></tr>
@@ -189,6 +219,107 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>LineTo</b> (int x, in
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Line</b> (int x1, int y1, int x2, int y2)</td></tr>
 <tr class="separator:a12f10adc78908b695efdf7474e831b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Device context. Abstraction layer to the device specific drawing code. Coordinates in drawing function are in window coordinate system that internaly translated into screen coordinate system </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a953cb30d9f6833861cdc65d32a8f6ba4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DC::DrawNumber </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>number</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draws float number. Input coordinates have to be defined in the window coordinate system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">number</td><td>float input value </td></tr>
+    <tr><td class="paramname">dec</td><td>number decimal places </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2aff64d63739c4f265ee2c4d0832eea6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DC::Offset </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>offset_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes drawing coordinate system offset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset_x</td><td>offset in x direction </td></tr>
+    <tr><td class="paramname">offset_y</td><td>offset in y direction </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="_d_c_8h_source.html">DC.h</a></li>
 </ul>
@@ -198,7 +329,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Line</b> (int x1, int
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_d_c.html">DC</a></li>
-    <li class="footer">Generated on Mon Aug 4 2014 17:28:44 for AWind by
+    <li class="footer">Generated on Wed Sep 9 2015 12:48:36 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

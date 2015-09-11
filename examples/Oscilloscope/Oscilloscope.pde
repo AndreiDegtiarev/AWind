@@ -33,7 +33,6 @@ UTouch  myTouch( 49, 51, 53, 50, 52);
 WindowsManager<Oscilloscope> windowsManager(&myGLCD,&myTouch);
 
 VoltmeterSensor *voltmeter;
-Oscilloscope *oscilloscopeWnd;
 
 int time_step_mus=100;
 const int reserved_buf_size=2000;

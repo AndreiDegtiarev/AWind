@@ -8,6 +8,7 @@ Concepts
 -------- 
 The AWind library is designed in similar way like other window libraries on 'big' systems (e.g. Windows). Many efforts are put on optimisation of SRAM-memory consumption. 
 SRAM-memory is on-board memory where runtime variables are stored. This memory in comparison to 'big' systems is very limited resource.
+Other direction of optimization is reduction of display updates. Arduino TFT displays need time to redraw. To reduce flickering only corresponding parts of display are updated - like text fields or buttons and etc.
 * Window: It can take full screen or its part, it can be a child of other window. Coordinates of child window are always relative to the parent window.
   Window can be visible or hidden. Appearance of windows can be implemented in two ways: by implementing of OnDraw function (see ChartWindow class) or what is recommended if it applicable via decorators (about decorators see below) Everything is more or less the same like in the 'big' systems. 
 * Controls: Button, text box, chart, gauges gauges. 

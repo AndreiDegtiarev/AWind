@@ -35,7 +35,7 @@ public:
 };
 class TextBoxNumber;
 ///Base class for main application window. Each  application has to have one main window, which is root parent for all other application windows
-class MainWindow : public Window, IDialogClosedEventReceiver
+class MainWindow : public Window, public IDialogClosedEventReceiver
 {
 	Window *_modalWindow;
 	KeyboardWindow _keyboardWindow;
@@ -69,8 +69,9 @@ public:
 	{
 		for(int i=0;i<_dialogs.Count();i++)
 		{
-			//out<<"Find dialog: "<<_dialogs[i]->ID<<endl;
-			if(strcmp_P(reinterpret_cast<const char*>(id), reinterpret_cast<const char*>(_dialogs[i]->ID)))
+			//out<<F("Find dialog:")<<id<<F(" Candidate:")<<_dialogs[i]->ID<<F(" Res:");
+
+			if(AHelper::compare_F(id, _dialogs[i]->ID))
 				return _dialogs[i]->DlgWindow;
 
 		}

@@ -41,7 +41,10 @@ public:
 		_precission=precission;
 		_isOK=true;
 		_number=0;
-		_isReadOnly=true;
+		SetFont(BigFont);
+		SetDecorators(*Environment::Get()->FindDecorators(F("EditTextBoxReadOnly")));
+		SetMargins(0,1);
+		SetIsReadOnly(true);
 	}
 	///Returns actual number of digits after decimal point
 	int Precission()
@@ -56,6 +59,7 @@ public:
 	///Defines whether window is readonly
 	void SetIsReadOnly(bool isReadOnly)
 	{
+	   SetDecorators(*Environment::Get()->FindDecorators(isReadOnly?F("EditTextBoxReadOnly"):F("EditTextBox")));
 		_isReadOnly=isReadOnly;
 	}
 	bool IsReadOnly()

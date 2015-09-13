@@ -46,6 +46,8 @@ public:
 	ButtonWindow(Pictogram pictogram,int left,int top,int width,int height):Window(F("Button"),left,top,width,height)
 	{
 		_pictogram=pictogram;
+		SetDecorators(*Environment::Get()->FindDecorators(F("Button")));
+
 	}
 	///Implements drawing code
 	/**

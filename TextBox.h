@@ -21,7 +21,10 @@
 #pragma once
 #include "Window.h"
 #include "IContentChangedEventReceiver.h"
+
+extern uint8_t BigFont[];
 extern uint8_t SmallFont[];
+
 
 ///Base class for window with text content
 class TextBox : public Window

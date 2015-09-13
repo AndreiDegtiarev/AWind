@@ -36,6 +36,9 @@ public:
 	GaugeBar(DecoratorAxis *axis,int left,int top,int width,int height)
 		:Gauge(left,top,width,height),_axis(axis)
 	{
+		//Make copy of gauge decorators because of axis decorator
+		SetDecorators(*new DecoratorList(GetDecorators())); 
+		AddDecorator(axis);
 	}
 	///Implements drawing code
 	/**

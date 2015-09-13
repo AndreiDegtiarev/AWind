@@ -39,6 +39,21 @@ public:
 		_text=text;
 		//_type=F("TextBoxString");
 	}
+	///Constructor
+	/**
+	\param left left coordinate relative to parent indow
+	\param top top coordinate relative to parent indow
+	\param width window width
+	\param height window height
+	\param text text to visualize
+	\param decorators name of predefined decorator
+	*/	
+	TextBoxTString(int left,int top,int width,int height,T *text,const __FlashStringHelper *decorators):TextBox(left,top,width,height)
+	{
+		_text=text;
+		SetDecorators(*Environment::Get()->FindDecorators(decorators));
+		//_type=F("TextBoxString");
+	}
 	///Implements drawing code
 	virtual void OnDraw(DC *dc)
 	{

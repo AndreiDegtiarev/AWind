@@ -48,6 +48,7 @@ public:
 		_mainWindow=new T(_dc.DeviceWidth(),_dc.DeviceHeight());
 		_mainWindow->Invalidate();
 		_mainWindow->SetLoopProcess(this);
+		_mainWindow->SetDecorators(*Environment::Get()->FindDecorators(F("Window")));
 	}
 	///Returns topmost window that lais under x,y screen coordinate
 	Window *HitTest(int x,int y)

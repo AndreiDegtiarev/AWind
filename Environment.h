@@ -28,7 +28,7 @@ public:
 	const __FlashStringHelper *ID;
 	DecoratorList *Decorators;
 };
-///This singltone class contains shared appcication resources like decorators dialogs and etc.
+///This singltone class contains shared application resources like decorators.
 class Environment
 {
 	static Environment *_singltone;

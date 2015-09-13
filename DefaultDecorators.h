@@ -17,7 +17,7 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-///This class initializes sandart apperance for window, buttons, edit box and other controls in AWind library. If you need your another look just deefine your own resources file
+///This class initializes default apperance for window, buttons, edit box and other controls in AWind library. If you need your another look just deefine your own resources file
 class DefaultDecorators
 {
 public:

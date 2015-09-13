@@ -31,7 +31,7 @@ class DialogEntry
 {
 public:
 	const __FlashStringHelper *ID;
-	Window *DlgWindow;
+	Dialog *DlgWindow;
 };
 class TextBoxNumber;
 ///Base class for main application window. Each  application has to have one main window, which is root parent for all other application windows
@@ -42,21 +42,23 @@ class MainWindow : public Window, public IDialogClosedEventReceiver
 	ILoopProcess *_idleProcess;
 	LinkedList<DialogEntry> _dialogs;
 	DialogResults _lastDialogResults;
+	bool _isModalDialogActive;
 public:
 	///Constructor
 	/**
 	\param width screen width
 	\param height screen height
 	*/
-	MainWindow(int width,int height):Window(F("Main"),0,0,width,height),_keyboardWindow(3,90)
+	MainWindow(int width,int height):Window(F("Main"),0,0,width,height),_keyboardWindow(3,90),_isModalDialogActive(false)
 	{
-		_keyboardWindow.RegisterEndDialogEventReceiver(this);
 		_modalWindow=NULL;
 		RegisterDialog(F("Keyboard"),&_keyboardWindow);
 	}
 	///Registers dialog window. All application dialogs have to be registered
-	void RegisterDialog(const __FlashStringHelper *id,Window * widnow)
+	void RegisterDialog(const __FlashStringHelper *id,Dialog * widnow)
 	{
+		widnow->RegisterEndDialogEventReceiver(this);
+
 		DialogEntry *dlgEntry=new DialogEntry();
 		dlgEntry->ID=id;
 		dlgEntry->DlgWindow=widnow;
@@ -65,12 +67,11 @@ public:
 		AddChild(widnow);
 	}
 	///Finds registered dialog by the name
-	Window *FindDialog(const __FlashStringHelper *id)
+	Dialog *FindDialog(const __FlashStringHelper *id)
 	{
 		for(int i=0;i<_dialogs.Count();i++)
 		{
 			//out<<F("Find dialog:")<<id<<F(" Candidate:")<<_dialogs[i]->ID<<F(" Res:");
-
 			if(AHelper::compare_F(id, _dialogs[i]->ID))
 				return _dialogs[i]->DlgWindow;
 
@@ -78,19 +79,29 @@ public:
 		return NULL;
 	}
 	///Starts dialog
-	DialogResults DoDialog(Window *dlg)
+	DialogResults ProcessDoDialog(Window *dlg)
 	{
-		//out<<"IDialogProcessor::DialogResults"<<endl;
+		//out<<F("Begin::ProcessDoDialog")<<endl;
+		_isModalDialogActive=true;
+		Window *lastModalWindow=ModalWnd();
 		SetModalWindow(dlg);
 		dlg->SetVisible(true);
 		dlg->Invalidate();
 
-		while(_modalWindow!=NULL)
+		while(_isModalDialogActive)
 		{
 			_idleProcess->loop();
 		}
 		dlg->SetVisible(false);
+		_isModalDialogActive=lastModalWindow!=NULL?true:false;
+		SetModalWindow(lastModalWindow);
 		Invalidate();
+		if(lastModalWindow!=NULL)
+		{
+			lastModalWindow->Invalidate();
+			_idleProcess->loop();
+		}
+		//out<<F("End::ProcessDoDialog")<<endl;
 		return _lastDialogResults;
 	}
 	void SetLoopProcess(ILoopProcess *process)
@@ -100,12 +111,9 @@ public:
 	///Process dialog closed notification
 	void NotifyDialogClosed(Window *window,DialogResults results)
 	{
-		//out<<"NotifyDialogClosed"<<endl;
-		//if(window == &_keyboardWindow) //End edit
-		{
-			SetModalWindow(NULL);
-			_lastDialogResults=results;
-		}
+		//out<<F("NotifyDialogClosed")<<endl;
+		_isModalDialogActive=false;
+		_lastDialogResults=results;
 	}
 	///Returns pointer to active modal (window that received all user input, like dialog window) window
 	Window *ModalWnd()

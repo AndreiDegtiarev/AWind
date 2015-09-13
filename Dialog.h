@@ -21,17 +21,19 @@
 */
 #include "Environment.h"
 #include "Button.h"
-///Base class for dialog objects. Provides basic window functionality
+///Base class for dialog objects. See Dialogs example Provides basic window functionality
 class Dialog : public Window, public ITouchEventReceiver
 {
 	IDialogClosedEventReceiver *_dialogClosedEventReceiver;
 protected:
+	///Button OK has to be initialized in derived class
 	Button * _btnOK;
+	///Button Cancel has to be initialized in derived class
 	Button * _btnCancel;
 public:
-	///Constructor
+	///Constructor for dialog with caption
 	/**
-	\param title internal window name that help by debugging
+	\param caption caption of dialog
 	\param left left coordinate relative to parent indow
 	\param top top coordinate relative to parent indow
 	\param width window width
@@ -49,6 +51,13 @@ public:
 		captionText->SetMargins(0,1);
 		AddChild(captionText);
 	}
+	///Constructor for dialog without caption
+	/**
+	\param left left coordinate relative to parent indow
+	\param top top coordinate relative to parent indow
+	\param width window width
+	\param height window height
+	*/
     Dialog(int left,int top,int width,int height):Window(F("Dialog"),left,top,width,height)
 	{
 		_btnOK=NULL;
@@ -62,6 +71,7 @@ public:
 	{
 		_dialogClosedEventReceiver=receiver;
 	}
+	///Process touch notifications
 	void NotifyTouch(Window *window)
 	{
 		if(window!=NULL && (window == _btnOK || window == _btnCancel))
@@ -74,5 +84,6 @@ public:
 		else
 			DoControlMessage(window);
 	}
+	///Need to be redefinded in derived class 
 	virtual void DoControlMessage(Window *window)=0;
 };

@@ -20,6 +20,8 @@
 #include "MainWindow.h"
 #include "ChartWindow.h"
 #include "TextBoxNumber.h"
+#include "DefaultDecorators.h"
+#include "Label.h"
 ///Osciloscope main window
 class Oscilloscope : public MainWindow, IContentChangedEventReceiver
 {
@@ -37,8 +39,7 @@ public:
 	}
 	void Initialize(VoltmeterSensor *voltmeter,int buf_size,float minV,float maxV)
 	{
-		AddDecorator(new DecoratorRectFill(Color::LightGray,false));
-		AddDecorator(new DecoratorColor(Color::Black));
+		SetDecorators(*Environment::Get()->FindDecorators(F("Window")));
 		int wnd_width=Width();
 		int wnd_height=Height();
 		_voltmeter=voltmeter;
@@ -47,23 +48,20 @@ public:
 		int width=70;
 		int height=30;
 
-		LinkedList<Decorator> *txtDecorators= new LinkedList<Decorator>();
-		txtDecorators->Add(new DecoratorRectFill(Color::Black));
-		txtDecorators->Add(new Decorator3DRect(Color::Gray,Color::White));
-		txtDecorators->Add(new DecoratorColor(Color::White));
+		LinkedList<Decorator> *txtDecorators= Environment::Get()->FindDecorators(F("EditTextBox"));
 
-		TextBoxFString *labelTimeSTep=new TextBoxFString(x,y+10,width,height,F("Tstep mus:"));
-		initTextBox(labelTimeSTep,true,txtDecorators);
+		Label *labelTimeSTep=new Label(x,y+10,width,height,F("Tstep mus:"));
+		initTextBox(labelTimeSTep,true);
 		x+=width;
 		_txtTimeStep=new TextBoxNumber(x,y,width,height,0);
 		_txtTimeStep->SetNumber(voltmeter->TimeStep());
-		initTextBox(_txtTimeStep,false,txtDecorators);
+		initTextBox(_txtTimeStep,false);
 		x+=width*1.2;
-		TextBoxFString *labelBufsize=new TextBoxFString(x,y+10,width,height,F("Buf. size:"));
-		initTextBox(labelBufsize,true,txtDecorators);
+		Label *labelBufsize=new Label(x,y+10,width,height,F("Buf. size:"));
+		initTextBox(labelBufsize,true);
 		x+=width*1.1;
 		_txtBufSize=new TextBoxNumber(x,y,width,height,0);
-		initTextBox(_txtBufSize,false,txtDecorators);
+		initTextBox(_txtBufSize,false);
 		_txtBufSize->SetNumber(buf_size);
 		x=1;
 		y=_txtBufSize->Top()+_txtBufSize->Height()+1;
@@ -79,7 +77,7 @@ public:
 		AddChild(_chartWnd);
 		y=_chartWnd->Top()+_chartWnd->Height()+3;
 
-		TextBoxFString *labelMinV=new TextBoxFString(x,y+10,width,height,F("Vmin/max:"));
+		Label *labelMinV=new Label(x,y+10,width,height,F("Vmin/max:"));
 		x+=width;
 		_txtMinV=new TextBoxNumber(x,y,width-10,height,1);
 		_txtMinV->SetNumber(minV);
@@ -88,25 +86,20 @@ public:
 		_txtMaxV->SetNumber(maxV);
 		x+=width;
 
-		initTextBox(labelMinV,true,txtDecorators);
-		initTextBox(_txtMinV,false,txtDecorators);
-		initTextBox(_txtMaxV,false,txtDecorators);
+		initTextBox(labelMinV,true);
+		initTextBox(_txtMinV,false);
+		initTextBox(_txtMaxV,false);
 	}
-	void initTextBox(TextBox *textBox,bool isLabel,LinkedList<Decorator> *decorators)
+	void initTextBox(TextBox *textBox,bool isLabel)
 	{
 		AddChild(textBox);
 		if(!isLabel)
 		{
 			textBox->RegisterContentChangedReceiver(this);
-			textBox->SetDecorators(*decorators);
 			textBox->SetMargins(0,7);
 			textBox->SetFont(BigFont);
 			((TextBoxNumber *)textBox)->SetIsReadOnly(false);
 		}
-		else
-			textBox->SetFont(SmallFont);
-		if(isLabel)
-			textBox->SetDecorators(GetDecorators());
 
 	}
 	ChartWindow *ChartWnd()

@@ -25,6 +25,7 @@
 #include "Window1.h"
 #include "Window2.h"
 #include "Window3.h"
+#include "DefaultDecorators.h"
 #include "WindowSelector.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
@@ -51,6 +52,9 @@ void setup()
 	//my speciality I have connected LED-A display pin to the pin 47 on Arduino board. Comment next two lines if the example from UTFT library runs without any problems 
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
+
+	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
+	DefaultDecorators::InitAll();
 
 	//initialize window manager
 	windowsManager.Initialize();

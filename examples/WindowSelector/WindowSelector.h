@@ -18,12 +18,12 @@
 */
 #pragma once
 #include "MainWindow.h"
-#include "TextBoxString.h"
+#include "Button.h"
 
 ///Window selector main window. It works as kind of tab control and can be used more or less without modifications in the target application 
 class WindowSelector : public MainWindow, public ITouchEventReceiver
 {
-	LinkedList<TextBoxFString> _listButtons; //list of buttons on the left scrren side
+	LinkedList<Button> _listButtons; //list of buttons on the left scrren side
 	LinkedList<Window> _listWindow;          //list of depended windows (
 public:
 	WindowSelector(int wnd_width,int wnd_height):MainWindow(wnd_width,wnd_height)
@@ -34,24 +34,12 @@ public:
 	{
 		int wnd_width=Width();
 		int wnd_height=Height();
-		DecoratorList *decorators=NULL;
-		if(_listButtons.Count()==0)
-		{
-			decorators=new DecoratorList(GetDecorators());
-			decorators->Add(new Decorator3DRect(Color::White,Color::Gray));
-			decorators->Add(new DecoratorColor(Color::Black));
-
-		}
-		else
-			decorators=&_listButtons[0]->GetDecorators();
 		int szx=110;
 		int szy=40;
 		int x=0;
 		int y=0;
-		TextBoxFString * button=new TextBoxFString(x+10,(szy+10)*(_listButtons.Count())+20,szx,szy,buttonName);
+		Button * button=new Button(x+10,(szy+10)*(_listButtons.Count())+20,szx,szy,buttonName);
 		button->SetMargins(5,15);
-		button->SetFont(BigFont);
-		button->SetDecorators(*decorators);
 		button->RegisterTouchEventReceiver(this);
 		AddChild(button);
 		AddChild(window);

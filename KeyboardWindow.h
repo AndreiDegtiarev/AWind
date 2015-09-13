@@ -23,18 +23,17 @@
 #include "TextBoxString.h"
 #include "IDialogClosedEventReceiver.h"
 #include "DecoratorPrimitives.h"
+#include "Dialog.h"
 
 
 extern uint8_t BigFont[];
 extern uint8_t SmallFont[];
 ///Implements Keyboard window, that helps to enter text/number information into text fields
-class KeyboardWindow :  public Window,ITouchEventReceiver
+class KeyboardWindow :  public Dialog
 {
 	//TextBoxNumber *_targetTextBox;
 	TextBoxString * _editField;
 	TextBoxNumber * _digidWindows[10];
-	TextBoxFString * _enterSymbol;
-	TextBoxFString * _cancelSymbol;
 	TextBoxFString * _pointSymbol;
 	TextBoxFString * _backspaceSymbol;
 
@@ -43,15 +42,13 @@ class KeyboardWindow :  public Window,ITouchEventReceiver
 	const static int _buttonSize=39;
 	const static int _buttonDistance=5;
 	const static int _textOffset=9;
-	IDialogClosedEventReceiver *_dialogClosedEventReceiver;
 public:
 	///Constructor
 	/**
 	\param left left coordinate relative to screen
 	\param top top coordinate relative to screen
 	*/
-
-	KeyboardWindow(int left,int top):Window(F("Keyboard"),left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
+	KeyboardWindow(int left,int top):Dialog(left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
 	{
 		AddDecorator(new DecoratorRectFill(Color::LightGray));
 		AddDecorator(new Decorator3DRect(Color::White,Color::Gray));
@@ -63,9 +60,11 @@ public:
 		_editField->AddDecorator(new DecoratorRectFill(Color::LightGray));
 		_editField->AddDecorator(new Decorator3DRect(Color::Gray,Color::White));
 		_editField->AddDecorator(new DecoratorColor(Color::Black));
+		_editField->SetFont(BigFont);
 		y+=_buttonSize+_buttonDistance;
-		_backspaceSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("<-"));
-		_enterSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("E"));
+		_backspaceSymbol=new Button(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("<-"));
+		_btnOK=new Button(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("E"));
+		DecoratorList * btnDecorators=Environment::Get()->FindDecorators(F("Button"));
 		for(int i=0;i<10;i++)
 		{
 			x=(i-(i<5?0:5))*(_buttonSize+_buttonDistance);
@@ -73,24 +72,22 @@ public:
 				y+=_buttonSize+_buttonDistance;
 			_digidWindows[i]=new TextBoxNumber(x+_buttonDistance,y,_buttonSize,_buttonSize,0);
 			_digidWindows[i]->SetNumber(i);
+			_digidWindows[i]->SetDecorators(*btnDecorators);
 			initTextBox(_digidWindows[i]);
 		}
-		_pointSymbol=new TextBoxFString(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("."));
-		_cancelSymbol=new TextBoxFString(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("C"));
-		initTextBox(_editField,&_editField->GetDecorators());
+		_pointSymbol=new Button(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("."));
+		_btnCancel=new Button(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("C"));
+		initTextBox(_editField);
 		initTextBox(_backspaceSymbol);
 		_backspaceSymbol->SetMargins(_textOffset,_textOffset*1.5);
 		_backspaceSymbol->SetFont(SmallFont);
 		initTextBox(_pointSymbol);
-		initTextBox(_cancelSymbol);
-		initTextBox(_enterSymbol);
-		_dialogClosedEventReceiver=NULL;
+		initTextBox(_btnCancel);
+		initTextBox(_btnOK);
 	}
 protected:
-	void initTextBox(TextBox *text,DecoratorList *decorators=NULL)
+	void initTextBox(TextBox *text)
 	{
-		text->SetDecorators(decorators==NULL?GetDecorators():*decorators);
-		text->SetFont(BigFont);
 		text->SetMargins(_textOffset,_textOffset);
 		text->RegisterTouchEventReceiver(this);
 		AddChild(text);
@@ -105,26 +102,23 @@ public:
 		_editField->Invalidate();
 		_editPosition=strlen(_editBuffer);
 	}
-	///Registers extern interface that will be called if keyboard window is closed
-	void RegisterEndDialogEventReceiver(IDialogClosedEventReceiver *receiver)
-	{
-		_dialogClosedEventReceiver=receiver;
-	}
 	///Returns number from edit window
 	float GetNumber()
 	{
 		return atof(_editBuffer);
 	}
-	///Process touch notifications
-	void NotifyTouch(Window *window)
+	///Process touch message from child controls
+	void DoControlMessage(Window *window)
 	{
 		//out<<F("Keybord notify")<<endl;
-		if(window == _enterSymbol || window == _cancelSymbol)
+		//if(Process_OK_Cancel_Touch(window))
+		//	return;
+		/*if(window == _enterSymbol || window == _cancelSymbol)
 		{
 			if(_dialogClosedEventReceiver!=NULL)
 				_dialogClosedEventReceiver->NotifyDialogClosed(this,window == _enterSymbol?IDialogClosedEventReceiver::OK:IDialogClosedEventReceiver::Cancel);
 		}
-		else
+		else*/
 		{
 			bool needUpdate=false;
 			if(window == _backspaceSymbol && _editPosition>0)

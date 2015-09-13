@@ -20,7 +20,7 @@
 #include "GaugeBar.h"
 #include "GaugeRadialPointer.h"
 #include "ChartWindow.h"
-#include "TextBoxString.h"
+#include "Button.h"
 #include "ButtonWindow.h"
 #include "SensorDataBuffer.h"
 #include "SensorManager.h"
@@ -32,8 +32,8 @@ class GaugesWindow : public MainWindow, public ITouchEventReceiver, public ISens
 	Gauge *_gaugeBar;
 	Gauge *_gaugeRadialPointer;
 	ChartWindow *_chartWindow;
-	TextBoxFString *_btnFast;
-	TextBoxFString *_btnSlow;
+	Button *_btnFast;
+	Button *_btnSlow;
 	TextBoxNumber  *_txtNumber;
 	ButtonWindow *_btnTop;
 	ButtonWindow *_btnBottom;
@@ -53,24 +53,17 @@ public:
 		int x=1;
 		int szx=width/4;
 		int szy=height-2;
-		DecoratorList *gaugeDecorators=new DecoratorList(GetDecorators());
-		gaugeDecorators->Add(new Decorator3DRect(Color::White,Color::Gray));
-		gaugeDecorators->Add(new DecoratorColor(Color::Green));
-		DecoratorList *gaugeRadialPointerDecorators=new DecoratorList(*gaugeDecorators);
 		int gauge_axis_y_margins=3;
 		DecoratorAxis *gaugeAxis=new DecoratorAxis(DecoratorAxis::VerticalRight,SmallFont,szy-gauge_axis_y_margins*2,0,100,5);
-		gaugeDecorators->Add(gaugeAxis);
 		DC dc;
 		int offsetX=gaugeAxis->EstimateRight(&dc);
 		gaugeAxis->SetOffset(szx-offsetX,gauge_axis_y_margins);
 		_gaugeBar=new GaugeBar(gaugeAxis,x,1,szx,szy);
-		_gaugeBar->SetDecorators(*gaugeDecorators);
 		_gaugeBar->SetFillColor(Color::LightGray);
 		AddChild(_gaugeBar); 
 		x+=szx+3;
 		szx=width/2;
 		_gaugeRadialPointer=new GaugeRadialPointer(x,1,szx,height/2-2);
-		_gaugeRadialPointer->SetDecorators(*gaugeRadialPointerDecorators);
 		_gaugeRadialPointer->SetFillColor(Color::LightGray);
 		szy=height/2-4;
 		int axis_y_margins=2;
@@ -88,41 +81,32 @@ public:
 		int y=4;
 		szy=30;
 		_txtNumber=new TextBoxNumber(x,y,szx,szy,0);
-		_txtNumber->AddDecorator(new DecoratorRectFill(Color::Black,false));
-		_txtNumber->AddDecorator(new Decorator3DRect(Color::Gray,Color::White));
-		_txtNumber->AddDecorator(new DecoratorColor(Color::White));
-		initTextBox(_txtNumber,&_txtNumber->GetDecorators());
+		initTextBox(_txtNumber);
 		y+=szy+13;
-		DecoratorList *txtDecorators=new DecoratorList(GetDecorators());
-		txtDecorators->Add(new Decorator3DRect(Color::White,Color::Gray));
-		txtDecorators->Add(new DecoratorColor(Color::Black));
-		_btnFast=new TextBoxFString(x,y,szx,szy,F("Fast"));
-		initTextBox(_btnFast,txtDecorators);
+		_btnFast=new Button(x,y,szx,szy,F("Fast"));
+		initTextBox(_btnFast);
 		y+=szy+10;
-		_btnSlow=new TextBoxFString(x,y,szx,szy,F("Slow"));
-		initTextBox(_btnSlow,txtDecorators);
+		_btnSlow=new Button(x,y,szx,szy,F("Slow"));
+		initTextBox(_btnSlow);
 		y+=szy+10;
 		szx=szy=40;
 		_btnTop=new ButtonWindow(ButtonWindow::TriangleTop,x+15,y,szx,szy);
 		y+=szy+20;
 		_btnBottom=new ButtonWindow(ButtonWindow::TriangleBottom,x+15,y,szx,szy);
-		initButton(_btnTop,txtDecorators);
-		initButton(_btnBottom,txtDecorators);
+		initButton(_btnTop);
+		initButton(_btnBottom);
 	}
 	///Initialize text box windows
-	void initTextBox(TextBox *textBox,DecoratorList *decorators)
+	void initTextBox(TextBox *textBox)
 	{
-		textBox->SetDecorators(*decorators);
-		textBox->SetFont(BigFont);
 		textBox->SetMargins(0,5);
 		textBox->RegisterTouchEventReceiver(this);
 		//textBox->SetBackColor(GetBackColor());
 		AddChild(textBox);
 	}
 	///Initialize button windows
-	void initButton(ButtonWindow *button,DecoratorList *decorators)
+	void initButton(ButtonWindow *button)
 	{
-		button->SetDecorators(*decorators);
 		button->RegisterTouchEventReceiver(this);
 		AddChild(button);
 	}

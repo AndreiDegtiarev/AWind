@@ -54,6 +54,9 @@ void setup()
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
 
+	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
+	DefaultDecorators::InitAll();
+
 	//initialize window manager
 	windowsManager.Initialize();
 

@@ -22,14 +22,15 @@
 
 #include "Color.h"
 
-#include "LinkedList.h"
 #include "Log.h"
 #include "DC.h"
 #include "ITouchEventReceiver.h"
 #include "Decorator.h"
 #include "IDialogClosedEventReceiver.h"
+#include "Environment.h"
 
-typedef LinkedList<Decorator> DecoratorList;
+class Dialog;
+
 ///Base class for all window objects. Provides basic window functionality
 class Window
 {
@@ -89,8 +90,8 @@ public:
 			_decorators=new DecoratorList();
 		_decorators->Add(decorator);
 	}
-	Window *FindDialog(const __FlashStringHelper *id);
-	IDialogClosedEventReceiver::DialogResults DoDialog(Window *dlg);
+	Dialog *FindDialog(const __FlashStringHelper *id);
+	IDialogClosedEventReceiver::DialogResults DoDialog(Dialog *dlg);
 
 
 	///Registers receiver for touch event

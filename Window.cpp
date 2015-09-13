@@ -23,12 +23,13 @@
 #include "Window.h"
 #include "MainWindow.h"
 
-Window *Window::FindDialog(const __FlashStringHelper *id)
+Dialog *Window::FindDialog(const __FlashStringHelper *id)
 {
 	return ((MainWindow *)RootWindow())->FindDialog(id);
 }
-IDialogClosedEventReceiver::DialogResults Window::DoDialog(Window *dlg)
+IDialogClosedEventReceiver::DialogResults Window::DoDialog(Dialog *dlg)
 {
-	return ((MainWindow *)RootWindow())->DoDialog(dlg);
+	IDialogClosedEventReceiver::DialogResults res=((MainWindow *)RootWindow())->ProcessDoDialog(dlg);
+	return res;
 }
 

@@ -19,6 +19,7 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
+class DC;
 ///Base class for window decorators. This concept allows sharing of drawing setting among more than one window -> SRAM memory usage optimization 
 class Decorator
 {

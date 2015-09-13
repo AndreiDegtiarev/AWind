@@ -50,7 +50,7 @@ public:
 		_fillColor(Color::Black),
 		_drawOnlyPointer(false)
 	{
-		SetDecorators(*Environment::Get()->FindDecorators(F("Gauge")));
+		SetDecorators(Environment::Get()->FindDecorators(F("Gauge")));
 	}
 	///Sets fill color
 	void SetFillColor(Color fillColor)

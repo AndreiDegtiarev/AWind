@@ -74,14 +74,14 @@ public:
 		_touchEventReceiver=NULL;
 	}
 	///Sets window decorators list.
-	virtual void SetDecorators(DecoratorList &decorators)
+	virtual void SetDecorators(DecoratorList *decorators)
 	{
-		_decorators=&decorators;
+		_decorators=decorators;
 	}
 	///Returns window decorators list.
-	DecoratorList & GetDecorators()
+	DecoratorList * GetDecorators()
 	{
-		return *_decorators;
+		return _decorators;
 	}
 	///Adds decorator to the decaorator list.
 	void AddDecorator(Decorator *decorator)

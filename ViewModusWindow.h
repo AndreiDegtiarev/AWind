@@ -72,21 +72,21 @@ public:
 	{
 		updateBackColor();
 	}
-	DecoratorList &ChartDecorators()
+	DecoratorList *ChartDecorators()
 	{
-		return _chartDecorator;
+		return &_chartDecorator;
 	}
-	DecoratorList &AlarmDecorators()
+	DecoratorList *AlarmDecorators()
 	{
-		return _alarmDecorator;
+		return &_alarmDecorator;
 	}
-	DecoratorList &NormalDecorators()
+	DecoratorList *NormalDecorators()
 	{
-		return _modus==Day?_dayLightDecorator:_nightDecorator;
+		return _modus==Day?&_dayLightDecorator:&_nightDecorator;
 	}
-	DecoratorList &NormalSensorWndDecorators()
+	DecoratorList *NormalSensorWndDecorators()
 	{
-		return _modus==Day?_dayLightSensorWndDecorator:_nightDecorator;
+		return _modus==Day?&_dayLightSensorWndDecorator:&_nightDecorator;
 	}
 	void SetModus(Modus modus)
 	{

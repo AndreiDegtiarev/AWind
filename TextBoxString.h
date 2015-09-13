@@ -51,7 +51,7 @@ public:
 	TextBoxTString(int left,int top,int width,int height,T *text,const __FlashStringHelper *decorators):TextBox(left,top,width,height)
 	{
 		_text=text;
-		SetDecorators(*Environment::Get()->FindDecorators(decorators));
+		SetDecorators(Environment::Get()->FindDecorators(decorators));
 		//_type=F("TextBoxString");
 	}
 	///Implements drawing code

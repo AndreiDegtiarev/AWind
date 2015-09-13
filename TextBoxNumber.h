@@ -42,7 +42,7 @@ public:
 		_isOK=true;
 		_number=0;
 		SetFont(BigFont);
-		SetDecorators(*Environment::Get()->FindDecorators(F("EditTextBoxReadOnly")));
+		SetDecorators(Environment::Get()->FindDecorators(F("EditTextBoxReadOnly")));
 		SetMargins(0,1);
 		SetIsReadOnly(true);
 	}
@@ -59,7 +59,7 @@ public:
 	///Defines whether window is readonly
 	void SetIsReadOnly(bool isReadOnly)
 	{
-	   SetDecorators(*Environment::Get()->FindDecorators(isReadOnly?F("EditTextBoxReadOnly"):F("EditTextBox")));
+	   SetDecorators(Environment::Get()->FindDecorators(isReadOnly?F("EditTextBoxReadOnly"):F("EditTextBox")));
 		_isReadOnly=isReadOnly;
 	}
 	bool IsReadOnly()

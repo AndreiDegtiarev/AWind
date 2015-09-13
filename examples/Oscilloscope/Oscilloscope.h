@@ -39,7 +39,7 @@ public:
 	}
 	void Initialize(VoltmeterSensor *voltmeter,int buf_size,float minV,float maxV)
 	{
-		SetDecorators(*Environment::Get()->FindDecorators(F("Window")));
+		SetDecorators(Environment::Get()->FindDecorators(F("Window")));
 		int wnd_width=Width();
 		int wnd_height=Height();
 		_voltmeter=voltmeter;

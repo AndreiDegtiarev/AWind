@@ -44,9 +44,9 @@ public:
 		_btnOK=NULL;
 		_btnCancel=NULL;
 		_dialogClosedEventReceiver=NULL;
-		SetDecorators(*Environment::Get()->FindDecorators(F("Dialog")));
+		SetDecorators(Environment::Get()->FindDecorators(F("Dialog")));
 		TextBoxFString *captionText=new TextBoxFString(2,2,width-4,20,caption);
-		captionText->SetDecorators(*Environment::Get()->FindDecorators(F("DialogCaption")));
+		captionText->SetDecorators(Environment::Get()->FindDecorators(F("DialogCaption")));
 		captionText->SetFont(BigFont);
 		captionText->SetMargins(0,1);
 		AddChild(captionText);
@@ -63,7 +63,7 @@ public:
 		_btnOK=NULL;
 		_btnCancel=NULL;
 		_dialogClosedEventReceiver=NULL;
-		SetDecorators(*Environment::Get()->FindDecorators(F("Dialog")));
+		SetDecorators(Environment::Get()->FindDecorators(F("Dialog")));
 	}
 
 	///Registers extern interface that will be called if dialog is closed

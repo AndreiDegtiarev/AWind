@@ -59,7 +59,7 @@ int temperature_port=10;
 //list where all sensors are collected
 LinkedList<SensorManager> sensors;
 //manager which controls the measurement process
-MeasurementNode measurementNode(sensors);
+MeasurementNode measurementNode(sensors,NULL);
 
 //manager which is responsible for window updating process
 WindowsManager<ViewModusWindow> windowsManager(&myGLCD,&myTouch);

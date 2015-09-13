@@ -37,7 +37,7 @@ public:
 		:Gauge(left,top,width,height),_axis(axis)
 	{
 		//Make copy of gauge decorators because of axis decorator
-		SetDecorators(*new DecoratorList(GetDecorators())); 
+		SetDecorators(new DecoratorList(*GetDecorators())); 
 		AddDecorator(axis);
 	}
 	///Implements drawing code

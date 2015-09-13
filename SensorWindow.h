@@ -45,7 +45,8 @@ public:
 	enum WindowSize
 	{
 		Big=0,
-		Small=1
+		Small=1,
+		User
 	};
 
 protected:
@@ -74,36 +75,48 @@ public:
 	*/	
 	SensorWindow(const __FlashStringHelper * name,SensorManager *sensorManager,int left,int top,WindowSize size=Big):Window(name,left,top,size == Big?BigWindowWidth:SmallWindowWidth,size == Big?BigWindowHeight:SmallWindowHeight)
 	{
+		Initialize(name,sensorManager,size,Width());
+	}
+	SensorWindow(const __FlashStringHelper * name,SensorManager *sensorManager,int left,int top,int width,int height):Window(name,left,top,width,height)
+	{
+		Initialize(name,sensorManager,User,BigWindowWidth);
+	}
+protected:
+	void Initialize(const __FlashStringHelper * name,SensorManager *sensorManager,WindowSize size,int textBoxWidth)
+	{
 		_sensorManager = sensorManager;
+		_sensorManager->RegisterHasDataEventReceiver(this);
 		_mode = Text;
-		int offset = size == Big?Margin:Margin/2;
-		int first_font_height=size == Big?70:30;
+		int offset = size != Small?Margin:Margin/2;
+		int first_font_height=size != Small?70:30;
 
-		_textValue = new TextBoxNumber(offset,offset,Width()-offset,first_font_height-offset,_sensorManager->Sensor()->Precission());
-		_textValue->SetFont(size == Big?ArialNumFontPlus:BigFont);
+
+		_textValue = new TextBoxNumber(offset,offset,textBoxWidth-offset,first_font_height-offset,_sensorManager->Sensor()->Precission());
+		_textValue->SetFont(size != Small?ArialNumFontPlus:BigFont);
 		_textValue->SetStatus(false);
 
-		_textName = new TextBoxFString(offset,first_font_height,Width(),1,name);
-		_textName->SetFont(size == Big?BigFont:SmallFont);
+		_textName = new TextBoxFString(offset,first_font_height,textBoxWidth,1,name);
+		_textName->SetFont(size != Small?BigFont:SmallFont);
 
 		int chart_height=Height()-15;
-		_textChartAxis=new TextBoxFString(Width()/2,chart_height,Width(),1,F(""));
-		_textChartAxis->SetFont(size == Big?BigFont:SmallFont);
-		_chartWnd = new ChartWindow(NULL,NULL,0,0,Width(),chart_height);
+		_textChartAxis=new TextBoxFString(Width()/2,chart_height,textBoxWidth,1,F(""));
+		_textChartAxis->SetFont(size != Small?BigFont:SmallFont);
+		int chart_offset_x=size==User?textBoxWidth:0;
+		_chartWnd = new ChartWindow(NULL,NULL,chart_offset_x,0,Width()-chart_offset_x,chart_height);
 		_chartWnd->SetVisible(false);
 
 		this->AddChild(_textValue);
 		this->AddChild(_textName);
 		this->AddChild(_chartWnd);
 		this->AddChild(_textChartAxis);
-		sensorManager->RegisterHasDataEventReceiver(this);
 	}
+public:
 	bool IsAwaitTouch()
 	{
 		return true;
 	}
 	///Sets appearance settings
-	void SetDecorators(DecoratorList &decorators)
+	void SetDecorators(DecoratorList *decorators)
 	{
 		Window::SetDecorators(((ViewModusWindow *)Parent())->NormalSensorWndDecorators());
 		_textValue->SetDecorators(decorators);
@@ -156,7 +169,7 @@ public:
 		if(_sensorManager->Status()!=Error)
 		{
 			ViewModusWindow *viewModus=(ViewModusWindow *)Parent();
-			DecoratorList *prevDec=&GetDecorators();
+			DecoratorList *prevDec=GetDecorators();
 			if(_sensorManager->Status() == ApplicationAlarm)
 			{
 				SetDecorators(viewModus->AlarmDecorators());
@@ -165,7 +178,7 @@ public:
 			else
 				SetDecorators(viewModus->NormalDecorators());
 			//_textValue->SetDecorators(GetDecorators());
-			if(prevDec != &GetDecorators() && _mode == Text)
+			if(prevDec != GetDecorators() && _mode == Text)
 				Invalidate();
 		}
 		if(_sensorManager->Status()!=Error && _textValue->GetNumber()!=value)

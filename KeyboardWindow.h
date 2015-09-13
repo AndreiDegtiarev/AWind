@@ -72,7 +72,7 @@ public:
 				y+=_buttonSize+_buttonDistance;
 			_digidWindows[i]=new TextBoxNumber(x+_buttonDistance,y,_buttonSize,_buttonSize,0);
 			_digidWindows[i]->SetNumber(i);
-			_digidWindows[i]->SetDecorators(*btnDecorators);
+			_digidWindows[i]->SetDecorators(btnDecorators);
 			initTextBox(_digidWindows[i]);
 		}
 		_pointSymbol=new Button(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("."));

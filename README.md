@@ -16,10 +16,10 @@ AWind library is build on top of Henning Karlsen libraries (many thanks for that
 You need uncompressed them into  arduinosketchfolder/libraries/ folder
 
 The AWind library refers AFrame and ASensor libraries
-* [AFrame] (https://github.com/AndreiDegtiarev/AFrame/archive/master.zip)
-* [ASensor] (https://github.com/AndreiDegtiarev/AFrame/archive/master.zip)
+* [AFrame] (https://github.com/AndreiDegtiarev/AFrame)
+* [ASensor] (https://github.com/AndreiDegtiarev/AFrame)
 
-To install you need download them into arduinosketchfolder/libraries/ folder, unzip and then remove the "-master" in the folder names.
+To install you need "Clone in Desktop" them into arduinosketchfolder/libraries/ folder, or if you use "Download ZIP" - unzip them and then remove the "-master" from the folder names.
 Restart the IDE
 
 How to connect TFT-display see the UTFT documentation.

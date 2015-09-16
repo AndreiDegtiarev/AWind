@@ -24,6 +24,7 @@
 #include "WindowsManager.h"
 #include "Log.h"
 #include "TextExampleWindow.h"
+#include "DefaultDecorators.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
 UTFT    myGLCD(ITDB32S,39,41,43,45);
@@ -49,6 +50,8 @@ void setup()
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
 
+	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
+	DefaultDecorators::InitAll();
 	//initialize window manager
 	windowsManager.Initialize();
 

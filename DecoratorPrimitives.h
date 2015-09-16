@@ -38,7 +38,7 @@ public:
 		dc->SetColor(_color);
 	}
 };
-///Decorator primitive for raund rect filled area. Overriden members description see Decorator class documentation
+///Decorator primitive for round rect filled area. Overriden members description see Decorator class documentation
 class DecoratorRectFill : public Decorator
 {
 	Color _color;
@@ -57,12 +57,12 @@ public:
 			dc->FillRect (left, top, left+width, top+height);
 	}
 };
-///Decorator primitive for raund rectangle. Overriden members description see Decorator class documentation
-class DecoratorRaundRect : public Decorator
+///Decorator primitive for round rectangle. Overriden members description see Decorator class documentation
+class DecoratorRoundRect : public Decorator
 {
 	Color _color;
 public:
-	DecoratorRaundRect(Color color):_color(color)
+	DecoratorRoundRect(Color color):_color(color)
 	{
 
 	}

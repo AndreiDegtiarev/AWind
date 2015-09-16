@@ -183,8 +183,8 @@ public:
 		for(int i=0;i<strlen(text);i++)
 		{
 			char c=text[i];
-			if(c==' ')
-				break;
+			//if(c==' ')
+			//	break;
 			DrawSymbol(c, x + (i*(_lcd->cfont.x_size)), y);
 		}
 	}

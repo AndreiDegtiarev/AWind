@@ -16,10 +16,17 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
+#ifdef _VARIANT_ARDUINO_DUE_X_  //DUE
+#include <Arduino.h> 
+#else
+#include "HardwareSerial.h"
+#endif
 
 #include <UTFT.h>
 #include <UTouch.h>
 
+
+#include "Log.h"
 #include "LinkedList.h"
 #include "WindowsManager.h"
 #include "Window1.h"
@@ -27,10 +34,16 @@
 #include "Window3.h"
 #include "DefaultDecorators.h"
 #include "WindowSelector.h"
+#include "LM35Sensor.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
+#ifdef _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
+UTFT    myGLCD(CTE32,25,26,27,28);
+UTouch  myTouch(6,5,32,3,2);
+#else
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
+#endif
 
 //manager which is responsible for window updating process
 WindowsManager<WindowSelector> windowsManager(&myGLCD,&myTouch);
@@ -44,7 +57,7 @@ void setup()
 	out<<F("Setup")<<endl;
 
 	//initialize display
-	myGLCD.InitLCD();
+	myGLCD.InitLCD(); 
 	myGLCD.clrScr();
 	//initialize touch
 	myTouch.InitTouch();

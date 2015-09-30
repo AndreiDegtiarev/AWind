@@ -48,6 +48,9 @@ public:
         _listWindow.Add(window);
 		if(_listWindow.Count()>1)
 			window->SetVisible(false);
+		else
+			_listButtons[0]->SetDecorators(_listWindow[0]->GetDecorators());
+
 	}
 	void Initialize()
 	{
@@ -69,11 +72,23 @@ public:
 		}
 		if(sel_index >=0)
 		{
+			DecoratorList *buttonDeco=Environment::Get()->FindDecorators(F("Button"));
 			for(int i=0;i<_listButtons.Count();i++)
 			{
 				_listWindow[i]->SetVisible(i==sel_index);
 				if(i==sel_index)
+				{
 					_listWindow[i]->Invalidate();
+					_listButtons[i]->SetDecorators(_listWindow[i]->GetDecorators());
+				}
+				else
+				{
+					if(_listButtons[i]->GetDecorators()!=buttonDeco)
+					{
+						_listButtons[i]->SetDecorators(buttonDeco);
+						_listButtons[i]->Invalidate();
+					}
+				}
 			}
 		}
 		//out<<F("Window selected: ")<<sel_index<<endl;

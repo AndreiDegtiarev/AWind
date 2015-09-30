@@ -32,4 +32,12 @@ IDialogClosedEventReceiver::DialogResults Window::DoDialog(Dialog *dlg)
 	IDialogClosedEventReceiver::DialogResults res=((MainWindow *)RootWindow())->ProcessDoDialog(dlg);
 	return res;
 }
+#ifdef _VARIANT_ARDUINO_DUE_X_   //DUE
+char *dtostrf(double val, signed char width, unsigned char prec, char *sout) {
+      char fmt[20];
+      sprintf(fmt, "%%%d.%df", width, prec);
+      sprintf(sout, fmt, val);
+      return sout;
+   }
+#endif
 

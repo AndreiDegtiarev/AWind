@@ -17,8 +17,13 @@
   examples and tools supplied with the library.
 */
 // DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
-#define DEMO_SENSORS
+//#define DEMO_SENSORS
 //#define DEBUG_AWIND //!<remove comments if name of window is need to known during runtime. Be carrefull about SRAM
+#ifdef _VARIANT_ARDUINO_DUE_X_  //DUE
+#include <Arduino.h> 
+#else
+#include "HardwareSerial.h"
+#endif
 
 #ifndef DEMO_SENSORS
 #include <OneWire.h>
@@ -50,8 +55,13 @@ DS1307 clock;
 #include "MeasurementNode.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
+#ifdef _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
+UTFT    myGLCD(CTE32,25,26,27,28);
+UTouch  myTouch(6,5,32,3,2);
+#else
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 UTouch  myTouch( 49, 51, 53, 50, 52);
+#endif
 
 //pin on Arduino where temperature sensor is connected (in demo is meaningless)
 int temperature_port=10;

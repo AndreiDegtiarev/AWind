@@ -21,6 +21,9 @@
 */
 #include "Color.h"
 #include "UTFT.h"
+#ifdef _VARIANT_ARDUINO_DUE_X_   //DUE
+extern char *dtostrf(double val, signed char width, unsigned char prec, char *sout);
+#endif
 ///Device context. Abstraction layer to the device specific drawing code. Coordinates in drawing function are in window coordinate system that internaly translated into screen coordinate system
 class DC
 {

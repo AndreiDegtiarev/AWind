@@ -19,8 +19,7 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#include "Window.h"
-#include "KeyboardWindow.h"
+#include "Dialog.h"
 #include "ICriticalProcess.h"
 class ILoopProcess
 {
@@ -38,7 +37,6 @@ class TextBoxNumber;
 class MainWindow : public Window, public IDialogClosedEventReceiver
 {
 	Window *_modalWindow;
-	KeyboardWindow _keyboardWindow;
 	ILoopProcess *_idleProcess;
 	LinkedList<DialogEntry> _dialogs;
 	DialogResults _lastDialogResults;
@@ -49,10 +47,9 @@ public:
 	\param width screen width
 	\param height screen height
 	*/
-	MainWindow(int width,int height):Window(F("Main"),0,0,width,height),_keyboardWindow(3,90),_isModalDialogActive(false)
+	MainWindow(int width,int height):Window(F("Main"),0,0,width,height),_isModalDialogActive(false)
 	{
 		_modalWindow=NULL;
-		RegisterDialog(F("Keyboard"),&_keyboardWindow);
 	}
 	///Registers dialog window. All application dialogs have to be registered
 	void RegisterDialog(const __FlashStringHelper *id,Dialog * widnow)
@@ -81,7 +78,7 @@ public:
 	///Starts dialog
 	DialogResults ProcessDoDialog(Window *dlg)
 	{
-		//out<<F("Begin::ProcessDoDialog")<<endl;
+		//out<<F("Begin::ProcessDoDialog")<<endln;
 		_isModalDialogActive=true;
 		Window *lastModalWindow=ModalWnd();
 		SetModalWindow(dlg);
@@ -101,7 +98,7 @@ public:
 			lastModalWindow->Invalidate();
 			_idleProcess->loop();
 		}
-		//out<<F("End::ProcessDoDialog")<<endl;
+		//out<<F("End::ProcessDoDialog")<<endln;
 		return _lastDialogResults;
 	}
 	void SetLoopProcess(ILoopProcess *process)
@@ -111,7 +108,7 @@ public:
 	///Process dialog closed notification
 	void NotifyDialogClosed(Window *window,DialogResults results)
 	{
-		//out<<F("NotifyDialogClosed")<<endl;
+		//out<<F("NotifyDialogClosed")<<endln;
 		_isModalDialogActive=false;
 		_lastDialogResults=results;
 	}
@@ -129,10 +126,5 @@ public:
 	void Move(int left,int top,int width,int height)
 	{
 		Window::Move(left,top,width,height);
-	}
-	///Returns pointer to keyboard window
-	KeyboardWindow * Keyboard()
-	{
-		return &_keyboardWindow;
 	}
 };

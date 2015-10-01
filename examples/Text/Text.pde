@@ -44,7 +44,7 @@ WindowsManager<TextExampleWindow> windowsManager(&myGLCD,&myTouch);
 void setup()
 {
 	out.begin(57600);
-	out<<(F("Setup"))<<endl;
+	out<<(F("Setup"))<<endln;
 
 	//initialize display
 	myGLCD.InitLCD();
@@ -60,12 +60,10 @@ void setup()
 	DefaultDecorators::InitAll();
 	//initialize window manager
 	windowsManager.Initialize();
+	//If edit text fields are used the Keyboard dialog has to be registered
+	windowsManager.MainWnd()->RegisterDialog(F("Keyboard"),new KeyboardWindow(3,90)); 
 
-
-	//windowsManager.MainWnd()->AddChild(new TextExampleWindow(windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight()));
-
-
-	out<<F("End setup")<<endl;
+	out<<F("End setup")<<endln;
 
 }
 

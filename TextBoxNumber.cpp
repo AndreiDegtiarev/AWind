@@ -20,7 +20,7 @@
 */
 #include "UTFT.h"
 #include "TextBoxNumber.h"
-#include "MainWindow.h"
+#include "KeyboardWindow.h"
 
 bool TextBoxNumber::OnTouch(int x,int y)
 {

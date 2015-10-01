@@ -17,15 +17,11 @@
   examples and tools supplied with the library.
 */
 // DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
-//#define DEMO_SENSORS
+#define DEMO_SENSORS
 //#define DEBUG_AWIND //!<remove comments if name of window is need to known during runtime. Be carrefull about SRAM
-#ifdef _VARIANT_ARDUINO_DUE_X_  //DUE
-#include <Arduino.h> 
-#else
-#include "HardwareSerial.h"
-#endif
 
-#ifndef DEMO_SENSORS
+#if defined DEMO_SENSORS
+#else
 #include <OneWire.h>
 #include <SPI.h>
 #include <RF24.h>

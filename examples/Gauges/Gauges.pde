@@ -16,11 +16,6 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#ifdef _VARIANT_ARDUINO_DUE_X_  //DUE
-#include <Arduino.h> 
-#else
-#include "HardwareSerial.h"
-#endif
 
 // DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
 #define DEMO_SENSORS
@@ -28,7 +23,7 @@
 #include <UTFT.h>
 #include <UTouch.h>
 
-#include "LinkedList.h"
+#include "Log.h"
 #include "WindowsManager.h"
 #include "GaugesWindow.h"
 #include "FakeSensor.h"
@@ -37,7 +32,7 @@
 #include "DefaultDecorators.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
-#ifdef _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
+#if defined _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
 UTFT    myGLCD(CTE32,25,26,27,28);
 UTouch  myTouch(6,5,32,3,2);
 #else

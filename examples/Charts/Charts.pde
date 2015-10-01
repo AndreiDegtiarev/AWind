@@ -18,22 +18,16 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#ifdef _VARIANT_ARDUINO_DUE_X_  //DUE
-#include <Arduino.h> 
-#else
-#include "HardwareSerial.h"
-#endif
 
 #include <UTFT.h>
 #include <UTouch.h>
 
-#include "LinkedList.h"
+#include "Log.h"
 #include "WindowsManager.h"
 #include "ChartWindow.h"
 #include "TimeSerieBuffer.h"
 #include "TextBoxString.h"
 #include "TextBoxNumber.h"
-#include "Log.h"
 #include "DecoratorPrimitives.h"
 
 // Setup TFT display (see UTFT and UTouch library documentation)
@@ -111,20 +105,20 @@ void setup()
 	out<<F("End setup")<<endl;
 
 }
-int index=100;
+int num_index=100;
 void loop()
 {
-	if(index<1)
-		index=100;
-	dataBuffer->SetFactorY(index);
+	if(num_index<1)
+		num_index=100;
+	dataBuffer->SetFactorY(num_index);
 	for(unsigned int i=0;i<1000;i++)
 	{
 		dataBuffer->Set(i,sin(2*3.14*(time_step*i)));
 	}
-	textNumber->SetNumber(index);
+	textNumber->SetNumber(num_index);
 	//In order to reduce flickering only chart area is updated
 	chartWnd->InvalidateOnlyChartArea();
-	index/=2;
+	num_index/=2;
 	//give window manager an opportunity to update display
 	windowsManager.loop();
 	delay(1000);

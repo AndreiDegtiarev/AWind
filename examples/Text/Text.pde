@@ -18,11 +18,6 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#ifdef _VARIANT_ARDUINO_DUE_X_  //DUE
-#include <Arduino.h> 
-#else
-#include "HardwareSerial.h"
-#endif
 
 #include <UTFT.h>
 #include <UTouch.h>

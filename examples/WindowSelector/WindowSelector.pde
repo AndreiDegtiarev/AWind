@@ -16,12 +16,6 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#ifdef _VARIANT_ARDUINO_DUE_X_  //DUE
-#include <Arduino.h> 
-#else
-#include "HardwareSerial.h"
-#endif
-
 #include <UTFT.h>
 #include <UTouch.h>
 
@@ -34,7 +28,6 @@
 #include "Window3.h"
 #include "DefaultDecorators.h"
 #include "WindowSelector.h"
-#include "LM35Sensor.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
 #ifdef _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
@@ -48,7 +41,7 @@ UTouch  myTouch( 49, 51, 53, 50, 52);
 //manager which is responsible for window updating process
 WindowsManager<WindowSelector> windowsManager(&myGLCD,&myTouch);
 
-
+UARTClass
 
 void setup()
 {

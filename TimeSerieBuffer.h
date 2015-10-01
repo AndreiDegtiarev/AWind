@@ -21,7 +21,6 @@
 #pragma once
 
 #include <math.h>
-#include "Log.h"
 #include "IDataBuffer.h"
 
 ///Buffer for sensor data. It is used by chart control.

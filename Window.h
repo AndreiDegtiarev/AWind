@@ -22,7 +22,6 @@
 
 #include "Color.h"
 
-#include "Log.h"
 #include "DC.h"
 #include "ITouchEventReceiver.h"
 #include "Decorator.h"

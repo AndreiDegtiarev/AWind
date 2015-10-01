@@ -19,7 +19,7 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-#include "AHelper.h"
+//#include "AHelper.h"
 ///Decorator primitive that sets current color. Overriden members description see Decorator class documentation
 class DecoratorColor : public Decorator
 {

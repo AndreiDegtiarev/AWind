@@ -20,7 +20,6 @@
   examples and tools supplied with the library.
 */
 #include "Gauge.h"
-#include "AHelper.h"
 ///Gauge radial pointer class
 class GaugeRadialPointer : public Gauge
 {

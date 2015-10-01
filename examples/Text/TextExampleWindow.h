@@ -51,7 +51,7 @@ public:
 	{
 		if(wnd == _textNumber)
 		{
-			out<<F("Value changed")<<((TextBoxNumber *)_textNumber)->GetNumber()<<endl;
+			out<<F("Value changed")<<((TextBoxNumber *)_textNumber)->GetNumber()<<endln;
 		}
 	}
 };

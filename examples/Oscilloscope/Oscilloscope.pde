@@ -47,7 +47,7 @@ void setup()
 {
 	//setup log (out is wrap about Serial class)
 	out.begin(57600);
-	out<<F("Setup")<<endl;
+	out<<F("Setup")<<endln;
 
 	//initialize display
 	myGLCD.InitLCD();
@@ -64,6 +64,8 @@ void setup()
 
 	//initialize window manager
 	windowsManager.Initialize();
+	//If edit text fields are used the Keyboard dialog has to be registered
+	windowsManager.MainWnd()->RegisterDialog(F("Keyboard"),new KeyboardWindow(3,90)); 
 
 	//create voltmeter sensor that measures analog pin A0
 	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,buf_size);
@@ -74,7 +76,7 @@ void setup()
 	//windowsManager.MainWnd()->AddChild(oscilloscopeWnd);
 
 	delay(1000); 
-	out<<F("End setup")<<endl;
+	out<<F("End setup")<<endln;
 
 }
 

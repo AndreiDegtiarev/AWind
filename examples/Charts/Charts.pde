@@ -53,7 +53,7 @@ float time_step=1.0/buf_size;
 void setup()
 {
 	out.begin(57600);
-	out<<(F("Setup"))<<endl;
+	out<<(F("Setup"))<<endln;
 	//initialize display
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
@@ -102,7 +102,7 @@ void setup()
 	windowsManager.MainWnd()->AddChild(chartWnd);
 
 
-	out<<F("End setup")<<endl;
+	out<<F("End setup")<<endln;
 
 }
 int num_index=100;

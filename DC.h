@@ -182,7 +182,7 @@ public:
 		x=ToDC_X(x);
 		y=ToDC_Y(y);
 		//_lcd->print(text,x,y);
-		//out<<text<<" "<<strlen(text)<<endl;
+		//out<<text<<" "<<strlen(text)<<endln;
 		for(int i=0;i<strlen(text);i++)
 		{
 			char c=text[i];

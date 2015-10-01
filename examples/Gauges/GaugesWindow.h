@@ -115,7 +115,7 @@ public:
 	{
 		if(window==_btnFast)
 		{
-			out<<F("touch in gauges fast")<<endl;
+			out<<F("touch in gauges fast")<<endln;
 			if(_sensorManager!=NULL)
 			{
 				_sensorManager->SetPause(_sensorManager->GetPause()*0.9);
@@ -123,7 +123,7 @@ public:
 		}
 		else if(window==_btnSlow)
 		{
-			out<<F("touch in gauges slow")<<endl;
+			out<<F("touch in gauges slow")<<endln;
 			if(_sensorManager!=NULL)
 			{
 				_sensorManager->SetPause(_sensorManager->GetPause()*1.1);
@@ -131,13 +131,13 @@ public:
 		}
 		else if(window==_btnTop)
 		{
-			out<<F("touch in gauges top")<<endl;
+			out<<F("touch in gauges top")<<endln;
 			if(_sensorManager!=NULL)
 				((FakeSensor *)_sensorManager->Sensor())->Increase();
 		}
 		else if(window==_btnBottom)
 		{
-			out<<F("touch in gauges bottom")<<endl;
+			out<<F("touch in gauges bottom")<<endln;
 			if(_sensorManager!=NULL)
 				((FakeSensor *)_sensorManager->Sensor())->Decrease();
 		}

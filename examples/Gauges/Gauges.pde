@@ -53,7 +53,7 @@ void setup()
 {
 	//setup log (out is wrap about Serial class)
 	out.begin(57600);
-	out<<F("Setup")<<endl;
+	out<<F("Setup")<<endln;
 
 	//initialize display
 	myGLCD.InitLCD();
@@ -80,7 +80,7 @@ void setup()
 	measurementNode.SetCriticalProcess(&windowsManager);
 
 	delay(1000); 
-	out<<F("End setup")<<endl;
+	out<<F("End setup")<<endln;
 
 }
 

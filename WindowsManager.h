@@ -119,13 +119,13 @@ protected:
 	///Checks touch event
 	void loopTouch()
 	{
-		//out<<F("Check touch")<<endl;
+		//out<<F("Check touch")<<endln;
 		if (_touch->dataAvailable())
 		{
 			_touch->read();
 			int x=_touch->getX();
 			int y=_touch->getY();
-			//out<<F("Touch begins x:")<<x<<F(" y:")<<y<<endl;
+			//out<<F("Touch begins x:")<<x<<F(" y:")<<y<<endln;
 			if(x>0 && y>0)
 			{
 				Window *window=HitTest(x,y);
@@ -133,15 +133,15 @@ protected:
 				if(window!=NULL)
 				{
 					Window *crWindow=window;
-					//out<<F("Searching touch window: ")<<endl;
+					//out<<F("Searching touch window: ")<<endln;
 					while(crWindow!=NULL && (!crWindow->IsAwaitTouch()))
 					{
-						//out<<crWindow->Name()<<endl;
+						//out<<crWindow->Name()<<endln;
 						crWindow=crWindow->Parent();	
 					}
 					if(crWindow != NULL)
 					{
-						//out<<F("Touch found")<<endl;
+						//out<<F("Touch found")<<endln;
 						touchWnd=crWindow;
 						touchWnd->OnTouching(GetDC());
 					}
@@ -152,19 +152,19 @@ protected:
 					{
 						_touch->read();
 					}
-					//out<<F("Touch: ")<<touchWnd->Name()<<endl;
+					//out<<F("Touch: ")<<touchWnd->Name()<<endln;
 					{
 						Window *crWindow=touchWnd;
 						while(crWindow!=NULL && ((crWindow->IsAwaitTouch()) && !(crWindow)->OnTouch(x,y))||!crWindow->IsAwaitTouch())
 						{
 							crWindow=crWindow->Parent();	
-							//out<<F("Touch while")<<endl;
+							//out<<F("Touch while")<<endln;
 						}
-						//out<<F("Touch invalidate")<<endl;
+						//out<<F("Touch invalidate")<<endln;
 						touchWnd->Invalidate();
 					}
 				}
-				//out<<F("Touch finish")<<endl;
+				//out<<F("Touch finish")<<endln;
 			}
 		}
 	}

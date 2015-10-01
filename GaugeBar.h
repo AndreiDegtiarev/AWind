@@ -46,7 +46,7 @@ public:
 	*/
 	void OnDraw(DC *dc)
 	{
-		//out<<"value :"<<_value<<endl;
+		//out<<"value :"<<_value<<endln;
 		dc->SetFont(SmallFont);
 		//float range=_maxValue-_minValue;
 		float saling_factor=_axis->GetLength()/(_maxValue-_minValue);

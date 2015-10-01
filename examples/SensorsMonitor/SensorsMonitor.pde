@@ -79,7 +79,7 @@ void setup()
 {
 	//setup log (out is wrap about Serial class)
 	out.begin(57600);
-	out<<F("Setup")<<endl;
+	out<<F("Setup")<<endln;
 
 	//this example runs on the limit of SRAM. Here is initial check
 	AHelper::LogFreeRam();
@@ -151,7 +151,7 @@ void setup()
 	//Checks how much SRAM is left. If it is less than 300, the example will not work stably. The usage of SRAM can be reduced by changing buf_size variable in SensorManager.h (AFrame)
 	AHelper::LogFreeRam();
 
-	out<<F("End setup")<<endl;
+	out<<F("End setup")<<endln;
 
 }
 

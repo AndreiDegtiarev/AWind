@@ -110,7 +110,7 @@ public:
 	///Touch manager calls this function in the loop as long as touch action proceeds
 	virtual void OnTouching(DC *dc)
 	{
-		//out<<"OnTouching"<<endl;
+		//out<<"OnTouching"<<endln;
 		PrepareDC(dc);
 		dc->SetColor(Color::Red);
 		dc->DrawRoundRect(0,0,Width(),Height());
@@ -119,10 +119,10 @@ public:
 	///Touch manager calls this function right after touch is released
 	virtual bool OnTouch(int x,int y)
 	{
-		//out<<F("OnTouch")<<endl;
+		//out<<F("OnTouch")<<endln;
 		if(_touchEventReceiver!=NULL)
 		{
-			//out<<F("TouchEvent generated")<<endl;
+			//out<<F("TouchEvent generated")<<endln;
 			_touchEventReceiver->NotifyTouch(this);
 			return true;
 		}

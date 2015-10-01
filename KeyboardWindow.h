@@ -110,7 +110,7 @@ public:
 	///Process touch message from child controls
 	void DoControlMessage(Window *window)
 	{
-		//out<<F("Keybord notify")<<endl;
+		//out<<F("Keybord notify")<<endln;
 		//if(Process_OK_Cancel_Touch(window))
 		//	return;
 		/*if(window == _enterSymbol || window == _cancelSymbol)

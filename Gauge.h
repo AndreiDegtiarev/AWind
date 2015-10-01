@@ -76,7 +76,7 @@ public:
 	{
 		_value=max(_minValue,value);
 		_value=min(_maxValue,_value);
-		out<<F("Gauge value: ")<<_value<<endl;
+		out<<F("Gauge value: ")<<_value<<endln;
 		_drawOnlyPointer=true;
 		DC dc;
 		PrepareDC(&dc);

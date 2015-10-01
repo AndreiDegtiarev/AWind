@@ -74,7 +74,7 @@ public:
 			_size=size;
 		else
 		{
-			out<<F("Error: buffer size is too big")<<endl;
+			out<<F("Error: buffer size is too big")<<endln;
 			return false;
 		}
 		return true;
@@ -98,7 +98,7 @@ public:
 	{
 		if(index>=Size())
 		{
-			out<<F("Error: index outside of array bounds: ")<<index<<endl;
+			out<<F("Error: index outside of array bounds: ")<<index<<endln;
 			return;
 		}
 		_data_y[index]=(value*_factor_y);
@@ -128,7 +128,7 @@ public:
 	{
 		if(index>=Size())
 		{
-			out<<F("Error: index outside of array bounds: ")<<index<<endl;
+			out<<F("Error: index outside of array bounds: ")<<index<<endln;
 			return 0;
 		}
 		return _time_step*index;
@@ -138,7 +138,7 @@ public:
 	{
 		if(index>=Size())
 		{
-			out<<F("Error: index outside of array bounds: ")<<index<<endl;
+			out<<F("Error: index outside of array bounds: ")<<index<<endln;
 			return 0;
 		}
 		return _data_y[index]/_factor_y;

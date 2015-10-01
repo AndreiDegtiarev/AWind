@@ -41,7 +41,6 @@ UTouch  myTouch( 49, 51, 53, 50, 52);
 //manager which is responsible for window updating process
 WindowsManager<WindowSelector> windowsManager(&myGLCD,&myTouch);
 
-UARTClass
 
 void setup()
 {

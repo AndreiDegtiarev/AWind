@@ -64,8 +64,6 @@ void setup()
 
 	//initialize window manager
 	windowsManager.Initialize();
-	//If edit text fields are used the Keyboard dialog has to be registered
-	windowsManager.MainWnd()->RegisterDialog(F("Keyboard"),new KeyboardWindow(3,90)); 
 
 	//create voltmeter sensor that measures analog pin A0
 	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,buf_size);

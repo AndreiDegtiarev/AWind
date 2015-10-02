@@ -27,6 +27,10 @@ Dialog *Window::FindDialog(const __FlashStringHelper *id)
 {
 	return ((MainWindow *)RootWindow())->FindDialog(id);
 }
+void Window::RegisterDialog(const __FlashStringHelper *id,Dialog *dlg)
+{
+	((MainWindow *)RootWindow())->RegisterDialog(id,dlg);
+}
 IDialogClosedEventReceiver::DialogResults Window::DoDialog(Dialog *dlg)
 {
 	IDialogClosedEventReceiver::DialogResults res=((MainWindow *)RootWindow())->ProcessDoDialog(dlg);

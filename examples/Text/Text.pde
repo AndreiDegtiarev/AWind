@@ -60,8 +60,6 @@ void setup()
 	DefaultDecorators::InitAll();
 	//initialize window manager
 	windowsManager.Initialize();
-	//If edit text fields are used the Keyboard dialog has to be registered
-	windowsManager.MainWnd()->RegisterDialog(F("Keyboard"),new KeyboardWindow(3,90)); 
 
 	out<<F("End setup")<<endln;
 

@@ -90,6 +90,7 @@ public:
 		_decorators->Add(decorator);
 	}
 	Dialog *FindDialog(const __FlashStringHelper *id);
+	void RegisterDialog(const __FlashStringHelper *id,Dialog *dlg);
 	IDialogClosedEventReceiver::DialogResults DoDialog(Dialog *dlg);
 
 

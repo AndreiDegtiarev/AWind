@@ -28,6 +28,11 @@ bool TextBoxNumber::OnTouch(int x,int y)
 	if(!_isReadOnly)
 	{
 		KeyboardWindow * kbrWnd=(KeyboardWindow *)FindDialog(F("Keyboard"));
+		if(kbrWnd == NULL)
+		{
+			kbrWnd=new KeyboardWindow(3,90);
+			RegisterDialog(F("Keyboard"),kbrWnd); 
+		}
 		if(kbrWnd!=NULL)
 		{
 			kbrWnd->Initialize(GetNumber(),Precission());

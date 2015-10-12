@@ -23,10 +23,11 @@
 #include "Log.h"
 #include "LinkedList.h"
 #include "WindowsManager.h"
+#include "DefaultDecorators.h"
 #include "Window1.h"
 #include "Window2.h"
 #include "Window3.h"
-#include "DefaultDecorators.h"
+
 #include "WindowSelector.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)

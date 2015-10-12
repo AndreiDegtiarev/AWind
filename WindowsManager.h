@@ -21,7 +21,8 @@
 #pragma once
 
 #include "Window.h"
-#include "KeyboardWindow.h"
+//#include "KeyboardWindow.h"
+//#include "MobileKBWindow.h"
 #include "MainWindow.h"
 #include "ICriticalProcess.h"
 

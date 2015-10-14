@@ -20,6 +20,7 @@
 
 #include "TextBoxString.h"
 #include "TextBoxNumber.h"
+#include "DecoratorPrimitives.h"
 
 class TextExampleWindow : public MainWindow
 {

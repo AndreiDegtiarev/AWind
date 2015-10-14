@@ -20,6 +20,7 @@
   examples and tools supplied with the library.
 */
 #include "Gauge.h"
+#include "DecoratorPrimitives.h"
 ///Bar gauge class
 class GaugeBar : public Gauge
 {

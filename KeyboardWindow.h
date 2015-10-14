@@ -33,7 +33,7 @@ class KeyboardWindow :  public Dialog
 {
 	//TextBoxNumber *_targetTextBox;
 	TextBoxString * _editField;
-	TextBoxNumber * _digidWindows[10];
+	TextBoxNumber _digidWindows[10];
 	TextBoxFString * _pointSymbol;
 	TextBoxFString * _backspaceSymbol;
 
@@ -50,16 +50,11 @@ public:
 	*/
 	KeyboardWindow(int left,int top):Dialog(left,top,7*(_buttonSize+_buttonDistance)+_buttonDistance,3*(_buttonSize+_buttonDistance)+_buttonDistance)
 	{
-		AddDecorator(new DecoratorRectFill(Color::LightGray));
-		AddDecorator(new Decorator3DRect(Color::White,Color::Gray));
-		AddDecorator(new DecoratorColor(Color::Black));
 
 		int x=_buttonDistance;
 		int y=_buttonDistance;
 		_editField=new TextBoxString(x,y,Width()-2*_buttonDistance,_buttonSize,"");
-		_editField->AddDecorator(new DecoratorRectFill(Color::LightGray));
-		_editField->AddDecorator(new Decorator3DRect(Color::Gray,Color::White));
-		_editField->AddDecorator(new DecoratorColor(Color::Black));
+		_editField->SetDecorators(Environment::Get()->FindDecorators(F("EditTextBoxReadOnly")));
 		_editField->SetFont(BigFont);
 		y+=_buttonSize+_buttonDistance;
 		_backspaceSymbol=new Button(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("<-"));
@@ -70,10 +65,11 @@ public:
 			x=(i-(i<5?0:5))*(_buttonSize+_buttonDistance);
 			if(i==5)
 				y+=_buttonSize+_buttonDistance;
-			_digidWindows[i]=new TextBoxNumber(x+_buttonDistance,y,_buttonSize,_buttonSize,0);
-			_digidWindows[i]->SetNumber(i);
-			_digidWindows[i]->SetDecorators(btnDecorators);
-			initTextBox(_digidWindows[i]);
+			//_digidWindows[i]=new TextBoxNumber(x+_buttonDistance,y,_buttonSize,_buttonSize,0);
+			_digidWindows[i].Move(x+_buttonDistance,y,_buttonSize,_buttonSize);
+			_digidWindows[i].SetNumber(i);
+			_digidWindows[i].SetDecorators(btnDecorators);
+			initTextBox(&_digidWindows[i]);
 		}
 		_pointSymbol=new Button(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("."));
 		_btnCancel=new Button(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("C"));
@@ -136,7 +132,7 @@ public:
 			else
 			{
 				for(int i=0;i<10;i++)
-					if(window == _digidWindows[i] && _editPosition<14)
+					if(window == &_digidWindows[i] && _editPosition<14)
 					{
 						_editBuffer[_editPosition++]='0'+i;
 						_editBuffer[_editPosition]=0;

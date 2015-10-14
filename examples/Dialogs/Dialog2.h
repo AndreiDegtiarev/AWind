@@ -19,6 +19,7 @@
 #pragma once
 #include <Dialog.h>
 #include <Label.h>
+#include <TextBoxNumber.h>
 ///Example window with yellow background
 class Dialog2 : public Dialog
 {

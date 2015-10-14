@@ -36,7 +36,7 @@ public:
 	\param height window height
 	\param precission number of digits after decimal point
 	*/
-	TextBoxNumber(int left,int top,int width,int height,int precission):TextBox(left,top,width,height)
+	TextBoxNumber(int left=0,int top=0,int width=0,int height=0,int precission=0):TextBox(left,top,width,height)
 	{
 		_precission=precission;
 		_isOK=true;
@@ -50,6 +50,10 @@ public:
 	int Precission()
 	{
 		return _precission;
+	}
+    void SetPrecission(int precission)
+	{
+		_precission=precission;
 	}
 	bool IsAwaitTouch()
 	{

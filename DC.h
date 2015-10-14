@@ -176,6 +176,20 @@ public:
 	{
 		_lcd->printChar(c, dc_x, dc_y);
 	}
+	///Draws a character. Input coordinates have to be defined in the window coordinate system
+	void DrawChar(const char c,int x, int y)
+	{
+		x=ToDC_X(x);
+		y=ToDC_Y(y);
+		DrawSymbol(c, x, y);
+	}
+	///Draw caret. Input coordinates have to be defined in the window coordinate system
+	void DrawCaret(int pos, int x, int y)
+	{
+		x = x+(pos*_lcd->cfont.x_size);
+		DrawChar('_', x, y+2);
+	}
+	///Draws string. Input coordinates have to be defined in the window coordinate system
 	///Draws string. Input coordinates have to be defined in the window coordinate system
 	void DrawText(const char * text,int x,int y)
 	{

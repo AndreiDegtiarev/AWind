@@ -24,6 +24,7 @@
 #include "WindowsManager.h"
 #include "VoltmeterSensor.h"
 #include "Oscilloscope.h"
+#include "KeyboardWindow.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
 #ifdef _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
@@ -36,12 +37,16 @@ UTouch  myTouch( 49, 51, 53, 50, 52);
 
 //manager which is responsible for window updating process
 WindowsManager<Oscilloscope> windowsManager(&myGLCD,&myTouch);
+//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
+DefaultDecorators dfltDecorators(DefaultDecorators::all);
 
 VoltmeterSensor *voltmeter;
 
 int time_step_mus=100;
 const int reserved_buf_size=2000;
 int buf_size=500;
+
+//KeyboardWindow kbrWnd(3,90);
 
 void setup()
 {
@@ -59,20 +64,17 @@ void setup()
 	pinMode(47,OUTPUT);
 	digitalWrite(47,HIGH);
 
-	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
-	DefaultDecorators::InitAll();
-
 	//initialize window manager
 	windowsManager.Initialize();
+
+	//windowsManager.MainWnd()->RegisterDialog(F("Keyboard"),&kbrWnd);
 
 	//create voltmeter sensor that measures analog pin A0
 	voltmeter=new VoltmeterSensor(A0,reserved_buf_size,buf_size);
 	voltmeter->SetTimeStep(time_step_mus);
 
 	windowsManager.MainWnd()->Initialize(voltmeter,buf_size,0.0,4.0); 
-	//oscilloscopeWnd=new Oscilloscope(voltmeter,buf_size,0.0,4.0,windowsManager.GetDC()->DeviceWidth(),windowsManager.GetDC()->DeviceHeight());
-	//windowsManager.MainWnd()->AddChild(oscilloscopeWnd);
-
+	AHelper::LogFreeRam();
 	delay(1000); 
 	out<<F("End setup")<<endln;
 

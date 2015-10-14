@@ -24,14 +24,19 @@
 
 bool TextBoxNumber::OnTouch(int x,int y)
 {
+	//out<<F("TextBoxNumber::OnTouch")<<endln;
+	//AHelper::LogFreeRam();
 	bool retCode=TextBox::OnTouch(x,y);
 	if(!_isReadOnly)
 	{
 		KeyboardWindow * kbrWnd=(KeyboardWindow *)FindDialog(F("Keyboard"));
 		if(kbrWnd == NULL)
 		{
+			//out<<F("TextBoxNumber::OnTouch1")<<endln;
 			kbrWnd=new KeyboardWindow(3,90);
 			RegisterDialog(F("Keyboard"),kbrWnd); 
+			//AHelper::LogFreeRam();
+			//out<<F("TextBoxNumber::OnTouch2")<<endln;
 		}
 		if(kbrWnd!=NULL)
 		{

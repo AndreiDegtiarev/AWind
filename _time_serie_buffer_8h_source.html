@@ -127,135 +127,134 @@ $(document).ready(function(){initNavTree('_time_serie_buffer_8h_source.html','')
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;Log.h&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;IDataBuffer.h&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_time_serie_buffer.html">TimeSerieBuffer</a> : <span class="keyword">public</span> IDataBuffer</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> _reserved_size;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">int</span> _size;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">int</span>   *_data_y;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">float</span> _time_step;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">float</span> _factor_y;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#af19bb6a1389c01206143059445eb1855">   43</a></span>&#160;    <a class="code" href="class_time_serie_buffer.html#af19bb6a1389c01206143059445eb1855">TimeSerieBuffer</a>(<span class="keywordtype">float</span> time_step,<span class="keywordtype">float</span> factor_y,<span class="keywordtype">int</span> reserved_size,<span class="keywordtype">int</span> size)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">initialize</a>(time_step,factor_y,reserved_size,size);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a9218e86010bbb34237b91ee98107124f">   53</a></span>&#160;    <a class="code" href="class_time_serie_buffer.html#a9218e86010bbb34237b91ee98107124f">TimeSerieBuffer</a>(<span class="keywordtype">float</span> time_step,<span class="keywordtype">float</span> factor_y,<span class="keywordtype">int</span> size)</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">initialize</a>(time_step,factor_y,size,size);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">   60</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">initialize</a>(<span class="keywordtype">float</span> time_step,<span class="keywordtype">float</span> factor_y,<span class="keywordtype">int</span> reserved_size,<span class="keywordtype">int</span> size)</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        _factor_y=factor_y;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        _size=size;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        _reserved_size=reserved_size;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        _time_step=time_step;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        _data_y=<span class="keyword">new</span> <span class="keywordtype">int</span>[reserved_size];</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;_size;i++)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            _data_y[i]=0;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a01189dac0ef424e2779bc68e2634d093">   72</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_time_serie_buffer.html#a01189dac0ef424e2779bc68e2634d093">SetSize</a>(<span class="keywordtype">int</span> size)</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">if</span>(size&lt;=_reserved_size)</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            _size=size;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Error: buffer size is too big&quot;</span>)&lt;&lt;endl;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#ad2563122515c4735a35d907d115c607c">   84</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_time_serie_buffer.html#ad2563122515c4735a35d907d115c607c">SetTimeStep</a>(<span class="keywordtype">float</span> time_step)</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        _time_step=time_step;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#ac79576faa058ffe865e7e6e112503852">   89</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_time_serie_buffer.html#ac79576faa058ffe865e7e6e112503852">SetFactorY</a>(<span class="keywordtype">float</span> factor_y)</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        _factor_y=factor_y;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a87dc471527f8ad54e57645e0ac548b07">   98</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_time_serie_buffer.html#a87dc471527f8ad54e57645e0ac548b07">Set</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index,<span class="keywordtype">float</span> value)</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">if</span>(index&gt;=<a class="code" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">Size</a>())</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Error: index outside of array bounds: &quot;</span>)&lt;&lt;index&lt;&lt;endl;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        _data_y[index]=(value*_factor_y);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
-<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#abc9de4f891007abd0f06577cebde9f49">  108</a></span>&#160;    <span class="keywordtype">int</span> *<a class="code" href="class_time_serie_buffer.html#abc9de4f891007abd0f06577cebde9f49">Y</a>()</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">return</span> _data_y;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a3291641aa7502a412a6b7d04d54bfd46">  113</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_time_serie_buffer.html#a3291641aa7502a412a6b7d04d54bfd46">MinMax</a>(<span class="keywordtype">float</span> &amp;min_x,<span class="keywordtype">float</span> &amp;max_x,<span class="keywordtype">float</span> &amp;min_y,<span class="keywordtype">float</span> &amp;max_y)</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    {</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        min_x=0;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        max_x=_time_step*_size;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        min_y=_data_y[_size-1];</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        max_y=_data_y[_size-1];</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;_size;i++)</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            min_y=min(min_y,_data_y[i]);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            max_y=max(max_y,_data_y[i]);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        min_y/=_factor_y;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        max_y/=_factor_y;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }</div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a05767ad7706bfbd60cd47e14ad53b84b">  128</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_time_serie_buffer.html#a05767ad7706bfbd60cd47e14ad53b84b">X</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index)</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    {</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">if</span>(index&gt;=<a class="code" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">Size</a>())</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Error: index outside of array bounds: &quot;</span>)&lt;&lt;index&lt;&lt;endl;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">return</span> _time_step*index;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
-<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#ae38d2211fa954336c718811dc2ea8123">  138</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_time_serie_buffer.html#ae38d2211fa954336c718811dc2ea8123">Y</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index)</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="keywordflow">if</span>(index&gt;=<a class="code" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">Size</a>())</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        {</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Error: index outside of array bounds: &quot;</span>)&lt;&lt;index&lt;&lt;endl;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        }</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">return</span> _data_y[index]/_factor_y;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
-<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a4689bd9805ec4d2de2430cd8285637ac">  148</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_time_serie_buffer.html#a4689bd9805ec4d2de2430cd8285637ac">StartIndex</a>()</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    {</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    }</div>
-<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">  153</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">Size</a>()</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">return</span> _size;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;};</div>
-<div class="ttc" id="class_time_serie_buffer_html"><div class="ttname"><a href="class_time_serie_buffer.html">TimeSerieBuffer</a></div><div class="ttdoc">Buffer for sensor data. It is used by chart control. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:28</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_abc9de4f891007abd0f06577cebde9f49"><div class="ttname"><a href="class_time_serie_buffer.html#abc9de4f891007abd0f06577cebde9f49">TimeSerieBuffer::Y</a></div><div class="ttdeci">int * Y()</div><div class="ttdoc">Returns point to vaues array. It is used for direct access to internal buffer. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:108</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_a3291641aa7502a412a6b7d04d54bfd46"><div class="ttname"><a href="class_time_serie_buffer.html#a3291641aa7502a412a6b7d04d54bfd46">TimeSerieBuffer::MinMax</a></div><div class="ttdeci">void MinMax(float &amp;min_x, float &amp;max_x, float &amp;min_y, float &amp;max_y)</div><div class="ttdoc">Returns min and max value for buffer data. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:113</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_a01189dac0ef424e2779bc68e2634d093"><div class="ttname"><a href="class_time_serie_buffer.html#a01189dac0ef424e2779bc68e2634d093">TimeSerieBuffer::SetSize</a></div><div class="ttdeci">bool SetSize(int size)</div><div class="ttdoc">Sets actual buffer size. It has to be less or equal to reserved_size. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:72</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_a05767ad7706bfbd60cd47e14ad53b84b"><div class="ttname"><a href="class_time_serie_buffer.html#a05767ad7706bfbd60cd47e14ad53b84b">TimeSerieBuffer::X</a></div><div class="ttdeci">float X(unsigned int index)</div><div class="ttdoc">Returns X that is calculated from index in buffer (see time_step parameter) </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:128</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_aa1eb27d4e9c1cf34bfa289b101d3e2e5"><div class="ttname"><a href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">TimeSerieBuffer::initialize</a></div><div class="ttdeci">void initialize(float time_step, float factor_y, int reserved_size, int size)</div><div class="ttdoc">Initialize internal buffer. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:60</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_a4689bd9805ec4d2de2430cd8285637ac"><div class="ttname"><a href="class_time_serie_buffer.html#a4689bd9805ec4d2de2430cd8285637ac">TimeSerieBuffer::StartIndex</a></div><div class="ttdeci">unsigned int StartIndex()</div><div class="ttdoc">Returns start index in buffer. For this class is always 0. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:148</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_ad2563122515c4735a35d907d115c607c"><div class="ttname"><a href="class_time_serie_buffer.html#ad2563122515c4735a35d907d115c607c">TimeSerieBuffer::SetTimeStep</a></div><div class="ttdeci">float SetTimeStep(float time_step)</div><div class="ttdoc">Sets time interval between samples in buffer. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:84</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_ae38d2211fa954336c718811dc2ea8123"><div class="ttname"><a href="class_time_serie_buffer.html#ae38d2211fa954336c718811dc2ea8123">TimeSerieBuffer::Y</a></div><div class="ttdeci">float Y(unsigned int index)</div><div class="ttdoc">Returns scaled value Y from buffer for specified index. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:138</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_aa3d28778cc26769f8ff1499533a9df75"><div class="ttname"><a href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">TimeSerieBuffer::Size</a></div><div class="ttdeci">unsigned int Size()</div><div class="ttdoc">Returns buffer size. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:153</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_ac79576faa058ffe865e7e6e112503852"><div class="ttname"><a href="class_time_serie_buffer.html#ac79576faa058ffe865e7e6e112503852">TimeSerieBuffer::SetFactorY</a></div><div class="ttdeci">float SetFactorY(float factor_y)</div><div class="ttdoc">Sets scale factor for mesaurements. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:89</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_a87dc471527f8ad54e57645e0ac548b07"><div class="ttname"><a href="class_time_serie_buffer.html#a87dc471527f8ad54e57645e0ac548b07">TimeSerieBuffer::Set</a></div><div class="ttdeci">void Set(unsigned int index, float value)</div><div class="ttdoc">Puts value into buffer. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:98</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_af19bb6a1389c01206143059445eb1855"><div class="ttname"><a href="class_time_serie_buffer.html#af19bb6a1389c01206143059445eb1855">TimeSerieBuffer::TimeSerieBuffer</a></div><div class="ttdeci">TimeSerieBuffer(float time_step, float factor_y, int reserved_size, int size)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:43</div></div>
-<div class="ttc" id="class_time_serie_buffer_html_a9218e86010bbb34237b91ee98107124f"><div class="ttname"><a href="class_time_serie_buffer.html#a9218e86010bbb34237b91ee98107124f">TimeSerieBuffer::TimeSerieBuffer</a></div><div class="ttdeci">TimeSerieBuffer(float time_step, float factor_y, int size)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:53</div></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;IDataBuffer.h&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_time_serie_buffer.html">TimeSerieBuffer</a> : <span class="keyword">public</span> IDataBuffer</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">int</span> _reserved_size;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> _size;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">int</span>   *_data_y;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">float</span> _time_step;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">float</span> _factor_y;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#af19bb6a1389c01206143059445eb1855">   42</a></span>&#160;    <a class="code" href="class_time_serie_buffer.html#af19bb6a1389c01206143059445eb1855">TimeSerieBuffer</a>(<span class="keywordtype">float</span> time_step,<span class="keywordtype">float</span> factor_y,<span class="keywordtype">int</span> reserved_size,<span class="keywordtype">int</span> size)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">initialize</a>(time_step,factor_y,reserved_size,size);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a9218e86010bbb34237b91ee98107124f">   52</a></span>&#160;    <a class="code" href="class_time_serie_buffer.html#a9218e86010bbb34237b91ee98107124f">TimeSerieBuffer</a>(<span class="keywordtype">float</span> time_step,<span class="keywordtype">float</span> factor_y,<span class="keywordtype">int</span> size)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">initialize</a>(time_step,factor_y,size,size);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">   59</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">initialize</a>(<span class="keywordtype">float</span> time_step,<span class="keywordtype">float</span> factor_y,<span class="keywordtype">int</span> reserved_size,<span class="keywordtype">int</span> size)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        _factor_y=factor_y;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        _size=size;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        _reserved_size=reserved_size;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        _time_step=time_step;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        _data_y=<span class="keyword">new</span> <span class="keywordtype">int</span>[reserved_size];</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;_size;i++)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            _data_y[i]=0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a01189dac0ef424e2779bc68e2634d093">   71</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_time_serie_buffer.html#a01189dac0ef424e2779bc68e2634d093">SetSize</a>(<span class="keywordtype">int</span> size)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span>(size&lt;=_reserved_size)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            _size=size;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Error: buffer size is too big&quot;</span>)&lt;&lt;endln;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#ad2563122515c4735a35d907d115c607c">   83</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_time_serie_buffer.html#ad2563122515c4735a35d907d115c607c">SetTimeStep</a>(<span class="keywordtype">float</span> time_step)</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        _time_step=time_step;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#ac79576faa058ffe865e7e6e112503852">   88</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_time_serie_buffer.html#ac79576faa058ffe865e7e6e112503852">SetFactorY</a>(<span class="keywordtype">float</span> factor_y)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        _factor_y=factor_y;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a87dc471527f8ad54e57645e0ac548b07">   97</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_time_serie_buffer.html#a87dc471527f8ad54e57645e0ac548b07">Set</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index,<span class="keywordtype">float</span> value)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">if</span>(index&gt;=<a class="code" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">Size</a>())</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Error: index outside of array bounds: &quot;</span>)&lt;&lt;index&lt;&lt;endln;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        _data_y[index]=(value*_factor_y);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#abc9de4f891007abd0f06577cebde9f49">  107</a></span>&#160;    <span class="keywordtype">int</span> *<a class="code" href="class_time_serie_buffer.html#abc9de4f891007abd0f06577cebde9f49">Y</a>()</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">return</span> _data_y;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a3291641aa7502a412a6b7d04d54bfd46">  112</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_time_serie_buffer.html#a3291641aa7502a412a6b7d04d54bfd46">MinMax</a>(<span class="keywordtype">float</span> &amp;min_x,<span class="keywordtype">float</span> &amp;max_x,<span class="keywordtype">float</span> &amp;min_y,<span class="keywordtype">float</span> &amp;max_y)</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        min_x=0;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        max_x=_time_step*_size;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        min_y=_data_y[_size-1];</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        max_y=_data_y[_size-1];</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;_size;i++)</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            min_y=min(min_y,_data_y[i]);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            max_y=max(max_y,_data_y[i]);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        min_y/=_factor_y;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        max_y/=_factor_y;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a05767ad7706bfbd60cd47e14ad53b84b">  127</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_time_serie_buffer.html#a05767ad7706bfbd60cd47e14ad53b84b">X</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index)</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">if</span>(index&gt;=<a class="code" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">Size</a>())</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Error: index outside of array bounds: &quot;</span>)&lt;&lt;index&lt;&lt;endln;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">return</span> _time_step*index;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#ae38d2211fa954336c718811dc2ea8123">  137</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_time_serie_buffer.html#ae38d2211fa954336c718811dc2ea8123">Y</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index)</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">if</span>(index&gt;=<a class="code" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">Size</a>())</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        {</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            out&lt;&lt;F(<span class="stringliteral">&quot;Error: index outside of array bounds: &quot;</span>)&lt;&lt;index&lt;&lt;endln;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">return</span> _data_y[index]/_factor_y;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#a4689bd9805ec4d2de2430cd8285637ac">  147</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_time_serie_buffer.html#a4689bd9805ec4d2de2430cd8285637ac">StartIndex</a>()</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
+<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">  152</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">Size</a>()</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">return</span> _size;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    }</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;};</div>
+<div class="ttc" id="class_time_serie_buffer_html"><div class="ttname"><a href="class_time_serie_buffer.html">TimeSerieBuffer</a></div><div class="ttdoc">Buffer for sensor data. It is used by chart control. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:27</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_abc9de4f891007abd0f06577cebde9f49"><div class="ttname"><a href="class_time_serie_buffer.html#abc9de4f891007abd0f06577cebde9f49">TimeSerieBuffer::Y</a></div><div class="ttdeci">int * Y()</div><div class="ttdoc">Returns point to vaues array. It is used for direct access to internal buffer. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:107</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_a3291641aa7502a412a6b7d04d54bfd46"><div class="ttname"><a href="class_time_serie_buffer.html#a3291641aa7502a412a6b7d04d54bfd46">TimeSerieBuffer::MinMax</a></div><div class="ttdeci">void MinMax(float &amp;min_x, float &amp;max_x, float &amp;min_y, float &amp;max_y)</div><div class="ttdoc">Returns min and max value for buffer data. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:112</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_a01189dac0ef424e2779bc68e2634d093"><div class="ttname"><a href="class_time_serie_buffer.html#a01189dac0ef424e2779bc68e2634d093">TimeSerieBuffer::SetSize</a></div><div class="ttdeci">bool SetSize(int size)</div><div class="ttdoc">Sets actual buffer size. It has to be less or equal to reserved_size. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:71</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_a05767ad7706bfbd60cd47e14ad53b84b"><div class="ttname"><a href="class_time_serie_buffer.html#a05767ad7706bfbd60cd47e14ad53b84b">TimeSerieBuffer::X</a></div><div class="ttdeci">float X(unsigned int index)</div><div class="ttdoc">Returns X that is calculated from index in buffer (see time_step parameter) </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:127</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_aa1eb27d4e9c1cf34bfa289b101d3e2e5"><div class="ttname"><a href="class_time_serie_buffer.html#aa1eb27d4e9c1cf34bfa289b101d3e2e5">TimeSerieBuffer::initialize</a></div><div class="ttdeci">void initialize(float time_step, float factor_y, int reserved_size, int size)</div><div class="ttdoc">Initialize internal buffer. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:59</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_a4689bd9805ec4d2de2430cd8285637ac"><div class="ttname"><a href="class_time_serie_buffer.html#a4689bd9805ec4d2de2430cd8285637ac">TimeSerieBuffer::StartIndex</a></div><div class="ttdeci">unsigned int StartIndex()</div><div class="ttdoc">Returns start index in buffer. For this class is always 0. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:147</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_ad2563122515c4735a35d907d115c607c"><div class="ttname"><a href="class_time_serie_buffer.html#ad2563122515c4735a35d907d115c607c">TimeSerieBuffer::SetTimeStep</a></div><div class="ttdeci">float SetTimeStep(float time_step)</div><div class="ttdoc">Sets time interval between samples in buffer. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:83</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_ae38d2211fa954336c718811dc2ea8123"><div class="ttname"><a href="class_time_serie_buffer.html#ae38d2211fa954336c718811dc2ea8123">TimeSerieBuffer::Y</a></div><div class="ttdeci">float Y(unsigned int index)</div><div class="ttdoc">Returns scaled value Y from buffer for specified index. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:137</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_aa3d28778cc26769f8ff1499533a9df75"><div class="ttname"><a href="class_time_serie_buffer.html#aa3d28778cc26769f8ff1499533a9df75">TimeSerieBuffer::Size</a></div><div class="ttdeci">unsigned int Size()</div><div class="ttdoc">Returns buffer size. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:152</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_ac79576faa058ffe865e7e6e112503852"><div class="ttname"><a href="class_time_serie_buffer.html#ac79576faa058ffe865e7e6e112503852">TimeSerieBuffer::SetFactorY</a></div><div class="ttdeci">float SetFactorY(float factor_y)</div><div class="ttdoc">Sets scale factor for mesaurements. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:88</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_a87dc471527f8ad54e57645e0ac548b07"><div class="ttname"><a href="class_time_serie_buffer.html#a87dc471527f8ad54e57645e0ac548b07">TimeSerieBuffer::Set</a></div><div class="ttdeci">void Set(unsigned int index, float value)</div><div class="ttdoc">Puts value into buffer. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:97</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_af19bb6a1389c01206143059445eb1855"><div class="ttname"><a href="class_time_serie_buffer.html#af19bb6a1389c01206143059445eb1855">TimeSerieBuffer::TimeSerieBuffer</a></div><div class="ttdeci">TimeSerieBuffer(float time_step, float factor_y, int reserved_size, int size)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:42</div></div>
+<div class="ttc" id="class_time_serie_buffer_html_a9218e86010bbb34237b91ee98107124f"><div class="ttname"><a href="class_time_serie_buffer.html#a9218e86010bbb34237b91ee98107124f">TimeSerieBuffer::TimeSerieBuffer</a></div><div class="ttdeci">TimeSerieBuffer(float time_step, float factor_y, int size)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> TimeSerieBuffer.h:52</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>TimeSerieBuffer.h</b></li>
-    <li class="footer">Generated on Thu Sep 10 2015 17:47:59 for AWind by
+    <li class="footer">Generated on Tue Oct 27 2015 22:31:49 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

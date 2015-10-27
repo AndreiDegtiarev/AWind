@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['viewmoduswindow',['ViewModusWindow',['../class_view_modus_window.html',1,'']]]
+  ['sensorwindow',['SensorWindow',['../class_sensor_window.html',1,'']]]
 ];

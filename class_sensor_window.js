@@ -8,13 +8,16 @@ var class_sensor_window =
     ] ],
     [ "WindowSize", "class_sensor_window.html#a686066069542fffabdaf5f5aba4e1653", [
       [ "Big", "class_sensor_window.html#a686066069542fffabdaf5f5aba4e1653a2f418c30a17d6ea753f753a0596cac89", null ],
-      [ "Small", "class_sensor_window.html#a686066069542fffabdaf5f5aba4e1653ac4a28be97cb6cd2f347e3c3847cbdc14", null ]
+      [ "Small", "class_sensor_window.html#a686066069542fffabdaf5f5aba4e1653ac4a28be97cb6cd2f347e3c3847cbdc14", null ],
+      [ "User", "class_sensor_window.html#a686066069542fffabdaf5f5aba4e1653acb77a77bc85dfc41e79e1c0a2406dc0d", null ]
     ] ],
     [ "SensorWindow", "class_sensor_window.html#a275d526e7f9e2c48ff85550e206490de", null ],
+    [ "SensorWindow", "class_sensor_window.html#addeae15da7ed7c982f65653b6c9e85e1", null ],
+    [ "Initialize", "class_sensor_window.html#a63545454c093f0193446ddb99ba01c81", null ],
     [ "IsAwaitTouch", "class_sensor_window.html#a1ed5102f60a0771f1e9ce785e92e7271", null ],
     [ "NotifySensorHasData", "class_sensor_window.html#a9b11bffa85dcae0a05af99fed745ca63", null ],
     [ "OnTouch", "class_sensor_window.html#afa85cfe97a395aeb4cc801161f617a4f", null ],
-    [ "SetDecorators", "class_sensor_window.html#a52b88d2504508ae6d8c3aabc32c70502", null ],
+    [ "SetDecorators", "class_sensor_window.html#ac75d53500955e3ffbd1a3f70375ec632", null ],
     [ "_chartWnd", "class_sensor_window.html#a2bcc2e37efa6c9753728d0011bc67483", null ],
     [ "_mode", "class_sensor_window.html#a86742acf20d77a8cbf0b75791e7bee71", null ],
     [ "_sensorManager", "class_sensor_window.html#adb4ca86da8335831e605f4c5c9f731c2", null ],

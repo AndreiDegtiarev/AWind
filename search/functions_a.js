@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['label',['Label',['../class_label.html#a667dc47afbfc2aa07f5d6876c8737f1f',1,'Label']]],
   ['lctodc_5fx',['LCtoDC_x',['../class_chart_d_c.html#a9926b4f67869120674ab0600f7e31c11',1,'ChartDC']]],
   ['lctodc_5fy',['LCtoDC_y',['../class_chart_d_c.html#a8dedd9ec36a4c99126353fa40ad9e656',1,'ChartDC']]],
   ['left',['Left',['../class_window.html#af607e4331611bb9a2307fb3d79a2d67f',1,'Window']]],

@@ -125,129 +125,130 @@ $(document).ready(function(){initNavTree('_main_window_8h_source.html','');});
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">  The license applies to all part of the library including the </span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">  examples and tools supplied with the library.</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;Window.h&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;KeyboardWindow.h&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;ICriticalProcess.h&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_i_loop_process.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_i_loop_process.html">ILoopProcess</a></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> loop()=0;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_dialog_entry.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_dialog_entry.html">DialogEntry</a></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">const</span> __FlashStringHelper *ID;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_window.html">Window</a> *DlgWindow;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;};</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">class </span><a class="code" href="class_text_box_number.html">TextBoxNumber</a>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_main_window.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_main_window.html">MainWindow</a> : <span class="keyword">public</span> <a class="code" href="class_window.html">Window</a>, <a class="code" href="class_i_dialog_closed_event_receiver.html">IDialogClosedEventReceiver</a></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_window.html">Window</a> *_modalWindow;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_keyboard_window.html">KeyboardWindow</a> _keyboardWindow;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_i_loop_process.html">ILoopProcess</a> *_idleProcess;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    LinkedList&lt;DialogEntry&gt; _dialogs;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    DialogResults _lastDialogResults;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c">   51</a></span>&#160;    <a class="code" href="class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c">MainWindow</a>(<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_window.html">Window</a>(F(<span class="stringliteral">&quot;Main&quot;</span>),0,0,width,height),_keyboardWindow(3,90)</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        _keyboardWindow.<a class="code" href="class_keyboard_window.html#aacd40a1b306164ce0d94479f1c509095">RegisterEndDialogEventReceiver</a>(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        _modalWindow=NULL;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_main_window.html#af21bb842941c37a822d110522ac353f2">RegisterDialog</a>(F(<span class="stringliteral">&quot;Keyboard&quot;</span>),&amp;_keyboardWindow);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="class_main_window.html#af21bb842941c37a822d110522ac353f2">   58</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#af21bb842941c37a822d110522ac353f2">RegisterDialog</a>(<span class="keyword">const</span> __FlashStringHelper *<span class="keywordtype">id</span>,<a class="code" href="class_window.html">Window</a> * widnow)</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="class_dialog_entry.html">DialogEntry</a> *dlgEntry=<span class="keyword">new</span> <a class="code" href="class_dialog_entry.html">DialogEntry</a>();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        dlgEntry-&gt;ID=id;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        dlgEntry-&gt;DlgWindow=widnow;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        _dialogs.Add(dlgEntry);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        widnow-&gt;<a class="code" href="class_window.html#a76c231e52092718f7adf5006c22d73cb">SetVisible</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(widnow);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="class_main_window.html#a7ca912c5b4dcbfe75d7911942305a9bf">   68</a></span>&#160;    <a class="code" href="class_window.html">Window</a> *<a class="code" href="class_main_window.html#a7ca912c5b4dcbfe75d7911942305a9bf">FindDialog</a>(<span class="keyword">const</span> __FlashStringHelper *<span class="keywordtype">id</span>)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;_dialogs.Count();i++)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="comment">//out&lt;&lt;&quot;Find dialog: &quot;&lt;&lt;_dialogs[i]-&gt;ID&lt;&lt;endl;</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">if</span>(strcmp_P(reinterpret_cast&lt;const char*&gt;(<span class="keywordtype">id</span>), reinterpret_cast&lt;const char*&gt;(_dialogs[i]-&gt;ID)))</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keywordflow">return</span> _dialogs[i]-&gt;DlgWindow;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="class_main_window.html#a3e712edc1a000020e881abf96dc5139e">   80</a></span>&#160;    DialogResults <a class="code" href="class_main_window.html#a3e712edc1a000020e881abf96dc5139e">DoDialog</a>(<a class="code" href="class_window.html">Window</a> *dlg)</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">//out&lt;&lt;&quot;IDialogProcessor::DialogResults&quot;&lt;&lt;endl;</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="class_main_window.html#ac9ac1672f014df9fb98fa91e3ad5add0">SetModalWindow</a>(dlg);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        dlg-&gt;<a class="code" href="class_window.html#a76c231e52092718f7adf5006c22d73cb">SetVisible</a>(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        dlg-&gt;<a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">while</span>(_modalWindow!=NULL)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            _idleProcess-&gt;loop();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        dlg-&gt;<a class="code" href="class_window.html#a76c231e52092718f7adf5006c22d73cb">SetVisible</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">return</span> _lastDialogResults;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> SetLoopProcess(<a class="code" href="class_i_loop_process.html">ILoopProcess</a> *process)</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        _idleProcess=process;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="class_main_window.html#aaed50d08ac1b53a9cedeeebb26f4f093">  100</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#aaed50d08ac1b53a9cedeeebb26f4f093">NotifyDialogClosed</a>(<a class="code" href="class_window.html">Window</a> *window,DialogResults results)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="comment">//out&lt;&lt;&quot;NotifyDialogClosed&quot;&lt;&lt;endl;</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="comment">//if(window == &amp;_keyboardWindow) //End edit</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <a class="code" href="class_main_window.html#ac9ac1672f014df9fb98fa91e3ad5add0">SetModalWindow</a>(NULL);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            _lastDialogResults=results;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="class_main_window.html#a88c6a33b0b02715bdf279aaf51f66868">  110</a></span>&#160;    <a class="code" href="class_window.html">Window</a> *<a class="code" href="class_main_window.html#a88c6a33b0b02715bdf279aaf51f66868">ModalWnd</a>()</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">return</span> _modalWindow;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    }</div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="class_main_window.html#ac9ac1672f014df9fb98fa91e3ad5add0">  115</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#ac9ac1672f014df9fb98fa91e3ad5add0">SetModalWindow</a>(<a class="code" href="class_window.html">Window</a> * modalWindow)</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        _modalWindow=modalWindow;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="class_main_window.html#acbe1429833d99a23a72ca0310312ac45">  120</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#acbe1429833d99a23a72ca0310312ac45">Move</a>(<span class="keywordtype">int</span> left,<span class="keywordtype">int</span> top,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height)</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    {</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="class_window.html#a4770a12f1846b07d0673667f6d1860ee">Window::Move</a>(left,top,width,height);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
-<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="class_main_window.html#a93b14e8c804f11f5139128b59e76f60c">  125</a></span>&#160;    <a class="code" href="class_keyboard_window.html">KeyboardWindow</a> * <a class="code" href="class_main_window.html#a93b14e8c804f11f5139128b59e76f60c">Keyboard</a>()</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">return</span> &amp;_keyboardWindow;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    }</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;};</div>
-<div class="ttc" id="class_dialog_entry_html"><div class="ttname"><a href="class_dialog_entry.html">DialogEntry</a></div><div class="ttdef"><b>Definition:</b> MainWindow.h:30</div></div>
-<div class="ttc" id="class_main_window_html_ac9ac1672f014df9fb98fa91e3ad5add0"><div class="ttname"><a href="class_main_window.html#ac9ac1672f014df9fb98fa91e3ad5add0">MainWindow::SetModalWindow</a></div><div class="ttdeci">void SetModalWindow(Window *modalWindow)</div><div class="ttdoc">Sets active modal (window that received all user input, like dialog window) window. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:115</div></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;Dialog.h&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;ICriticalProcess.h&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_i_loop_process.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_i_loop_process.html">ILoopProcess</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> loop()=0;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_dialog_entry.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_dialog_entry.html">DialogEntry</a></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">const</span> __FlashStringHelper *ID;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_dialog.html">Dialog</a> *DlgWindow;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;};</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">class </span><a class="code" href="class_text_box_number.html">TextBoxNumber</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="class_main_window.html">   37</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_main_window.html">MainWindow</a> : <span class="keyword">public</span> <a class="code" href="class_window.html">Window</a>, <span class="keyword">public</span> <a class="code" href="class_i_dialog_closed_event_receiver.html">IDialogClosedEventReceiver</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_window.html">Window</a> *_modalWindow;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_i_loop_process.html">ILoopProcess</a> *_idleProcess;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    LinkedList&lt;DialogEntry&gt; _dialogs;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    DialogResults _lastDialogResults;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> _isModalDialogActive;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c">   50</a></span>&#160;    <a class="code" href="class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c">MainWindow</a>(<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height):<a class="code" href="class_window.html">Window</a>(F(<span class="stringliteral">&quot;Main&quot;</span>),0,0,width,height),_isModalDialogActive(false)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        _modalWindow=NULL;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_main_window.html#ab93737159e7e6776f5e86728f4f2460f">   55</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#ab93737159e7e6776f5e86728f4f2460f">RegisterDialog</a>(<span class="keyword">const</span> __FlashStringHelper *<span class="keywordtype">id</span>,<a class="code" href="class_dialog.html">Dialog</a> * widnow)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        widnow-&gt;<a class="code" href="class_dialog.html#ad45b053cb62c81eef3915fd0a6939754">RegisterEndDialogEventReceiver</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="class_dialog_entry.html">DialogEntry</a> *dlgEntry=<span class="keyword">new</span> <a class="code" href="class_dialog_entry.html">DialogEntry</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        dlgEntry-&gt;ID=id;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        dlgEntry-&gt;DlgWindow=widnow;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        _dialogs.Add(dlgEntry);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        widnow-&gt;<a class="code" href="class_window.html#a76c231e52092718f7adf5006c22d73cb">SetVisible</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="class_window.html#a0005fa74faff84d5d060e19629217980">AddChild</a>(widnow);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_main_window.html#a7a7cc342c5587af7fcc098e4995fb16d">   67</a></span>&#160;    <a class="code" href="class_dialog.html">Dialog</a> *<a class="code" href="class_main_window.html#a7a7cc342c5587af7fcc098e4995fb16d">FindDialog</a>(<span class="keyword">const</span> __FlashStringHelper *<span class="keywordtype">id</span>)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;_dialogs.Count();i++)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">//out&lt;&lt;F(&quot;Find dialog:&quot;)&lt;&lt;id&lt;&lt;F(&quot; Candidate:&quot;)&lt;&lt;_dialogs[i]-&gt;ID&lt;&lt;F(&quot; Res:&quot;);</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">if</span>(AHelper::compare_F(<span class="keywordtype">id</span>, _dialogs[i]-&gt;ID))</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keywordflow">return</span> _dialogs[i]-&gt;DlgWindow;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="class_main_window.html#a0534781f462a5399bce11a9ed7b66306">   79</a></span>&#160;    DialogResults <a class="code" href="class_main_window.html#a0534781f462a5399bce11a9ed7b66306">ProcessDoDialog</a>(<a class="code" href="class_window.html">Window</a> *dlg)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">//out&lt;&lt;F(&quot;Begin::ProcessDoDialog&quot;)&lt;&lt;endln;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        _isModalDialogActive=<span class="keyword">true</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="class_window.html">Window</a> *lastModalWindow=<a class="code" href="class_main_window.html#a88c6a33b0b02715bdf279aaf51f66868">ModalWnd</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="class_main_window.html#ac9ac1672f014df9fb98fa91e3ad5add0">SetModalWindow</a>(dlg);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        dlg-&gt;<a class="code" href="class_window.html#a76c231e52092718f7adf5006c22d73cb">SetVisible</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        dlg-&gt;<a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">while</span>(_isModalDialogActive)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            _idleProcess-&gt;loop();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        dlg-&gt;<a class="code" href="class_window.html#a76c231e52092718f7adf5006c22d73cb">SetVisible</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        _isModalDialogActive=lastModalWindow!=NULL?<span class="keyword">true</span>:<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="class_main_window.html#ac9ac1672f014df9fb98fa91e3ad5add0">SetModalWindow</a>(lastModalWindow);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">if</span>(lastModalWindow!=NULL)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            lastModalWindow-&gt;<a class="code" href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Invalidate</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            _idleProcess-&gt;loop();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="comment">//out&lt;&lt;F(&quot;End::ProcessDoDialog&quot;)&lt;&lt;endln;</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">return</span> _lastDialogResults;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> SetLoopProcess(<a class="code" href="class_i_loop_process.html">ILoopProcess</a> *process)</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        _idleProcess=process;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="class_main_window.html#aaed50d08ac1b53a9cedeeebb26f4f093">  109</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#aaed50d08ac1b53a9cedeeebb26f4f093">NotifyDialogClosed</a>(<a class="code" href="class_window.html">Window</a> *window,DialogResults results)</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="comment">//out&lt;&lt;F(&quot;NotifyDialogClosed&quot;)&lt;&lt;endln;</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        _isModalDialogActive=<span class="keyword">false</span>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        _lastDialogResults=results;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="class_main_window.html#a88c6a33b0b02715bdf279aaf51f66868">  116</a></span>&#160;    <a class="code" href="class_window.html">Window</a> *<a class="code" href="class_main_window.html#a88c6a33b0b02715bdf279aaf51f66868">ModalWnd</a>()</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span> _modalWindow;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="class_main_window.html#ac9ac1672f014df9fb98fa91e3ad5add0">  121</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#ac9ac1672f014df9fb98fa91e3ad5add0">SetModalWindow</a>(<a class="code" href="class_window.html">Window</a> * modalWindow)</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        _modalWindow=modalWindow;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    }</div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="class_main_window.html#acbe1429833d99a23a72ca0310312ac45">  126</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#acbe1429833d99a23a72ca0310312ac45">Move</a>(<span class="keywordtype">int</span> left,<span class="keywordtype">int</span> top,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height)</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="class_window.html#a4770a12f1846b07d0673667f6d1860ee">Window::Move</a>(left,top,width,height);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;};</div>
+<div class="ttc" id="class_dialog_entry_html"><div class="ttname"><a href="class_dialog_entry.html">DialogEntry</a></div><div class="ttdef"><b>Definition:</b> MainWindow.h:29</div></div>
+<div class="ttc" id="class_main_window_html_ac9ac1672f014df9fb98fa91e3ad5add0"><div class="ttname"><a href="class_main_window.html#ac9ac1672f014df9fb98fa91e3ad5add0">MainWindow::SetModalWindow</a></div><div class="ttdeci">void SetModalWindow(Window *modalWindow)</div><div class="ttdoc">Sets active modal (window that received all user input, like dialog window) window. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:121</div></div>
 <div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">Base class for all window objects. Provides basic window functionality. </div><div class="ttdef"><b>Definition:</b> Window.h:34</div></div>
-<div class="ttc" id="class_main_window_html_a93b14e8c804f11f5139128b59e76f60c"><div class="ttname"><a href="class_main_window.html#a93b14e8c804f11f5139128b59e76f60c">MainWindow::Keyboard</a></div><div class="ttdeci">KeyboardWindow * Keyboard()</div><div class="ttdoc">Returns pointer to keyboard window. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:125</div></div>
-<div class="ttc" id="class_main_window_html_af21bb842941c37a822d110522ac353f2"><div class="ttname"><a href="class_main_window.html#af21bb842941c37a822d110522ac353f2">MainWindow::RegisterDialog</a></div><div class="ttdeci">void RegisterDialog(const __FlashStringHelper *id, Window *widnow)</div><div class="ttdoc">Registers dialog window. All application dialogs have to be registered. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:58</div></div>
-<div class="ttc" id="class_keyboard_window_html"><div class="ttname"><a href="class_keyboard_window.html">KeyboardWindow</a></div><div class="ttdoc">Implements Keyboard window, that helps to enter text/number information into text fields...</div><div class="ttdef"><b>Definition:</b> KeyboardWindow.h:31</div></div>
-<div class="ttc" id="class_main_window_html_a7ca912c5b4dcbfe75d7911942305a9bf"><div class="ttname"><a href="class_main_window.html#a7ca912c5b4dcbfe75d7911942305a9bf">MainWindow::FindDialog</a></div><div class="ttdeci">Window * FindDialog(const __FlashStringHelper *id)</div><div class="ttdoc">Finds registered dialog by the name. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:68</div></div>
-<div class="ttc" id="class_main_window_html_aaed50d08ac1b53a9cedeeebb26f4f093"><div class="ttname"><a href="class_main_window.html#aaed50d08ac1b53a9cedeeebb26f4f093">MainWindow::NotifyDialogClosed</a></div><div class="ttdeci">void NotifyDialogClosed(Window *window, DialogResults results)</div><div class="ttdoc">Process dialog closed notification. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:100</div></div>
-<div class="ttc" id="class_main_window_html_a3e712edc1a000020e881abf96dc5139e"><div class="ttname"><a href="class_main_window.html#a3e712edc1a000020e881abf96dc5139e">MainWindow::DoDialog</a></div><div class="ttdeci">DialogResults DoDialog(Window *dlg)</div><div class="ttdoc">Starts dialog. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:80</div></div>
+<div class="ttc" id="class_dialog_html_ad45b053cb62c81eef3915fd0a6939754"><div class="ttname"><a href="class_dialog.html#ad45b053cb62c81eef3915fd0a6939754">Dialog::RegisterEndDialogEventReceiver</a></div><div class="ttdeci">void RegisterEndDialogEventReceiver(IDialogClosedEventReceiver *receiver)</div><div class="ttdoc">Registers extern interface that will be called if dialog is closed. </div><div class="ttdef"><b>Definition:</b> Dialog.h:70</div></div>
+<div class="ttc" id="class_main_window_html_aaed50d08ac1b53a9cedeeebb26f4f093"><div class="ttname"><a href="class_main_window.html#aaed50d08ac1b53a9cedeeebb26f4f093">MainWindow::NotifyDialogClosed</a></div><div class="ttdeci">void NotifyDialogClosed(Window *window, DialogResults results)</div><div class="ttdoc">Process dialog closed notification. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:109</div></div>
 <div class="ttc" id="class_text_box_number_html"><div class="ttname"><a href="class_text_box_number.html">TextBoxNumber</a></div><div class="ttdoc">Text box for numbers. </div><div class="ttdef"><b>Definition:</b> TextBoxNumber.h:24</div></div>
-<div class="ttc" id="class_window_html_a4770a12f1846b07d0673667f6d1860ee"><div class="ttname"><a href="class_window.html#a4770a12f1846b07d0673667f6d1860ee">Window::Move</a></div><div class="ttdeci">virtual void Move(int left, int top, int width, int height)</div><div class="ttdoc">Moves and resizes window relativly to the parent window. </div><div class="ttdef"><b>Definition:</b> Window.h:148</div></div>
-<div class="ttc" id="class_main_window_html_a88c6a33b0b02715bdf279aaf51f66868"><div class="ttname"><a href="class_main_window.html#a88c6a33b0b02715bdf279aaf51f66868">MainWindow::ModalWnd</a></div><div class="ttdeci">Window * ModalWnd()</div><div class="ttdoc">Returns pointer to active modal (window that received all user input, like dialog window) window...</div><div class="ttdef"><b>Definition:</b> MainWindow.h:110</div></div>
-<div class="ttc" id="class_main_window_html_acbe1429833d99a23a72ca0310312ac45"><div class="ttname"><a href="class_main_window.html#acbe1429833d99a23a72ca0310312ac45">MainWindow::Move</a></div><div class="ttdeci">void Move(int left, int top, int width, int height)</div><div class="ttdoc">Changes position and size. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:120</div></div>
-<div class="ttc" id="class_window_html_ada96195db4ae77ac0ddb6a40c529610c"><div class="ttname"><a href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Window::Invalidate</a></div><div class="ttdeci">void Invalidate()</div><div class="ttdoc">If function is called than the window manager updates the window. </div><div class="ttdef"><b>Definition:</b> Window.h:156</div></div>
-<div class="ttc" id="class_i_loop_process_html"><div class="ttname"><a href="class_i_loop_process.html">ILoopProcess</a></div><div class="ttdef"><b>Definition:</b> MainWindow.h:25</div></div>
-<div class="ttc" id="class_keyboard_window_html_aacd40a1b306164ce0d94479f1c509095"><div class="ttname"><a href="class_keyboard_window.html#aacd40a1b306164ce0d94479f1c509095">KeyboardWindow::RegisterEndDialogEventReceiver</a></div><div class="ttdeci">void RegisterEndDialogEventReceiver(IDialogClosedEventReceiver *receiver)</div><div class="ttdoc">Registers extern interface that will be called if keyboard window is closed. </div><div class="ttdef"><b>Definition:</b> KeyboardWindow.h:109</div></div>
-<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:193</div></div>
-<div class="ttc" id="class_window_html_a76c231e52092718f7adf5006c22d73cb"><div class="ttname"><a href="class_window.html#a76c231e52092718f7adf5006c22d73cb">Window::SetVisible</a></div><div class="ttdeci">void SetVisible(bool isVisible)</div><div class="ttdoc">Sets window visibility status. </div><div class="ttdef"><b>Definition:</b> Window.h:204</div></div>
-<div class="ttc" id="class_main_window_html_a38289cd98cc39d9ee86cfc0ce48a1c3c"><div class="ttname"><a href="class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:51</div></div>
+<div class="ttc" id="class_window_html_a4770a12f1846b07d0673667f6d1860ee"><div class="ttname"><a href="class_window.html#a4770a12f1846b07d0673667f6d1860ee">Window::Move</a></div><div class="ttdeci">virtual void Move(int left, int top, int width, int height)</div><div class="ttdoc">Moves and resizes window relativly to the parent window. </div><div class="ttdef"><b>Definition:</b> Window.h:149</div></div>
+<div class="ttc" id="class_main_window_html_a88c6a33b0b02715bdf279aaf51f66868"><div class="ttname"><a href="class_main_window.html#a88c6a33b0b02715bdf279aaf51f66868">MainWindow::ModalWnd</a></div><div class="ttdeci">Window * ModalWnd()</div><div class="ttdoc">Returns pointer to active modal (window that received all user input, like dialog window) window...</div><div class="ttdef"><b>Definition:</b> MainWindow.h:116</div></div>
+<div class="ttc" id="class_main_window_html_acbe1429833d99a23a72ca0310312ac45"><div class="ttname"><a href="class_main_window.html#acbe1429833d99a23a72ca0310312ac45">MainWindow::Move</a></div><div class="ttdeci">void Move(int left, int top, int width, int height)</div><div class="ttdoc">Changes position and size. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:126</div></div>
+<div class="ttc" id="class_dialog_html"><div class="ttname"><a href="class_dialog.html">Dialog</a></div><div class="ttdoc">Base class for dialog objects. See Dialogs example Provides basic window functionality. </div><div class="ttdef"><b>Definition:</b> Dialog.h:25</div></div>
+<div class="ttc" id="class_main_window_html_a0534781f462a5399bce11a9ed7b66306"><div class="ttname"><a href="class_main_window.html#a0534781f462a5399bce11a9ed7b66306">MainWindow::ProcessDoDialog</a></div><div class="ttdeci">DialogResults ProcessDoDialog(Window *dlg)</div><div class="ttdoc">Starts dialog. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:79</div></div>
+<div class="ttc" id="class_window_html_ada96195db4ae77ac0ddb6a40c529610c"><div class="ttname"><a href="class_window.html#ada96195db4ae77ac0ddb6a40c529610c">Window::Invalidate</a></div><div class="ttdeci">void Invalidate()</div><div class="ttdoc">If function is called than the window manager updates the window. </div><div class="ttdef"><b>Definition:</b> Window.h:157</div></div>
+<div class="ttc" id="class_i_loop_process_html"><div class="ttname"><a href="class_i_loop_process.html">ILoopProcess</a></div><div class="ttdef"><b>Definition:</b> MainWindow.h:24</div></div>
+<div class="ttc" id="class_main_window_html_a7a7cc342c5587af7fcc098e4995fb16d"><div class="ttname"><a href="class_main_window.html#a7a7cc342c5587af7fcc098e4995fb16d">MainWindow::FindDialog</a></div><div class="ttdeci">Dialog * FindDialog(const __FlashStringHelper *id)</div><div class="ttdoc">Finds registered dialog by the name. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:67</div></div>
+<div class="ttc" id="class_window_html_a0005fa74faff84d5d060e19629217980"><div class="ttname"><a href="class_window.html#a0005fa74faff84d5d060e19629217980">Window::AddChild</a></div><div class="ttdeci">void AddChild(Window *window)</div><div class="ttdoc">Adds window child window. </div><div class="ttdef"><b>Definition:</b> Window.h:194</div></div>
+<div class="ttc" id="class_window_html_a76c231e52092718f7adf5006c22d73cb"><div class="ttname"><a href="class_window.html#a76c231e52092718f7adf5006c22d73cb">Window::SetVisible</a></div><div class="ttdeci">void SetVisible(bool isVisible)</div><div class="ttdoc">Sets window visibility status. </div><div class="ttdef"><b>Definition:</b> Window.h:205</div></div>
+<div class="ttc" id="class_main_window_html_a38289cd98cc39d9ee86cfc0ce48a1c3c"><div class="ttname"><a href="class_main_window.html#a38289cd98cc39d9ee86cfc0ce48a1c3c">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(int width, int height)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:50</div></div>
 <div class="ttc" id="class_i_dialog_closed_event_receiver_html"><div class="ttname"><a href="class_i_dialog_closed_event_receiver.html">IDialogClosedEventReceiver</a></div><div class="ttdoc">Interface that provides dialog closed notifications (user closes dialog window, by pressing OK or can...</div><div class="ttdef"><b>Definition:</b> IDialogClosedEventReceiver.h:24</div></div>
-<div class="ttc" id="class_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdoc">Base class for main application window. Each application has to have one main window, which is root parent for all other application windows. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:38</div></div>
+<div class="ttc" id="class_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdoc">Base class for main application window. Each application has to have one main window, which is root parent for all other application windows. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:37</div></div>
+<div class="ttc" id="class_main_window_html_ab93737159e7e6776f5e86728f4f2460f"><div class="ttname"><a href="class_main_window.html#ab93737159e7e6776f5e86728f4f2460f">MainWindow::RegisterDialog</a></div><div class="ttdeci">void RegisterDialog(const __FlashStringHelper *id, Dialog *widnow)</div><div class="ttdoc">Registers dialog window. All application dialogs have to be registered. </div><div class="ttdef"><b>Definition:</b> MainWindow.h:55</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>MainWindow.h</b></li>
-    <li class="footer">Generated on Thu Sep 10 2015 17:47:59 for AWind by
+    <li class="footer">Generated on Tue Oct 27 2015 22:31:49 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

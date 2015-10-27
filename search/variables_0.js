@@ -1,6 +1,8 @@
 var searchData=
 [
   ['_5faxis',['_axis',['../class_gauge_bar.html#a66405cba41a3a3c71c78b00dfa9ca9f1',1,'GaugeBar']]],
+  ['_5fbtncancel',['_btnCancel',['../class_dialog.html#a9b7a21acec7de73255ad81821091036f',1,'Dialog']]],
+  ['_5fbtnok',['_btnOK',['../class_dialog.html#ae258fd60d0783cf9dcb4c88d745c3856',1,'Dialog']]],
   ['_5fchildren',['_children',['../class_window.html#a0bac94cc8bd92124c5a7e8e84c7ceff0',1,'Window']]],
   ['_5fdecorators',['_decorators',['../class_window.html#aafa80f039ec28dabc0d36e3392dbd141',1,'Window']]],
   ['_5fdrawonlypointer',['_drawOnlyPointer',['../class_gauge.html#a7823db3cf2743cb0146dc186f95d13fd',1,'Gauge']]],

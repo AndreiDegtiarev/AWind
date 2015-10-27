@@ -1,4 +1,6 @@
 html/
+examples/SmartDHT/
+examples/SSPA/
 
 # VS Files
 *.vcxproj

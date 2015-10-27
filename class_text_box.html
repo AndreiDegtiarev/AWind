@@ -122,9 +122,15 @@ Inheritance diagram for TextBox:</div>
  <div class="center">
   <img src="class_text_box.png" usemap="#TextBox_map" alt=""/>
   <map id="TextBox_map" name="TextBox_map">
-<area href="class_window.html" title="Base class for all window objects. Provides basic window functionality. " alt="Window" shape="rect" coords="68,0,195,24"/>
-<area href="class_text_box_number.html" title="Text box for numbers. " alt="TextBoxNumber" shape="rect" coords="0,112,127,136"/>
-<area href="class_text_box_t_string.html" title="Text box for string. It is templat class and can be used for differnt type of string (see bellow type..." alt="TextBoxTString&lt; T &gt;" shape="rect" coords="137,112,264,136"/>
+<area href="class_window.html" title="Base class for all window objects. Provides basic window functionality. " alt="Window" shape="rect" coords="702,0,973,24"/>
+<area href="class_text_box_char.html" alt="TextBoxChar" shape="rect" coords="0,112,271,136"/>
+<area href="class_text_box_edit_t_string.html" alt="TextBoxEditTString&lt; T &gt;" shape="rect" coords="281,112,552,136"/>
+<area href="class_text_box_number.html" title="Text box for numbers. " alt="TextBoxNumber" shape="rect" coords="562,112,833,136"/>
+<area href="class_text_box_str_touch.html" alt="TextBoxStrTouch" shape="rect" coords="843,112,1114,136"/>
+<area href="class_text_box_t_string.html" title="Text box for string. It is templat class and can be used for differnt type of string (see bellow type..." alt="TextBoxTString&lt; T &gt;" shape="rect" coords="1124,112,1395,136"/>
+<area href="class_text_box_t_string.html" alt="TextBoxTString&lt; const __FlashStringHelper &gt;" shape="rect" coords="1405,112,1676,136"/>
+<area href="class_button.html" title="Implement button control. " alt="Button" shape="rect" coords="1264,168,1535,192"/>
+<area href="class_label.html" title="Implement Label control. " alt="Label" shape="rect" coords="1545,168,1816,192"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -153,24 +159,27 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aaa4ac4e2ab3c69b2380ef738de35b972 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972">Window</a> (const __FlashStringHelper *name, int left, int top, int width, int height)</td></tr>
 <tr class="memdesc:aaa4ac4e2ab3c69b2380ef738de35b972 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#aaa4ac4e2ab3c69b2380ef738de35b972">More...</a><br /></td></tr>
 <tr class="separator:aaa4ac4e2ab3c69b2380ef738de35b972 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a784f140b26bd299b01f77f15e96bc62c inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a784f140b26bd299b01f77f15e96bc62c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a784f140b26bd299b01f77f15e96bc62c">SetDecorators</a> (DecoratorList &amp;decorators)</td></tr>
-<tr class="memdesc:a784f140b26bd299b01f77f15e96bc62c inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets window decorators list. <br /></td></tr>
-<tr class="separator:a784f140b26bd299b01f77f15e96bc62c inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e466d562ec549097f36bcb760b223c0 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e466d562ec549097f36bcb760b223c0"></a>
-DecoratorList &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a8e466d562ec549097f36bcb760b223c0">GetDecorators</a> ()</td></tr>
-<tr class="memdesc:a8e466d562ec549097f36bcb760b223c0 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns window decorators list. <br /></td></tr>
-<tr class="separator:a8e466d562ec549097f36bcb760b223c0 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac826e2156b789065892b582abfe83b32 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac826e2156b789065892b582abfe83b32"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ac826e2156b789065892b582abfe83b32">SetDecorators</a> (DecoratorList *decorators)</td></tr>
+<tr class="memdesc:ac826e2156b789065892b582abfe83b32 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets window decorators list. <br /></td></tr>
+<tr class="separator:ac826e2156b789065892b582abfe83b32 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ed296bc8d9681f6a0cf6b8fe4955382 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ed296bc8d9681f6a0cf6b8fe4955382"></a>
+DecoratorList *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a9ed296bc8d9681f6a0cf6b8fe4955382">GetDecorators</a> ()</td></tr>
+<tr class="memdesc:a9ed296bc8d9681f6a0cf6b8fe4955382 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns window decorators list. <br /></td></tr>
+<tr class="separator:a9ed296bc8d9681f6a0cf6b8fe4955382 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a231b9037bc152a853ccb2fb3c2b0df37 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a231b9037bc152a853ccb2fb3c2b0df37"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a231b9037bc152a853ccb2fb3c2b0df37">AddDecorator</a> (<a class="el" href="class_decorator.html">Decorator</a> *decorator)</td></tr>
 <tr class="memdesc:a231b9037bc152a853ccb2fb3c2b0df37 inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds decorator to the decaorator list. <br /></td></tr>
 <tr class="separator:a231b9037bc152a853ccb2fb3c2b0df37 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60a7d89e4bd8061c8f2731acdbf9cede inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60a7d89e4bd8061c8f2731acdbf9cede"></a>
-<a class="el" href="class_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>FindDialog</b> (const __FlashStringHelper *id)</td></tr>
-<tr class="separator:a60a7d89e4bd8061c8f2731acdbf9cede inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad44a332b3d854ec997c2288b7eecc686 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad44a332b3d854ec997c2288b7eecc686"></a>
-IDialogClosedEventReceiver::DialogResults&#160;</td><td class="memItemRight" valign="bottom"><b>DoDialog</b> (<a class="el" href="class_window.html">Window</a> *dlg)</td></tr>
-<tr class="separator:ad44a332b3d854ec997c2288b7eecc686 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e0064683a5a94f8bf58beb6a620b938 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e0064683a5a94f8bf58beb6a620b938"></a>
+<a class="el" href="class_dialog.html">Dialog</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>FindDialog</b> (const __FlashStringHelper *id)</td></tr>
+<tr class="separator:a3e0064683a5a94f8bf58beb6a620b938 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09991b0afc0e461b3c2ed6911379d7f4 inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09991b0afc0e461b3c2ed6911379d7f4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>RegisterDialog</b> (const __FlashStringHelper *id, <a class="el" href="class_dialog.html">Dialog</a> *dlg)</td></tr>
+<tr class="separator:a09991b0afc0e461b3c2ed6911379d7f4 inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecd4af0eaddf4ec61c0e76a846423e3b inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecd4af0eaddf4ec61c0e76a846423e3b"></a>
+IDialogClosedEventReceiver::DialogResults&#160;</td><td class="memItemRight" valign="bottom"><b>DoDialog</b> (<a class="el" href="class_dialog.html">Dialog</a> *dlg)</td></tr>
+<tr class="separator:aecd4af0eaddf4ec61c0e76a846423e3b inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeec02fbd78ad4c37722002577211226e inherit pub_methods_class_window"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aeec02fbd78ad4c37722002577211226e">RegisterTouchEventReceiver</a> (<a class="el" href="class_i_touch_event_receiver.html">ITouchEventReceiver</a> *touchEventReceiver)</td></tr>
 <tr class="memdesc:aeec02fbd78ad4c37722002577211226e inherit pub_methods_class_window"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers receiver for touch event.  <a href="#aeec02fbd78ad4c37722002577211226e">More...</a><br /></td></tr>
 <tr class="separator:aeec02fbd78ad4c37722002577211226e inherit pub_methods_class_window"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -370,7 +379,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_text_box.html">TextBox</a></li>
-    <li class="footer">Generated on Thu Sep 10 2015 17:47:59 for AWind by
+    <li class="footer">Generated on Tue Oct 27 2015 22:31:50 for AWind by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

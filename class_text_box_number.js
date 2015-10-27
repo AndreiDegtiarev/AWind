@@ -1,6 +1,6 @@
 var class_text_box_number =
 [
-    [ "TextBoxNumber", "class_text_box_number.html#a69a0c77b90f220b1b78d6b8e7e10e5a8", null ],
+    [ "TextBoxNumber", "class_text_box_number.html#a998de690635e2485e62f180e47c6cff4", null ],
     [ "GetNumber", "class_text_box_number.html#a722fcabb5031207b6900f3839b8d9414", null ],
     [ "IsAwaitTouch", "class_text_box_number.html#a36d9a1a691d9ba0305c28c48a3e0ed0b", null ],
     [ "IsReadOnly", "class_text_box_number.html#a1496289aef6765924f781fda047b9600", null ],
@@ -9,5 +9,6 @@ var class_text_box_number =
     [ "Precission", "class_text_box_number.html#a8d1638b3fe4fce513dd2051c81792eb3", null ],
     [ "SetIsReadOnly", "class_text_box_number.html#a7470a370fd3d4977fe644c0cbeb336b6", null ],
     [ "SetNumber", "class_text_box_number.html#a490a72eb2c40a4f8d47d0e23b6e88f4f", null ],
+    [ "SetPrecission", "class_text_box_number.html#a8cac4c2a3a69e297b941e4b2deb8e1c4", null ],
     [ "SetStatus", "class_text_box_number.html#afce2967435eecfd39825921f1c98e4a9", null ]
 ];

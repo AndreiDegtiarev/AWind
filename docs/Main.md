@@ -11,6 +11,7 @@ SRAM-memory is on-board memory where runtime variables are stored. This memory i
 Other direction of optimization is reduction of display updates. Arduino TFT displays need time to redraw. To reduce flickering only corresponding parts of display are updated - like text fields or buttons and etc.
 * Window: It can take full screen or its part, it can be a child of other window. Coordinates of child window are always relative to the parent window.
   Window can be visible or hidden. Appearance of windows can be implemented in two ways: by implementing of OnDraw function (see ChartWindow class) or what is recommended if it applicable via decorators (about decorators see below) Everything is more or less the same like in the 'big' systems. 
+  Dialog: special type of window where input of information from user is expected. If dialog window is active there is no way to interact with other windows
 * Controls: Button, text box, chart, gauges gauges. 
 * Decorator: Decorators defines window appearance. Decorator can be shared between windows of the same type like buttons.
   Decorators play important role in the saving of SRAM memory, that's way they should be used instead of implementing of OnDraw member function. 

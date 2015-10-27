@@ -74,6 +74,7 @@ void setup()
 	windowsManager.MainWnd()->AddTab(F("Yellow"),window2);
 	windowsManager.MainWnd()->AddTab(F("Green"),window3);
 
+	AHelper::LogFreeRam();
 	delay(1000); 
 	out<<F("End setup")<<endln;
 

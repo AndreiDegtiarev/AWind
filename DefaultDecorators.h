@@ -51,14 +51,19 @@ public:
 	static void InitButton()
 	{
 		DecoratorList *list=new DecoratorList();
-		list->Add(new DecoratorRectFill(Color::LightGray,false));
-		list->Add(new Decorator3DRect(Color::White,Color::Gray));
+		//list->Add(new DecoratorRectFill(Color::LightGray,false));
+		list->Add(new DecoratorRectGradientFill(Color::Gray,Color::WhiteSmoke));
+		list->Add(new Decorator3DRect(Color::White,Color::Black));
 		list->Add(new DecoratorColor(Color::Black));
 		Environment::Get()->RegisterDecoratorsGroup(F("Button"),list);
 	}
 	static void InitDialog()
 	{
-		Environment::Get()->RegisterDecoratorsGroup(F("Dialog"),Environment::Get()->FindDecorators(F("Button")));
+		DecoratorList *listDialog=new DecoratorList();
+		listDialog->Add(new DecoratorRectFill(Color::LightGray,false));
+		listDialog->Add(new Decorator3DRect(Color::White,Color::Gray));
+		listDialog->Add(new DecoratorColor(Color::Black));
+		Environment::Get()->RegisterDecoratorsGroup(F("Dialog"),listDialog);
 		DecoratorList *list=new DecoratorList();
 		list->Add(new DecoratorRectFill(Color::LightBlue,false));
 		list->Add(new DecoratorColor(Color::White));

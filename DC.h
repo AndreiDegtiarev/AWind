@@ -19,6 +19,7 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
+#include "Log.h"
 #include "Color.h"
 #include "UTFT.h"
 #ifdef _VARIANT_ARDUINO_DUE_X_   //DUE
@@ -105,6 +106,36 @@ public:
 	void FillRect(int left,int top,int right,int bottom)
 	{
 		_lcd->fillRect (ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
+	}
+	///Fills rectangle with gradient color. Input coordinates have to be defined in the window coordinate system
+	void FillGradientRect(int left,int top,int right,int bottom,Color color1,Color color2)
+	{
+		int start_x=ToDC_X(left);
+		int start_y=ToDC_Y(top);
+		int length_x=ToDC_X(right)-start_x;
+		int length_y=ToDC_Y(bottom)-start_y;
+		byte rgb[3];
+		byte rgb1[3];
+		byte rgb2[3];
+		rgb1[0]=color1.GetR();
+		rgb1[1]=color1.GetG();
+		rgb1[2]=color1.GetB();
+		rgb2[0]=color2.GetR();
+		rgb2[1]=color2.GetG();
+		rgb2[2]=color2.GetB();
+		float fctr;
+		for(int i=0;i<=length_y;i++)
+		{
+			fctr=(float)i/length_y;
+			for(int j=0;j<3;j++)
+			{
+				rgb[j]=rgb1[j]+fctr*(rgb2[j]-rgb1[j]);
+				//out<<rgb2[j]<<" ";
+			}
+			//out<<endln;
+			_lcd->setColor(rgb[0],rgb[1],rgb[2]);
+			_lcd->drawHLine (start_x,start_y+i,length_x);
+		}
 	}
 	///Fills rounded rectangle. Input coordinates have to be defined in the window coordinate system
 	void FillRoundRect(int left,int top,int right,int bottom)

@@ -57,6 +57,23 @@ public:
 			dc->FillRect (left, top, left+width, top+height);
 	}
 };
+///Decorator primitive for round rect filled area. Overriden members description see Decorator class documentation
+class DecoratorRectGradientFill : public Decorator
+{
+	Color _color1;
+	Color _color2;
+public:
+	DecoratorRectGradientFill(Color color1,Color color2):_color1(color1),_color2(color2)
+	{
+
+	}
+	void Draw(DC *dc,int left,int top,int width,int height)
+	{
+		//dc->FillGradientRect (left, top, left+width, top+height/2,_color1,_color2);
+		//dc->FillGradientRect (left, top+height/2, left+width, top+height,_color2,_color1);
+		dc->FillGradientRect (left, top, left+width, top+height,_color2,_color1);
+	}
+};
 ///Decorator primitive for round rectangle. Overriden members description see Decorator class documentation
 class DecoratorRoundRect : public Decorator
 {

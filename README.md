@@ -10,16 +10,13 @@ At this moment only TFT with 320x240 resolution on Arduiono Mega is tested, but 
 Installation
 ------------
 AWind library is build on top of Henning Karlsen libraries (many thanks for that libraries. It have saved pretty much of my time): 
-* [UTFT] (http://www.rinkydinkelectronics.com/library.php?id=87)
-* [UTouch] (http://www.rinkydinkelectronics.com/library.php?id=88)
+* [UTFT] (http://www.rinkydinkelectronics.com/library.php?id=51)
+* [UTouch] (http://www.rinkydinkelectronics.com/library.php?id=55)
 
 You need uncompressed them into  arduinosketchfolder/libraries/ folder
 
-The AWind library refers AFrame and ASensor libraries
-* [AFrame] (https://github.com/AndreiDegtiarev/AFrame)
-* [ASensor] (https://github.com/AndreiDegtiarev/AFrame)
+The content of awind_full.zip from https://github.com/AndreiDegtiarev/AWind/releases has to be also uncompressed into arduinosketchfolder/libraries/ folder.
 
-To install you need "Clone in Desktop" them into arduinosketchfolder/libraries/ folder, or if you use "Download ZIP" - unzip them and then remove the "-master" from the folder names.
 Restart the IDE
 
 How to connect TFT-display see the UTFT documentation.
@@ -41,3 +38,5 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 ![](examples/SensorsMonitor/Example.JPG)
 * [Gauges] (examples/Gauges/README.md): This example demonstrates how to use gauge and button controls
 ![](examples/Gauges/Example.JPG)
+* [Dialogs] (examples/Dialogs/README.md): This example demonstrates how handle nested dialogs
+![](examples/Dialogs/Example.JPG)

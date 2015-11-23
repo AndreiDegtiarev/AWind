@@ -101,7 +101,7 @@ protected:
 		int chart_height=Height()-15;
 		_textChartAxis=new TextBoxFString(Width()/2,chart_height,textBoxWidth,1,F(""));
 		_textChartAxis->SetFont(size != Small?BigFont:SmallFont);
-		int chart_offset_x=size==User?textBoxWidth:0;
+		int chart_offset_x=0;
 		_chartWnd = new ChartWindow(NULL,NULL,chart_offset_x,0,Width()-chart_offset_x,chart_height);
 		_chartWnd->SetVisible(false);
 

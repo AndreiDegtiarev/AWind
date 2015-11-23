@@ -98,12 +98,12 @@ public:
 			dc->Rectangle3D(xOffset,2,Width()-2,Height()-2,Color::DarkGray,Color::White);
 
 			dc->SetColor(Color::Yellow);
-			_dc.MoveTo(dc,min_x,Max(min_y,0));
-			_dc.LineTo(dc,max_x,Max(min_y,0));
+			_dc.MoveTo(dc,min_x,max(min_y,0));
+			_dc.LineTo(dc,max_x,max(min_y,0));
 			if(_yAxis==NULL)
 			{
-				_dc.MoveTo(dc,Max(min_x,0),min_y);
-				_dc.LineTo(dc,Max(min_x,0),max_y);
+				_dc.MoveTo(dc,max(min_x,0),min_y);
+				_dc.LineTo(dc,max(min_x,0),max_y);
 			}
 			dc->SetColor(Color::LightBlue);
 			dc->SetFont(SmallFont);

@@ -118,7 +118,7 @@ public:
 		for(int i=0;i<_size;i++)
 		{
 			min_y=min(min_y,_data_y[i]);
-			max_y=Max(max_y,_data_y[i]);
+			max_y=max(max_y,_data_y[i]);
 		}
 		min_y/=_factor_y;
 		max_y/=_factor_y;

@@ -181,7 +181,7 @@ public:
 		{
 		case VerticalRight:
 		case VerticalLeft:
-			return (AHelper::GetNumberLength(max(_minValue,_maxValue),1)*dc->FontWidth()+_tick_length)+_offsetX;
+			return (AHelper::GetNumberLength(Max(_minValue,_maxValue),1)*dc->FontWidth()+_tick_length)+_offsetX;
 		case HorizontalTop:
 		case HorizontalBottom:
 			return _length+_offsetX;

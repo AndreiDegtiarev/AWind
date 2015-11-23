@@ -32,8 +32,8 @@ class ChartDC
 	int   _dc_start_x;
 	int   _dc_start_y;
 public:
-	static const float AutoMin=1e-8;
-	static const float AutoMax=1e8;
+	static const float AutoMin;
+	static const float AutoMax;
 	///Constructor
 	ChartDC()
 	{
@@ -129,3 +129,5 @@ public:
 		Log::Number(",",y,true);*/
 	}
 };
+const float ChartDC::AutoMin = 1e-8;
+const float ChartDC::AutoMax = 1e8;

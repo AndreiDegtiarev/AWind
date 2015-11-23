@@ -31,7 +31,7 @@ public:
 	float _maxValue;  //!< Gauge max limit
 	bool  _drawOnlyPointer; //!< Defines whether only pointer (not scale has to be drawn)
 
-	static const float _sector_angle_rad=3.14/2*0.8;
+	static const float _sector_angle_rad;
 
 	///Constructor
 	/**
@@ -74,7 +74,7 @@ public:
 	*/
 	float SetValue(float value)
 	{
-		_value=max(_minValue,value);
+		_value=Max(_minValue,value);
 		_value=min(_maxValue,_value);
 		out<<F("Gauge value: ")<<_value<<endln;
 		_drawOnlyPointer=true;
@@ -85,3 +85,4 @@ public:
 		_drawOnlyPointer=false;
 	}
 };
+const float Gauge::_sector_angle_rad = 3.14 / 2 * 0.8;

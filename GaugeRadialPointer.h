@@ -27,7 +27,7 @@ class GaugeRadialPointer : public Gauge
 
 public:
 
-	static const float _sector_angle_rad=3.14/2*0.8;
+	static const float _sector_angle_rad;
 
 	///Constructor
 	/**
@@ -114,3 +114,4 @@ private:
 
 	}
 };
+const float GaugeRadialPointer::_sector_angle_rad = 3.14 / 2 * 0.8;

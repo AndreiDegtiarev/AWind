@@ -40,6 +40,7 @@ public:
 		InitEditBox();
 		InitLabel();
 		InitGauge();
+		InitTabControl();
 	}
 	static void InitMainWindow()
 	{
@@ -94,5 +95,29 @@ public:
 		list->Add(new Decorator3DRect(Color::White,Color::Gray));
 		list->Add(new DecoratorColor(Color::Green));
 		Environment::Get()->RegisterDecoratorsGroup(F("Gauge"),list);
+	}
+	static void InitTabControl()
+	{
+		DecoratorList *list = new DecoratorList();
+		list->Add(new DecoratorRectFill(Color::LightGray, false));
+		list->Add(new DecoratorColor(Color::Gray));
+		list->Add(new DecoratorBoundaryLine(DecoratorBoundaryLine::Left));
+		list->Add(new DecoratorBoundaryLine(DecoratorBoundaryLine::Top));
+		list->Add(new DecoratorBoundaryLine(DecoratorBoundaryLine::Right));
+		list->Add(new DecoratorColor(Color::Black));
+		Environment::Get()->RegisterDecoratorsGroup(F("ActiveTabButton"), list);
+
+		DecoratorList *list_ctrl = new DecoratorList();
+		list_ctrl->Add(new DecoratorRectFill(Color::LightGray, false));
+		list_ctrl->Add(new DecoratorColor(Color::Gray));
+		list_ctrl->Add(new DecoratorBoundaryLine(DecoratorBoundaryLine::Bottom));
+		Environment::Get()->RegisterDecoratorsGroup(F("BackTabButtons"), list_ctrl);
+
+		DecoratorList *list_tab = new DecoratorList();
+		list_tab->Add(new DecoratorRectFill(Color::LightGray, false));
+		list_tab->Add(new Decorator3DRect(Color::Gray, Color::Gray));
+		//list_tab->Add(new DecoratorColor(Color::Gray));
+		//list_tab->Add(new DecoratorBoundaryLine(DecoratorBoundaryLine::Left));
+		Environment::Get()->RegisterDecoratorsGroup(F("TabControl"), list_tab);
 	}
 };

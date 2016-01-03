@@ -38,6 +38,43 @@ public:
 		dc->SetColor(_color);
 	}
 };
+///Decorator primitive for boundary lines. Overriden members description see Decorator class documentation
+class DecoratorBoundaryLine : public Decorator
+{
+public:
+	enum Position
+	{
+		Left,
+		Top,
+		Right,
+		Bottom,
+	};
+private:
+	Position _position;
+public:
+	DecoratorBoundaryLine(Position position) :_position(position)
+	{
+
+	}
+	void Draw(DC *dc, int left, int top, int width, int height)
+	{
+		switch (_position)
+		{
+		case Left:
+			dc->Line(0, 0,0, height);
+			break;
+		case Right:
+			dc->Line(width, 0, width, height);
+			break;
+		case Top:
+			dc->Line(0, 0, width, 0);
+			break;
+		case Bottom:
+			dc->Line(0, height, width, height);
+			break;
+		}
+	}
+};
 ///Decorator primitive for round rect filled area. Overriden members description see Decorator class documentation
 class DecoratorRectFill : public Decorator
 {

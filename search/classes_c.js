@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['tabcontrol',['TabControl',['../class_tab_control.html',1,'']]],
   ['textbox',['TextBox',['../class_text_box.html',1,'']]],
   ['textboxchar',['TextBoxChar',['../class_text_box_char.html',1,'']]],
   ['textboxedittstring',['TextBoxEditTString',['../class_text_box_edit_t_string.html',1,'']]],

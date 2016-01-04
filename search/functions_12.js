@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['viewmoduswindow',['ViewModusWindow',['../class_view_modus_window.html#a2193ab42d02bf621ac809966fe6caabd',1,'ViewModusWindow']]]
+  ['updatetabs',['UpdateTabs',['../class_tab_control.html#a58be114fe6a0fb11342f36357dea12cb',1,'TabControl']]]
 ];

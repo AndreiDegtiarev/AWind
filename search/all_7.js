@@ -12,5 +12,5 @@ var searchData=
   ['getnumber',['GetNumber',['../class_dialog2.html#a8160ca98e12e59141259b7017bf42b7a',1,'Dialog2::GetNumber()'],['../class_keyboard_window.html#ab7f1d985a6ef0894927fd7a9ac0ea4fc',1,'KeyboardWindow::GetNumber()']]],
   ['getnumber1',['GetNumber1',['../class_dialog1.html#ad41397d5d35526da35b385b4d1f55285',1,'Dialog1']]],
   ['getnumber2',['GetNumber2',['../class_dialog1.html#af3637dede067f851c062f61b507c125c',1,'Dialog1']]],
-  ['gauges',['Gauges',['../md_examples__gauges__r_e_a_d_m_e.html',1,'']]]
+  ['gauges',['Gauges',['../md_examples_Gauges_README.html',1,'']]]
 ];

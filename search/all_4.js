@@ -4,6 +4,7 @@ var searchData=
   ['decorator',['Decorator',['../class_decorator.html',1,'']]],
   ['decorator3drect',['Decorator3DRect',['../class_decorator3_d_rect.html',1,'']]],
   ['decoratoraxis',['DecoratorAxis',['../class_decorator_axis.html',1,'DecoratorAxis'],['../class_decorator_axis.html#ade5020dbf9f0a650dc7d2db3e455f8af',1,'DecoratorAxis::DecoratorAxis()']]],
+  ['decoratorboundaryline',['DecoratorBoundaryLine',['../class_decorator_boundary_line.html',1,'']]],
   ['decoratorcolor',['DecoratorColor',['../class_decorator_color.html',1,'DecoratorColor'],['../class_decorator_color.html#a6b0db4e781786b9004066c5424e12f6e',1,'DecoratorColor::DecoratorColor()']]],
   ['decoratorgroupentry',['DecoratorGroupEntry',['../class_decorator_group_entry.html',1,'']]],
   ['decoratorrectfill',['DecoratorRectFill',['../class_decorator_rect_fill.html',1,'']]],
@@ -19,12 +20,13 @@ var searchData=
   ['dialogentry',['DialogEntry',['../class_dialog_entry.html',1,'']]],
   ['dialogs',['Dialogs',['../class_dialogs.html',1,'Dialogs'],['../class_dialogs.html#aa0a0f649838ce0c4c7e8aff6c1a26856',1,'Dialogs::Dialogs()']]],
   ['docontrolmessage',['DoControlMessage',['../class_dialog.html#a4eb18e8e2e4342e829a5c92fb03039d1',1,'Dialog::DoControlMessage()'],['../class_dialog1.html#accea81f11db1e2a5ceadecd516848fbd',1,'Dialog1::DoControlMessage()'],['../class_dialog2.html#a903c309755a7e6de4f8bd305c65b4c33',1,'Dialog2::DoControlMessage()'],['../class_keyboard_window.html#ad686c2327c1f6c991632384db1fd9161',1,'KeyboardWindow::DoControlMessage()'],['../class_mobile_k_b_window.html#a5e88a45eaceccba0fc714a1b01ef3b11',1,'MobileKBWindow::DoControlMessage()']]],
-  ['draw',['Draw',['../class_decorator.html#aff779a662f9917fffca0841c3f94a3bd',1,'Decorator::Draw()'],['../class_decorator_color.html#a683d34791e747e18b08e640def657a46',1,'DecoratorColor::Draw()'],['../class_decorator_rect_fill.html#a0966dba5c601535155d332c9197604fe',1,'DecoratorRectFill::Draw()'],['../class_decorator_rect_gradient_fill.html#a07f684ceca871433ab87c119424ce1a1',1,'DecoratorRectGradientFill::Draw()'],['../class_decorator_round_rect.html#ad62e94b424493f21e9df785384ce8a1c',1,'DecoratorRoundRect::Draw()'],['../class_decorator3_d_rect.html#a95cc237dae3cd95dad4208b70edece60',1,'Decorator3DRect::Draw()'],['../class_decorator_axis.html#a963f7aaae283983e0ab61d7b031ac93a',1,'DecoratorAxis::Draw()']]],
+  ['draw',['Draw',['../class_decorator.html#aff779a662f9917fffca0841c3f94a3bd',1,'Decorator::Draw()'],['../class_decorator_color.html#a683d34791e747e18b08e640def657a46',1,'DecoratorColor::Draw()'],['../class_decorator_boundary_line.html#a5f734a1607defb8f5845232d5c9f4fc9',1,'DecoratorBoundaryLine::Draw()'],['../class_decorator_rect_fill.html#a0966dba5c601535155d332c9197604fe',1,'DecoratorRectFill::Draw()'],['../class_decorator_rect_gradient_fill.html#a07f684ceca871433ab87c119424ce1a1',1,'DecoratorRectGradientFill::Draw()'],['../class_decorator_round_rect.html#ad62e94b424493f21e9df785384ce8a1c',1,'DecoratorRoundRect::Draw()'],['../class_decorator3_d_rect.html#a95cc237dae3cd95dad4208b70edece60',1,'Decorator3DRect::Draw()'],['../class_decorator_axis.html#a963f7aaae283983e0ab61d7b031ac93a',1,'DecoratorAxis::Draw()']]],
   ['drawcaret',['DrawCaret',['../class_d_c.html#aec44254a221fe9e900399e346a7ca6f1',1,'DC']]],
   ['drawchar',['DrawChar',['../class_d_c.html#a2a31d65f36c11afa7840ba0ee2328de7',1,'DC']]],
   ['drawnumber',['DrawNumber',['../class_d_c.html#a3e0cd07165a0338cc45d24b310081cea',1,'DC::DrawNumber(int number, int x, int y)'],['../class_d_c.html#a953cb30d9f6833861cdc65d32a8f6ba4',1,'DC::DrawNumber(float number, int dec, int x, int y)']]],
   ['drawroundrect',['DrawRoundRect',['../class_d_c.html#a26effd78db2e847af90fd49dad32ea7a',1,'DC']]],
   ['drawsymbol',['DrawSymbol',['../class_d_c.html#a9303c29cdc1dff9bbdc7f15e476e7081',1,'DC']]],
   ['drawtext',['DrawText',['../class_d_c.html#a334854704fe3887995a1d936f9391264',1,'DC::DrawText(const __FlashStringHelper *text, int x, int y)'],['../class_d_c.html#a6931e7ed0cf98e8000a8ae8176f4d8ad',1,'DC::DrawText(const char *text, int x, int y)']]],
-  ['dialogs',['Dialogs',['../md_examples__dialogs__r_e_a_d_m_e.html',1,'']]]
+  ['dialogs',['Dialogs',['../md_examples_Dialogs_README.html',1,'']]],
+  ['dialogs',['Dialogs',['../md_examples_TabControl_README.html',1,'']]]
 ];

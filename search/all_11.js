@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['sensorsmonitor',['SensorsMonitor',['../md_examples__sensors_monitor__r_e_a_d_m_e.html',1,'']]],
-  ['smartdht',['SmartDHT',['../md_examples__smart_d_h_t__r_e_a_d_m_e.html',1,'']]],
+  ['sensorsmonitor',['SensorsMonitor',['../md_examples_SensorsMonitor_README.html',1,'']]],
+  ['smartdht',['SmartDHT',['../md_examples_SmartDHT_README.html',1,'']]],
   ['sector',['Sector',['../class_d_c.html#a5e0f84495366a90f13403eaeb6255508',1,'DC']]],
   ['sensorwindow',['SensorWindow',['../class_sensor_window.html',1,'SensorWindow'],['../class_sensor_window.html#a275d526e7f9e2c48ff85550e206490de',1,'SensorWindow::SensorWindow()']]],
   ['set',['Set',['../class_time_serie_buffer.html#a87dc471527f8ad54e57645e0ac548b07',1,'TimeSerieBuffer']]],

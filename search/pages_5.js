@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['text',['Text',['../md_examples__text__r_e_a_d_m_e.html',1,'']]]
+  ['sensorsmonitor',['SensorsMonitor',['../md_examples_SensorsMonitor_README.html',1,'']]],
+  ['smartdht',['SmartDHT',['../md_examples_SmartDHT_README.html',1,'']]]
 ];

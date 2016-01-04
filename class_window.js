@@ -3,7 +3,7 @@ var class_window =
     [ "Window", "class_window.html#aaa4ac4e2ab3c69b2380ef738de35b972", null ],
     [ "AddChild", "class_window.html#a0005fa74faff84d5d060e19629217980", null ],
     [ "AddDecorator", "class_window.html#a231b9037bc152a853ccb2fb3c2b0df37", null ],
-    [ "Children", "class_window.html#a084a0d589edd4d9162314ef73c3ce2a3", null ],
+    [ "Children", "class_window.html#aaa4586f5032e796aa8cc0b56efae30f1", null ],
     [ "DoDialog", "class_window.html#aecd4af0eaddf4ec61c0e76a846423e3b", null ],
     [ "FindDialog", "class_window.html#a3e0064683a5a94f8bf58beb6a620b938", null ],
     [ "GetDecorators", "class_window.html#a9ed296bc8d9681f6a0cf6b8fe4955382", null ],

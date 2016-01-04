@@ -4,6 +4,7 @@ var searchData=
   ['decorator',['Decorator',['../class_decorator.html',1,'']]],
   ['decorator3drect',['Decorator3DRect',['../class_decorator3_d_rect.html',1,'']]],
   ['decoratoraxis',['DecoratorAxis',['../class_decorator_axis.html',1,'']]],
+  ['decoratorboundaryline',['DecoratorBoundaryLine',['../class_decorator_boundary_line.html',1,'']]],
   ['decoratorcolor',['DecoratorColor',['../class_decorator_color.html',1,'']]],
   ['decoratorgroupentry',['DecoratorGroupEntry',['../class_decorator_group_entry.html',1,'']]],
   ['decoratorrectfill',['DecoratorRectFill',['../class_decorator_rect_fill.html',1,'']]],

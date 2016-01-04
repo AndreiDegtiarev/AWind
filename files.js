@@ -23,6 +23,7 @@ var files =
     [ "MainWindow.h", "_main_window_8h_source.html", null ],
     [ "MobileKBWindow.h", "_mobile_k_b_window_8h_source.html", null ],
     [ "SensorWindow.h", "_sensor_window_8h_source.html", null ],
+    [ "TabControl.h", "_tab_control_8h_source.html", null ],
     [ "TextBox.h", "_text_box_8h_source.html", null ],
     [ "TextBoxChar.h", "_text_box_char_8h_source.html", null ],
     [ "TextBoxEditString.h", "_text_box_edit_string_8h_source.html", null ],

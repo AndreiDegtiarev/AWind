@@ -44,6 +44,6 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 * [Tab control] (examples/TabControl/README.md): This example demonstrates how to work with tab controls
 
 ![](examples/TabControl/Example.JPG)
-* [Window selector] (examples/WindowSelector/README.md): This example demonstrates how handle nested dialogs
+* [Window selector] (examples/WindowSelector/README.md): This example demonstrates how to control child window visibility
 
 ![](examples/WindowSelector/Example.JPG)

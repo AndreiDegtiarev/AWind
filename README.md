@@ -40,3 +40,7 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 ![](examples/Gauges/Example.JPG)
 * [Dialogs] (examples/Dialogs/README.md): This example demonstrates how handle nested dialogs
 ![](examples/Dialogs/Example.JPG)
+* [Tab control] (examples/TabControl/README.md): This example demonstrates how to work with tab controls
+![](examples/TabControl/Example.JPG)
+* [Window selector] (examples/WindowSelector/README.md): This example demonstrates how handle nested dialogs
+![](examples/WindowSelector/Example.JPG)

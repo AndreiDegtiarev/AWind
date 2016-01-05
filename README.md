@@ -39,6 +39,7 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 * [Gauges] (examples/Gauges/README.md): This example demonstrates how to use gauge and button controls
 ![](examples/Gauges/Example.JPG)
 * [Dialogs] (examples/Dialogs/README.md): This example demonstrates how handle nested dialogs
+
 ![](examples/Dialogs/Example.JPG)
 * [Tab control] (examples/TabControl/README.md): This example demonstrates how to work with tab controls
 ![](examples/TabControl/Example.JPG)

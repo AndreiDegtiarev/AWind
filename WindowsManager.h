@@ -127,7 +127,7 @@ protected:
 			//out<<F("Touch begins x:")<<x<<F(" y:")<<y<<endln;
 			if(x>0 && y>0)
 			{
-				Window *window=HitTest(x,y);
+				Window *window=_dc.ScreenOrientation()==DC::Landscape?HitTest(x,y): HitTest(y, _dc.DeviceHeight()-x);
 				Window *touchWnd=NULL;
 				if(window!=NULL)
 				{

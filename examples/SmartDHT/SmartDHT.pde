@@ -17,11 +17,6 @@
   examples and tools supplied with the library.
 */
 #define DEMO_SENSORS
-#ifdef _VARIANT_ARDUINO_DUE_X_  //DUE
-#include <Arduino.h> 
-#else
-#include "HardwareSerial.h"
-#endif
 
 #include <UTFT.h>
 #include <UTouch.h>
@@ -78,8 +73,8 @@ void setup()
 	windowsManager.Initialize();
 
 	//sensors
-	int dht_pin=12;
-	DHTTemperatureSensor *inTempr=new DHTTemperatureSensor(dht_pin);
+	int dht_pin=8;
+	DHTTemperatureSensor *inTempr=new DHTTemperatureSensor(dht_pin, DHTTemperatureSensor::DHT11);
 	DHTHumiditySensor *inHumidity=new DHTHumiditySensor(inTempr);
 	sensors.Add(new SensorManager(inTempr,15,40,1000*10)); //0
 	sensors.Add(new SensorManager(inHumidity,0,80,1000*10)); //1

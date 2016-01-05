@@ -35,6 +35,11 @@ class DC
 	int _last_y;  //!< Last x coordinate. It is needed in MoveTo and LineTo functions
 	char _buffer[15]; //!< Internal buffer for numbers convertion into string
 public:
+	enum ScreenOrientation
+	{
+		Landscape,
+		Portrate,
+	};
 	///Constructor for global context, that created only once in WindowsManager
 	DC(UTFT *lcd)
 	{
@@ -47,6 +52,11 @@ public:
 		extern UTFT *globalLcd;
 		_lcd=globalLcd;
 		Reset();
+	}
+	///Returns screen orientation vertical or horisontal
+	ScreenOrientation ScreenOrientation()
+	{
+		return _lcd->orient == LANDSCAPE ? Landscape : Portrate;
 	}
 	///Returns screen width
 	int DeviceWidth()

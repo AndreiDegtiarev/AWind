@@ -97,11 +97,11 @@ public:
 		AddChild(_gaugeBar);
 
 		Children()[0]->Move(5, 20, 50, 30);
-		Children()[1]->Move(180, 20, 50, 30);
+		Children()[1]->Move(220, 20, 50, 30);
 		Children()[2]->Move(5, 75, 50, 30);
-		Children()[3]->Move(180, 75, 50, 30);
-		_txtActive->Move(105, 15, 70, 30);
-		_txtPause->Move(105, 70, 70, 30);
+		Children()[3]->Move(220, 75, 50, 30);
+		_txtActive->Move(140, 15, 70, 30);
+		_txtPause->Move(140, 70, 70, 30);
 
 		_btnStart->Move(5, 150, 135, 50);
 		_btnStop->Move(172, 150, 135, 50);

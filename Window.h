@@ -210,7 +210,14 @@ public:
 	///Returns true if window visible and false is hidden
 	bool IsVisible()
 	{
-		return _isVisible;
+		bool retCode = _isVisible;
+		Window * crWnd = this;
+		while (retCode && crWnd->Parent() != NULL)
+		{
+			crWnd = crWnd->Parent();
+			retCode = crWnd->_isVisible;
+		}
+		return retCode;
 	}
 	///Returns list of children window
 	LinkedList<Window> & Children()

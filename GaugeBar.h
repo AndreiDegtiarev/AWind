@@ -24,6 +24,7 @@
 ///Bar gauge class
 class GaugeBar : public Gauge
 {
+	Color _barColor;
 public:
 	DecoratorAxis *_axis; //!<Axis with values or text labels
 	///Constructor
@@ -40,6 +41,12 @@ public:
 		//Make copy of gauge decorators because of axis decorator
 		SetDecorators(new DecoratorList(*GetDecorators())); 
 		AddDecorator(axis);
+		_barColor = Color::Red;
+	}
+	///Set Bar color
+	void SetBarColor(Color color)
+	{
+		_barColor = color;
 	}
 	///Implements drawing code
 	/**
@@ -51,18 +58,33 @@ public:
 		dc->SetFont(SmallFont);
 		//float range=_maxValue-_minValue;
 		float saling_factor=_axis->GetLength()/(_maxValue-_minValue);
-		int right_offset=_axis->EstimateLeft(dc);
-		int top=_axis->EstimateTop(dc);
-		int bottom=_axis->EstimateBottom(dc);
-		if(!_drawOnlyPointer)
-			dc->DrawRoundRect(2,2,right_offset-1,Height()-2);
-		int dc_level=bottom-_value*saling_factor;
-		if(_oldValue>_value)
+		int right_offset = _axis->EstimateLeft(dc);
+		int top = _axis->EstimateTop(dc);
+		int bottom = _axis->EstimateBottom(dc);
+		if (!_drawOnlyPointer)
+			dc->DrawRoundRect(2, 2, right_offset - 1, Height() - 2);
+		if (_axis->Orientation() == DecoratorAxis::VerticalLeft || _axis->Orientation() == DecoratorAxis::VerticalRight)
 		{
-			dc->SetColor(_fillColor);
-			dc->FillRoundRect(4,bottom-_oldValue*saling_factor,right_offset-3,min(bottom,dc_level+3));
+			int dc_level = bottom - _value*saling_factor;
+			if (_oldValue > _value)
+			{
+				dc->SetColor(_fillColor);
+				dc->FillRoundRect(4, bottom - _oldValue*saling_factor, right_offset - 3, min(bottom, dc_level + 3));
+			}
+			dc->SetColor(_barColor);
+			dc->FillRoundRect(4, dc_level, right_offset - 3, bottom);
 		}
-		dc->SetColor(Color::Red);
-		dc->FillRoundRect(4,dc_level,right_offset-3,bottom);
+		else
+		{
+			bottom = Height() - 4;
+			int dc_level = _value*saling_factor;
+			if (_oldValue > _value)
+			{
+				dc->SetColor(_fillColor);
+				dc->FillRoundRect(max(4, dc_level - 3), 4, _oldValue*saling_factor, bottom);
+			}
+			dc->SetColor(_barColor);
+			dc->FillRoundRect(4, 4, dc_level, bottom);
+		}
 	}
 };

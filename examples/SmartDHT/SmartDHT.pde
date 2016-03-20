@@ -66,8 +66,8 @@ void setup()
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
 	//my speciality I have connected LED-A display pin to the pin 47 on Arduino board. Comment next two lines if the example from UTFT library runs without any problems 
-	pinMode(47,OUTPUT);
-	digitalWrite(47,HIGH);
+	//pinMode(47,OUTPUT);
+	//digitalWrite(47,HIGH);
 
 	//initialize window manager
 	windowsManager.Initialize();

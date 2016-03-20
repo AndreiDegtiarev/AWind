@@ -207,6 +207,11 @@ public:
 	{
 		return _length;
 	}
+	//Returns axis orientation
+	Orientation Orientation()
+	{
+		return _orientation;
+	}
 	int EstimateLeft(DC *dc)
 	{
 		return _offsetX;

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['oscilloscope',['Oscilloscope',['../class_oscilloscope.html',1,'']]]
+  ['mainwindow',['MainWindow',['../class_main_window.html',1,'']]],
+  ['mobilekbwindow',['MobileKBWindow',['../class_mobile_k_b_window.html',1,'']]]
 ];

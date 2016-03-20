@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['button',['Button',['../class_button.html',1,'']]],
-  ['buttonwindow',['ButtonWindow',['../class_button_window.html',1,'']]]
+  ['atimer',['ATimer',['../class_a_timer.html',1,'']]]
 ];

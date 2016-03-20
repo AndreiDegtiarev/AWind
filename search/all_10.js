@@ -7,7 +7,8 @@ var searchData=
   ['registerdecoratorsgroup',['RegisterDecoratorsGroup',['../class_environment.html#a20d8d834db2c55903a6cd4ce45668b1c',1,'Environment']]],
   ['registerdialog',['RegisterDialog',['../class_main_window.html#ab93737159e7e6776f5e86728f4f2460f',1,'MainWindow']]],
   ['registerenddialogeventreceiver',['RegisterEndDialogEventReceiver',['../class_dialog.html#ad45b053cb62c81eef3915fd0a6939754',1,'Dialog']]],
+  ['registertimereventreceiver',['RegisterTimerEventReceiver',['../class_a_timer.html#a33ce6287611665fe15a3f06d52861b72',1,'ATimer']]],
   ['registertoucheventreceiver',['RegisterTouchEventReceiver',['../class_window.html#aeec02fbd78ad4c37722002577211226e',1,'Window']]],
-  ['reset',['Reset',['../class_d_c.html#a97b8ca12e22545b718ebfb5f70deeec9',1,'DC']]],
+  ['reset',['Reset',['../class_a_timer.html#a61fb00bd4fc319af066e579cfa2385e8',1,'ATimer::Reset()'],['../class_d_c.html#a97b8ca12e22545b718ebfb5f70deeec9',1,'DC::Reset()']]],
   ['rootwindow',['RootWindow',['../class_window.html#ae5a130d87cffe62f5daa7e5e651b36de',1,'Window']]]
 ];

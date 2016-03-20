@@ -14,6 +14,7 @@ var class_decorator_axis =
     [ "EstimateTop", "class_decorator_axis.html#a45d0c4c4bacf34b470e5b04bacd31c90", null ],
     [ "GetLength", "class_decorator_axis.html#a09da63c3a18685fce31c87147a97527b", null ],
     [ "GetMinMax", "class_decorator_axis.html#af75b1b0c99dd5cbb3527413497731f34", null ],
+    [ "Orientation", "class_decorator_axis.html#a1476d49ddd11d45a048db032efc1a333", null ],
     [ "SetMinMax", "class_decorator_axis.html#a7043e611e07160066ea8a4e1404cd0d7", null ],
     [ "SetOffset", "class_decorator_axis.html#a1ea77d5fc6d6e0d5f4b39bd0790b663f", null ]
 ];

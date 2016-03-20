@@ -11,6 +11,7 @@ var NAVTREE =
     [ "SmartDHT", "md_examples_SmartDHT_README.html", null ],
     [ "Dialogs", "md_examples_TabControl_README.html", null ],
     [ "Text", "md_examples_Text_README.html", null ],
+    [ "VacuumPump", "md_examples_VacuumPump_README.html", null ],
     [ "Window selector", "md_examples_WindowSelector_README.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -32,9 +33,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_button_8h_source.html",
-"class_d_c.html#a671fd90030766599e9db042453285097",
-"class_text_box_str_touch.html#a7bad30077314e5804127247a00d99555"
+"_8_vacuum_pump_8vsarduino_8h_source.html",
+"class_color.html#a9a742cbe9f9f4037f5d9f4e81a9b2428",
+"class_tab_control.html#ad6a9f33912f2ce8fa9ddfbf811ddd9b3"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

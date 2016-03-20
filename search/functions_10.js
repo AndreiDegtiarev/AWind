@@ -1,13 +1,17 @@
 var searchData=
 [
+  ['screenorientation',['ScreenOrientation',['../class_d_c.html#a7b3654a10db20a569ebe9982d51dc276',1,'DC']]],
   ['sector',['Sector',['../class_d_c.html#a5e0f84495366a90f13403eaeb6255508',1,'DC']]],
   ['sensorwindow',['SensorWindow',['../class_sensor_window.html#a275d526e7f9e2c48ff85550e206490de',1,'SensorWindow']]],
   ['set',['Set',['../class_time_serie_buffer.html#a87dc471527f8ad54e57645e0ac548b07',1,'TimeSerieBuffer']]],
+  ['setautoreset',['SetAutoReset',['../class_a_timer.html#a1ded0f594fb5a99f070637a6eb99d962',1,'ATimer']]],
+  ['setbarcolor',['SetBarColor',['../class_gauge_bar.html#a2349616a1e8313524c5f5239173b9b95',1,'GaugeBar']]],
   ['setbuffer',['SetBuffer',['../class_chart_window.html#a7787a4bdf6098fde29b43a53f0fed1e8',1,'ChartWindow']]],
   ['setdecorators',['SetDecorators',['../class_sensor_window.html#ac75d53500955e3ffbd1a3f70375ec632',1,'SensorWindow::SetDecorators()'],['../class_window.html#ac826e2156b789065892b582abfe83b32',1,'Window::SetDecorators()']]],
   ['setfactory',['SetFactorY',['../class_time_serie_buffer.html#ac79576faa058ffe865e7e6e112503852',1,'TimeSerieBuffer']]],
   ['setfillcolor',['SetFillColor',['../class_gauge.html#adddac4e60b7c0be618b8701768290bb6',1,'Gauge']]],
   ['setfont',['SetFont',['../class_text_box.html#a72904dd08d50626b234d5e752afb0af6',1,'TextBox']]],
+  ['setinterval',['SetInterval',['../class_a_timer.html#ac04d5b0c5f840b4fd85144b420d675a2',1,'ATimer']]],
   ['setisreadonly',['SetIsReadOnly',['../class_text_box_number.html#a7470a370fd3d4977fe644c0cbeb336b6',1,'TextBoxNumber']]],
   ['setmargins',['SetMargins',['../class_text_box.html#a046c9843f9252731230d4c07afa69897',1,'TextBox']]],
   ['setminmax',['SetMinMax',['../class_decorator_axis.html#a7043e611e07160066ea8a4e1404cd0d7',1,'DecoratorAxis::SetMinMax()'],['../class_gauge.html#a7f17c7da260b82effef1d07954ce0257',1,'Gauge::SetMinMax()']]],

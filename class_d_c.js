@@ -1,5 +1,9 @@
 var class_d_c =
 [
+    [ "ScreenOrientation", "class_d_c.html#adab30ff45bade785c1a1959ffc8efb00", [
+      [ "Landscape", "class_d_c.html#adab30ff45bade785c1a1959ffc8efb00a814ddd5036e4860d7c8569265e636546", null ],
+      [ "Portrate", "class_d_c.html#adab30ff45bade785c1a1959ffc8efb00ac11e2104f1d58e6faff5df9a0f2c436b", null ]
+    ] ],
     [ "DC", "class_d_c.html#ac7b081e1019a5619eecaf7781363af67", null ],
     [ "DC", "class_d_c.html#a921648df43516afc9b7ffa044ce6f4a8", null ],
     [ "DeviceHeight", "class_d_c.html#a22e32908237fac6c3a91736712c96bdd", null ],
@@ -24,6 +28,7 @@ var class_d_c =
     [ "Rectangle", "class_d_c.html#ab700227b66b983269727d54a50c74300", null ],
     [ "Rectangle3D", "class_d_c.html#a9ec8fd65bcdcf68a01aca019323e7c2f", null ],
     [ "Reset", "class_d_c.html#a97b8ca12e22545b718ebfb5f70deeec9", null ],
+    [ "ScreenOrientation", "class_d_c.html#a7b3654a10db20a569ebe9982d51dc276", null ],
     [ "Sector", "class_d_c.html#a5e0f84495366a90f13403eaeb6255508", null ],
     [ "SetBackColor", "class_d_c.html#a0ab1d08f74b12be0a5e8eb962c5d84e1", null ],
     [ "SetColor", "class_d_c.html#a03d5ffcaa1c5f841f9d7986051cf10e8", null ],

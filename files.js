@@ -1,6 +1,7 @@
 var files =
 [
     [ "examples", "dir_d28a4824dc47e487b107a5db32ef43c4.html", "dir_d28a4824dc47e487b107a5db32ef43c4" ],
+    [ "ATimer.h", "_a_timer_8h_source.html", null ],
     [ "Button.h", "_button_8h_source.html", null ],
     [ "ButtonWindow.h", "_button_window_8h_source.html", null ],
     [ "ChartDC.h", "_chart_d_c_8h_source.html", null ],
@@ -17,6 +18,7 @@ var files =
     [ "GaugeRadialPointer.h", "_gauge_radial_pointer_8h_source.html", null ],
     [ "IContentChangedEventReceiver.h", "_i_content_changed_event_receiver_8h_source.html", null ],
     [ "IDialogClosedEventReceiver.h", "_i_dialog_closed_event_receiver_8h_source.html", null ],
+    [ "ITimerEventReceiver.h", "_i_timer_event_receiver_8h_source.html", null ],
     [ "ITouchEventReceiver.h", "_i_touch_event_receiver_8h_source.html", null ],
     [ "KeyboardWindow.h", "_keyboard_window_8h_source.html", null ],
     [ "Label.h", "_label_8h_source.html", null ],

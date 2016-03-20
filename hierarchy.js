@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "ATimer", "class_a_timer.html", null ],
     [ "ChartDC", "class_chart_d_c.html", null ],
     [ "Color", "class_color.html", null ],
     [ "DC", "class_d_c.html", null ],
@@ -49,6 +50,9 @@ var hierarchy =
     [ "ISensorMeasuredEventReceiver", null, [
       [ "GaugesWindow", "class_gauges_window.html", null ]
     ] ],
+    [ "ITimerEventReceiver", "class_i_timer_event_receiver.html", [
+      [ "TabVacuum", "class_tab_vacuum.html", null ]
+    ] ],
     [ "ITouchEventReceiver", "class_i_touch_event_receiver.html", [
       [ "Dialog", "class_dialog.html", [
         [ "Dialog1", "class_dialog1.html", null ],
@@ -59,9 +63,12 @@ var hierarchy =
       [ "Dialogs", "class_dialogs.html", null ],
       [ "GaugesWindow", "class_gauges_window.html", null ],
       [ "TabControl", "class_tab_control.html", null ],
+      [ "TabManual", "class_tab_manual.html", null ],
+      [ "TabVacuum", "class_tab_vacuum.html", null ],
       [ "ViewModusWindow", "class_view_modus_window.html", null ],
       [ "WindowSelector", "class_window_selector.html", null ]
     ] ],
+    [ "PumpController", "class_pump_controller.html", null ],
     [ "Window", "class_window.html", [
       [ "ButtonWindow", "class_button_window.html", null ],
       [ "ChartWindow", "class_chart_window.html", null ],
@@ -73,6 +80,9 @@ var hierarchy =
       [ "MainWindow", "class_main_window.html", null ],
       [ "SensorWindow", "class_sensor_window.html", null ],
       [ "TabControl", "class_tab_control.html", null ],
+      [ "TabManual", "class_tab_manual.html", null ],
+      [ "TabTemperature", "class_tab_temperature.html", null ],
+      [ "TabVacuum", "class_tab_vacuum.html", null ],
       [ "TextBox", "class_text_box.html", [
         [ "TextBoxChar", "class_text_box_char.html", null ],
         [ "TextBoxEditTString< T >", "class_text_box_edit_t_string.html", null ],

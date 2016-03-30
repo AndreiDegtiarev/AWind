@@ -65,9 +65,12 @@ public:
 		}
 		else
 		{
-			DC dc;
-			PrepareDC(&dc);
-			OnDraw(&dc);
+			if (IsVisible())
+			{
+				DC dc;
+				PrepareDC(&dc);
+				OnDraw(&dc);
+			}
 		}
 	}
 	///Implements drawing code. Please note axises are plotted as decorators

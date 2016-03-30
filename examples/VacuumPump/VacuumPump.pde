@@ -20,7 +20,7 @@ examples and tools supplied with the library.
 #include <UTouch.h>
 
 // DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
-#define DEMO_SENSORS
+//#define DEMO_SENSORS
 
 #include "Log.h"
 #include "LinkedList.h"
@@ -29,7 +29,12 @@ examples and tools supplied with the library.
 
 #ifndef DEMO_SENSORS
 #include <DRV8825.h>
+#include <OneWire.h>
 #endif
+
+#include "SensorManager.h"
+#include "MeasurementNode.h"
+
 
 #include "TabVacuum.h"
 #include "TabManual.h"
@@ -45,6 +50,11 @@ UTFT    myGLCD(ITDB32S, 39, 41, 43, 45);
 UTouch  myTouch(49, 51, 53, 50, 52);
 #endif
 
+//list where all sensors are collected
+LinkedList<SensorManager> sensors;
+//manager which controls the measurement process
+MeasurementNode measurementNode(sensors, NULL);
+
 //manager which is responsible for window updating process
 WindowsManager<MainWindow> windowsManager(&myGLCD, &myTouch);
 
@@ -52,8 +62,6 @@ PumpController pumpController;
 
 
 void setup() {
-
-	pumpController.stopPump();
 
 	//setup log (out is wrap about Serial class)
 	out.begin(57600);
@@ -66,6 +74,10 @@ void setup() {
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
 
+	//sensors
+	pumpController.Initialize(sensors);
+
+
 	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
 	DefaultDecorators::InitAll();
 
@@ -75,14 +87,14 @@ void setup() {
 	windowsManager.MainWnd()->AddChild(tabCtrl);
 
 	//create tabs
-	TabVacuum *window1 = new TabVacuum(&pumpController,F("Window1"), 0, 0, 0, 0);
-	TabManual *window2 = new TabManual(&pumpController, F("Window2"), 0, 0, 0, 0);
-	TabTemperature *window3 = new TabTemperature(F("Window3"), 0, 0, 0, 0);
-	tabCtrl->AddTab(F("Vacuum"), window1);
-	tabCtrl->AddTab(F("Manual"), window2);
-	tabCtrl->AddTab(F("Tempr."), window3);
-	window1->Initialize();
-	window3->Initialize();
+	TabVacuum *tabVacuum = new TabVacuum(&pumpController,F("Window1"), 0, 0, 0, 0);
+	TabManual *tabManual = new TabManual(&pumpController, F("Window2"), 0, 0, 0, 0);
+	TabTemperature *tabTempr = new TabTemperature(&pumpController, F("Window3"), 0, 0, 0, 0);
+	tabCtrl->AddTab(F("Vacuum"), tabVacuum);
+	tabCtrl->AddTab(F("Manual"), tabManual);
+	tabCtrl->AddTab(F("Tempr."), tabTempr);
+	tabVacuum->Initialize(sensors);
+	tabTempr->Initialize();
 
 	DecoratorList *redDecorator=new DecoratorList();
 
@@ -97,6 +109,16 @@ void setup() {
 
 void loop() 
 {
+	//measure (if necessary -see delay parameter in sensor manager)
+	if (measurementNode.Measure())
+	{
+		//following if is only for debugging purposes
+		if (measurementNode.IsChanged())
+		{
+			measurementNode.LogResults();
+		}
+
+	}
 	//give window manager an opportunity to update display
 	windowsManager.loop();
 }

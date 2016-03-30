@@ -56,11 +56,11 @@ public:
 		if (window == _btnStart)
 		{
 			_btnStart->SetDecorators(Environment::Get()->FindDecorators(F("RedRectangle")));
-			_pumpController->startPump();
+			_pumpController->ManualStartPump();
 		}
 		else if (window == _btnStop)
 		{
-			_pumpController->stopPump();
+			_pumpController->ManualStopPump();
 			_btnStart->SetDecorators(Environment::Get()->FindDecorators(F("Button")));
 			_btnStart->Invalidate();
 		}

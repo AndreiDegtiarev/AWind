@@ -18,78 +18,149 @@ examples and tools supplied with the library.
 */
 #pragma once
 
+#include "TimerSensorManager.h"
+#include "PumpHardware.h"
+
 ///Implements pump control logic
-class PumpController
+class PumpController : public ISensorHasDataEventReceiver
 {
-	static const uint32_t _pumpRelayPin=13;
-	static const uint32_t _stepperEnablePin = 10;
-	static const uint32_t _stepperDirPin=12;
-	static const uint32_t _stepperStepPin=11;
-	static const uint32_t _stepperM0Pin=13;
-	static const uint32_t _stepperM1Pin=14;
-	static const uint32_t _stepperM2Pin=8;
-	static const uint32_t _stepperMotorSteps=200;
-#ifndef DEMO_SENSORS
-	DRV8825 _stepper;
-#endif
+public:
+	enum PumpProgramm
+	{
+		TimerControll,
+		PressureControll,
+		Inactive
+	};
+	enum SensorType
+	{
+		Temperature,
+		Pressure,
+		ActiveTimer,
+		PauseTimer,
+	};
+private:
+
+	TimerSensorManager  *_pauseTimerManager;
+	TimerSensorManager  *_activeTimerManager;
+	LinkedList<ISensorHasDataEventReceiver> _hasDataEventsReceiver;
+	PumpProgramm _programm;
+	PumpHardware _hardware;
+	bool _isOverheatetd;
+
 public:
 	PumpController()
-#ifndef DEMO_SENSORS
-		: _stepper(_stepperMotorSteps, _stepperDirPin, _stepperStepPin, _stepperM0Pin, _stepperM1Pin, _stepperM2Pin)
-#endif
 	{
-		pinMode(_stepperEnablePin, OUTPUT);
-		pinMode(_pumpRelayPin, OUTPUT);
-		stopPump();
+		_programm = Inactive;
+		_isOverheatetd = false;
 	}
-	void initVacuumValve()
+	void Initialize(LinkedList<SensorManager> &sensors)
 	{
-#ifndef DEMO_SENSORS
-		_stepper.setMicrostep(8);
-		_stepper.setRPM(5);
-#endif
-		//connectVesselToVaccum();
-		disconnectVesselFromVaccum();
-		delay(1 * 1000);
+		_pauseTimerManager = new TimerSensorManager();
+		_activeTimerManager = new TimerSensorManager();
+
+		sensors.Add(_pauseTimerManager);
+		sensors.Add(_activeTimerManager);
+
+		_pauseTimerManager->RegisterHasDataEventReceiver(this);
+		_activeTimerManager->RegisterHasDataEventReceiver(this);
+		_hardware.Initialize(sensors, this);
+		_hardware.StopPump();
 	}
-	void disconnectVesselFromVaccum()
+	void RegisterHasDataEventReceiver(ISensorHasDataEventReceiver *receiver)
 	{
-		rotateStepper(95);
+		_hasDataEventsReceiver.Add(receiver);
 	}
-	void connectVesselToVaccum()
+	PumpProgramm Programm()
 	{
-		rotateStepper(-95);
+		return _programm;
+	}
+	PumpStatus Status()
+	{
+		return _hardware.Status();
 	}
 	void startVacuum()
 	{
-		startPump();
+		_hardware.StartPump();
 		pause();
-		connectVesselToVaccum();
+		_hardware.ConnectVesselToVaccum();
 	}
 	void stopVacuum()
 	{
-		stopPump();
+		_hardware.StopPump();
 		pause();
-		disconnectVesselFromVaccum();
-	}
-	void startPump()
-	{
-		digitalWrite(_pumpRelayPin, LOW);
-	}
-	void stopPump()
-	{
-		digitalWrite(_pumpRelayPin, HIGH);
-	}
-	void rotateStepper(double angle)
-	{
-		digitalWrite(_stepperEnablePin, HIGH);
-#ifndef DEMO_SENSORS
-        _stepper.rotate(angle);
-#endif
-		digitalWrite(_stepperEnablePin, LOW);
+		_hardware.DisconnectVesselFromVacuum();
 	}
 	void pause()
 	{
 		delay(1000);
+	}
+	///If sensor data was changed this notification is call
+	void NotifySensorHasData(SensorManager *sensorManager)
+	{
+		if (sensorManager == _hardware.TemperatureSensorManager() && sensorManager->Status() == MeasurementStatus::ApplicationAlarm)
+		{
+			_hardware.StopPump();
+			_isOverheatetd = true;
+		}
+		if (sensorManager == _activeTimerManager)
+		{
+			out << F("Pause mode in controller")<<endln;
+			stopVacuum();
+			_activeTimerManager->Reset();
+			_pauseTimerManager->Enable();
+		}
+		else if(sensorManager == _pauseTimerManager)
+		{
+			out << F("Active mode in controller") << endln;
+			_pauseTimerManager->Reset();
+			_activeTimerManager->Enable();
+			startVacuum();
+		}
+		for (int i = 0;i < _hasDataEventsReceiver.Count();i++)
+			_hasDataEventsReceiver[i]->NotifySensorHasData(sensorManager);
+
+	}
+public:
+	int32_t ElapsedActiveTime()
+	{
+		return _activeTimerManager->Elapsed();
+	}
+	int32_t ElapsedPauseTime()
+	{
+		return _pauseTimerManager->Elapsed();
+	}
+	SensorType GetSensorType(SensorManager *sensorManager)
+	{
+		if (sensorManager == _hardware.TemperatureSensorManager())
+			return SensorType::Temperature;
+		else if (sensorManager == _hardware.PressureSensorManager())
+			return SensorType::Pressure;
+		else if (sensorManager == _activeTimerManager)
+			return SensorType::ActiveTimer;
+		else if (sensorManager == _pauseTimerManager)
+			return SensorType::PauseTimer;
+	}
+	void StartTimerProgramm(uint32_t activeTime, uint32_t pauseTime)
+	{
+		_programm = TimerControll;
+		_hardware.InitVacuumValve();
+		_activeTimerManager->SetInterval(activeTime);
+		_pauseTimerManager->SetInterval(pauseTime);
+		startVacuum();
+		_activeTimerManager->Enable();
+	}
+	void StopProgramm()
+	{
+		_activeTimerManager->Reset();
+		_pauseTimerManager->Reset();
+		stopVacuum();
+	}
+	void ManualStartPump()
+	{
+		_hardware.StartPump();
+	}
+	void ManualStopPump()
+	{
+		_hardware.StopPump();
 	}
 };

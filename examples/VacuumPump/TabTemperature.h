@@ -21,34 +21,56 @@
 #include "TimeSerieBuffer.h"
 #include <ChartWindow.h>
 ///Tab with chart for temperature logging 
-class TabTemperature : public Window
+class TabTemperature : public Window, public ISensorHasDataEventReceiver,  public ISensorMeasuredEventReceiver
 {
 
-	TimeSerieBuffer	*_dataBuffer;
 	ChartWindow *_chartWnd;
 	DecoratorAxis *_chartYAxis;
+	PumpController *_pumpController;
+	bool _isBufferInitialized;
 
 public:
-	TabTemperature(const __FlashStringHelper * name,int left,int top,int width,int height):Window(name,left,top,width,height)
+	TabTemperature(PumpController *pumpController, const __FlashStringHelper * name,int left,int top,int width,int height):Window(name,left,top,width,height)
 	{
 		SetDecorators(Environment::Get()->FindDecorators(F("Window")));
 
-		_dataBuffer = new TimeSerieBuffer(1, 1, 1000, 1000);
+		_pumpController = pumpController;
+		_pumpController->RegisterHasDataEventReceiver(this);
+		_isBufferInitialized = false;
 
 	}
 	void Initialize()
 	{
 		int cy = Height();
-		int axis_y_margins = 2;
+		int axis_y_margins = 5;
 
-		DecoratorAxis *chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallFont, cy - axis_y_margins * 2, 0, 120, 5);
+		DecoratorAxis *chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallFont, cy - axis_y_margins * 2, 0, 50, 5);
 		chartYAxis->SetOffset(4, axis_y_margins);
-		_chartWnd = new ChartWindow(NULL, chartYAxis, 1, 1, Width() - 2, cy);
+		_chartWnd = new ChartWindow(NULL, chartYAxis, 2, axis_y_margins, Width() - 4, cy - axis_y_margins * 2);
 		//Chart decorators
 		_chartWnd->AddDecorator(new Decorator3DRect(Color::White, Color::Gray));
 		_chartWnd->AddDecorator(new DecoratorColor(Color::Black));
 		_chartWnd->AddDecorator(chartYAxis);
-		_chartWnd->SetBuffer(_dataBuffer);
 		AddChild(_chartWnd);
+	}
+	///If sensor data was changed this notification is call
+	void NotifySensorHasData(SensorManager *sensorManager)
+	{
+		switch (_pumpController->GetSensorType(sensorManager))
+		{
+		case PumpController::Temperature:
+			if (!_isBufferInitialized)
+			{
+				_chartWnd->SetBuffer(sensorManager->SecBuffer());
+				sensorManager->RegisterMeasuredEventReceiver(this);
+			}
+			//_txtTemperature->SetNumber(sensorManager->GetData());
+			break;
+		}
+	}
+	///Event is generated after each measurement
+	void NotifySensorMeasured(SensorManager *sensorManager)
+	{
+		_chartWnd->InvalidateOnlyChartArea();
 	}
 };

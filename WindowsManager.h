@@ -77,8 +77,6 @@ public:
 	///Main loop where drawing code only for "dirty" window is called
 	void loop()
 	{
-		for (int i = 0;i < MainWnd()->Timers().Count();i++)
-			MainWnd()->Timers()[i]->loop();
 		if(MainWnd()->ModalWnd() == NULL)
 			redraw(MainWnd(),false);
 		if(MainWnd()->ModalWnd() != NULL)

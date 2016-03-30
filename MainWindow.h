@@ -40,7 +40,6 @@ class MainWindow : public Window, public IDialogClosedEventReceiver
 	Window *_modalWindow;
 	ILoopProcess *_idleProcess;
 	LinkedList<DialogEntry> _dialogs;
-	LinkedList<ATimer> _timers;
 	DialogResults _lastDialogResults;
 	bool _isModalDialogActive;
 public:
@@ -102,14 +101,6 @@ public:
 		}
 		//out<<F("End::ProcessDoDialog")<<endln;
 		return _lastDialogResults;
-	}
-	void RegisterTimer(ATimer *timer)
-	{
-		_timers.Add(timer);
-	}
-	LinkedList<ATimer> &Timers()
-	{
-		return _timers;
 	}
 	void SetLoopProcess(ILoopProcess *process)
 	{

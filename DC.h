@@ -157,6 +157,12 @@ public:
 	{
 		_lcd->drawRoundRect (ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
 	}
+	///Draws circle. Input coordinates have to be defined in the window coordinate system
+	void FillCircle(int x0, int y0, int radius)
+	{
+		_lcd->fillCircle(ToDC_X(x0), ToDC_Y(y0),radius);
+	}
+
 	///Draws integer number. Input coordinates have to be defined in the window coordinate system
 	void DrawNumber(int number,int x,int y)
 	{
@@ -247,12 +253,13 @@ public:
 		}
 	}
 	///Draws sector. Input coordinates have to be defined in the window coordinate system
-	void Sector(int x0, int y0, int radius,float angle_rad) 
+	void Sector(int x0, int y0, int radius,float start_angle_rad,float angle_rad) 
 	{
 		x0=ToDC_X(x0);
 		y0=ToDC_Y(y0);
 		int x = 0;
 		int y = radius;
+		float cos_factor = cos(-start_angle_rad);
 		float tan_stop=tan(angle_rad/2);
 		int delta = 2 - 2 * radius;
 		int error = 0;

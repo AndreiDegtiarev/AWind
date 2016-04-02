@@ -36,6 +36,7 @@ public:
 	{
 		InitMainWindow();
 		InitButton();
+		RadioButton();
 		InitDialog();
 		InitEditBox();
 		InitLabel();
@@ -57,6 +58,19 @@ public:
 		list->Add(new Decorator3DRect(Color::White,Color::Black));
 		list->Add(new DecoratorColor(Color::Black));
 		Environment::Get()->RegisterDecoratorsGroup(F("Button"),list);
+	}
+	static void RadioButton()
+	{
+		DecoratorList *list = new DecoratorList();
+		list->Add(new DecoratorRectFill(Color::LightGray, false));
+		list->Add(new Decorator3DSquare(Color::Gray, Color::White, Color::LightGray, false));
+		list->Add(new DecoratorColor(Color::Black));
+		Environment::Get()->RegisterDecoratorsGroup(F("RadioButtonInactive"), list);
+		DecoratorList *list_1 = new DecoratorList();
+		list_1->Add(new DecoratorRectFill(Color::LightGray, false));
+		list_1->Add(new Decorator3DSquare(Color::Gray, Color::White, Color::LightGray, true));
+		list_1->Add(new DecoratorColor(Color::Black));
+		Environment::Get()->RegisterDecoratorsGroup(F("RadioButtonActive"), list_1);
 	}
 	static void InitDialog()
 	{

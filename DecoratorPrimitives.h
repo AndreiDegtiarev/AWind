@@ -141,6 +141,35 @@ public:
 		dc->Rectangle3D(left, top, left+width, top+height,_color1,_color2);
 	}
 };
+
+///Decorator primitive for 3D Circle. Overriden members description see Decorator class documentation
+class Decorator3DSquare : public Decorator
+{
+	Color _color1;
+	Color _color2;
+	Color _colorBack;
+	bool  _withCircle;
+public:
+	Decorator3DSquare(Color color1, Color color2, Color colorBack,bool withCircle) :_color1(color1), _color2(color2), _colorBack(colorBack), _withCircle(withCircle)
+	{
+
+	}
+	void Draw(DC *dc, int left, int top, int width, int height)
+	{
+		dc->SetColor(_colorBack);
+		int size = 15;
+		int radius = size / 2;
+		int x0 = left + radius;
+		int y0 = top + height / 2;
+		dc->FillRect(x0- radius, y0- radius, x0 + radius, y0+ radius);
+		dc->Rectangle3D(x0 - radius, y0 - radius, x0 + radius, y0 + radius,_color1, _color2);
+		if (_withCircle)
+		{
+			dc->SetColor(Color::Black);
+			dc->FillCircle(x0,y0, radius-2);
+		}
+	}
+};
 ///Axis decorator primitive. It is shared between gauge and chart objects. Overriden members description see Decorator class documentation
 class DecoratorAxis : public Decorator
 {

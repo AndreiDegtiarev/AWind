@@ -21,15 +21,23 @@ examples and tools supplied with the library.
 #include "TimerSensorManager.h"
 #include "PumpHardware.h"
 
+
 ///Implements pump control logic
 class PumpController : public ISensorHasDataEventReceiver
 {
 public:
+	struct PumpControllerSettings
+	{
+		uint32_t PauseTime_ms;
+		uint32_t ActiveTime_ms;
+		float   MinPressure_bar;
+		float   MaxPressure_bar;
+	};
 	enum PumpProgramm
 	{
+		ManualControl,
 		TimerControll,
 		PressureControll,
-		Inactive
 	};
 	enum SensorType
 	{
@@ -39,7 +47,7 @@ public:
 		PauseTimer,
 	};
 private:
-
+	PumpControllerSettings _settings;
 	TimerSensorManager  *_pauseTimerManager;
 	TimerSensorManager  *_activeTimerManager;
 	LinkedList<ISensorHasDataEventReceiver> _hasDataEventsReceiver;
@@ -50,7 +58,7 @@ private:
 public:
 	PumpController()
 	{
-		_programm = Inactive;
+		_programm = ManualControl;
 		_isOverheatetd = false;
 	}
 	void Initialize(LinkedList<SensorManager> &sensors)
@@ -64,29 +72,46 @@ public:
 		_pauseTimerManager->RegisterHasDataEventReceiver(this);
 		_activeTimerManager->RegisterHasDataEventReceiver(this);
 		_hardware.Initialize(sensors, this);
-		_hardware.StopPump();
+		StopPump();
 	}
 	void RegisterHasDataEventReceiver(ISensorHasDataEventReceiver *receiver)
 	{
 		_hasDataEventsReceiver.Add(receiver);
 	}
+	PumpControllerSettings & Settings()
+	{
+		return _settings;
+	}
 	PumpProgramm Programm()
 	{
 		return _programm;
+	}
+	void SetProgramm(PumpProgramm programm)
+	{
+		_programm = programm;
 	}
 	PumpStatus Status()
 	{
 		return _hardware.Status();
 	}
+	void StartPump()
+	{
+		if(!_isOverheatetd)
+			_hardware.OnPump();
+	}
+	void StopPump()
+	{
+		_hardware.OffPump();
+	}
 	void startVacuum()
 	{
-		_hardware.StartPump();
+		StartPump();
 		pause();
 		_hardware.ConnectVesselToVaccum();
 	}
 	void stopVacuum()
 	{
-		_hardware.StopPump();
+		StopPump();
 		pause();
 		_hardware.DisconnectVesselFromVacuum();
 	}
@@ -97,21 +122,28 @@ public:
 	///If sensor data was changed this notification is call
 	void NotifySensorHasData(SensorManager *sensorManager)
 	{
-		if (sensorManager == _hardware.TemperatureSensorManager() && sensorManager->Status() == MeasurementStatus::ApplicationAlarm)
+		if (sensorManager == _hardware.TemperatureSensorManager())
 		{
-			_hardware.StopPump();
-			_isOverheatetd = true;
+			if(sensorManager->Status() == MeasurementStatus::ApplicationAlarm)
+			{
+				StopPump();
+				_isOverheatetd = true;
+			}
+			else if(sensorManager->GetData()<sensorManager->HightApplicationLimit() * 0.97)
+			{
+				_isOverheatetd = false;
+			}
 		}
 		if (sensorManager == _activeTimerManager)
 		{
-			out << F("Pause mode in controller")<<endln;
+			//out << F("PumpController::NotifySensorHasData _activeTimerManager")<<endln;
 			stopVacuum();
 			_activeTimerManager->Reset();
 			_pauseTimerManager->Enable();
 		}
 		else if(sensorManager == _pauseTimerManager)
 		{
-			out << F("Active mode in controller") << endln;
+			//out << F("PumpController::NotifySensorHasData _pauseTimerManager") << endln;
 			_pauseTimerManager->Reset();
 			_activeTimerManager->Enable();
 			startVacuum();
@@ -140,27 +172,38 @@ public:
 		else if (sensorManager == _pauseTimerManager)
 			return SensorType::PauseTimer;
 	}
-	void StartTimerProgramm(uint32_t activeTime, uint32_t pauseTime)
+	void StartProgramm()
 	{
-		_programm = TimerControll;
-		_hardware.InitVacuumValve();
-		_activeTimerManager->SetInterval(activeTime);
-		_pauseTimerManager->SetInterval(pauseTime);
-		startVacuum();
-		_activeTimerManager->Enable();
+		switch (Programm())
+		{
+		case ManualControl:
+			StartPump();
+			break;
+		case TimerControll:
+			_hardware.InitVacuumValve();
+			_activeTimerManager->SetInterval(Settings().ActiveTime_ms);
+			_pauseTimerManager->SetInterval(Settings().PauseTime_ms);
+			startVacuum();
+			_activeTimerManager->Enable();
+			break;
+		default:
+			break;
+		}
 	}
 	void StopProgramm()
 	{
-		_activeTimerManager->Reset();
-		_pauseTimerManager->Reset();
-		stopVacuum();
-	}
-	void ManualStartPump()
-	{
-		_hardware.StartPump();
-	}
-	void ManualStopPump()
-	{
-		_hardware.StopPump();
+		switch (Programm())
+		{
+		case ManualControl:
+			StopPump();
+			break;
+		case TimerControll:
+			_activeTimerManager->Reset();
+			_pauseTimerManager->Reset();
+			stopVacuum();
+			break;
+		default:
+			break;
+		}
 	}
 };

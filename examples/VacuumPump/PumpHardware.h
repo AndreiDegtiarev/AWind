@@ -59,9 +59,9 @@ public:
 	}
 	void Initialize(LinkedList<SensorManager> &sensors, ISensorHasDataEventReceiver *receiver)
 	{
-		_temperatureSensorManager = new SensorManager(new DS18B20Sensor(_temperaturePin, 1), 10, 60, 1000 * 2,false);
+		_temperatureSensorManager = new SensorManager(new DS18B20Sensor(_temperaturePin, 1), 10, 37, 1000 * 2,false);
 		_temperatureSensorManager->initSecondsBuffer(1000);
-		_pressureSensorManager = new SensorManager(new MPXPressureSensor(_pressurePin), 0.01, 10, 1000 * 2, false);
+		_pressureSensorManager = new SensorManager(new MPXPressureSensor(_pressurePin), 0.0, 10, 1000 * 2, false);
 		_pressureSensorManager->initSecondsBuffer(1000);
 
 		sensors.Add(_temperatureSensorManager);
@@ -94,12 +94,12 @@ public:
 		DisconnectVesselFromVacuum();
 		delay(1 * 1000);
 	}
-	void StartPump()
+	void OnPump()
 	{
 		_status = On;
 		digitalWrite(_relayPin, LOW);
 	}
-	void StopPump()
+	void OffPump()
 	{
 		_status = Off;
 		digitalWrite(_relayPin, HIGH);

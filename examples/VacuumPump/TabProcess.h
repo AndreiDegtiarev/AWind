@@ -21,7 +21,7 @@
 #include "TimeSerieBuffer.h"
 #include <ChartWindow.h>
 ///Tab with chart for temperature logging 
-class TabTemperature : public Window, public ISensorHasDataEventReceiver,  public ISensorMeasuredEventReceiver
+class TabProcess : public Window, public ISensorHasDataEventReceiver,  public ISensorMeasuredEventReceiver
 {
 
 	ChartWindow *_chartWnd;
@@ -30,7 +30,7 @@ class TabTemperature : public Window, public ISensorHasDataEventReceiver,  publi
 	bool _isBufferInitialized;
 
 public:
-	TabTemperature(PumpController *pumpController, const __FlashStringHelper * name,int left,int top,int width,int height):Window(name,left,top,width,height)
+	TabProcess(PumpController *pumpController, const __FlashStringHelper * name,int left,int top,int width,int height):Window(name,left,top,width,height)
 	{
 		SetDecorators(Environment::Get()->FindDecorators(F("Window")));
 
@@ -44,7 +44,7 @@ public:
 		int cy = Height();
 		int axis_y_margins = 5;
 
-		DecoratorAxis *chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallFont, cy - axis_y_margins * 2, 0, 50, 5);
+		DecoratorAxis *chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallFont, cy - axis_y_margins * 2, 10, 50, 5);
 		chartYAxis->SetOffset(4, axis_y_margins);
 		_chartWnd = new ChartWindow(NULL, chartYAxis, 2, axis_y_margins, Width() - 4, cy - axis_y_margins * 2);
 		//Chart decorators

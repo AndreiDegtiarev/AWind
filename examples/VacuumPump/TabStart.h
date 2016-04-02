@@ -20,15 +20,16 @@
 #include <Window.h>
 #include <Label.h>
 #include <TextBoxNumber.h>
-#include <ATimer.h>
 #include <GaugeBar.h>
+#include <RadioButton.h>
 #include "PumpController.h"
 
 ///Tab  that implements GUI to vacuum controller
-class TabVacuum : public Window, public ITouchEventReceiver, public ISensorHasDataEventReceiver
+class TabStart : public Window, public ITouchEventReceiver, public ISensorHasDataEventReceiver
 {
-	TextBoxNumber  *_txtPause;
-	TextBoxNumber  *_txtActive;
+	RadioButton    *_radioManualControl;
+	RadioButton    *_radioPressureControl;
+	RadioButton    *_radioTimerControl;
 	TextBoxNumber  *_txtPressure;
 	TextBoxNumber  *_txtTemperature;
 	Button         *_btnStart;
@@ -37,31 +38,28 @@ class TabVacuum : public Window, public ITouchEventReceiver, public ISensorHasDa
 	TimerSensorManager    *_updateTimerManager;
 	PumpController *_pumpController;
 public:
-	TabVacuum(PumpController *pumpController,const __FlashStringHelper * name, int left, int top, int width, int height) :Window(name, left, top, width, height)
+	TabStart(PumpController *pumpController,const __FlashStringHelper * name, int left, int top, int width, int height) :Window(name, left, top, width, height)
 	{
 		_pumpController = pumpController;
 
 		SetDecorators(Environment::Get()->FindDecorators(F("Window")));
 
-		initLabel(new Label(0, 0, 0, 0, F("Active")));
-		initLabel(new Label(0, 0, 0, 0, F("min.")));
-		initLabel(new Label(0, 0, 0, 0, F("Pause")));
-		initLabel(new Label(0, 0, 0, 0, F("min.")));
 		initLabel(new Label(0, 0, 0, 0, F("Pressure")));
 		initLabel(new Label(0, 0, 0, 0, F("bar")));
-		initLabel(new Label(0, 0, 0, 0, F("Tempr")));
+		initLabel(new Label(0, 0, 0, 0, F("Temperature")));
 		initLabel(new Label(0, 0, 0, 0, F("grad.")));
 
-		_txtActive = new TextBoxNumber(0, 0, 0, 0, 0);
-		_txtActive->SetNumber(0.5);
-		initTextWindow(_txtActive,false);
-		_txtPause = new TextBoxNumber(0, 0, 0, 0, 0);
-		_txtPause->SetNumber(10);
-		initTextWindow(_txtPause, false);
+		_radioManualControl = new RadioButton(0, 0, 0, 0, F("Manual"));
+		initRadio(_radioManualControl);
+		_radioPressureControl = new RadioButton(0, 0, 0, 0, F("Pressure"));
+		initRadio(_radioPressureControl);
+		_radioTimerControl = new RadioButton(0, 0, 0, 0, F("Timer"));
+		initRadio(_radioTimerControl);
 
 		_txtPressure = new TextBoxNumber(0, 0, 0, 0, 0);
 		_txtPressure->SetNumber(0);
 		initTextWindow(_txtPressure, true);
+		_txtPressure->SetPrecission(2);
 
 		_txtTemperature = new TextBoxNumber(0, 0, 0, 0, 0);
 		_txtTemperature->SetNumber(0);
@@ -76,11 +74,20 @@ public:
 
 		_pumpController->RegisterHasDataEventReceiver(this);
 
+		_radioManualControl->SetChecked(true);
+		_pumpController->SetProgramm(PumpController::ManualControl);
+
 	}
 	void initLabel(Label *label)
 	{
 		label->SetFont(BigFont);
 		AddChild(label);
+	}
+	void initRadio(RadioButton *radio)
+	{
+		radio->SetMargins(20, 5);
+		radio->RegisterTouchEventReceiver(this);
+		AddChild(radio);
 	}
 	void initTextWindow(TextBoxNumber *wnd,bool isReadOnly)
 	{
@@ -110,7 +117,7 @@ public:
 		_gaugeBar->SetDecorators(Environment::Get()->FindDecorators(F("EditTextBoxReadOnly")));
 		AddChild(_gaugeBar);
 
-		const static int column_1_x = 25;
+		const static int column_1_x = 5;
 		const static int column_2_x = 172;
 		const static int column_3_x = 248;
 		const static int wnd_height = 25;
@@ -120,16 +127,15 @@ public:
 		const static int row_3_y = row_2_y + wnd_height + wnd_height_space;
 		const static int row_4_y = row_3_y + wnd_height + wnd_height_space;
 
-		Children()[0]->Move(column_1_x, row_1_y, 50, wnd_height);
-		Children()[1]->Move(column_3_x, row_1_y, 50, wnd_height);
-		Children()[2]->Move(column_1_x, row_2_y+5, 50, wnd_height);
-		Children()[3]->Move(column_3_x, row_2_y+5, 50, wnd_height);
-		Children()[4]->Move(column_1_x, row_3_y + 5, 50, wnd_height);
-		Children()[5]->Move(column_3_x, row_3_y + 5, 50, wnd_height);
-		Children()[6]->Move(column_1_x, row_4_y + 5, 50, wnd_height);
-		Children()[7]->Move(column_3_x, row_4_y + 5, 50, wnd_height);
-		_txtActive->Move(column_2_x, row_1_y, 70, wnd_height);
-		_txtPause->Move(column_2_x, row_2_y, 70, wnd_height);
+		_radioManualControl->Move(column_1_x, row_1_y, 50, wnd_height);
+		_radioPressureControl->Move(column_1_x, row_2_y, 50, wnd_height);
+		_radioTimerControl->Move(column_2_x, row_2_y, 50, wnd_height);
+
+		Children()[0]->Move(column_1_x, row_3_y, 50, wnd_height);
+		Children()[1]->Move(column_3_x, row_3_y, 50, wnd_height);
+		Children()[2]->Move(column_1_x, row_4_y+5, 50, wnd_height);
+		Children()[3]->Move(column_3_x, row_4_y+5, 50, wnd_height);
+
 		_txtPressure->Move(column_2_x, row_3_y, 70, wnd_height);
 		_txtTemperature->Move(column_2_x, row_4_y, 70, wnd_height);
 
@@ -150,36 +156,44 @@ public:
 	{
 		if (window == _btnStart)
 		{
-			//_pumpController->initVacuumValve();
 			_btnStart->SetDecorators(Environment::Get()->FindDecorators(F("RedRectangle")));
 
-			//_activeTimer.SetInterval(_txtActive->GetNumber() * 60 * 1000);
-			//_pauseTimer.SetInterval(_txtPause->GetNumber() * 60 * 1000);
-			_txtActive->SetIsReadOnly(true);
-			_txtPause->SetIsReadOnly(true);
-			//_activeTimer.Enable();
-			_gaugeBar->SetBarColor(Color::Red);
-			_gaugeBar->SetMinMax(0, _txtActive->GetNumber()*60*1000);
-			_gaugeBar->Invalidate();
-			_txtActive->Invalidate();
-			_txtPause->Invalidate();
-			//_pumpController->startVacuum();
-			_pumpController->StartTimerProgramm(_txtActive->GetNumber() * 60 * 1000, _txtPause->GetNumber() * 60 * 1000);
+			if (_pumpController->Programm() == PumpController::TimerControll)
+			{
+				_gaugeBar->SetBarColor(Color::Red);
+				_gaugeBar->SetMinMax(0, _pumpController->Settings().ActiveTime_ms);
+				_gaugeBar->Invalidate();
+			}
+
+			_pumpController->StartProgramm();
 		}
 		else if (window == _btnStop)
 		{
 			_pumpController->StopProgramm();
-			//_pumpController->stopVacuum();
 			_btnStart->SetDecorators(Environment::Get()->FindDecorators(F("Button")));
 			_btnStart->Invalidate();
-			//_activeTimer.Reset();
-			//_pauseTimer.Reset();
 			_gaugeBar->SetValue(0);
-			_txtActive->SetIsReadOnly(false);
-			_txtPause->SetIsReadOnly(false);
-			_txtActive->Invalidate();
-			_txtPause->Invalidate();
-
+		}
+		else if (window == _radioManualControl)
+		{
+			_radioManualControl->SetChecked(true);
+			_radioPressureControl->SetChecked(false);
+			_radioTimerControl->SetChecked(false);
+			_pumpController->SetProgramm(PumpController::ManualControl);
+		}
+		else if (window == _radioPressureControl)
+		{
+			_radioManualControl->SetChecked(false);
+			_radioPressureControl->SetChecked(true);
+			_radioTimerControl->SetChecked(false);
+			_pumpController->SetProgramm(PumpController::PressureControll);
+		}
+		else if (window == _radioTimerControl)
+		{
+			_radioManualControl->SetChecked(false);
+			_radioPressureControl->SetChecked(false);
+			_radioTimerControl->SetChecked(true);
+			_pumpController->SetProgramm(PumpController::TimerControll);
 		}
 	}
 	///If sensor data was changed this notification is call
@@ -212,12 +226,12 @@ public:
 			case PumpController::ActiveTimer:
 				_gaugeBar->SetValue(0);
 				_gaugeBar->SetBarColor(Color::Green);
-				_gaugeBar->SetMinMax(0, _txtPause->GetNumber() * 60 * 1000);
+				_gaugeBar->SetMinMax(0, _pumpController->Settings().PauseTime_ms);
 				break;
 			case PumpController::PauseTimer:
 				_gaugeBar->SetValue(0);
 				_gaugeBar->SetBarColor(Color::Red);
-				_gaugeBar->SetMinMax(0, _txtActive->GetNumber() * 60 * 1000);
+				_gaugeBar->SetMinMax(0, _pumpController->Settings().ActiveTime_ms);
 				break;
 			default:
 				break;

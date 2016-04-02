@@ -22,10 +22,11 @@ examples and tools supplied with the library.
 // DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
 //#define DEMO_SENSORS
 
-#include "Log.h"
-#include "LinkedList.h"
-#include "WindowsManager.h"
-#include "DefaultDecorators.h"
+#include <Log.h>
+#include <LinkedList.h>
+#include <WindowsManager.h>
+#include <DefaultDecorators.h>
+#include <TabControl.h>
 
 #ifndef DEMO_SENSORS
 #include <DRV8825.h>
@@ -35,11 +36,10 @@ examples and tools supplied with the library.
 #include "SensorManager.h"
 #include "MeasurementNode.h"
 
+#include "TabStart.h"
+#include "TabSetup.h"
+#include "TabProcess.h"
 
-#include "TabVacuum.h"
-#include "TabManual.h"
-#include "TabTemperature.h"
-#include "TabControl.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
 #ifdef _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
@@ -75,6 +75,10 @@ void setup() {
 	myTouch.setPrecision(PREC_MEDIUM);
 
 	//sensors
+	pumpController.Settings().ActiveTime_ms  = 0.5 * 60 * 1000;
+	pumpController.Settings().PauseTime_ms = 10 * 60 * 1000;
+	pumpController.Settings().MinPressure_bar = 0.3;
+	pumpController.Settings().MaxPressure_bar = 0.5;
 	pumpController.Initialize(sensors);
 
 
@@ -87,14 +91,14 @@ void setup() {
 	windowsManager.MainWnd()->AddChild(tabCtrl);
 
 	//create tabs
-	TabVacuum *tabVacuum = new TabVacuum(&pumpController,F("Window1"), 0, 0, 0, 0);
-	TabManual *tabManual = new TabManual(&pumpController, F("Window2"), 0, 0, 0, 0);
-	TabTemperature *tabTempr = new TabTemperature(&pumpController, F("Window3"), 0, 0, 0, 0);
-	tabCtrl->AddTab(F("Vacuum"), tabVacuum);
-	tabCtrl->AddTab(F("Manual"), tabManual);
-	tabCtrl->AddTab(F("Tempr."), tabTempr);
-	tabVacuum->Initialize(sensors);
-	tabTempr->Initialize();
+	TabStart *tabStart = new TabStart(&pumpController,F("Window1"), 0, 0, 0, 0);
+	TabProcess *tabProcess = new TabProcess(&pumpController, F("Window3"), 0, 0, 0, 0);
+	TabSetup *tabSetup = new TabSetup(&pumpController, F("Window2"), 0, 0, 0, 0);
+	tabCtrl->AddTab(F("Start"), tabStart);
+	tabCtrl->AddTab(F("Process"), tabProcess);
+	tabCtrl->AddTab(F("Setup"), tabSetup);
+	tabStart->Initialize(sensors);
+	tabProcess->Initialize();
 
 	DecoratorList *redDecorator=new DecoratorList();
 

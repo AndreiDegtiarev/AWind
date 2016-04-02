@@ -20,7 +20,6 @@
   examples and tools supplied with the library.
 */
 #include "Dialog.h"
-#include "ATimer.h"
 #include "ICriticalProcess.h"
 class ILoopProcess
 {

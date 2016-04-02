@@ -260,18 +260,24 @@ public:
 		int x = 0;
 		int y = radius;
 		float cos_factor = cos(-start_angle_rad);
+		float sin_factor = sin(-start_angle_rad);
 		float tan_stop=tan(angle_rad/2);
 		int delta = 2 - 2 * radius;
 		int error = 0;
 		float ratio;
+		float rot_x,rot_y;
 		while(y >= 0) {
 			ratio=x/(float)y;
-			//_lcd->drawPixel(x0 + x, y0 + y);
 			if(ratio>tan_stop)
 				break;
-			_lcd->drawPixel(x0 + x, y0 - y);
-			//_lcd->drawPixel(x0 - x, y0 + y);
-			_lcd->drawPixel(x0 - x, y0 - y);
+			rot_x = x*cos_factor - y*sin_factor;
+			rot_y = x*sin_factor + y*cos_factor;
+			_lcd->drawPixel(x0 + rot_x, y0 - rot_y);
+			rot_x =-x*cos_factor - y*sin_factor;
+			rot_y = -x*sin_factor + y*cos_factor;
+			_lcd->drawPixel(x0 + rot_x, y0 - rot_y);
+			//_lcd->drawPixel(x0 + x, y0 - y);
+			//_lcd->drawPixel(x0 - x, y0 - y);
 			error = 2 * (delta + y) - 1;
 			if(delta < 0 && error <= 0)
 			{

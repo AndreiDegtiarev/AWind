@@ -29,7 +29,7 @@ extern char *dtostrf(double val, signed char width, unsigned char prec, char *so
 class DC
 {
 public:
-	enum HorizontalAligment
+	enum HorizontalAlignment
 	{
 		Left,
 		Center,
@@ -172,7 +172,7 @@ public:
 	}
 
 	///Draws integer number. Input coordinates have to be defined in the window coordinate system
-	void DrawNumber(int number,int x,int y, HorizontalAligment aligment = HorizontalAligment::Left, int width = 0)
+	void DrawNumber(int number,int x,int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0)
 	{
 		sprintf(_buffer,"%d",number);
 		DrawText(_buffer,x,y, aligment, width);
@@ -182,21 +182,21 @@ public:
 	\param number float input value
 	\param dec number decimal places
 	*/
-	void DrawNumber(float number,int dec,int x,int y, HorizontalAligment aligment = HorizontalAligment::Left, int width = 0)
+	void DrawNumber(float number,int dec,int x,int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0)
 	{
 		dtostrf(number,0,dec,_buffer);
 		DrawText(_buffer,x,y, aligment, width);
 	}
 	///Draws PROGMEM string. Input coordinates have to be defined in the window coordinate system
-	void DrawText(const __FlashStringHelper * text,int x,int y, HorizontalAligment aligment = HorizontalAligment::Left, int width = 0)
+	void DrawText(const __FlashStringHelper * text,int x,int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0)
 	{
 		int stl, i;
 
 		stl = strlen_P((const char PROGMEM *)text);
 
-		if (aligment == HorizontalAligment::Center)
+		if (aligment == HorizontalAlignment::Center)
 			x = x + (width - stl*_lcd->cfont.x_size) / 2;
-		else if (aligment == HorizontalAligment::Right)
+		else if (aligment == HorizontalAlignment::Right)
 			x = x + width - stl*_lcd->cfont.x_size;
 
 		x=ToDC_X(x);
@@ -251,11 +251,11 @@ public:
 		DrawChar('_', x, y+2);
 	}
 	///Draws string. Input coordinates have to be defined in the window coordinate system
-	void DrawText(const char * text, int x, int y, HorizontalAligment aligment = HorizontalAligment::Left, int width = 0)
+	void DrawText(const char * text, int x, int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0)
 	{
-		if (aligment == HorizontalAligment::Center)
+		if (aligment == HorizontalAlignment::Center)
 			x = x+(width - strlen(text)*_lcd->cfont.x_size) / 2;
-		else if(aligment == HorizontalAligment::Right)
+		else if(aligment == HorizontalAlignment::Right)
 			x = x + width - strlen(text)*_lcd->cfont.x_size;
 		x=ToDC_X(x);
 		y=ToDC_Y(y);

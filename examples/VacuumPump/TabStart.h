@@ -95,7 +95,7 @@ public:
 		wnd->SetMargins(5, 5);
 		wnd->SetPrecission(1);
 		wnd->SetIsReadOnly(isReadOnly);
-		wnd->SetHorizontalAligment(DC::Right);
+		wnd->SetHorizontalAlignment(DC::Right);
 		AddChild(wnd);
 	}
 	void initButton(Button *btn)

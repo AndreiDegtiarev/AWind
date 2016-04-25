@@ -95,7 +95,7 @@ public:
 		TextBox::OnDraw(dc);
 		if(_isOK)
 		{
-			dc->DrawNumber(_number,_precission,_offset_x,_offset_y);
+			dc->DrawNumber(_number,_precission,_offset_x,_offset_y, _horizontal_aligment, Width() - _offset_x * 2);
 		}
 	}
 };

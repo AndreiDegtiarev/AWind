@@ -58,7 +58,7 @@ public:
 	virtual void OnDraw(DC *dc)
 	{
 		TextBox::OnDraw(dc);
-		dc->DrawText(_text,_offset_x,_offset_y);
+		dc->DrawText(_text, _offset_x, _offset_y, _horizontal_aligment,Width()- _offset_x*2);
 	}
 	///Initialize window with text
 	void SetText(T *text)

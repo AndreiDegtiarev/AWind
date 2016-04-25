@@ -44,14 +44,14 @@ public:
 
 		SetDecorators(Environment::Get()->FindDecorators(F("Window")));
 
-		initLabel(new Label(0, 0, 0, 0, F("Pressure")));
+		initLabel(new Label(0, 0, 0, 0, F("Vacuum")));
 		initLabel(new Label(0, 0, 0, 0, F("bar")));
-		initLabel(new Label(0, 0, 0, 0, F("Temperature")));
+		initLabel(new Label(0, 0, 0, 0, F("Temper.")));
 		initLabel(new Label(0, 0, 0, 0, F("grad.")));
 
 		_radioManualControl = new RadioButton(0, 0, 0, 0, F("Manual"));
 		initRadio(_radioManualControl);
-		_radioPressureControl = new RadioButton(0, 0, 0, 0, F("Pressure"));
+		_radioPressureControl = new RadioButton(0, 0, 0, 0, F("Vacuum"));
 		initRadio(_radioPressureControl);
 		_radioTimerControl = new RadioButton(0, 0, 0, 0, F("Timer"));
 		initRadio(_radioTimerControl);
@@ -67,15 +67,14 @@ public:
 
 		_btnStart = new Button(0, 0, 0, 0, F("Start"));
 		initButton(_btnStart);
-		_btnStart->SetMargins(20, 20);
+		_btnStart->SetMargins(0, 20);
 		_btnStop = new Button(0, 0, 0, 0, F("Stop"));
 		initButton(_btnStop);
-		_btnStop->SetMargins(30, 20);
+		_btnStop->SetMargins(0, 20);
 
 		_pumpController->RegisterHasDataEventReceiver(this);
 
 		_radioManualControl->SetChecked(true);
-		_pumpController->SetProgramm(PumpController::ManualControl);
 
 	}
 	void initLabel(Label *label)
@@ -96,6 +95,7 @@ public:
 		wnd->SetMargins(5, 5);
 		wnd->SetPrecission(1);
 		wnd->SetIsReadOnly(isReadOnly);
+		wnd->SetHorizontalAligment(DC::Right);
 		AddChild(wnd);
 	}
 	void initButton(Button *btn)
@@ -118,7 +118,7 @@ public:
 		AddChild(_gaugeBar);
 
 		const static int column_1_x = 5;
-		const static int column_2_x = 172;
+		const static int column_2_x = 155;
 		const static int column_3_x = 248;
 		const static int wnd_height = 25;
 		const static int wnd_height_space = 2;
@@ -128,7 +128,7 @@ public:
 		const static int row_4_y = row_3_y + wnd_height + wnd_height_space;
 
 		_radioManualControl->Move(column_1_x, row_1_y, 50, wnd_height);
-		_radioPressureControl->Move(column_1_x, row_2_y, 50, wnd_height);
+		_radioPressureControl->Move(column_2_x, row_1_y, 50, wnd_height);
 		_radioTimerControl->Move(column_2_x, row_2_y, 50, wnd_height);
 
 		Children()[0]->Move(column_1_x, row_3_y, 50, wnd_height);
@@ -136,8 +136,8 @@ public:
 		Children()[2]->Move(column_1_x, row_4_y+5, 50, wnd_height);
 		Children()[3]->Move(column_3_x, row_4_y+5, 50, wnd_height);
 
-		_txtPressure->Move(column_2_x, row_3_y, 70, wnd_height);
-		_txtTemperature->Move(column_2_x, row_4_y, 70, wnd_height);
+		_txtPressure->Move(column_2_x, row_3_y, 90, wnd_height);
+		_txtTemperature->Move(column_2_x, row_4_y, 90, wnd_height);
 
 		_btnStart->Move(5, 150, 135, 50);
 		_btnStop->Move(172, 150, 135, 50);
@@ -158,14 +158,26 @@ public:
 		{
 			_btnStart->SetDecorators(Environment::Get()->FindDecorators(F("RedRectangle")));
 
-			if (_pumpController->Programm() == PumpController::TimerControll)
+			PumpController::PumpProgramm programm;
+			if (_radioManualControl->IsChecked())
+				programm = PumpController::ManualControl;
+			else if (_radioPressureControl->IsChecked())
+				programm = PumpController::PressureControll;
+			else if (_radioTimerControl->IsChecked())
+				programm = PumpController::TimerControll;
+			if (programm == PumpController::TimerControll)
 			{
 				_gaugeBar->SetBarColor(Color::Red);
 				_gaugeBar->SetMinMax(0, _pumpController->Settings().ActiveTime_ms);
 				_gaugeBar->Invalidate();
 			}
-
-			_pumpController->StartProgramm();
+			else if (programm == PumpController::PressureControll)
+			{
+				_gaugeBar->SetBarColor(Color::Red);
+				_gaugeBar->SetMinMax(_pumpController->Settings().MinPressure_bar, _pumpController->Settings().MaxPressure_bar);
+				_gaugeBar->Invalidate();
+			}
+			_pumpController->StartProgramm(programm);
 		}
 		else if (window == _btnStop)
 		{
@@ -179,21 +191,18 @@ public:
 			_radioManualControl->SetChecked(true);
 			_radioPressureControl->SetChecked(false);
 			_radioTimerControl->SetChecked(false);
-			_pumpController->SetProgramm(PumpController::ManualControl);
 		}
 		else if (window == _radioPressureControl)
 		{
 			_radioManualControl->SetChecked(false);
 			_radioPressureControl->SetChecked(true);
 			_radioTimerControl->SetChecked(false);
-			_pumpController->SetProgramm(PumpController::PressureControll);
 		}
 		else if (window == _radioTimerControl)
 		{
 			_radioManualControl->SetChecked(false);
 			_radioPressureControl->SetChecked(false);
 			_radioTimerControl->SetChecked(true);
-			_pumpController->SetProgramm(PumpController::TimerControll);
 		}
 	}
 	///If sensor data was changed this notification is call
@@ -221,6 +230,8 @@ public:
 				_txtTemperature->SetNumber(sensorManager->GetData());
 				break;
 			case PumpController::Pressure:
+				if(_pumpController->Programm()== PumpController::PressureControll)
+					_gaugeBar->SetValue(sensorManager->GetData());
 				_txtPressure->SetNumber(sensorManager->GetData());
 				break;
 			case PumpController::ActiveTimer:

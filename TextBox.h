@@ -33,8 +33,9 @@ class TextBox : public Window
 protected:
 	int _offset_x;
 	int _offset_y;
+	DC::HorizontalAligment _horizontal_aligment;
 	IContentChangedEventReceiver *_changedEvent;
-public:
+
 	///Constructor
 	/**
 	\param left left coordinate relative to parent indow
@@ -47,12 +48,24 @@ public:
 		_font = SmallFont;
 		_offset_x=0;
 		_offset_y=0;
+		_horizontal_aligment = DC::Left;
 		_changedEvent=NULL;
 	}
+	///Implements drawing code
+	void OnDraw(DC *dc)
+	{
+		dc->SetFont(_font);
+	}
+public:
 	///Application need to call this function if it wants receive notification about this window content changing
 	void RegisterContentChangedReceiver(IContentChangedEventReceiver *event)
 	{
 		_changedEvent=event;
+	}
+	///
+	void SetHorizontalAligment(DC::HorizontalAligment aligment)
+	{
+		_horizontal_aligment = aligment;
 	}
 	///Defines offset from left and top for text
 	void SetMargins(int offset_x,int offset_y)
@@ -64,11 +77,6 @@ public:
 	void SetFont(uint8_t *font)
 	{
 		_font = font;
-	}
-	///Implements drawing code
-	void OnDraw(DC *dc)
-	{
-		dc->SetFont(_font);
 	}
 };
 

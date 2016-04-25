@@ -28,6 +28,14 @@ extern char *dtostrf(double val, signed char width, unsigned char prec, char *so
 ///Device context. Abstraction layer to the device specific drawing code. Coordinates in drawing function are in window coordinate system that internaly translated into screen coordinate system
 class DC
 {
+public:
+	enum HorizontalAligment
+	{
+		Left,
+		Center,
+		Right
+	};
+private:
 	UTFT *_lcd;  //!< Pointer to the UTFT class
 	int _offset_x; //!< Offset of coordinate system alon x axis
 	int _offset_y;//!< Offset of coordinate system along y axis
@@ -164,29 +172,35 @@ public:
 	}
 
 	///Draws integer number. Input coordinates have to be defined in the window coordinate system
-	void DrawNumber(int number,int x,int y)
+	void DrawNumber(int number,int x,int y, HorizontalAligment aligment = HorizontalAligment::Left, int width = 0)
 	{
 		sprintf(_buffer,"%d",number);
-		DrawText(_buffer,x,y);
+		DrawText(_buffer,x,y, aligment, width);
 	}
 	///Draws float number. Input coordinates have to be defined in the window coordinate system
 	/**
 	\param number float input value
 	\param dec number decimal places
 	*/
-	void DrawNumber(float number,int dec,int x,int y)
+	void DrawNumber(float number,int dec,int x,int y, HorizontalAligment aligment = HorizontalAligment::Left, int width = 0)
 	{
 		dtostrf(number,0,dec,_buffer);
-		DrawText(_buffer,x,y);
+		DrawText(_buffer,x,y, aligment, width);
 	}
 	///Draws PROGMEM string. Input coordinates have to be defined in the window coordinate system
-	void DrawText(const __FlashStringHelper * text,int x,int y)
+	void DrawText(const __FlashStringHelper * text,int x,int y, HorizontalAligment aligment = HorizontalAligment::Left, int width = 0)
 	{
-		x=ToDC_X(x);
-		y=ToDC_Y(y);
 		int stl, i;
 
 		stl = strlen_P((const char PROGMEM *)text);
+
+		if (aligment == HorizontalAligment::Center)
+			x = x + (width - stl*_lcd->cfont.x_size) / 2;
+		else if (aligment == HorizontalAligment::Right)
+			x = x + width - stl*_lcd->cfont.x_size;
+
+		x=ToDC_X(x);
+		y=ToDC_Y(y);
 		if (_lcd->orient==PORTRAIT)
 		{
 			if (x==RIGHT)
@@ -237,9 +251,12 @@ public:
 		DrawChar('_', x, y+2);
 	}
 	///Draws string. Input coordinates have to be defined in the window coordinate system
-	///Draws string. Input coordinates have to be defined in the window coordinate system
-	void DrawText(const char * text,int x,int y)
+	void DrawText(const char * text, int x, int y, HorizontalAligment aligment = HorizontalAligment::Left, int width = 0)
 	{
+		if (aligment == HorizontalAligment::Center)
+			x = x+(width - strlen(text)*_lcd->cfont.x_size) / 2;
+		else if(aligment == HorizontalAligment::Right)
+			x = x + width - strlen(text)*_lcd->cfont.x_size;
 		x=ToDC_X(x);
 		y=ToDC_Y(y);
 		//_lcd->print(text,x,y);

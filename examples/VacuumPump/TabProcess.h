@@ -21,56 +21,100 @@
 #include "TimeSerieBuffer.h"
 #include <ChartWindow.h>
 ///Tab with chart for temperature logging 
-class TabProcess : public Window, public ISensorHasDataEventReceiver,  public ISensorMeasuredEventReceiver
+class TabProcess : public Window, public ISensorHasDataEventReceiver,  public ISensorMeasuredEventReceiver, public ITouchEventReceiver
 {
+	RadioButton    *_radioTemperature;
+	RadioButton    *_radioPressure;
 
 	ChartWindow *_chartWnd;
 	DecoratorAxis *_chartYAxis;
 	PumpController *_pumpController;
-	bool _isBufferInitialized;
+	//bool _isBufferInitialized;
 
 public:
 	TabProcess(PumpController *pumpController, const __FlashStringHelper * name,int left,int top,int width,int height):Window(name,left,top,width,height)
 	{
 		SetDecorators(Environment::Get()->FindDecorators(F("Window")));
 
+
+		_radioTemperature = new RadioButton(0, 0, 0, 0, F("Temper."));
+		initRadio(_radioTemperature);
+		_radioPressure = new RadioButton(0, 0, 0, 0, F("Vacuum"));
+		initRadio(_radioPressure);
+
 		_pumpController = pumpController;
 		_pumpController->RegisterHasDataEventReceiver(this);
-		_isBufferInitialized = false;
+		//_isBufferInitialized = false;
 
+	}
+	void initRadio(RadioButton *radio)
+	{
+		radio->SetMargins(20, 5);
+		radio->RegisterTouchEventReceiver(this);
+		AddChild(radio);
 	}
 	void Initialize()
 	{
-		int cy = Height();
+		int cy = Height()-40;
 		int axis_y_margins = 5;
 
-		DecoratorAxis *chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallFont, cy - axis_y_margins * 2, 10, 50, 5);
-		chartYAxis->SetOffset(4, axis_y_margins);
-		_chartWnd = new ChartWindow(NULL, chartYAxis, 2, axis_y_margins, Width() - 4, cy - axis_y_margins * 2);
+		_radioTemperature->Move(5,2,70,30);
+		_radioPressure->Move(160, 2, 70, 30);
+
+		_chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallFont, cy - axis_y_margins * 2, 10, 50, 5);
+		_chartYAxis->SetOffset(4, axis_y_margins);
+		_chartWnd = new ChartWindow(NULL, _chartYAxis, 2, Height() - cy, Width() - 4, cy - axis_y_margins * 2);
 		//Chart decorators
 		_chartWnd->AddDecorator(new Decorator3DRect(Color::White, Color::Gray));
 		_chartWnd->AddDecorator(new DecoratorColor(Color::Black));
-		_chartWnd->AddDecorator(chartYAxis);
+		_chartWnd->AddDecorator(_chartYAxis);
 		AddChild(_chartWnd);
+
+		_pumpController->Hardware().TemperatureSensorManager()->RegisterMeasuredEventReceiver(this);
+		_pumpController->Hardware().PressureSensorManager()->RegisterMeasuredEventReceiver(this);
+
+		NotifyTouch(_radioTemperature);
+
+
 	}
 	///If sensor data was changed this notification is call
 	void NotifySensorHasData(SensorManager *sensorManager)
 	{
-		switch (_pumpController->GetSensorType(sensorManager))
+		/*switch (_pumpController->GetSensorType(sensorManager))
 		{
 		case PumpController::Temperature:
 			if (!_isBufferInitialized)
 			{
-				_chartWnd->SetBuffer(sensorManager->SecBuffer());
-				sensorManager->RegisterMeasuredEventReceiver(this);
+				//_chartWnd->SetBuffer(sensorManager->SecBuffer());
+				//sensorManager->RegisterMeasuredEventReceiver(this);
 			}
 			//_txtTemperature->SetNumber(sensorManager->GetData());
 			break;
-		}
+		}*/
 	}
 	///Event is generated after each measurement
 	void NotifySensorMeasured(SensorManager *sensorManager)
 	{
 		_chartWnd->InvalidateOnlyChartArea();
+	}
+	///Events routing for gui interaction (see RegisterTouchEventReceiver and public ITouchEventReceiver declaration)
+	void NotifyTouch(Window *window)
+	{
+		if (window == _radioTemperature && !_radioTemperature->IsChecked())
+		{
+			_radioTemperature->SetChecked(true);
+			_radioPressure->SetChecked(false);
+			_chartYAxis->SetMinMax(10,50);
+			_chartWnd->SetBuffer(_pumpController->Hardware().TemperatureSensorManager()->SecBuffer());
+			this->Invalidate();
+		}
+		else if(window == _radioPressure && !_radioPressure->IsChecked())
+		{
+			_radioTemperature->SetChecked(false);
+			_radioPressure->SetChecked(true);
+			_chartYAxis->SetMinMax(0, 0.8);
+			_chartWnd->SetBuffer(_pumpController->Hardware().PressureSensorManager()->SecBuffer());
+			this->Invalidate();
+		}
 	}
 };

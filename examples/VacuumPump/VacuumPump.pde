@@ -79,6 +79,7 @@ void setup() {
 	pumpController.Settings().PauseTime_ms = 10 * 60 * 1000;
 	pumpController.Settings().MinPressure_bar = 0.3;
 	pumpController.Settings().MaxPressure_bar = 0.5;
+	pumpController.Settings().MaxTemperature = 37;
 	pumpController.Initialize(sensors);
 
 
@@ -95,7 +96,7 @@ void setup() {
 	TabProcess *tabProcess = new TabProcess(&pumpController, F("Window3"), 0, 0, 0, 0);
 	TabSetup *tabSetup = new TabSetup(&pumpController, F("Window2"), 0, 0, 0, 0);
 	tabCtrl->AddTab(F("Start"), tabStart);
-	tabCtrl->AddTab(F("Process"), tabProcess);
+	tabCtrl->AddTab(F("Proc."), tabProcess);
 	tabCtrl->AddTab(F("Setup"), tabSetup);
 	tabStart->Initialize(sensors);
 	tabProcess->Initialize();
@@ -119,7 +120,7 @@ void loop()
 		//following if is only for debugging purposes
 		if (measurementNode.IsChanged())
 		{
-			measurementNode.LogResults();
+			//measurementNode.LogResults();
 		}
 
 	}

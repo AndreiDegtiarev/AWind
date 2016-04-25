@@ -61,7 +61,7 @@ public:
 	{
 		_temperatureSensorManager = new SensorManager(new DS18B20Sensor(_temperaturePin, 1), 10, 37, 1000 * 2,false);
 		_temperatureSensorManager->initSecondsBuffer(1000);
-		_pressureSensorManager = new SensorManager(new MPXPressureSensor(_pressurePin), 0.0, 10, 1000 * 2, false);
+		_pressureSensorManager = new SensorManager(new MPXPressureSensor(_pressurePin,0.25, 0.537634409), -1, 1, 1000 * 2, false);
 		_pressureSensorManager->initSecondsBuffer(1000);
 
 		sensors.Add(_temperatureSensorManager);

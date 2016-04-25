@@ -65,7 +65,7 @@ public:
 		if(!_drawOnlyPointer)
 		{
 			dc->DrawRoundRect(2,2,Width()-2,Height()-2);
-			dc->Sector(x0,y0,radius,_sector_angle_rad);
+			dc->Sector(x0,y0,radius,0, _sector_angle_rad);
 			float angle_step=_sector_angle_rad/(_numTicks-1.0);
 			float angle;
 			float sin_val;

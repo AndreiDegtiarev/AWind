@@ -32,12 +32,14 @@ public:
 		uint32_t ActiveTime_ms;
 		float   MinPressure_bar;
 		float   MaxPressure_bar;
+		float   MaxTemperature;
 	};
 	enum PumpProgramm
 	{
 		ManualControl,
 		TimerControll,
 		PressureControll,
+		Inactive,
 	};
 	enum SensorType
 	{
@@ -58,7 +60,7 @@ private:
 public:
 	PumpController()
 	{
-		_programm = ManualControl;
+		_programm = Inactive;
 		_isOverheatetd = false;
 	}
 	void Initialize(LinkedList<SensorManager> &sensors)
@@ -72,6 +74,7 @@ public:
 		_pauseTimerManager->RegisterHasDataEventReceiver(this);
 		_activeTimerManager->RegisterHasDataEventReceiver(this);
 		_hardware.Initialize(sensors, this);
+		InvalidateSettings();
 		StopPump();
 	}
 	void RegisterHasDataEventReceiver(ISensorHasDataEventReceiver *receiver)
@@ -82,13 +85,13 @@ public:
 	{
 		return _settings;
 	}
+	PumpHardware & Hardware()
+	{
+		return _hardware;
+	}
 	PumpProgramm Programm()
 	{
 		return _programm;
-	}
-	void SetProgramm(PumpProgramm programm)
-	{
-		_programm = programm;
 	}
 	PumpStatus Status()
 	{
@@ -126,6 +129,7 @@ public:
 		{
 			if(sensorManager->Status() == MeasurementStatus::ApplicationAlarm)
 			{
+				_programm = Inactive;
 				StopPump();
 				_isOverheatetd = true;
 			}
@@ -134,25 +138,42 @@ public:
 				_isOverheatetd = false;
 			}
 		}
-		if (sensorManager == _activeTimerManager)
+		if (Programm() == PressureControll)
 		{
-			//out << F("PumpController::NotifySensorHasData _activeTimerManager")<<endln;
-			stopVacuum();
-			_activeTimerManager->Reset();
-			_pauseTimerManager->Enable();
+			if (sensorManager == _hardware.PressureSensorManager())
+			{
+				if(sensorManager->GetData()>Settings().MaxPressure_bar && Status() == PumpStatus::On)
+					stopVacuum();
+				else if (sensorManager->GetData()<Settings().MinPressure_bar && Status() == PumpStatus::Off)
+					startVacuum();
+			}
 		}
-		else if(sensorManager == _pauseTimerManager)
+		else if(Programm() == TimerControll)
 		{
-			//out << F("PumpController::NotifySensorHasData _pauseTimerManager") << endln;
-			_pauseTimerManager->Reset();
-			_activeTimerManager->Enable();
-			startVacuum();
+			if (sensorManager == _activeTimerManager)
+			{
+				//out << F("PumpController::NotifySensorHasData _activeTimerManager")<<endln;
+				stopVacuum();
+				_activeTimerManager->Reset();
+				_pauseTimerManager->Enable();
+			}
+			else if (sensorManager == _pauseTimerManager)
+			{
+				//out << F("PumpController::NotifySensorHasData _pauseTimerManager") << endln;
+				_pauseTimerManager->Reset();
+				_activeTimerManager->Enable();
+				startVacuum();
+			}
 		}
 		for (int i = 0;i < _hasDataEventsReceiver.Count();i++)
 			_hasDataEventsReceiver[i]->NotifySensorHasData(sensorManager);
 
 	}
 public:
+	void InvalidateSettings()
+	{
+		_hardware.TemperatureSensorManager()->SetHightApplicationLimit(_settings.MaxTemperature);
+	}
 	int32_t ElapsedActiveTime()
 	{
 		return _activeTimerManager->Elapsed();
@@ -172,8 +193,9 @@ public:
 		else if (sensorManager == _pauseTimerManager)
 			return SensorType::PauseTimer;
 	}
-	void StartProgramm()
+	void StartProgramm(PumpProgramm programm)
 	{
+		_programm = programm;
 		switch (Programm())
 		{
 		case ManualControl:
@@ -185,6 +207,10 @@ public:
 			_pauseTimerManager->SetInterval(Settings().PauseTime_ms);
 			startVacuum();
 			_activeTimerManager->Enable();
+			break;
+		case PressureControll:
+			_hardware.InitVacuumValve();
+			startVacuum();
 			break;
 		default:
 			break;
@@ -202,8 +228,12 @@ public:
 			_pauseTimerManager->Reset();
 			stopVacuum();
 			break;
+		case PressureControll:
+			stopVacuum();
+			break;
 		default:
 			break;
 		}
+		_programm = Inactive;
 	}
 };

@@ -26,6 +26,7 @@ class TabSetup : public Window, public IContentChangedEventReceiver
 	TextBoxNumber  *_txtActive;
 	TextBoxNumber  *_txtMinPressure;
 	TextBoxNumber  *_txtMaxPressure;
+	TextBoxNumber  *_txtMaxTemperature;
 	PumpController *_pumpController;
 public:
 	TabSetup(PumpController *pumpController, const __FlashStringHelper * name, int left, int top, int width, int height) :Window(name, left, top, width, height)
@@ -38,10 +39,12 @@ public:
 		initLabel(new Label(0, 0, 0, 0, F("min.")));
 		initLabel(new Label(0, 0, 0, 0, F("Pause")));
 		initLabel(new Label(0, 0, 0, 0, F("min.")));
-		initLabel(new Label(0, 0, 0, 0, F("Min press.")));
+		initLabel(new Label(0, 0, 0, 0, F("Min vacuum")));
 		initLabel(new Label(0, 0, 0, 0, F("bar")));
-		initLabel(new Label(0, 0, 0, 0, F("Max press.")));
+		initLabel(new Label(0, 0, 0, 0, F("Max vacuum")));
 		initLabel(new Label(0, 0, 0, 0, F("bar")));
+		initLabel(new Label(0, 0, 0, 0, F("Max temper.")));
+		initLabel(new Label(0, 0, 0, 0, F("grad")));
 
 		_txtActive = new TextBoxNumber(0, 0, 0, 0, 0);
 		_txtActive->SetNumber(pumpController->Settings().ActiveTime_ms/1000.0/60.0);
@@ -57,6 +60,10 @@ public:
 		_txtMaxPressure = new TextBoxNumber(0, 0, 0, 0, 0);
 		_txtMaxPressure->SetNumber(pumpController->Settings().MaxPressure_bar);
 		initTextWindow(_txtMaxPressure, 2);
+
+		_txtMaxTemperature = new TextBoxNumber(0, 0, 0, 0, 0);
+		_txtMaxTemperature->SetNumber(pumpController->Settings().MaxTemperature);
+		initTextWindow(_txtMaxTemperature, 1);
 	}
 	void initLabel(Label *label)
 	{
@@ -86,6 +93,7 @@ public:
 		const static int row_2_y = row_1_y + wnd_height + wnd_height_space;
 		const static int row_3_y = row_2_y + wnd_height + wnd_height_space;
 		const static int row_4_y = row_3_y + wnd_height + wnd_height_space;
+		const static int row_5_y = row_4_y + wnd_height + wnd_height_space;
 
 		Children()[0]->Move(column_1_x, row_1_y, 50, wnd_height);
 		Children()[1]->Move(column_3_x, row_1_y, 50, wnd_height);
@@ -95,11 +103,14 @@ public:
 		Children()[5]->Move(column_3_x, row_3_y + 5, 50, wnd_height);
 		Children()[6]->Move(column_1_x, row_4_y + 5, 50, wnd_height);
 		Children()[7]->Move(column_3_x, row_4_y + 5, 50, wnd_height);
+		Children()[8]->Move(column_1_x, row_5_y + 5, 50, wnd_height);
+		Children()[9]->Move(column_3_x, row_5_y + 5, 50, wnd_height);
 
 		_txtActive->Move(column_2_x, row_1_y, 70, wnd_height);
 		_txtPause->Move(column_2_x, row_2_y, 70, wnd_height);
 		_txtMinPressure->Move(column_2_x, row_3_y, 70, wnd_height);
 		_txtMaxPressure->Move(column_2_x, row_4_y, 70, wnd_height);
+		_txtMaxTemperature->Move(column_2_x, row_5_y, 70, wnd_height);
 
 
 	}
@@ -109,6 +120,7 @@ public:
 		_pumpController->Settings().ActiveTime_ms  = _txtActive->GetNumber() * 60 * 1000;
 		_pumpController->Settings().PauseTime_ms = _txtPause->GetNumber() * 60 * 1000;
 		_pumpController->Settings().MinPressure_bar = _txtMinPressure->GetNumber();
-		_pumpController->Settings().MaxPressure_bar = _txtMaxPressure->GetNumber();
+		_pumpController->Settings().MaxTemperature = _txtMaxTemperature->GetNumber();
+		_pumpController->InvalidateSettings();
 	}
 };

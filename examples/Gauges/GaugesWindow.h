@@ -30,7 +30,7 @@
 class GaugesWindow : public MainWindow, public ITouchEventReceiver, public ISensorHasDataEventReceiver, public ISensorMeasuredEventReceiver
 {
 	Gauge *_gaugeBar;
-	Gauge *_gaugeRadialPointer;
+	GaugeRadialPointer *_gaugeRadialPointer;
 	ChartWindow *_chartWindow;
 	Button *_btnFast;
 	Button *_btnSlow;
@@ -65,6 +65,7 @@ public:
 		szx=width/2;
 		_gaugeRadialPointer=new GaugeRadialPointer(x,1,szx,height/2-2);
 		_gaugeRadialPointer->SetFillColor(Color::LightGray);
+		_gaugeRadialPointer->SetPointerColor(Color::Green);
 		szy=height/2-4;
 		int axis_y_margins=2;
 		DecoratorAxis *chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft,SmallFont,szy-axis_y_margins*2,0,100,5);
@@ -148,6 +149,10 @@ public:
 		float value=sensorManager->GetData();
 		_gaugeBar->SetValue(value);
 		_gaugeRadialPointer->SetValue(value);
+		if (value > 75)
+			_gaugeRadialPointer->SetPointerColor(Color::Red);
+		else
+			_gaugeRadialPointer->SetPointerColor(Color::Green);
 		_txtNumber->SetNumber(value);
 		_sensorManager=sensorManager;
 		_chartWindow->SetBuffer(sensorManager->SecBuffer());

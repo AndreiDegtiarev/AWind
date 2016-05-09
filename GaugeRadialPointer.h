@@ -24,7 +24,7 @@
 class GaugeRadialPointer : public Gauge
 {
 	int _numTicks; //!< Number of ticks (lines) on gauge scale 
-
+	Color _pointerColor;
 public:
 
 	static const float _sector_angle_rad;
@@ -37,17 +37,25 @@ public:
 	\param height window height
 	*/
 	GaugeRadialPointer(int left,int top,int width,int height)
-		:Gauge(left,top,width,height),_numTicks(5)
+		:Gauge(left,top,width,height),_numTicks(5), _pointerColor(Color::Red)
 
 	{
 	}
 	///Sets number of ticks
 	/**
-	\param _numTicks number of short lines on scale
+	\param_numTicks number of short lines on scale
 	*/
 	void SetNumberOfTicks(int numTicks)
 	{
 		_numTicks=numTicks;
+	}
+	///Sets number of ticks
+	/**
+	\param color pointer color
+	*/
+	void SetPointerColor(Color color)
+	{
+		_pointerColor = color;
 	}
 	///Implements drawing code
 	/**
@@ -94,7 +102,7 @@ public:
 		}
 		dc->SetColor(_fillColor);
 		DrawPointer(_oldValue,x0,y0,radius,dc);
-		dc->SetColor(Color::Red);
+		dc->SetColor(_pointerColor);
 		DrawPointer(_value,x0,y0,radius,dc);
 	}
 private:

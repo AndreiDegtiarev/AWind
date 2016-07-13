@@ -21,8 +21,7 @@
 */
 
 typedef unsigned long ARGB;
-typedef byte BYTE;
-typedef void VOID;
+
 ///Implements definition and operations with color
 class Color
 {
@@ -37,17 +36,17 @@ public:
     /// the specified Red, Green, Blue values.
     ///
     /// Color values are not premultiplied.
-    Color(BYTE r,
-          BYTE g,
-          BYTE b)
+    Color(byte r,
+          byte g,
+          byte b)
     {
         Argb = MakeARGB(255, r, g, b);
     }
 
-    Color(BYTE a,
-          BYTE r,
-          BYTE g,
-          BYTE b)
+    Color(byte a,
+          byte r,
+          byte g,
+          byte b)
     {
         Argb = MakeARGB(a, r, g, b);
     }
@@ -57,42 +56,42 @@ public:
         Argb = argb;
     }
 
-    BYTE GetAlpha() const
+    byte GetAlpha() const
     {
-        return (BYTE) (Argb >> AlphaShift);
+        return (byte) (Argb >> AlphaShift);
     }
 
-    BYTE GetA() const
+    byte GetA() const
     {
         return GetAlpha();
     }
 
-    BYTE GetRed() const
+    byte GetRed() const
     {
-        return (BYTE) (Argb >> RedShift);
+        return (byte) (Argb >> RedShift);
     }
 
-    BYTE GetR() const
+    byte GetR() const
     {
         return GetRed();
     }
 
-    BYTE GetGreen() const
+    byte GetGreen() const
     {
-        return (BYTE) (Argb >> GreenShift);
+        return (byte) (Argb >> GreenShift);
     }
 
-    BYTE GetG() const
+    byte GetG() const
     {
         return GetGreen();
     }
 
-    BYTE GetBlue() const
+    byte GetBlue() const
     {
-        return (BYTE) (Argb >> BlueShift);
+        return (byte) (Argb >> BlueShift);
     }
 
-    BYTE GetB() const
+    byte GetB() const
     {
         return GetBlue();
     }
@@ -102,7 +101,7 @@ public:
         return Argb;
     }
 
-    VOID SetValue(ARGB argb)
+    void SetValue(ARGB argb)
     {
         Argb = argb;
     }
@@ -273,10 +272,10 @@ public:
     };
 
     /// Assemble A, R, G, B values into a 32-bit integer
-    static ARGB MakeARGB(BYTE a,
-                         BYTE r,
-                         BYTE g,
-                         BYTE b)
+    static ARGB MakeARGB(byte a,
+                         byte r,
+                         byte g,
+                         byte b)
     {
         return (((ARGB) (b) <<  BlueShift) |
                 ((ARGB) (g) << GreenShift) |

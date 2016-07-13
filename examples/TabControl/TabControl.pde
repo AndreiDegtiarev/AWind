@@ -17,7 +17,7 @@ The license applies to all part of the library including the
 examples and tools supplied with the library.
 */
 #include <UTFT.h>
-#include <UTouch.h>
+#include <URTouch.h>
 
 //#define DEBUG_AWIND
 
@@ -34,10 +34,10 @@ examples and tools supplied with the library.
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
 #ifdef _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
 UTFT    myGLCD(CTE32, 25, 26, 27, 28);
-UTouch  myTouch(6, 5, 32, 3, 2);
+URTouch  myTouch(6, 5, 32, 3, 2);
 #else
 UTFT    myGLCD(ITDB32S, 39, 41, 43, 45);
-UTouch  myTouch(49, 51, 53, 50, 52);
+URTouch  myTouch(49, 51, 53, 50, 52);
 #endif
 
 //manager which is responsible for window updating process

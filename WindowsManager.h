@@ -30,14 +30,14 @@ template <class T=MainWindow> class WindowsManager :  public ICriticalProcess, p
 {
 	DC _dc;
 	T *_mainWindow;
-	UTouch  *_touch;
+	URTouch  *_touch;
 public:
 	///Constructor
 	/**
 	\param lcd pointer to UTFT object (see UTFT library)
 	\param touch pointer to UTouch object (see UTouch library)
 	*/	
-	WindowsManager(UTFT *lcd,UTouch *touch=NULL):_dc(lcd),_touch(touch)
+	WindowsManager(UTFT *lcd,URTouch *touch=NULL):_dc(lcd),_touch(touch)
 	{
 		globalLcd=lcd;
 	}

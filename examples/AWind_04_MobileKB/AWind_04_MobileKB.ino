@@ -1,5 +1,5 @@
 #include <UTFT.h>
-#include <UTouch.h>
+#include <URTouch.h>
 
 #include "WindowsManager.h"
 #include "Log.h"
@@ -9,10 +9,10 @@
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
 #ifdef _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
 UTFT    myGLCD(CTE32,25,26,27,28);
-UTouch  myTouch(6,5,32,3,2);
+URTouch  myTouch(6,5,32,3,2);
 #else
 UTFT myGLCD(ITDB32S,38,39,40,41); //mega
-UTouch myTouch(6,5,4,3,2);
+URTouch myTouch(6,5,4,3,2);
 #endif
 
 //Windows manager: container for GUI elements 

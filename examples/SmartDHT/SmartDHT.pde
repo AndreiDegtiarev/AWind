@@ -19,7 +19,7 @@
 #define DEMO_SENSORS
 
 #include <UTFT.h>
-#include <UTouch.h>
+#include <URTouch.h>
 #include <DHT.h>
 
 #include "AHelper.h"
@@ -36,10 +36,10 @@
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
 #ifdef _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
 UTFT    myGLCD(CTE32,25,26,27,28);
-UTouch  myTouch(6,5,32,3,2);
+URTouch  myTouch(6,5,32,3,2);
 #else
 UTFT    myGLCD(ITDB32S,39,41,43,45);
-UTouch  myTouch( 49, 51, 53, 50, 52);
+URTouch  myTouch( 49, 51, 53, 50, 52);
 #endif
 
 //list where all sensors are collected

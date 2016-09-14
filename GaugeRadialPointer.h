@@ -25,7 +25,7 @@ class GaugeRadialPointer : public Gauge
 {
 	int _numTicks; //!< Number of ticks (lines) on gauge scale 
 	Color _pointerColor;
-	int _precission;
+	int _precision;
 public:
 
 	static const float _sector_angle_rad;
@@ -38,8 +38,8 @@ public:
 	\param height window height
 	\param precission number of digits after decimal point
 	*/
-	GaugeRadialPointer(int left,int top,int width,int height, int precission = 1)
-		:Gauge(left,top,width,height),_numTicks(5), _pointerColor(Color::Red), _precission(precission)
+	GaugeRadialPointer(int left,int top,int width,int height, int precision = 1)
+		:Gauge(left,top,width,height),_numTicks(5), _pointerColor(Color::Red), _precision(precision)
 
 	{
 	}
@@ -90,7 +90,7 @@ public:
 				dc->MoveTo(x0+radius*sin_val,y0-radius*cos_val);
 				dc->LineTo(x0+radius*1.1*sin_val,y0-radius*1.1*cos_val);
 				value=_minValue+step_val*i;
-				x_offset=AHelper::GetNumberLength(value, _precission);
+				x_offset=AHelper::GetNumberLength(value, _precision);
 				if(value<0)
 					x_offset++;
 				if(i==0)
@@ -99,7 +99,7 @@ public:
 					x_offset=-(x_offset-0.5)*dc->FontWidth();
 				else
 					x_offset=-x_offset/2*dc->FontWidth();
-				dc->DrawNumber(value, _precission,x0+radius*1.1*sin_val+x_offset,y0-radius*1.1*cos_val-(dc->FontHeight()*(i==0||i==_numTicks-1?1.5:1)));
+				dc->DrawNumber(value, _precision,x0+radius*1.1*sin_val+x_offset,y0-radius*1.1*cos_val-(dc->FontHeight()*(i==0||i==_numTicks-1?1.5:1)));
 			}
 		}
 		dc->SetColor(_fillColor);

@@ -105,7 +105,13 @@ public:
     {
         Argb = argb;
     }
-
+	static uint16_t GetColor565(byte r, byte g, byte b)
+	{
+		return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
+	}
+	uint16_t GetColor565() {
+		return GetColor565(GetR(),GetG(),GetB());
+	}
 public:
 
     /// Common color constants

@@ -31,6 +31,7 @@ class TimeSerieBuffer : public IDataBuffer
 	int   *_data_y;
 	float _time_step;
 	float _factor_y;
+	float _offset_y;
 public:
 	///Constructor
 	/**
@@ -39,9 +40,9 @@ public:
 	\param reserved_size expected buffer size. This value allows buffer allocation only once. This is highly recomended because memory allocation is expencive operation. Mutiple allocation leads also to memory fragmentation.
 	\param size actual buffer size
 	*/
-	TimeSerieBuffer(float time_step,float factor_y,int reserved_size,int size)
+	TimeSerieBuffer(float time_step,float factor_y,int reserved_size,int size,float offset_y = 0)
 	{
-		initialize(time_step,factor_y,reserved_size,size);
+		initialize(time_step,factor_y,reserved_size,size, offset_y);
 	}
 	///Constructor
 	/**
@@ -49,16 +50,17 @@ public:
 	\param factor_y scale factor for measurements. Data can be stored as volts measured directly on board pins and this factor transform them into phisical units
 	\param size actual buffer size. reserved_size=size
 	*/
-	TimeSerieBuffer(float time_step,float factor_y,int size)
+	TimeSerieBuffer(float time_step,float factor_y,int size, float offset_y)
 	{
-		initialize(time_step,factor_y,size,size);
+		initialize(time_step,factor_y,size,size, offset_y);
 
 	}
 protected:
 	///Initialize internal buffer
-	void initialize(float time_step,float factor_y,int reserved_size,int size)
+	void initialize(float time_step,float factor_y,int reserved_size,int size,float offset_y)
 	{
 		_factor_y=factor_y;
+		_offset_y = offset_y;
 		_size=size;
 		_reserved_size=reserved_size;
 		_time_step=time_step;
@@ -101,7 +103,7 @@ public:
 			out<<F("Error: index outside of array bounds: ")<<index<<endln;
 			return;
 		}
-		_data_y[index]=(value*_factor_y);
+		_data_y[index]=(value*_factor_y) + _offset_y;
 	}
 	///Returns point to vaues array. It is used for direct access to internal buffer
 	int *Y()
@@ -120,8 +122,8 @@ public:
 			min_y=min(min_y,_data_y[i]);
 			max_y=max(max_y,_data_y[i]);
 		}
-		min_y/=_factor_y;
-		max_y/=_factor_y;
+		min_y= (min_y - _offset_y )/ _factor_y;
+		max_y= (max_y - _offset_y) / _factor_y;
 	}
 	///Returns X that is calculated from index in buffer (see time_step parameter)
 	float X(unsigned int index)
@@ -141,7 +143,7 @@ public:
 			out<<F("Error: index outside of array bounds: ")<<index<<endln;
 			return 0;
 		}
-		return _data_y[index]/_factor_y;
+		return (_data_y[index] - _offset_y)/_factor_y;
 	}
 	///Returns start index in buffer. For this class is always 0
 	unsigned int StartIndex()

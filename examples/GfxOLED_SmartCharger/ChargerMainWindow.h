@@ -16,15 +16,30 @@ implied.  See the License for the specific language governing
 permissions and limitations under the License.
 */
 #pragma once
-#include <Window.h>
-///Example window with green background. 
-class Window3 : public Window
+
+#include "TextBoxString.h"
+#include "TextBoxNumber.h"
+#include "DecoratorPrimitives.h"
+#include "ChartWindow.h"
+#include "ChargerController.h"
+
+
+extern uint8_t SmallOledFont[];
+extern uint8_t BigOledFont[];
+
+///Osciloscope main window
+class ChargerMainWindow : public MainWindow
 {
 public:
-	Window3(const __FlashStringHelper * name,int left,int top,int width,int height):Window(name,left,top,width,height)
+	ChargerMainWindow(int width,int height):MainWindow(width, height)
 	{
-		AddDecorator(new DecoratorRectFill(Color::LightGreen,false));
-		AddDecorator(new DecoratorColor(Color::Black));
+
+	}
+
+	void AddTab(Window *tab)
+	{
+		tab->Move(0, 0, Width(), Height());
+		AddChild(tab);
 	}
 
 };

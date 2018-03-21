@@ -1,26 +1,22 @@
 /*
-  Charts example is intended to demonstrate basics features of AWind library. 
+This file is part of AWind library
 
-  AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
-  
-  You can find the latest version of the library at 
-  https://github.com/AndreiDegtiarev/AWind
+Copyright (c) 2014-2018 Andrei Degtiarev
 
-  This library is free software; you can redistribute it and/or
-  modify it under the terms of the CC BY-NC-SA 3.0 license.
-  Please see the included documents for further information.
+Licensed under the Apache License, Version 2.0 (the "License"); you
+may not use this file except in compliance with the License.  You may
+obtain a copy of the License at
 
-  Commercial use of this library requires you to buy a license that
-  will allow commercial use. This includes using the library,
-  modified or not, as a tool to sell products.
+http://www.apache.org/licenses/LICENSE-2.0
 
-  The license applies to all part of the library including the 
-  examples and tools supplied with the library.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.  See the License for the specific language governing
+permissions and limitations under the License.
 */
 
-#include <UTFT.h>
-#include <URTouch.h>
+#include "DC_UTFT.h"
 
 #include "Log.h"
 #include "WindowsManager.h"
@@ -37,8 +33,10 @@ UTFT    myGLCD(CTE32,25,26,27,28);
 UTFT    myGLCD(ITDB32S,39,41,43,45);
 #endif
 
+DC_UTFT dc(&myGLCD);
+
 //manager which is responsible for window updating process 
-WindowsManager<> windowsManager(&myGLCD,NULL);
+WindowsManager<> windowsManager(&dc,NULL);
 
 //Container that keeps data for further visualization 
 TimeSerieBuffer	*dataBuffer;
@@ -52,14 +50,14 @@ float time_step=1.0/buf_size;
 
 void setup()
 {
-	out.begin(57600);
+	out.begin(9600);
 	out<<(F("Setup"))<<endln;
 	//initialize display
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
 	//my speciality I have connected LED-A display pin to the pin 47 on Arduino board. Comment next two lines if the example from UTFT library runs without any problems 
-	pinMode(47,OUTPUT);
-	digitalWrite(47,HIGH);
+	//pinMode(47,OUTPUT);
+	//digitalWrite(47,HIGH);
 	
 	//initialize window manager
 	windowsManager.Initialize();
@@ -100,7 +98,6 @@ void setup()
 	windowsManager.MainWnd()->AddChild(textBox);
 	windowsManager.MainWnd()->AddChild(textNumber);
 	windowsManager.MainWnd()->AddChild(chartWnd);
-
 
 	out<<F("End setup")<<endln;
 

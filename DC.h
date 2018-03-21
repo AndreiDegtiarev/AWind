@@ -21,10 +21,11 @@
 */
 #include "Log.h"
 #include "Color.h"
-#include "UTFT.h"
+
 #ifdef _VARIANT_ARDUINO_DUE_X_   //DUE
 extern char *dtostrf(double val, signed char width, unsigned char prec, char *sout);
 #endif
+
 ///Device context. Abstraction layer to the device specific drawing code. Coordinates in drawing function are in window coordinate system that internaly translated into screen coordinate system
 class DC
 {
@@ -36,46 +37,31 @@ public:
 		Right
 	};
 private:
-	UTFT *_lcd;  //!< Pointer to the UTFT class
 	int _offset_x; //!< Offset of coordinate system alon x axis
 	int _offset_y;//!< Offset of coordinate system along y axis
 	int _last_x;  //!< Last x coordinate. It is needed in MoveTo and LineTo functions
 	int _last_y;  //!< Last x coordinate. It is needed in MoveTo and LineTo functions
 	char _buffer[15]; //!< Internal buffer for numbers convertion into string
 public:
-	enum ScreenOrientation
+	enum ScreenOrientationType
 	{
 		Landscape,
 		Portrate,
 	};
-	///Constructor for global context, that created only once in WindowsManager
-	DC(UTFT *lcd)
-	{
-		_lcd=lcd;
-		Reset();
-	}
-	///Constructor that used locally. This constructor assumes that UTFT library is initialized already
+	///Constructor
 	DC()
 	{
-		extern UTFT *globalLcd;
-		_lcd=globalLcd;
 		Reset();
 	}
 	///Returns screen orientation vertical or horisontal
-	ScreenOrientation ScreenOrientation()
-	{
-		return _lcd->orient == LANDSCAPE ? Landscape : Portrate;
-	}
+	virtual ScreenOrientationType ScreenOrientation()=0;
+
 	///Returns screen width
-	int DeviceWidth()
-	{
-		return _lcd->getDisplayXSize()-1;
-	}
+	virtual int DeviceWidth()=0;
+
 	///Returns screen height
-	int DeviceHeight()
-	{
-		return _lcd->getDisplayYSize()-1;
-	}
+	virtual int DeviceHeight() = 0;
+
 	///Resets device context into initial condition
 	void Reset()
 	{
@@ -105,10 +91,8 @@ public:
 		return y+_offset_y;
 	}
 	///Draws rectangle. Input coordinates have to be defined in the window coordinate system
-	void Rectangle(int left,int top,int right,int bottom)
-	{
-		_lcd->drawRect(ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
-	}
+	virtual void Rectangle(int left, int top, int right, int bottom) = 0;
+
 	///Draws rectangle with 3D border. Input coordinates have to be defined in the window coordinate system
 	void Rectangle3D(int left,int top,int right,int bottom,Color color1,Color color2)
 	{
@@ -121,10 +105,9 @@ public:
 		LineTo(left,bottom);
 	}
 	///Fills rectangle. Input coordinates have to be defined in the window coordinate system
-	void FillRect(int left,int top,int right,int bottom)
-	{
-		_lcd->fillRect (ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
-	}
+	virtual void FillRect(int left, int top, int right, int bottom) = 0;
+	virtual void setColor(byte r, byte g, byte b) = 0;
+	virtual void drawHLine(int x, int y, int l)=0;
 	///Fills rectangle with gradient color. Input coordinates have to be defined in the window coordinate system
 	void FillGradientRect(int left,int top,int right,int bottom,Color color1,Color color2)
 	{
@@ -151,25 +134,16 @@ public:
 				//out<<rgb2[j]<<" ";
 			}
 			//out<<endln;
-			_lcd->setColor(rgb[0],rgb[1],rgb[2]);
-			_lcd->drawHLine (start_x,start_y+i,length_x);
+			setColor(rgb[0],rgb[1],rgb[2]);
+			drawHLine (start_x,start_y+i,length_x);
 		}
 	}
 	///Fills rounded rectangle. Input coordinates have to be defined in the window coordinate system
-	void FillRoundRect(int left,int top,int right,int bottom)
-	{
-		_lcd->fillRoundRect (ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
-	}
+	virtual void FillRoundRect(int left,int top,int right,int bottom) = 0;
 	///Draws rounded rectangle. Input coordinates have to be defined in the window coordinate system
-	void DrawRoundRect(int left,int top,int right,int bottom)
-	{
-		_lcd->drawRoundRect (ToDC_X(left),ToDC_Y(top),ToDC_X(right),ToDC_Y(bottom));
-	}
+	virtual void DrawRoundRect(int left,int top,int right,int bottom) = 0;
 	///Draws circle. Input coordinates have to be defined in the window coordinate system
-	void FillCircle(int x0, int y0, int radius)
-	{
-		_lcd->fillCircle(ToDC_X(x0), ToDC_Y(y0),radius);
-	}
+	virtual void FillCircle(int x0, int y0, int radius) = 0;
 
 	///Draws integer number. Input coordinates have to be defined in the window coordinate system
 	void DrawNumber(int number,int x,int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0)
@@ -188,55 +162,17 @@ public:
 		DrawText(_buffer,x,y, aligment, width);
 	}
 	///Draws PROGMEM string. Input coordinates have to be defined in the window coordinate system
-	void DrawText(const __FlashStringHelper * text,int x,int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0)
-	{
-		int stl, i;
+	virtual void DrawText(const __FlashStringHelper * text, int x, int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0) = 0;
 
-		stl = strlen_P((const char PROGMEM *)text);
-
-		if (aligment == HorizontalAlignment::Center)
-			x = x + (width - stl*_lcd->cfont.x_size) / 2;
-		else if (aligment == HorizontalAlignment::Right)
-			x = x + width - stl*_lcd->cfont.x_size;
-
-		x=ToDC_X(x);
-		y=ToDC_Y(y);
-		if (_lcd->orient==PORTRAIT)
-		{
-			if (x==RIGHT)
-				x=(_lcd->disp_x_size+1)-(stl*_lcd->cfont.x_size);
-			if (x==CENTER)
-				x=((_lcd->disp_x_size+1)-(stl*_lcd->cfont.x_size))/2;
-		}
-		else
-		{
-			if (x==RIGHT)
-				x=(_lcd->disp_y_size+1)-(stl*_lcd->cfont.x_size);
-			if (x==CENTER)
-				x=((_lcd->disp_y_size+1)-(stl*_lcd->cfont.x_size))/2;
-		}
-		for (i=0; i<stl; i++)
-		{
-			unsigned char c = pgm_read_byte(&((const char PROGMEM *)text)[i]);
-			DrawSymbol(c, x + (i*(_lcd->cfont.x_size)), y);
-		}
-
-	}
 	///Returns symbol width for the current font 
-	int FontWidth()
-	{
-		return _lcd->cfont.x_size;
-	}
+	virtual int FontWidth() = 0;
+
 	///Returns symbol jeight for the current font 
-	int FontHeight()
-	{
-		return _lcd->cfont.y_size;
-	}
+	virtual int FontHeight() = 0;
+
 	///Draws symbol. Input coordinates have to be defined in the screen system
-	void DrawSymbol(const char c,int dc_x,int dc_y)
-	{
-		_lcd->printChar(c, dc_x, dc_y);
-	}
+	virtual void DrawSymbol(const char c,int dc_x,int dc_y) = 0;
+
 	///Draws a character. Input coordinates have to be defined in the window coordinate system
 	void DrawChar(const char c,int x, int y)
 	{
@@ -245,30 +181,14 @@ public:
 		DrawSymbol(c, x, y);
 	}
 	///Draw caret. Input coordinates have to be defined in the window coordinate system
-	void DrawCaret(int pos, int x, int y)
-	{
-		x = x+(pos*_lcd->cfont.x_size);
-		DrawChar('_', x, y+2);
-	}
+	virtual void DrawCaret(int pos, int x, int y) = 0;
+
 	///Draws string. Input coordinates have to be defined in the window coordinate system
-	void DrawText(const char * text, int x, int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0)
-	{
-		if (aligment == HorizontalAlignment::Center)
-			x = x+(width - strlen(text)*_lcd->cfont.x_size) / 2;
-		else if(aligment == HorizontalAlignment::Right)
-			x = x + width - strlen(text)*_lcd->cfont.x_size;
-		x=ToDC_X(x);
-		y=ToDC_Y(y);
-		//_lcd->print(text,x,y);
-		//out<<text<<" "<<strlen(text)<<endln;
-		for(int i=0;i<strlen(text);i++)
-		{
-			char c=text[i];
-			//if(c==' ')
-			//	break;
-			DrawSymbol(c, x + (i*(_lcd->cfont.x_size)), y);
-		}
-	}
+	virtual void DrawText(const char * text, int x, int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0) = 0;
+
+
+	virtual void	drawPixel(int x, int y) = 0;
+
 	///Draws sector. Input coordinates have to be defined in the window coordinate system
 	void Sector(int x0, int y0, int radius,float start_angle_rad,float angle_rad) 
 	{
@@ -289,10 +209,10 @@ public:
 				break;
 			rot_x = x*cos_factor - y*sin_factor;
 			rot_y = x*sin_factor + y*cos_factor;
-			_lcd->drawPixel(x0 + rot_x, y0 - rot_y);
+			drawPixel(x0 + rot_x, y0 - rot_y);
 			rot_x =-x*cos_factor - y*sin_factor;
 			rot_y = -x*sin_factor + y*cos_factor;
-			_lcd->drawPixel(x0 + rot_x, y0 - rot_y);
+			drawPixel(x0 + rot_x, y0 - rot_y);
 			//_lcd->drawPixel(x0 + x, y0 - y);
 			//_lcd->drawPixel(x0 - x, y0 - y);
 			error = 2 * (delta + y) - 1;
@@ -314,32 +234,26 @@ public:
 			--y;
 		}
 	}
-	void SetDeviceColor(Color color)
-	{
-		_lcd->setColor(color.GetR(),color.GetG(),color.GetB());
-	}
+	virtual void SetDeviceColor(Color color) = 0;
+
 
 	void SetColor(Color color)
 	{
 		SetDeviceColor(color);
 	}
-	void SetBackColor(Color color)
-	{
-		_lcd->setBackColor(VGA_TRANSPARENT);
-		SetDeviceColor(color);
-	}
-	void SetFont(uint8_t *font)
-	{
-		_lcd->setFont(font);
-	}
+	virtual void SetBackColor(Color color) = 0;
+
+	virtual void SetFont(uint8_t *font) = 0;
+
 	void MoveTo(int x,int y)
 	{ 
 		_last_x=ToDC_X(x);
 		_last_y=ToDC_Y(y);
 	}
+	virtual void drawLine(int x1, int y1, int x2, int y2) = 0;
 	void LineTo(int x,int y)
 	{ 
-		_lcd->drawLine(_last_x,_last_y,ToDC_X(x),ToDC_Y(y));
+		drawLine(_last_x,_last_y,ToDC_X(x),ToDC_Y(y));
 		_last_x=ToDC_X(x);
 		_last_y=ToDC_Y(y);
 	}
@@ -347,5 +261,9 @@ public:
 	{
 		MoveTo(x1,y1);
 		LineTo(x2,y2);
+	}
+	virtual void Display()
+	{
+
 	}
 };

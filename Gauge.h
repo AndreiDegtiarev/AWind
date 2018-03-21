@@ -80,9 +80,8 @@ public:
 		_drawOnlyPointer=true;
 		if (this->IsVisible())
 		{
-			DC dc;
-			PrepareDC(&dc);
-			OnDraw(&dc);
+			PrepareDC(globalLcd);
+			OnDraw(globalLcd);
 		}
 		_oldValue=_value;
 		_drawOnlyPointer=false;

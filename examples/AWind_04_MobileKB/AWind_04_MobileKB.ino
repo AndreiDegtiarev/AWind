@@ -1,5 +1,5 @@
-#include <UTFT.h>
-#include <URTouch.h>
+
+#include "TouchUTFT.h"
 
 #include "WindowsManager.h"
 #include "Log.h"
@@ -15,8 +15,11 @@ UTFT myGLCD(ITDB32S,38,39,40,41); //mega
 URTouch myTouch(6,5,4,3,2);
 #endif
 
+DC_UTFT dc(&myGLCD);
+TouchUTFT touch(&myTouch);
+
 //Windows manager: container for GUI elements 
-WindowsManager<wnd_info> windowsManager(&myGLCD,&myTouch);
+WindowsManager<wnd_info> windowsManager(&dc,&touch);
 //Initialize apperance. Create your own DefaultDecorators class if you would like different application look
 DefaultDecorators dfltDecorators(DefaultDecorators::all);
 

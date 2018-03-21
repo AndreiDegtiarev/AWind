@@ -23,28 +23,31 @@
 #include "Window.h"
 #include "MainWindow.h"
 #include "ICriticalProcess.h"
+#include "DC_UTFT.h"
+#include "Touch.h"
 
-UTFT *globalLcd;
+DC *globalLcd;
+
 ///Main window manager. Implement core funcctionality of AWind library. It is tempate class that has to be parametrized with main window class
 template <class T=MainWindow> class WindowsManager :  public ICriticalProcess, public ILoopProcess
 {
-	DC _dc;
+	DC *_dc;
 	T *_mainWindow;
-	URTouch  *_touch;
+	Touch  *_touch;
 public:
 	///Constructor
 	/**
 	\param lcd pointer to UTFT object (see UTFT library)
 	\param touch pointer to UTouch object (see UTouch library)
 	*/	
-	WindowsManager(UTFT *lcd,URTouch *touch=NULL):_dc(lcd),_touch(touch)
+	WindowsManager(DC *lcd,Touch *touch=NULL):_dc(lcd),_touch(touch)
 	{
 		globalLcd=lcd;
 	}
 	///Initialization procedure. Has to be call once
 	void Initialize()
 	{
-		_mainWindow=new T(_dc.DeviceWidth(),_dc.DeviceHeight());
+		_mainWindow=new T(_dc->DeviceWidth(),_dc->DeviceHeight());
 		_mainWindow->Invalidate();
 		_mainWindow->SetLoopProcess(this);
 		_mainWindow->SetDecorators(Environment::Get()->FindDecorators(F("Window")));
@@ -77,10 +80,13 @@ public:
 	///Main loop where drawing code only for "dirty" window is called
 	void loop()
 	{
+		bool isRedrawn = false;
 		if(MainWnd()->ModalWnd() == NULL)
-			redraw(MainWnd(),false);
+			isRedrawn = redraw(MainWnd(),false);
 		if(MainWnd()->ModalWnd() != NULL)
-			redraw(MainWnd()->ModalWnd(),MainWnd()->ModalWnd()->IsDirty());
+			isRedrawn = redraw(MainWnd()->ModalWnd(),MainWnd()->ModalWnd()->IsDirty()) || isRedrawn;
+		if (isRedrawn)
+			_dc->Display();
 	}
 	T *MainWnd()
 	{
@@ -89,7 +95,7 @@ public:
 	///Returns device context (interface class to UTFT library)
 	DC *GetDC()
 	{
-		return &_dc;
+		return _dc;
 	}
 	///If nothing happens, the touch event is checked
 	void Idle()
@@ -99,21 +105,25 @@ public:
 	}
 protected:
 	///Internal draw code
-	void redraw(Window *window,bool isForceRedraw)
+	bool redraw(Window *window,bool isForceRedraw)
 	{
+		bool isRedrawn = false;
 		Idle();
 		if(window == MainWnd()->ModalWnd() && window->IsDirty() && isForceRedraw == false) // Modal window is updated as last one by use of isForceRedraw flag
-			return;
+			return false;
 		bool needRedraw=isForceRedraw || window->IsDirty();
-		if(needRedraw)
-			window->Redraw(&_dc);
+		if (needRedraw)
+		{
+			window->Redraw(_dc);
+			isRedrawn = true;
+		}
 		for(int i=0;i<window->Children().Count();i++)
 		{
 			Window *child=window->Children()[i];
 			if(child->IsVisible())
-				redraw(child,needRedraw);
+				isRedrawn = redraw(child,needRedraw) || isRedrawn;
 		}
-
+		return isRedrawn;
 	}
 	///Checks touch event
 	void loopTouch()
@@ -127,7 +137,7 @@ protected:
 			//out<<F("Touch begins x:")<<x<<F(" y:")<<y<<endln;
 			if(x>0 && y>0)
 			{
-				Window *window=_dc.ScreenOrientation()==DC::Landscape?HitTest(x,y): HitTest(y, _dc.DeviceHeight()-x);
+				Window *window=_dc->ScreenOrientation()==DC::Landscape?HitTest(x,y): HitTest(y, _dc->DeviceHeight()-x);
 				Window *touchWnd=NULL;
 				if(window!=NULL)
 				{

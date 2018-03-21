@@ -1,25 +1,23 @@
 /*
-  AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2015 Andrei Degtiarev. All right reserved
-  
-  You can find the latest version of the library at 
-  https://github.com/AndreiDegtiarev/AWind
+This file is part of AWind library
 
-  This library is free software; you can redistribute it and/or
-  modify it under the terms of the CC BY-NC-SA 3.0 license.
-  Please see the included documents for further information.
+Copyright (c) 2014-2018 Andrei Degtiarev
 
-  Commercial use of this library requires you to buy a license that
-  will allow commercial use. This includes using the library,
-  modified or not, as a tool to sell products.
+Licensed under the Apache License, Version 2.0 (the "License"); you
+may not use this file except in compliance with the License.  You may
+obtain a copy of the License at
 
-  The license applies to all part of the library including the 
-  examples and tools supplied with the library.
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.  See the License for the specific language governing
+permissions and limitations under the License.
 */
 #define DEMO_SENSORS
 
-#include <UTFT.h>
-#include <URTouch.h>
+#include "TouchUTFT.h"
 #include <DHT.h>
 
 #include "AHelper.h"
@@ -42,6 +40,9 @@ UTFT    myGLCD(ITDB32S,39,41,43,45);
 URTouch  myTouch( 49, 51, 53, 50, 52);
 #endif
 
+DC_UTFT dc(&myGLCD);
+TouchUTFT touch(&myTouch);
+
 //list where all sensors are collected
 LinkedList<SensorManager> sensors;
 //manager which controls the measurement process
@@ -49,13 +50,13 @@ MeasurementNode measurementNode(sensors,NULL);
 
 
 //manager which is responsible for window updating process
-WindowsManager<ViewModusWindow> windowsManager(&myGLCD,&myTouch);
+WindowsManager<ViewModusWindow> windowsManager(&dc,&touch);
 
 
 void setup()
 {
 	//setup log (out is wrap about Serial class)
-	out.begin(57600);
+	out.begin(9600);
 	out<<F("Setup")<<endln;
 
 	//initialize display

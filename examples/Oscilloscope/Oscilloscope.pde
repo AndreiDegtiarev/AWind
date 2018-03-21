@@ -17,8 +17,8 @@
   examples and tools supplied with the library.
 */
 
-#include <UTFT.h>
-#include <URTouch.h>
+
+#include "TouchUTFT.h"
 
 #include "LinkedList.h"
 #include "WindowsManager.h"
@@ -35,8 +35,11 @@ UTFT    myGLCD(ITDB32S,39,41,43,45);
 URTouch  myTouch( 49, 51, 53, 50, 52);
 #endif
 
+DC_UTFT dc(&myGLCD);
+TouchUTFT touch(&myTouch);
+
 //manager which is responsible for window updating process
-WindowsManager<Oscilloscope> windowsManager(&myGLCD,&myTouch);
+WindowsManager<Oscilloscope> windowsManager(&dc,&touch);
 //Initialize apperance. Create your own DefaultDecorators class if you would like different application look
 DefaultDecorators dfltDecorators(DefaultDecorators::all);
 
@@ -51,7 +54,7 @@ int buf_size=500;
 void setup()
 {
 	//setup log (out is wrap about Serial class)
-	out.begin(57600);
+	out.begin(9600);
 	out<<F("Setup")<<endln;
 
 	//initialize display
@@ -61,8 +64,8 @@ void setup()
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
 	//my speciality I have connected LED-A display pin to the pin 47 on Arduino board. Comment next two lines if the example from UTFT library runs without any problems 
-	pinMode(47,OUTPUT);
-	digitalWrite(47,HIGH);
+	//pinMode(47,OUTPUT);
+	//digitalWrite(47,HIGH);
 
 	//initialize window manager
 	windowsManager.Initialize();

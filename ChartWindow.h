@@ -67,9 +67,8 @@ public:
 		{
 			if (IsVisible())
 			{
-				DC dc;
-				PrepareDC(&dc);
-				OnDraw(&dc);
+				PrepareDC(globalLcd);
+				OnDraw(globalLcd);
 			}
 		}
 	}

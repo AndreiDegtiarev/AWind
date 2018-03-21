@@ -1,20 +1,20 @@
 /*
-  AWind.h - Arduino window library support for Color TFT LCD Boards
-  Copyright (C)2014 Andrei Degtiarev. All right reserved
-  
-  You can find the latest version of the library at 
-  https://github.com/AndreiDegtiarev/AWind
+AWind.h - Arduino window library support for Color TFT LCD Boards
+Copyright (C)2014 Andrei Degtiarev. All right reserved
 
-  This library is free software; you can redistribute it and/or
-  modify it under the terms of the CC BY-NC-SA 3.0 license.
-  Please see the included documents for further information.
+You can find the latest version of the library at
+https://github.com/AndreiDegtiarev/AWind
 
-  Commercial use of this library requires you to buy a license that
-  will allow commercial use. This includes using the library,
-  modified or not, as a tool to sell products.
+This library is free software; you can redistribute it and/or
+modify it under the terms of the CC BY-NC-SA 3.0 license.
+Please see the included documents for further information.
 
-  The license applies to all part of the library including the 
-  examples and tools supplied with the library.
+Commercial use of this library requires you to buy a license that
+will allow commercial use. This includes using the library,
+modified or not, as a tool to sell products.
+
+The license applies to all part of the library including the
+examples and tools supplied with the library.
 */
 // DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
 #define DEMO_SENSORS
@@ -33,8 +33,7 @@
 DS1307 clock;
 #endif
 
-#include <UTFT.h>
-#include <URTouch.h>
+#include "TouchUTFT.h"
 
 #include "AHelper.h"
 #include "ISensor.h"
@@ -59,6 +58,9 @@ UTFT    myGLCD(ITDB32S,39,41,43,45);
 URTouch  myTouch( 49, 51, 53, 50, 52);
 #endif
 
+DC_UTFT dc(&myGLCD);
+TouchUTFT touch(&myTouch);
+
 //pin on Arduino where temperature sensor is connected (in demo is meaningless)
 int temperature_port=10;
 
@@ -68,7 +70,7 @@ LinkedList<SensorManager> sensors;
 MeasurementNode measurementNode(sensors,NULL);
 
 //manager which is responsible for window updating process
-WindowsManager<ViewModusWindow> windowsManager(&myGLCD,&myTouch);
+WindowsManager<ViewModusWindow> windowsManager(&dc,&touch);
 
 TextBoxString *TxtClock;
 char clock_buf[6];
@@ -78,7 +80,7 @@ int last_minutes=0;
 void setup()
 {
 	//setup log (out is wrap about Serial class)
-	out.begin(57600);
+	out.begin(9600);
 	out<<F("Setup")<<endln;
 
 	//this example runs on the limit of SRAM. Here is initial check
@@ -88,8 +90,8 @@ void setup()
 	myGLCD.InitLCD();
 	myGLCD.clrScr();
 	//my speciality I have connected LED-A display pin to the pin 47 on Arduino board. Comment next two lines if the example from UTFT library runs without any problems 
-	pinMode(47,OUTPUT);
-	digitalWrite(47,HIGH);
+	//pinMode(47,OUTPUT);
+	//digitalWrite(47,HIGH);
 	//initialize touch
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);

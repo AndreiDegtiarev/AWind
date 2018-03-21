@@ -1,5 +1,5 @@
 /*
-This file is part of AWind library
+GUI library for Arduino TFT and OLED displays
 
 Copyright (c) 2014-2018 Andrei Degtiarev
 

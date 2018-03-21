@@ -81,7 +81,7 @@ public:
 			else if (batteryVoltage > _cutoffVoltage)
 			{
 				out <<F("Max Voltage Exceeded:")<< batteryVoltage  <<endln;
-				_isError = true;
+				_outputMosfetValue = 0.0;
 			}
 			else if (hours > _cutoffHours)
 			{

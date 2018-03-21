@@ -15,7 +15,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied.  See the License for the specific language governing
 permissions and limitations under the License.
 */
-#define DEMO_SENSORS
+//#define DEMO_SENSORS
+#ifndef DEMO_SENSORS
+#include <OneWire.h>
+#endif
 
 #include "Log.h"
 #include "ISensor.h"
@@ -68,7 +71,7 @@ ChargerTemperatureChartWindow *temperatureWindow;
 
 ChargerController controller(&currentMeter,&voltageProbeTwo, &temperature, MOSFET_PIN,
 							 200, //start current
-	                         2500/7, //chrging rate
+	                         390, //charging rate
 	                         2,     //cutoff voltgae
 	                         35,     //cutoff temperature
 					         CUTOFF_TIME);   //cuttof time, hours

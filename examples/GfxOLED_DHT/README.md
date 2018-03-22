@@ -11,5 +11,5 @@ Example is intended to demonstrate following features of AWind library:
 
 Hardware connection
 -------------------
-Connect display
-To connection the DHT sensor see source code and examples in the internet 
+- Connect display
+- To connection the DHT sensor see source code and examples in the internet 

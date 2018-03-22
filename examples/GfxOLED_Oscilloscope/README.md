@@ -10,5 +10,5 @@ Example is intended to demonstrate following features of AWind library:
 
 Hardware connection
 -------------------
-Connect display
-Signal is read on A0 analog pin 
+- Connect display
+- Signal is read on A0 analog pin 

@@ -9,17 +9,25 @@ At this moment only TFT with 320x240 resolution on Arduiono Mega is tested, but 
 
 Installation
 ------------
-AWind library is build on top of Henning Karlsen libraries (many thanks for that libraries. It have saved pretty much of my time): 
+TFT
+------------
+AWind library for TFT displays is build on top of Henning Karlsen libraries: 
 * [UTFT] (http://www.rinkydinkelectronics.com/library.php?id=51)
 * [UTouch] (http://www.rinkydinkelectronics.com/library.php?id=55)
 
-You need uncompressed them into  arduinosketchfolder/libraries/ folder
+OLED
+------------
+AWind library for OLED displays is build on top of Adafruit_SSD1306 library
+* [Adafruit_SSD1306] (https://github.com/adafruit/Adafruit_SSD1306)
+* [Adafruit-GFX-Library ] (https://github.com/adafruit/Adafruit-GFX-Library)
 
-The content of awind_full.zip from https://github.com/AndreiDegtiarev/AWind/releases has to be also uncompressed into arduinosketchfolder/libraries/ folder.
+Uncompress those libraries into  arduinosketchfolder/libraries/ folder
+
+To connect display see descriptions for corresponding hardware and libraries .
+
+The content of awind_full.zip from https://github.com/AndreiDegtiarev/AWind/releases uncompress into arduinosketchfolder/libraries/ folder.
 
 Restart the IDE
-
-How to connect TFT-display see the UTFT documentation.
 
 Documentation
 ------------
@@ -27,8 +35,10 @@ API documentation: http://andreidegtiarev.github.io/AWind/
 
 Examples
 --------
+TFT
+--------
 In the each example folder there is a screen-shots to demonstrate how results should looks like
-* [Text] (examples/Text/README.md): Simple example that demonstrate the basic use of text window + touch interaction
+* [Text] (https://github.com/AndreiDegtiarev/AWind/examples/Text/README.md): Simple example that demonstrate the basic use of text window + touch interaction
 * [Charts] (examples/Charts/README.md): Simple example that demonstrate the basic use of chart window 
 ![](examples/Charts/Example.JPG)
 * [Oscilloscope] (examples/Oscilloscope/README.md): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length
@@ -51,3 +61,8 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 * [Window selector] (examples/WindowSelector/README.md): This example demonstrates how to control child window visibility
 
 ![](examples/WindowSelector/Example.JPG)
+OLED
+--------
+*[GfxOLED_DHT](https://github.com/AndreiDegtiarev/AWind/tree/master/examples/GfxOLED_DHT): interaction with DHT sensor
+*[GfxOLED_Oscilloscope](https://github.com/AndreiDegtiarev/AWind/tree/master/examples/GfxOLED_Oscilloscope): simple oscilloscope
+*[GfxOLED_SmartCharger](https://github.com/AndreiDegtiarev/AWind/tree/master/examples/GfxOLED_Oscilloscope): smart NiMH battery charger

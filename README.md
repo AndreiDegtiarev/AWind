@@ -45,8 +45,10 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 ![](examples/Oscilloscope/Example.JPG)
 ![](examples/Oscilloscope/Example1.JPG)
 * [SensorsMonitor](https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/SensorsMonitor): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example work in DEMO-mode and real sensors connections is not needed
+
 ![](examples/SensorsMonitor/Example.JPG)
 * [Gauges](https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/Gauges): This example demonstrates how to use gauge and button controls
+
 ![](examples/Gauges/Example.JPG)
 * [Dialogs](https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/Dialogs): This example demonstrates how handle nested dialogs
 
@@ -57,7 +59,6 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 * [Vacuum Pump](https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/VacuumPump): This advance example demonstrates how to work with tab controls, timer, how interact with stepper motor, relay and etc.
 
 ![](examples/VacuumPump/VacuumPump.JPG)
-
 * [Window selector](https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/WindowSelector): This example demonstrates how to control child window visibility
 
 ![](examples/WindowSelector/Example.JPG)

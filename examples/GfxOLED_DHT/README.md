@@ -1,14 +1,15 @@
-Simple oscilloscope
+Simple DHT temperature, humidity sensor with visualization on OLED display
 ------------
 Introduction
 ------------
 Example is intended to demonstrate following features of AWind library: 
 - Usage of OLED SSD1306 displays 
-- Chart control
-- Measurement on analog pin
+- Labels
+- Text fields
+- Interaction with DHT sensor
 
 
 Hardware connection
 -------------------
 Connect display
-Signal is read on A0 analog pin 
+To connection the DHT sensor see source code and examples in the internet 

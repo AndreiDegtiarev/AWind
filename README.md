@@ -62,6 +62,7 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 * [Window selector](https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/WindowSelector): This example demonstrates how to control child window visibility
 
 ![](examples/WindowSelector/Example.JPG)
+
 OLED
 --------
 * [GfxOLED_DHT](https://github.com/AndreiDegtiarev/AWind/tree/master/examples/GfxOLED_DHT): interaction with DHT sensor

@@ -12,14 +12,14 @@ Installation
 TFT
 ------------
 AWind library for TFT displays is build on top of Henning Karlsen libraries: 
-* [UTFT] (http://www.rinkydinkelectronics.com/library.php?id=51)
-* [UTouch] (http://www.rinkydinkelectronics.com/library.php?id=55)
+* [UTFT](http://www.rinkydinkelectronics.com/library.php?id=51)
+* [UTouch](http://www.rinkydinkelectronics.com/library.php?id=55)
 
 OLED
 ------------
 AWind library for OLED displays is build on top of Adafruit_SSD1306 library
-* [Adafruit_SSD1306] (https://github.com/adafruit/Adafruit_SSD1306)
-* [Adafruit-GFX-Library ] (https://github.com/adafruit/Adafruit-GFX-Library)
+* [Adafruit_SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
+* [Adafruit-GFX-Library ](https://github.com/adafruit/Adafruit-GFX-Library)
 
 Uncompress those libraries into  arduinosketchfolder/libraries/ folder
 

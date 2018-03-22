@@ -38,27 +38,27 @@ Examples
 TFT
 --------
 In the each example folder there is a screen-shots to demonstrate how results should looks like
-* [Text] (https://github.com/AndreiDegtiarev/AWind/examples/Text/README.md): Simple example that demonstrate the basic use of text window + touch interaction
-* [Charts] (examples/Charts/README.md): Simple example that demonstrate the basic use of chart window 
+* [Text] (https://github.com/AndreiDegtiarev/AWind/examples/Text): Simple example that demonstrate the basic use of text window + touch interaction
+* [Charts] (https://github.com/AndreiDegtiarev/AWind/examples/Charts): Simple example that demonstrate the basic use of chart window 
 ![](examples/Charts/Example.JPG)
-* [Oscilloscope] (examples/Oscilloscope/README.md): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length
+* [Oscilloscope] (https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscope): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length
 ![](examples/Oscilloscope/Example.JPG)
 ![](examples/Oscilloscope/Example1.JPG)
-* [SensorsMonitor] (examples/SensorsMonitor/README.md): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example work in DEMO-mode and real sensors connections is not needed
+* [SensorsMonitor] (https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/SensorsMonitor): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example work in DEMO-mode and real sensors connections is not needed
 ![](examples/SensorsMonitor/Example.JPG)
-* [Gauges] (examples/Gauges/README.md): This example demonstrates how to use gauge and button controls
+* [Gauges] (https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/Gauges): This example demonstrates how to use gauge and button controls
 ![](examples/Gauges/Example.JPG)
-* [Dialogs] (examples/Dialogs/README.md): This example demonstrates how handle nested dialogs
+* [Dialogs] (https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/Dialogs): This example demonstrates how handle nested dialogs
 
 ![](examples/Dialogs/Example.JPG)
-* [Tab control] (examples/TabControl/README.md): This example demonstrates how to work with tab controls
+* [Tab control] (https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/TabControl): This example demonstrates how to work with tab controls
 
 ![](examples/TabControl/Example.JPG)
-* [Vacuum Pump] (examples/VacuumPump/README.md): This advance example demonstrates how to work with tab controls, timer, how interact with stepper motor, relay and etc.
+* [Vacuum Pump] (https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/VacuumPump): This advance example demonstrates how to work with tab controls, timer, how interact with stepper motor, relay and etc.
 
 ![](examples/VacuumPump/VacuumPump.JPG)
 
-* [Window selector] (examples/WindowSelector/README.md): This example demonstrates how to control child window visibility
+* [Window selector] (https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/WindowSelector): This example demonstrates how to control child window visibility
 
 ![](examples/WindowSelector/Example.JPG)
 OLED

@@ -43,7 +43,9 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 
 ![](examples/Charts/Example1.JPG)
 * [Oscilloscope](https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscope): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length
+
 ![](examples/Oscilloscope/Example.JPG)
+
 ![](examples/Oscilloscope/Example1.JPG)
 * [SensorsMonitor](https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscopeexamples/SensorsMonitor): This example is based on my personal application - monitor temperature in my camper (outside, inside, fridge: beer has to be cold :-) and etc.). The sensors in this example work in DEMO-mode and real sensors connections is not needed
 

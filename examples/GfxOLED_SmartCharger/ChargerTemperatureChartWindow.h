@@ -20,8 +20,8 @@ permissions and limitations under the License.
 #include "DecoratorPrimitives.h"
 #include "ChartWindow.h"
 
-extern uint8_t SmallOledFont[];
-extern uint8_t BigOledFont[];
+extern uint8_t SmallFont[];
+extern uint8_t BigFont[];
 
 class ChargerTemperatureChartWindow : public Window, public ISensorMeasuredEventReceiver
 {
@@ -34,10 +34,10 @@ public:
 		_temperature(temperature)
 	{
 		auto labelTitle = new TextBoxFString(0, 2, width, 20, F("Temperature"), F("Label"));
-		labelTitle->SetFont(SmallOledFont);
+		labelTitle->SetFont(SmallFont);
 		labelTitle->SetHorizontalAlignment(DC::HorizontalAlignment::Center);
 		AddChild(labelTitle);
-		_chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallOledFont, height - 15, 10, 50, 3);
+		_chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallFont, height - 15, 20, 50, 3);
 		_chartYAxis->SetOffset(0, 0);
 		_chartWnd = new ChartWindow(NULL, _chartYAxis, 0, 10, width - 5, height - 15);
 		_chartWnd->AddDecorator(new DecoratorColor(Color::Black));

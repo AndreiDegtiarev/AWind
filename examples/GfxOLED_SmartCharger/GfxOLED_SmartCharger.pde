@@ -28,6 +28,8 @@ permissions and limitations under the License.
 #include "SensorManager.h"
 #include "MeasurementNode.h"
 
+#include "BatteryVoltmeterSensor.h"
+
 #include "DC_GfxOLED.h""
 
 #include "WindowsManager.h"
@@ -37,12 +39,33 @@ permissions and limitations under the License.
 #include "ChargerMainWindow.h"
 #include "DefaultDecoratorsOLED.h"
 
+#ifdef ESP32
+#define MAX_VOLTAGE 3.3
+#else
+#define MAX_VOLTAGE 5.0
+#endif
+
 
 #define OLED_RESET 4
-#define VOLTAGE_PROBE_ONE_PIN  A0
-#define VOLTAGE_PROBE_TWO_PIN  A1
+#ifdef ESP32
+#include <driver/adc.h>
+#include <pins_arduino.h>
+#define VOLTAGE_PROBE_ONE_PIN ADC1_CHANNEL_0
+#define VOLTAGE_PROBE_TWO_PIN ADC1_CHANNEL_3
+#define MAX_VOLTAGE (3.3*2)
+#define MOSFET_PIN 32
+#define MOSFET_CHANNEL 0
+#define BUTTON_PIN 25
+#define REF_VOLTAGE 5.0f
+#else
+#define VOLTAGE_PROBE_ONE_PIN A0
+#define VOLTAGE_PROBE_TWO_PIN A1
+#define MAX_VOLTAGE 5.0
 #define MOSFET_PIN 9
+#define MOSFET_CHANNEL MOSFET_PIN
 #define BUTTON_PIN 2
+#define REF_VOLTAGE 5.84f
+#endif
 #define CUTOFF_TIME 13
 
 
@@ -59,9 +82,14 @@ MeasurementNode measurementNode(sensors, NULL);
 //Windows manager: container for GUI elements 
 WindowsManager<ChargerMainWindow> windowsManager(&dc, NULL);
 
-SensorManager voltageProbeTwo(new VoltmeterSensor(VOLTAGE_PROBE_TWO_PIN,-5.0f,5.0f), 0, 2, 1000 * 10);
-SensorManager temperature(new DS18B20Sensor(8, 1), 0, 60, 1000 * 10);
-SensorManager currentMeter(new CurrentmeterSensor(VOLTAGE_PROBE_ONE_PIN, VOLTAGE_PROBE_TWO_PIN, 10,5), 0, 1000, 1000 * 10);
+VoltmeterSensor probeTwoSensor(VOLTAGE_PROBE_TWO_PIN, -MAX_VOLTAGE, REF_VOLTAGE); // 5.84f);
+CurrentmeterSensor currentSensor(VOLTAGE_PROBE_ONE_PIN, VOLTAGE_PROBE_TWO_PIN, 10, MAX_VOLTAGE);
+
+DS18B20Sensor temperatureSensor(8, 1);
+
+SensorManager voltageProbeTwo(&probeTwoSensor, 0, 10, 1000 * 10,false);
+SensorManager temperature(&temperatureSensor, 0, 60, 1000 * 10,false);
+SensorManager currentMeter(&currentSensor, 0, 1000, 1000 * 10, false);
 
 
 ChargerOverviewWindow *overviewWindow;
@@ -69,15 +97,23 @@ ChargerVoltageChartWindow *voltageWindow;
 ChargerTemperatureChartWindow *temperatureWindow;
 
 
-ChargerController controller(&currentMeter,&voltageProbeTwo, &temperature, MOSFET_PIN,
+ChargerController controller(&currentMeter,&voltageProbeTwo, &temperature, 
+#ifdef ESP32
+	MOSFET_CHANNEL,
+#else
+	MOSFET_PIN,
+#endif
 							 200, //start current
 	                         390, //charging rate
 	                         2,     //cutoff voltgae
 	                         35,     //cutoff temperature
 					         CUTOFF_TIME);   //cuttof time, hours
 
-uint8_t SmallOledFont[] = { 1 };
-uint8_t BigOledFont[] = { 2 };
+BatteryVoltmeterSensor batteryVoltsSensor(&controller, VOLTAGE_PROBE_TWO_PIN, -MAX_VOLTAGE, REF_VOLTAGE); // 5.84);
+SensorManager batteryVoltage(&batteryVoltsSensor, 0, 2, 1000 * 25,false);
+
+uint8_t SmallFont[] = { 1 };
+uint8_t BigFont[] = { 2 };
 
 volatile bool btnState = false;
 volatile unsigned long lastStateChange = 0;
@@ -92,21 +128,20 @@ void setup()
 	display.display();
 	display.clearDisplay();
 
-	pinMode(MOSFET_PIN, OUTPUT);
-
 	sensors.Add(&temperature);
 	sensors.Add(&voltageProbeTwo);
 	sensors.Add(&currentMeter);
+	sensors.Add(&batteryVoltage);
 
-	voltageProbeTwo.initMinutesBuffer(CUTOFF_TIME*60*0.7);
-	temperature.initMinutesBuffer(CUTOFF_TIME*60/3*0.7);
+	batteryVoltage.initMinutesBuffer(CUTOFF_TIME*60*0.69);
+	temperature.initMinutesBuffer(CUTOFF_TIME*60*0.69);
 
 
 	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
 	DefaultDecoratorsOLED::InitAll();
 
-	overviewWindow = new ChargerOverviewWindow(dc.DeviceWidth(), &currentMeter, &voltageProbeTwo, &temperature);
-	voltageWindow= new ChargerVoltageChartWindow(dc.DeviceWidth(), dc.DeviceHeight(), &voltageProbeTwo);
+	overviewWindow = new ChargerOverviewWindow(dc.DeviceWidth(), &currentMeter, &batteryVoltage, &temperature);
+	voltageWindow= new ChargerVoltageChartWindow(dc.DeviceWidth(), dc.DeviceHeight(), &batteryVoltage);
 	temperatureWindow = new ChargerTemperatureChartWindow(dc.DeviceWidth(), dc.DeviceHeight(), &temperature);
 
 
@@ -120,10 +155,19 @@ void setup()
 	voltageWindow->SetVisible(false);
 	temperatureWindow->SetVisible(false);
 
+	//pinMode(MOSFET_PIN, OUTPUT);
 	pinMode(BUTTON_PIN, INPUT_PULLUP);
-	attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), buttonPressed, LOW);
 
+#ifdef ESP32
+	ledcSetup(MOSFET_CHANNEL, 12000, 8);
+	ledcAttachPin(MOSFET_PIN, MOSFET_CHANNEL);
+#endif
+
+	attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), buttonPressed, HIGH);
+
+#ifndef ESP32
 	AHelper::LogFreeRam();
+#endif
 
 	out<<F("End setup")<<endln;
 
@@ -143,7 +187,7 @@ void loop()
 	}
 	if (btnState)
 	{
-		out << "Stage changed" << endln;
+		out << "State changed" << endln;
 		if (overviewWindow->IsVisible())
 		{
 			overviewWindow->SetVisible(false);
@@ -167,6 +211,7 @@ void loop()
 	}
 	//give window manager an opportunity to update display
 	windowsManager.loop();
+
 }
 void buttonPressed() 
 {

@@ -54,16 +54,29 @@ public:
 		voltageProbeTwoPort->RegisterMeasuredEventReceiver(this);
 	}
 
+	void SetMosfettActive(bool isOn)
+	{
+		WriteMosfet(isOn && !_isError?_outputMosfetValue:0);
+	}
+	void WriteMosfet(int value)
+	{
+#ifdef ESP32
+		ledcWrite(_mosfetPin, value);
+#else
+		analogWrite(_mosfetPin, value);
+#endif
+	}
 	///Notification is call for each sensor measurements
 	void NotifySensorMeasured(SensorManager *sensorManager)
 	{
 		if (sensorManager == _currentMeter)
 		{
 			if (_isError)
-				analogWrite(_mosfetPin, 0);
+				WriteMosfet(0);
 			else
 			{
-				analogWrite(_mosfetPin,_outputMosfetValue);
+				//_outputMosfetValue = 0;
+				WriteMosfet(_outputMosfetValue);
 				out << F("Out mosfet value:") << _outputMosfetValue << endln;
 			}
 
@@ -81,7 +94,8 @@ public:
 			else if (batteryVoltage > _cutoffVoltage)
 			{
 				out <<F("Max Voltage Exceeded:")<< batteryVoltage  <<endln;
-				_outputMosfetValue = 0.0;
+				currentError *= -1;
+				//_outputMosfetValue = 100.0;
 			}
 			else if (hours > _cutoffHours)
 			{
@@ -90,7 +104,7 @@ public:
 			}
 			if (abs(currentError) > 10)     //if output error is large enough, adjust output
 			{
-				_outputMosfetValue = _outputMosfetValue + currentError / 10;
+				_outputMosfetValue = _outputMosfetValue + currentError / 50;
 
 				if (_outputMosfetValue < 1)    //output can never go below 0
 					_outputMosfetValue = 0;

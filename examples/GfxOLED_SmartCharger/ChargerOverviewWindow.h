@@ -20,8 +20,8 @@ permissions and limitations under the License.
 #include "TextBoxString.h"
 #include "TextBoxNumber.h"
 
-extern uint8_t SmallOledFont[];
-extern uint8_t BigOledFont[];
+extern uint8_t SmallFont[];
+extern uint8_t BigFont[];
 
 class ChargerOverviewWindow : public Window, public  ISensorHasDataEventReceiver
 {
@@ -41,7 +41,7 @@ public:
 		int x = 20;
 		int y = 2;
 		auto labelTitle = new TextBoxFString(x, y, width / 2, 20, F("Smart charger"), F("Label"));
-		labelTitle->SetFont(SmallOledFont);
+		labelTitle->SetFont(SmallFont);
 		AddChild(labelTitle);
 		x = 0;
 		y = 15;
@@ -63,10 +63,10 @@ public:
 	{
 		auto label = new TextBoxFString(x, y, width / 2, 20, name, F("Label"));
 		label->SetMargins(2, 2);
-		label->SetFont(BigOledFont);
+		label->SetFont(BigFont);
 		x += 18;
 		auto text = new TextBoxNumber(x, y, 30 + dx, 20, 0);
-		text->SetFont(BigOledFont);
+		text->SetFont(BigFont);
 		text->SetMargins(0, 3);
 		text->SetHorizontalAlignment(DC::HorizontalAlignment::Center);
 		text->SetNumber(0);

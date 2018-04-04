@@ -15,7 +15,21 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied.  See the License for the specific language governing
 permissions and limitations under the License.
 */
-#define DEMO_SENSORS
+//#define DEMO_SENSORS
+
+#ifdef ESP32
+	#define MAX_VOLTAGE 3.3
+#elif defined(ESP8266)
+	#define MAX_VOLTAGE 1.0
+#else
+	#define MAX_VOLTAGE 5.0
+#endif
+#ifdef ESP32
+#define VOLTAGE_PORT ADC1_CHANNEL_0
+#else
+#define VOLTAGE_PORT A0
+#endif
+
 
 #include "Log.h"
 #include "ISensor.h"
@@ -28,6 +42,7 @@ permissions and limitations under the License.
 #include "WindowsManager.h"
 #include "GfxOLED_Oscilloscope.h"
 #include "DefaultDecoratorsOLED.h"
+
 
 
 #define OLED_RESET 4
@@ -44,15 +59,16 @@ MeasurementNode measurementNode(sensors, NULL);
 //Windows manager: container for GUI elements 
 WindowsManager<GfxOLED_Oscilloscope> windowsManager(&dc, NULL);
 
-VoltmeterSensor voltmeter(A0, 2000, 200);
+VoltmeterSensor voltmeter(VOLTAGE_PORT, 2000, 200, MAX_VOLTAGE);
 SensorManager voltmeterManager(&voltmeter, 15, 40, 1000 * 1);
-uint8_t SmallOledFont[] = { 1 };
-uint8_t BigOledFont[] = { 2 };
+uint8_t SmallFont[] = { 1 };
+uint8_t BigFont[] = { 2 };
 
 void setup()
 {
 	out.begin(9600);
 	out << (F("Setup")) << endln;
+
 
 	display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
 	display.display();
@@ -69,8 +85,9 @@ void setup()
 
 	windowsManager.MainWnd()->Initialize(&voltmeterManager);
 	voltmeterManager.RegisterHasDataEventReceiver(windowsManager.MainWnd());
+#if !defined(ESP8266) && !defined(ESP32)
 	AHelper::LogFreeRam();
-
+#endif
 	out<<F("End setup")<<endln;
 
 }

@@ -23,8 +23,8 @@
 #include "DecoratorPrimitives.h"
 #include "ChartWindow.h"
 
-extern uint8_t SmallOledFont[];
-extern uint8_t BigOledFont[];
+extern uint8_t SmallFont[];
+extern uint8_t BigFont[];
 
 class GfxOLED_DHT_Window : public MainWindow, public  ISensorHasDataEventReceiver
 {
@@ -38,7 +38,7 @@ public:
 		int x = 20;
 		int y = 2;
 		auto labelTitle = new TextBoxFString(x, y, width / 2, 20, F("Demo DHT sensor"), F("Label"));
-		labelTitle->SetFont(SmallOledFont);
+		labelTitle->SetFont(SmallFont);
 		AddChild(labelTitle);
 		//x = 2;
 		y = 15;
@@ -75,10 +75,10 @@ public:
 		int x = 2;
 		auto label = new TextBoxFString(x, y, width / 2, 20, name, F("Label"));
 		label->SetMargins(5, 2);
-		label->SetFont(BigOledFont);
+		label->SetFont(BigFont);
 		x = 3 * width / 4 - 12;
 		auto text = new TextBoxNumber(x, y, width / 4 + 8, 20, 0);
-		text->SetFont(BigOledFont);
+		text->SetFont(BigFont);
 		text->SetMargins(10, 3);
 		text->SetNumber(0);
 

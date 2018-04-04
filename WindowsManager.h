@@ -20,7 +20,6 @@ permissions and limitations under the License.
 #include "Window.h"
 #include "MainWindow.h"
 #include "ICriticalProcess.h"
-#include "DC_UTFT.h"
 #include "Touch.h"
 
 DC *globalLcd;

@@ -16,6 +16,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied.  See the License for the specific language governing
 permissions and limitations under the License.
 */
+
 #include "DC.h"
 #include "Adafruit_GFX.h"
 #include "Adafruit_SSD1306.h"
@@ -80,13 +81,15 @@ public:
 	{
 		_oled->fillCircle(ToDC_X(x0), ToDC_Y(y0), radius, _color);
 	}
+#if !defined(ESP8266) && !defined(ESP32)
 	///Draws PROGMEM string. Input coordinates have to be defined in the window coordinate system
 	void DrawText(const __FlashStringHelper * text, int x, int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0)
 	{
 		x = ToDC_X(x);
 		y = ToDC_Y(y);
-		int x1, y1, w, h;
-		_oled->getTextBounds(text, x, y, &x1, &y1, &w, &h);
+		int16_t x1, y1;
+		uint16_t w, h;
+		_oled->getTextBounds(text, (int16_t)x, (int16_t)y, &x1, &y1, &w, &h);
 		if (aligment == HorizontalAlignment::Right)
 			x = (x + width - w);
 		else if (aligment == HorizontalAlignment::Center)
@@ -95,13 +98,15 @@ public:
 		_oled->setCursor(x, y);
 		_oled->println(text);
 	}
+#endif
 	///Draws string. Input coordinates have to be defined in the window coordinate system
 	void DrawText(const char * text, int x, int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0)
 	{
 		x = ToDC_X(x);
 		y = ToDC_Y(y);
-		int x1, y1, w, h;
-		_oled->getTextBounds(text, x, y, &x1, &y1, &w, &h);
+		int16_t x1, y1;
+		uint16_t w, h;
+		_oled->getTextBounds((char *)text, (int16_t)x, (int16_t)y, &x1, &y1, &w, &h);
 		if (aligment == HorizontalAlignment::Right)
 			x = (x + width - w);
 		else if (aligment == HorizontalAlignment::Center)

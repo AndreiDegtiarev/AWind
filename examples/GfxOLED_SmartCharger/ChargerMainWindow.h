@@ -24,8 +24,6 @@ permissions and limitations under the License.
 #include "ChargerController.h"
 
 
-extern uint8_t SmallOledFont[];
-extern uint8_t BigOledFont[];
 
 ///Osciloscope main window
 class ChargerMainWindow : public MainWindow

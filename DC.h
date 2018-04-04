@@ -159,8 +159,10 @@ public:
 		dtostrf(number,0,dec,_buffer);
 		DrawText(_buffer,x,y, aligment, width);
 	}
+#if !defined(ESP8266) && !defined(ESP32)
 	///Draws PROGMEM string. Input coordinates have to be defined in the window coordinate system
 	virtual void DrawText(const __FlashStringHelper * text, int x, int y, HorizontalAlignment aligment = HorizontalAlignment::Left, int width = 0) = 0;
+#endif
 
 	///Returns symbol width for the current font 
 	virtual int FontWidth() = 0;

@@ -51,8 +51,8 @@ DHTTemperatureSensor inTempr(dht_pin, DHTTemperatureSensor::DHT11);
 DHTHumiditySensor inHumidity(&inTempr);
 SensorManager inTemprManager(&inTempr, 15, 40, 1000 * 1);
 SensorManager inHumidityManager(&inHumidity, 0, 80, 1000 * 1);
-uint8_t SmallOledFont[] = { 1 };
-uint8_t BigOledFont [] ={ 2 };
+uint8_t SmallFont[] = { 1 };
+uint8_t BigFont [] ={ 2 };
 
 void setup()
 {

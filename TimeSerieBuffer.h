@@ -116,8 +116,8 @@ public:
 		max_y=_data_y[_size-1];
 		for(int i=0;i<_size;i++)
 		{
-			min_y=min(min_y,_data_y[i]);
-			max_y=max(max_y,_data_y[i]);
+			min_y=min(min_y,(float)_data_y[i]);
+			max_y=max(max_y,(float)_data_y[i]);
 		}
 		min_y= (min_y - _offset_y )/ _factor_y;
 		max_y= (max_y - _offset_y) / _factor_y;

@@ -23,8 +23,8 @@ permissions and limitations under the License.
 #include "ChartWindow.h"
 
 
-extern uint8_t SmallOledFont[];
-extern uint8_t BigOledFont[];
+extern uint8_t SmallFont[];
+extern uint8_t BigFont[];
 
 ///Osciloscope main window
 class GfxOLED_Oscilloscope : public MainWindow, public  ISensorHasDataEventReceiver
@@ -35,7 +35,7 @@ class GfxOLED_Oscilloscope : public MainWindow, public  ISensorHasDataEventRecei
 public:
 	GfxOLED_Oscilloscope(int width,int height):MainWindow(width, height)
 	{
-		_chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallOledFont, height - 5, 0, 6, 3);
+		_chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallFont, height - 5, 0, (int)(MAX_VOLTAGE+1), 3);
 		_chartYAxis->SetOffset(0, 0);
 		_chartWnd = new ChartWindow(NULL, _chartYAxis, 0, 0, width - 5, height - 5);
 		_chartWnd->AddDecorator(new DecoratorColor(Color::Black));

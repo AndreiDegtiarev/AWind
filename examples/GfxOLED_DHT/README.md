@@ -13,3 +13,5 @@ Hardware connection
 -------------------
 - Connect display
 - To connection the DHT sensor see source code and examples in the internet 
+
+![](examples/GfxOLED_DHT/OLED_DHT.jpg)

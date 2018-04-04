@@ -16,6 +16,6 @@ Connect display
 
 Information about electrical circuit and charging logic can be found  here https://www.allaboutcircuits.com/projects/create-an-arduino-controlled-battery-charger/ 
 
-![](examples/GfxOLED_SmartCharger/main.jpg)
+![](main.jpg)
 
-![](examples/GfxOLED_SmartCharger/temperature.jpg) 
+![](temperature.jpg) 

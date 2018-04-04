@@ -13,4 +13,4 @@ Hardware connection
 - Connect display
 - Signal is read on A0 analog pin 
 
-![](examples/GfxOLED_Oscilloscope/OLED_Oscilloscope.jpg)
+![](OLED_Oscilloscope.jpg)

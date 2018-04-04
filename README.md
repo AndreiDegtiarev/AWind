@@ -66,5 +66,13 @@ In the each example folder there is a screen-shots to demonstrate how results sh
 OLED
 --------
 * [GfxOLED_DHT](https://github.com/AndreiDegtiarev/AWind/tree/master/examples/GfxOLED_DHT): interaction with DHT sensor
+
+![](examples/GfxOLED_DHT/OLED_DHT.jpg)
 * [GfxOLED_Oscilloscope](https://github.com/AndreiDegtiarev/AWind/tree/master/examples/GfxOLED_Oscilloscope): simple oscilloscope
+
+![](examples/GfxOLED_Oscilloscope/OLED_Oscilloscope.jpg)
 * [GfxOLED_SmartCharger](https://github.com/AndreiDegtiarev/AWind/tree/master/examples/GfxOLED_Oscilloscope): smart NiMH battery charger
+
+![](examples/GfxOLED_SmartCharger/main.jpg)
+
+![](examples/GfxOLED_SmartCharger/temperature.jpg)

@@ -40,7 +40,7 @@ TFT
 In the each example folder there is a screen-shots to demonstrate how results should looks like
 * [Text](https://github.com/AndreiDegtiarev/AWind/examples/Text): Simple example that demonstrate the basic use of text window + touch interaction
 * [Charts](https://github.com/AndreiDegtiarev/AWind/examples/Charts): Simple example that demonstrate the basic use of chart window 
-![](examples/Charts/Example.JPG)
+![](examples/Charts/Example1.JPG)
 * [Oscilloscope](https://github.com/AndreiDegtiarev/AWind/examples/Oscilloscope): Simple Oscilloscope with possibility to adjust (in runtime) sample ratio, voltage level and signal length
 ![](examples/Oscilloscope/Example.JPG)
 ![](examples/Oscilloscope/Example1.JPG)

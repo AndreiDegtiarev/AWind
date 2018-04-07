@@ -19,7 +19,7 @@ OLED via Adafruit-GFX
 ------------
 AWind library for OLED displays is build on top of Adafruit_GFX library
 * [Adafruit-GFX-Library ](https://github.com/adafruit/Adafruit-GFX-Library)
-* Install Adafruit driver for your display. In my case it is SSD1306. [SSD1306](https://github.com/adafruit/Adafruit_SSD1306) display 
+* Install Adafruit driver for your display. In my case it is [SSD1306](https://github.com/adafruit/Adafruit_SSD1306) display 
 
 Uncompress those libraries into  arduinosketchfolder/libraries/ folder
 

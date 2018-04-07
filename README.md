@@ -3,23 +3,23 @@ AWind library
 Introduction
 ------------
 AWind (arduino window) is Arduino-library that is intended to simplify the use of touch TFT and OLED displays for visualization of sensors data in text or chart form. It is also possible to interact with GUI by the use of display touch feature. 
-The library is implemented as general window framework that allows creation of simple GUIs. The GUI is consist of text fields, buttons, chart window and etc. 
+The library is implemented as general window framework that allows creation of simple GUIs. The GUI is consist of labels, text fields, buttons, tab control, gauges, chart window and etc. 
 For TFT the special keyboard window is implemented to provide runtime possibility of changing text fields.
-At this moment only TFT with 320x240 resolution and OLED with 128x64 resolution on Arduiono Mega and Arduino DUE are tested, but the library can be adjusted to other display dimensions without big efforts.
+At this moment TFT and OLED displays are tested on Arduiono Mega and Arduino DUE, ESP boards comming soon.
 
 Installation
 ------------
-TFT
+TFT via UTFT
 ------------
 AWind library for TFT displays is build on top of Henning Karlsen libraries: 
 * [UTFT](http://www.rinkydinkelectronics.com/library.php?id=51)
 * [UTouch](http://www.rinkydinkelectronics.com/library.php?id=55)
 
-OLED
+OLED via Adafruit-GFX
 ------------
-AWind library for OLED displays is build on top of Adafruit_SSD1306 library
-* [Adafruit_SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
+AWind library for OLED displays is build on top of Adafruit_GFX library
 * [Adafruit-GFX-Library ](https://github.com/adafruit/Adafruit-GFX-Library)
+* Install Adafruit driver for your display. In my case it is SSD1306. [SSD1306](https://github.com/adafruit/Adafruit_SSD1306) display 
 
 Uncompress those libraries into  arduinosketchfolder/libraries/ folder
 

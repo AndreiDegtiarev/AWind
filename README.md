@@ -5,7 +5,7 @@ Introduction
 AWind (arduino window) is Arduino-library that is intended to simplify the use of touch TFT and OLED displays for visualization of sensors data in text or chart form. It is also possible to interact with GUI by the use of display touch feature. 
 The library is implemented as general window framework that allows creation of simple GUIs. The GUI is consist of labels, text fields, buttons, tab control, gauges, chart window and etc. 
 For TFT the special keyboard window is implemented to provide runtime possibility of changing text fields.
-At this moment TFT and OLED displays are tested on Arduiono Mega and Arduino DUE. ESPxx boards is comming soon.
+At this moment TFT and OLED displays are tested on Arduiono Mega and Arduino DUE. ESPxx boards are comming soon.
 
 Installation
 ------------

@@ -11,7 +11,6 @@ Installation
 ------------
 TFT via UTFT library
 ------------
-AWind library for TFT displays is build on top of Henning Karlsen libraries: 
 * [UTFT](http://www.rinkydinkelectronics.com/library.php?id=51)
 * [UTouch](http://www.rinkydinkelectronics.com/library.php?id=55)
 

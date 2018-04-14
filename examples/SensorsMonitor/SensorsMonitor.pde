@@ -32,7 +32,7 @@ examples and tools supplied with the library.
 #include "DS1307.h"
 DS1307 clock;
 #endif
-
+#include "DC_UTFT.h"
 #include "TouchUTFT.h"
 
 #include "AHelper.h"
@@ -76,6 +76,7 @@ TextBoxString *TxtClock;
 char clock_buf[6];
 int last_minutes=0;
 
+extern uint8_t ArialNumFontPlus[];
 
 void setup()
 {
@@ -105,7 +106,8 @@ void setup()
 	//clock.fillByHMS(10,30,0);
 	//clock.setTime();
 #endif
-
+	DC_UTFT::RegisterDefaultFonts();
+	Environment::Get()->RegisterFont(new AFontUTFT(F("BigPlus"), ArialNumFontPlus));
 	//initialize window manager
 	windowsManager.Initialize();
 
@@ -141,7 +143,7 @@ void setup()
 	modusWindow->AddChild(new SensorWindow(F("Alk Humid"),sensors[3],third_column,third_row,SensorWindow::Small));
 	//Create clock window
 	TxtClock=new TextBoxString(115,modusWindow->Height()-45,90,35,"");
-	TxtClock->SetFont(BigFont);
+	TxtClock->SetFont(F("Big"));
 	TxtClock->SetDecorators(modusWindow->NormalSensorWndDecorators());
 	TxtClock->SetMargins(5,10);
 	modusWindow->AddChild(TxtClock);

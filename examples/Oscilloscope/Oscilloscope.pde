@@ -17,7 +17,7 @@
   examples and tools supplied with the library.
 */
 
-
+#include "DC_UTFT.h"
 #include "TouchUTFT.h"
 
 #include "LinkedList.h"
@@ -67,6 +67,7 @@ void setup()
 	//pinMode(47,OUTPUT);
 	//digitalWrite(47,HIGH);
 
+	DC_UTFT::RegisterDefaultFonts();
 	//initialize window manager
 	windowsManager.Initialize();
 

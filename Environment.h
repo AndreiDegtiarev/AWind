@@ -18,6 +18,7 @@ permissions and limitations under the License.
 */
 #include "LinkedList.h"
 #include "AHelper.h"
+#include "AFont.h"
 #include "Decorator.h"
 
 typedef LinkedList<Decorator> DecoratorList;
@@ -27,11 +28,13 @@ public:
 	const __FlashStringHelper *ID;
 	DecoratorList *Decorators;
 };
+
 ///This singltone class contains shared application resources like decorators.
 class Environment
 {
 	static Environment *_singltone;
 	LinkedList<DecoratorGroupEntry> _shared_decorators;
+	LinkedList<AFont> _fonts;
 
 	///Constructor initializes one static instance of environment
 	Environment()
@@ -45,6 +48,22 @@ public:
 		if(_singltone == NULL)
 			_singltone = new Environment();
 		return _singltone;
+	}
+	///Registers application font. For each DC type corresponding font class has to be derived
+	void RegisterFont(AFont *font)
+	{
+		_fonts.Add(font);
+	}
+	///Finds registered font by the name
+	AFont * FindFont(const __FlashStringHelper *name)
+	{
+		for (int i = 0; i<_fonts.Count(); i++)
+		{
+			if (AHelper::compare_F(name, _fonts[i]->Name))
+				return _fonts[i];
+
+		}
+		return NULL;
 	}
 	///Registers decorators group. It is like application resources that can be shred between windows of the same type (e.g. buttons, text box and etc.)
 	void RegisterDecoratorsGroup(const __FlashStringHelper *id,DecoratorList * decorators)

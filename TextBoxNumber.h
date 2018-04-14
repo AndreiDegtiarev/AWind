@@ -38,7 +38,7 @@ public:
 		_precission=precission;
 		_isOK=true;
 		_number=0;
-		SetFont(BigFont);
+		SetFont(Environment::Get()->FindFont(F("Big")));
 		SetDecorators(Environment::Get()->FindDecorators(F("EditTextBoxReadOnly")));
 		SetMargins(0,1);
 		SetIsReadOnly(true);

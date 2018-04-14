@@ -19,15 +19,11 @@ permissions and limitations under the License.
 // DEMO_SENSORS allows run of this sketch in DEMO mode without real sensor connections 
 #define DEMO_SENSORS
 //#define DEBUG_AWIND
+#include "DC_UTFT.h"
 #include "TouchUTFT.h"
 
 #include "Log.h"
-#include "WindowsManager.h"
 #include "GaugesWindow.h"
-#include "FakeSensor.h"
-#include "SensorManager.h"
-#include "MeasurementNode.h"
-#include "DefaultDecorators.h"
 
 // Setup TFT display + touch (see UTFT and UTouch library documentation)
 #if defined _VARIANT_ARDUINO_DUE_X_   //DUE +tft shield
@@ -44,11 +40,6 @@ TouchUTFT touch(&myTouch);
 //manager which is responsible for window updating process
 WindowsManager<GaugesWindow> windowsManager(&dc,&touch);
 
-//list where all sensors are collected
-LinkedList<SensorManager> sensors;
-//manager which controls the measurement process
-MeasurementNode measurementNode(sensors,NULL);
-
 
 void setup()
 {
@@ -62,23 +53,15 @@ void setup()
 	//initialize touch
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
+
+	DC_UTFT::RegisterDefaultFonts();
+
 	//my speciality I have connected LED-A display pin to the pin 47 on Arduino board. Comment next two lines if the example from UTFT library runs without any problems 
 	//pinMode(47,OUTPUT);
 	//digitalWrite(47,HIGH);
 
-	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
-	DefaultDecorators::InitAll();
 
-	//initialize window manager
-	windowsManager.Initialize();
-
-	//create sensor manager
-	SensorManager *manager=new SensorManager(new FakeSensor(),15,40,1000*1);
-	sensors.Add(manager); 
-	manager->RegisterHasDataEventReceiver(windowsManager.MainWnd());
-	manager->RegisterMeasuredEventReceiver(windowsManager.MainWnd());
-	//in order to avoid pause in the touch interactions, windows manager is defined as critical process
-	measurementNode.SetCriticalProcess(&windowsManager);
+	setupExample(windowsManager);
 
 	delay(1000); 
 	out<<F("End setup")<<endln;
@@ -87,16 +70,5 @@ void setup()
 
 void loop()
 {
-	//measure (if necessary -see delay parameter in sensor manager)
-	if(measurementNode.Measure())
-	{
-		//following if is only for debugging purposes
-		if(measurementNode.IsChanged())
-		{
-			measurementNode.LogResults();
-		}
-
-	}
-	//give window manager an opportunity to update display
-	windowsManager.loop();
+	loopExample(windowsManager);
 }

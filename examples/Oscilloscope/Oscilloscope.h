@@ -66,7 +66,7 @@ public:
 		y=_txtBufSize->Top()+_txtBufSize->Height()+1;
 		int cy=wnd_height-y-height*1.2;
 		int axis_y_margins=2;
-		_chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft,SmallFont,cy-axis_y_margins*2,minV,maxV,5);
+		_chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft, Environment::Get()->FindFont(F("Small")),cy-axis_y_margins*2,minV,maxV,5);
 		_chartYAxis->SetOffset(4,axis_y_margins);
 		_chartWnd=new ChartWindow(NULL,_chartYAxis,x,y,wnd_width-2,cy);
 		//_chartWnd->SetMinMaxY(minV,maxV);
@@ -96,7 +96,7 @@ public:
 		{
 			textBox->RegisterContentChangedReceiver(this);
 			textBox->SetMargins(0,7);
-			textBox->SetFont(BigFont);
+			textBox->SetFont(F("Big"));
 			((TextBoxNumber *)textBox)->SetIsReadOnly(false);
 		}
 

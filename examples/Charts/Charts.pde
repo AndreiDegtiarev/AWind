@@ -59,6 +59,7 @@ void setup()
 	//pinMode(47,OUTPUT);
 	//digitalWrite(47,HIGH);
 	
+	DC_UTFT::RegisterDefaultFonts();
 	//initialize window manager
 	windowsManager.Initialize();
 
@@ -72,21 +73,21 @@ void setup()
 	TextBoxFString *textBox=new TextBoxFString(x,y,windowsManager.GetDC()->DeviceWidth()/2,cy,F("Scaling factor: "));
 	//Setup transparent background and green text color
 	textBox->AddDecorator(new DecoratorColor(Color::Green));
-	textBox->SetFont(BigFont);
+	textBox->SetFont(F("Big"));
 	x=windowsManager.GetDC()->DeviceWidth()*3.0/4;
 	textNumber=new TextBoxNumber(x,y,windowsManager.GetDC()->DeviceWidth()-x-2,cy,0);
 	//Setup background + 3D-look of text box
 	textNumber->AddDecorator(new DecoratorRectFill(Color::Red));
 	textNumber->AddDecorator(new Decorator3DRect(Color::DarkGray,Color::White));
 	textNumber->AddDecorator(new DecoratorColor(Color::SkyBlue));
-	textNumber->SetFont(BigFont);
+	textNumber->SetFont(F("Big"));
 	textNumber->SetMargins(20,2);
 	x=1;
 	y+=cy+5;
 	cy=windowsManager.GetDC()->DeviceHeight()-y-2;
 	//We create axis decorator separetly because chart need this decorator as well
 	int axis_y_margins=2;
-	DecoratorAxis *chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft,SmallFont,cy-axis_y_margins*2,-1,1,5);
+	DecoratorAxis *chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft, Environment::Get()->FindFont(F("Small")),cy-axis_y_margins*2,-1,1,5);
 	chartYAxis->SetOffset(4,axis_y_margins);
 	chartWnd=new ChartWindow(NULL,chartYAxis,x,y,windowsManager.GetDC()->DeviceWidth()-2,cy);
 	//Chart decorators

@@ -38,6 +38,7 @@ permissions and limitations under the License.
 #include "MeasurementNode.h"
 
 #include "DC_GfxOLED.h""
+#include "Adafruit_SSD1306.h"
 
 #include "WindowsManager.h"
 #include "GfxOLED_Oscilloscope.h"
@@ -46,9 +47,12 @@ permissions and limitations under the License.
 
 
 #define OLED_RESET 4
+
 Adafruit_SSD1306 display(OLED_RESET);
 
-DC_GfxOLED dc(&display);
+void displayWrp() {display.display();}
+
+DC_GfxOLED dc(&display, displayWrp);
 
 
 //list where all sensors are collected
@@ -61,8 +65,6 @@ WindowsManager<GfxOLED_Oscilloscope> windowsManager(&dc, NULL);
 
 VoltmeterSensor voltmeter(VOLTAGE_PORT, 2000, 200, MAX_VOLTAGE);
 SensorManager voltmeterManager(&voltmeter, 15, 40, 1000 * 1);
-uint8_t SmallFont[] = { 1 };
-uint8_t BigFont[] = { 2 };
 
 void setup()
 {
@@ -74,6 +76,7 @@ void setup()
 	display.display();
 	display.clearDisplay();
 
+	DC_GfxOLED::RegisterDefaultFonts();
 	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
 	DefaultDecoratorsOLED::InitAll();
 

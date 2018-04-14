@@ -18,7 +18,7 @@
   The license applies to all part of the library including the 
   examples and tools supplied with the library.
 */
-
+#include "DC_UTFT.h"
 #include "TouchUTFT.h"
 
 #include "WindowsManager.h"
@@ -60,6 +60,7 @@ void setup()
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_LOW);
 
+	DC_UTFT::RegisterDefaultFonts();
 	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
 	DefaultDecorators::InitAll();
 	//initialize window manager

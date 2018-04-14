@@ -52,7 +52,7 @@ public:
 	void OnDraw(DC *dc)
 	{
 		//out<<"value :"<<_value<<endln;
-		dc->SetFont(SmallFont);
+		dc->SetFont(Environment::Get()->FindFont(F("Small")));
 		//float range=_maxValue-_minValue;
 		float saling_factor=_axis->GetLength()/(_maxValue-_minValue);
 		int right_offset = _axis->EstimateLeft(dc);

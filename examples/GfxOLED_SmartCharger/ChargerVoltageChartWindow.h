@@ -34,10 +34,10 @@ public:
 		_voltmeter(voltmeter)
 	{
 		auto labelTitle = new TextBoxFString(0, 2, width, 20, F("Voltage"), F("Label"));
-		labelTitle->SetFont(SmallFont);
+		labelTitle->SetFont(Environment::Get()->FindFont(F("Small")));
 		labelTitle->SetHorizontalAlignment(DC::HorizontalAlignment::Center);
 		AddChild(labelTitle);
-		_chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallFont, height - 15, 1, 1.8, 3);
+		_chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, Environment::Get()->FindFont(F("Small")), height - 15, 1, 1.8, 3);
 		_chartYAxis->SetOffset(0, 0);
 		_chartWnd = new ChartWindow(NULL, _chartYAxis, 0, 10, width - 5, height - 15);
 		_chartWnd->AddDecorator(new DecoratorColor(Color::Black));

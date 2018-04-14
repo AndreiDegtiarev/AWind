@@ -17,6 +17,7 @@ permissions and limitations under the License.
 */
 #define DEMO_SENSORS
 
+#include "DC_UTFT.h"
 #include "TouchUTFT.h"
 #include <DHT.h>
 
@@ -52,6 +53,7 @@ MeasurementNode measurementNode(sensors,NULL);
 //manager which is responsible for window updating process
 WindowsManager<ViewModusWindow> windowsManager(&dc,&touch);
 
+extern uint8_t ArialNumFontPlus[];
 
 void setup()
 {
@@ -70,6 +72,8 @@ void setup()
 	//pinMode(47,OUTPUT);
 	//digitalWrite(47,HIGH);
 
+	DC_UTFT::RegisterDefaultFonts();
+	Environment::Get()->RegisterFont(new AFontUTFT(F("BigPlus"), ArialNumFontPlus));
 	//initialize window manager
 	windowsManager.Initialize();
 

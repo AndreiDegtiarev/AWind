@@ -17,6 +17,10 @@ implied.  See the License for the specific language governing
 permissions and limitations under the License.
 */
 #include "Window.h"
+extern DC *globalLcd;
+/*extern uint8_t *BigFont;
+extern uint8_t *SmallFon*/;
+
 ///Gauge window class, that allows visualisaion of data in form of bar or radial pointer
 class Gauge : public Window
 {

@@ -26,7 +26,7 @@ public:
 	Window1(const __FlashStringHelper * name,int left,int top,int width,int height):Window(name,left,top,width,height)
 	{
 		Label *label = new Label(0, 0, 0, 0, F("Tab 1"));
-		label->SetFont(BigFont);
+		label->SetFont(F("Big"));
 		AddChild(label);
 		SetDecorators(Environment::Get()->FindDecorators(F("Window")));
 	}

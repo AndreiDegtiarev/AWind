@@ -32,7 +32,7 @@ public:
 	*/
 	RadioButton(int left, int top, int width, int height, const __FlashStringHelper * text) :TextBoxTString<const __FlashStringHelper>(left, top, width, height, text, F("Button")), _isChecked(false)
 	{
-		SetFont(BigFont);
+		SetFont(F("Big"));
 		SetDecorators(Environment::Get()->FindDecorators(F("RadioButtonInactive")));
 	}
 	bool IsChecked()

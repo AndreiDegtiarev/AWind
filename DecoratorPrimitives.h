@@ -180,7 +180,7 @@ public:
 	};
 private:
 	Orientation _orientation; //!< Axis orientation
-	uint8_t *_font;          //!< Labels font
+	AFont *_font;            //!< Labels font
 	int _offsetX;           //!< Horizontal offset of decorator relative to the parent window
 	int _offsetY;          //!< Vertical offset of decorator relative to the parent window
 	int _length;          //!< Length of axis
@@ -198,7 +198,7 @@ public:
 \param maxValue max value
 \param nTicks number of short line perpendicular to the axis
 */
-	DecoratorAxis(Orientation orientation,uint8_t *font,int length,float minValue,float maxValue,int nTicks): 
+	DecoratorAxis(Orientation orientation,AFont *font,int length,float minValue,float maxValue,int nTicks): 
 	                                                                             _orientation(orientation),
 																				 _font(font),
 																				 _offsetX(0),

@@ -52,7 +52,7 @@ public:
 		int y=_buttonDistance;
 		_editField=new TextBoxString(x,y,Width()-2*_buttonDistance,_buttonSize,"");
 		_editField->SetDecorators(Environment::Get()->FindDecorators(F("EditTextBoxReadOnly")));
-		_editField->SetFont(BigFont);
+		_editField->SetFont(Environment::Get()->FindFont(F("Big")));
 		y+=_buttonSize+_buttonDistance;
 		_backspaceSymbol=new Button(5*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("<-"));
 		_btnOK=new Button(6*(_buttonSize+_buttonDistance)+_buttonDistance,y,_buttonSize,_buttonSize,F("E"));
@@ -73,7 +73,7 @@ public:
 		initTextBox(_editField);
 		initTextBox(_backspaceSymbol);
 		_backspaceSymbol->SetMargins(_textOffset,_textOffset*1.5);
-		_backspaceSymbol->SetFont(SmallFont);
+		_backspaceSymbol->SetFont(Environment::Get()->FindFont(F("Small")));
 		initTextBox(_pointSymbol);
 		initTextBox(_btnCancel);
 		initTextBox(_btnOK);

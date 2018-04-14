@@ -25,6 +25,10 @@ permissions and limitations under the License.
 #include "SensorManager.h"
 #include "FakeSensor.h"
 
+#include "WindowsManager.h"
+#include "MeasurementNode.h"
+#include "DefaultDecorators.h"
+
 ///Main window of gauges example. Routs events between child elements
 class GaugesWindow : public MainWindow, public ITouchEventReceiver, public ISensorHasDataEventReceiver, public ISensorMeasuredEventReceiver
 {
@@ -53,7 +57,7 @@ public:
 		int szx=width/4;
 		int szy=height-2;
 		int gauge_axis_y_margins=3;
-		DecoratorAxis *gaugeAxis=new DecoratorAxis(DecoratorAxis::VerticalRight,SmallFont,szy-gauge_axis_y_margins*2,0,100,5);
+		DecoratorAxis *gaugeAxis=new DecoratorAxis(DecoratorAxis::VerticalRight, Environment::Get()->FindFont(F("Small")),szy-gauge_axis_y_margins*2,0,100,5);
 		//DC dc;
 		int offsetX=gaugeAxis->EstimateRight(globalLcd);
 		gaugeAxis->SetOffset(szx-offsetX,gauge_axis_y_margins);
@@ -67,7 +71,7 @@ public:
 		_gaugeRadialPointer->SetPointerColor(Color::Green);
 		szy=height/2-4;
 		int axis_y_margins=2;
-		DecoratorAxis *chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft,SmallFont,szy-axis_y_margins*2,0,100,5);
+		DecoratorAxis *chartYAxis=new DecoratorAxis(DecoratorAxis::VerticalLeft, Environment::Get()->FindFont(F("Small")),szy-axis_y_margins*2,0,100,5);
 		chartYAxis->SetOffset(4,axis_y_margins);
 		_chartWindow=new ChartWindow(NULL,chartYAxis,x,height/2+2,szx,szy);
 		_chartWindow->AddDecorator(new DecoratorRectFill(Color::LightGray));
@@ -79,19 +83,20 @@ public:
 		x+=szx+2;
 		szx=width/4-6;
 		int y=4;
-		szy=30;
+		szy= height / 7;
+		int dy = szy / 3;
 		_txtNumber=new TextBoxNumber(x,y,szx,szy,0);
 		initTextBox(_txtNumber);
-		y+=szy+13;
+		y+=szy + dy;
 		_btnFast=new Button(x,y,szx,szy,F("Fast"));
 		initTextBox(_btnFast);
-		y+=szy+10;
+		y+=szy + dy;
 		_btnSlow=new Button(x,y,szx,szy,F("Slow"));
 		initTextBox(_btnSlow);
-		y+=szy+10;
-		szx=szy=40;
+		y+=szy + dy;
+		szx=szy=(height - y - dy*2)/2;
 		_btnTop=new ButtonWindow(ButtonWindow::TriangleTop,x+15,y,szx,szy);
-		y+=szy+20;
+		y+=szy+ dy;
 		_btnBottom=new ButtonWindow(ButtonWindow::TriangleBottom,x+15,y,szx,szy);
 		initButton(_btnTop);
 		initButton(_btnBottom);
@@ -163,3 +168,37 @@ public:
 		_chartWindow->InvalidateOnlyChartArea();
 	}
 };
+//list where all sensors are collected
+LinkedList<SensorManager> sensors;
+//manager which controls the measurement process
+MeasurementNode measurementNode(sensors, NULL);
+void setupExample(WindowsManager<GaugesWindow> &windowsManager)
+{
+	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
+	DefaultDecorators::InitAll();
+
+	//initialize window manager
+	windowsManager.Initialize();
+
+	SensorManager *manager = new SensorManager(new FakeSensor(), 15, 40, 1000 * 1);
+	sensors.Add(manager);
+	manager->RegisterHasDataEventReceiver(windowsManager.MainWnd());
+	manager->RegisterMeasuredEventReceiver(windowsManager.MainWnd());
+	//in order to avoid pause in the touch interactions, windows manager is defined as critical process
+	measurementNode.SetCriticalProcess(&windowsManager);
+}
+void loopExample(WindowsManager<GaugesWindow> &windowsManager)
+{
+	//measure (if necessary -see delay parameter in sensor manager)
+	if (measurementNode.Measure())
+	{
+		//following if is only for debugging purposes
+		if (measurementNode.IsChanged())
+		{
+			measurementNode.LogResults();
+		}
+
+	}
+	//give window manager an opportunity to update display
+	windowsManager.loop();
+}

@@ -15,7 +15,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied.  See the License for the specific language governing
 permissions and limitations under the License.
 */
-//#define DEMO_SENSORS
+#define DEMO_SENSORS
 #ifndef DEMO_SENSORS
 #include <OneWire.h>
 #endif
@@ -30,7 +30,9 @@ permissions and limitations under the License.
 
 #include "BatteryVoltmeterSensor.h"
 
-#include "DC_GfxOLED.h""
+#include "DC_GfxOLED.h"
+#include "Adafruit_SSD1306.h"
+
 
 #include "WindowsManager.h"
 #include "ChargerOverviewWindow.h"
@@ -71,7 +73,9 @@ permissions and limitations under the License.
 
 Adafruit_SSD1306 display(OLED_RESET);
 
-DC_GfxOLED dc(&display);
+void displayWrp() { display.display(); }
+
+DC_GfxOLED dc(&display, displayWrp);
 
 
 //list where all sensors are collected
@@ -112,9 +116,6 @@ ChargerController controller(&currentMeter,&voltageProbeTwo, &temperature,
 BatteryVoltmeterSensor batteryVoltsSensor(&controller, VOLTAGE_PROBE_TWO_PIN, -MAX_VOLTAGE, REF_VOLTAGE); // 5.84);
 SensorManager batteryVoltage(&batteryVoltsSensor, 0, 2, 1000 * 25,false);
 
-uint8_t SmallFont[] = { 1 };
-uint8_t BigFont[] = { 2 };
-
 volatile bool btnState = false;
 volatile unsigned long lastStateChange = 0;
 
@@ -136,7 +137,7 @@ void setup()
 	batteryVoltage.initMinutesBuffer(CUTOFF_TIME*60*0.69);
 	temperature.initMinutesBuffer(CUTOFF_TIME*60*0.69);
 
-
+	DC_GfxOLED::RegisterDefaultFonts();
 	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
 	DefaultDecoratorsOLED::InitAll();
 

@@ -45,7 +45,7 @@ public:
 		_editField=new TextBoxEditString(x,y,Width()-2*_butSpace,_butSize,"");
 		initTextBox(_editField);
 		_editField->SetDecorators(Environment::Get()->FindDecorators(F("EditTextBoxReadOnly")));
-		_editField->SetFont(BigFont);
+		_editField->SetFont(Environment::Get()->FindFont(F("Big")));
 		
 		DecoratorList * btnDecorators=Environment::Get()->FindDecorators(F("Button"));
 		y+=_butSize+_butSpace;
@@ -66,13 +66,13 @@ public:
 		y=_butSizeSpace+_butSpace;
 		_btnBckSpc=new Button(_btn10W,y,_btn2W,_butSize,F("BckSpc"));
 		initTextBox(_btnBckSpc);
-		_btnBckSpc->SetFont(SmallFont);
+		_btnBckSpc->SetFont(Environment::Get()->FindFont(F("Small")));
 		_btnBckSpc->SetMargins(1,tSmOff);
 		
 		y+=_butSize+_butSpace;
 		_btnOK=new Button(_btn10W,y,_btn2W,_butSize,F("Enter"));
 		initTextBox(_btnOK);
-		_btnOK->SetFont(SmallFont);
+		_btnOK->SetFont(Environment::Get()->FindFont(F("Small")));
 		_btnOK->SetMargins(4,tSmOff);
 
 		y+=2*(_butSize+_butSpace);
@@ -86,24 +86,24 @@ public:
 
 		_btnSpaceBar=new Button(4*_butSizeSpace+_butSpace,y,_btn2W*2+_butSpace,_butSize,F("Space"));
 		initTextBox(_btnSpaceBar);
-		_btnSpaceBar->SetFont(SmallFont);
+		_btnSpaceBar->SetFont(Environment::Get()->FindFont(F("Small")));
 		_btnSpaceBar->SetMargins(32,tSmOff);
 
 		_btnClear=new Button(8*_butSizeSpace+_butSpace,y,_btn2W,_butSize,F("Clear"));
 		initTextBox(_btnClear);
-		_btnClear->SetFont(SmallFont);
+		_btnClear->SetFont(Environment::Get()->FindFont(F("Small")));
 		_btnClear->SetMargins(4,tSmOff);
 
 		_btnCancel=new Button(_btn10W,y,_btn2W,_butSize,F("Cancel"));
 		initTextBox(_btnCancel);
-		_btnCancel->SetFont(SmallFont);
+		_btnCancel->SetFont(Environment::Get()->FindFont(F("Small")));
 		_btnCancel->SetMargins(1,tSmOff);
 
 	}
 protected:
 	void initTextBox(TextBox *text)
 	{
-		text->SetFont(BigFont);
+		text->SetFont(Environment::Get()->FindFont(F("Big")));
 		text->SetMargins(_textOffset,_textOffset);
 		text->RegisterTouchEventReceiver(this);
 		AddChild(text);

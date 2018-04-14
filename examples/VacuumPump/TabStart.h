@@ -79,7 +79,7 @@ public:
 	}
 	void initLabel(Label *label)
 	{
-		label->SetFont(BigFont);
+		label->SetFont(F("Big"));
 		AddChild(label);
 	}
 	void initRadio(RadioButton *radio)
@@ -91,7 +91,7 @@ public:
 	void initTextWindow(TextBoxNumber *wnd,bool isReadOnly)
 	{
 		wnd->SetDecorators(GetDecorators()); // here we save one decorator beacuse main window and text window have thae same decorator properties: black background
-		wnd->SetFont(BigFont);
+		wnd->SetFont(F("Big"));
 		wnd->SetMargins(5, 5);
 		wnd->SetPrecission(1);
 		wnd->SetIsReadOnly(isReadOnly);
@@ -110,7 +110,7 @@ public:
 		int szx = Width() - 10;
 		int szy = 30;
 		int gauge_axis_margins = 5;
-		DecoratorAxis *gaugeAxis = new DecoratorAxis(DecoratorAxis::HorizontalBottom, SmallFont, szx - gauge_axis_margins * 2, 0, 100, 5);
+		DecoratorAxis *gaugeAxis = new DecoratorAxis(DecoratorAxis::HorizontalBottom, Environment::Get()->FindFont(F("Small")), szx - gauge_axis_margins * 2, 0, 100, 5);
 		gaugeAxis->SetOffset(szx, 10);
 		_gaugeBar = new GaugeBar(gaugeAxis, 5, 115, szx, szy);
 		_gaugeBar->SetFillColor(Color::LightGray);

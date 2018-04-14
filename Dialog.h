@@ -44,7 +44,6 @@ public:
 		SetDecorators(Environment::Get()->FindDecorators(F("Dialog")));
 		TextBoxFString *captionText=new TextBoxFString(2,2,width-4,20,caption);
 		captionText->SetDecorators(Environment::Get()->FindDecorators(F("DialogCaption")));
-		captionText->SetFont(BigFont);
 		captionText->SetMargins(0,1);
 		AddChild(captionText);
 	}

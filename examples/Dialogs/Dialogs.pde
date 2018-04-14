@@ -15,7 +15,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied.  See the License for the specific language governing
 permissions and limitations under the License.
 */
-
+#include "DC_UTFT.h"
 #include "TouchUTFT.h"
 
 #include "Log.h"
@@ -57,6 +57,7 @@ void setup()
 	//pinMode(47,OUTPUT);
 	//digitalWrite(47,HIGH);
 
+	DC_UTFT::RegisterDefaultFonts();
 	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
 	DefaultDecorators::InitAll();
 	//initialize window manager

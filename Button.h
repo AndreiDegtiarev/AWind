@@ -31,7 +31,6 @@ public:
 	*/	
 	Button(int left,int top,int width,int height,const __FlashStringHelper * text):TextBoxTString<const __FlashStringHelper>(left,top,width,height,text,F("Button"))
 	{
-		SetFont(BigFont);
 		SetHorizontalAlignment(DC::Center);
 	}
 };

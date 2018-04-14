@@ -62,7 +62,7 @@ public:
 	*/
 	void OnDraw(DC *dc)
 	{
-		dc->SetFont(SmallFont);
+		dc->SetFont(Environment::Get()->FindFont(F("Small")));
 		float range=_maxValue-_minValue;
 		float step_val=(range)/(_numTicks-1);
 		float factor=1000/range;

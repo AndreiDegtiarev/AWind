@@ -1,4 +1,3 @@
-#pragma once
 /*
 GUI library for Arduino TFT and OLED displays
 
@@ -16,21 +15,19 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied.  See the License for the specific language governing
 permissions and limitations under the License.
 */
-#include "TextBoxString.h"
-///Implement Label control
-class Label : public TextBoxTString<const __FlashStringHelper>
+#pragma once
+class AFont
 {
 public:
-	///Constructor
-	/**
-	\param left left coordinate relative to parent indow
-	\param top top coordinate relative to parent indow
-	\param width window width
-	\param height window height
-	\param text text to visualize
-	*/	
-	Label(int left,int top,int width,int height,const __FlashStringHelper * text):TextBoxTString<const __FlashStringHelper>(left,top,width,height,text,F("Label"))
+	enum BaseLinePosition
 	{
-		SetFont(F("Small"));
+		BaselineTop,
+		BaselineBottom
+	};
+	const __FlashStringHelper * Name;
+	const BaseLinePosition BaselinePosition;
+	AFont(const __FlashStringHelper * name, BaseLinePosition baseLinePosition = AFont::BaselineTop) : Name(name), BaselinePosition(baseLinePosition)
+	{
+
 	}
 };

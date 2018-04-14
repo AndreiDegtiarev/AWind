@@ -1,4 +1,5 @@
 
+#include "DC_UTFT.h"
 #include "TouchUTFT.h"
 
 #include "WindowsManager.h"
@@ -35,7 +36,8 @@ void setup()
 	myTouch.InitTouch();
 	myTouch.setPrecision(PREC_MEDIUM);
 
-        DefaultDecorators::InitAll();
+    DefaultDecorators::InitAll();
+	DC_UTFT::RegisterDefaultFonts();
 	//initialize window manager
 	windowsManager.Initialize();
 	AHelper::LogFreeRam();

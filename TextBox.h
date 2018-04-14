@@ -19,14 +19,11 @@ permissions and limitations under the License.
 #include "Window.h"
 #include "IContentChangedEventReceiver.h"
 
-extern uint8_t BigFont[];
-extern uint8_t SmallFont[];
-
 
 ///Base class for window with text content
 class TextBox : public Window
 {
-	uint8_t *_font;
+	AFont *_font;
 protected:
 	int _offset_x;
 	int _offset_y;
@@ -42,7 +39,7 @@ protected:
 	*/
 	TextBox(int left,int top,int width,int height):Window(F("text"),left,top,width,height)
 	{
-		_font = SmallFont;
+		_font = Environment::Get()->FindFont(F("Small"));
 		_offset_x=0;
 		_offset_y=0;
 		_horizontal_alignment = DC::Left;
@@ -71,9 +68,16 @@ public:
 		_offset_y=offset_y;
 	}
 	///Sets font
-	void SetFont(uint8_t *font)
+	void SetFont(AFont *font)
 	{
 		_font = font;
+	}
+	///Set active font
+	void SetFont(const __FlashStringHelper * fontName)
+	{
+		auto font = Environment::Get()->FindFont(fontName);
+		if (font != NULL)
+			SetFont(font);
 	}
 };
 

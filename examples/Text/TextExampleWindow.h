@@ -33,11 +33,11 @@ public:
 		int x=0;
 		int y=40;
 		TextBoxFString *label=new TextBoxFString(x,y,width/2,25,F("This is label: "));
-		label->SetFont(BigFont);
+		label->SetFont(F("Big"));
 		x=width*3.0/4;
 		_textNumber=new TextBoxNumber(x,y,width-x,25,0);
 		_textNumber->SetDecorators(GetDecorators()); // here we save one decorator beacuse main window and text window have thae same decorator properties: black background
-		_textNumber->SetFont(BigFont);
+		_textNumber->SetFont(F("Big"));
 		_textNumber->SetMargins(20,2);
 		_textNumber->SetNumber(4);
 		_textNumber->SetIsReadOnly(false);

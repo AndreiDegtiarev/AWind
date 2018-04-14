@@ -19,6 +19,8 @@ permissions and limitations under the License.
 
 #include "Log.h"
 #include "Color.h"
+#include "AFont.h"
+#include "Environment.h"
 
 #ifdef _VARIANT_ARDUINO_DUE_X_   //DUE
 extern char *dtostrf(double val, signed char width, unsigned char prec, char *sout);
@@ -40,6 +42,7 @@ private:
 	int _last_x;  //!< Last x coordinate. It is needed in MoveTo and LineTo functions
 	int _last_y;  //!< Last x coordinate. It is needed in MoveTo and LineTo functions
 	char _buffer[15]; //!< Internal buffer for numbers convertion into string
+	AFont *_currentFont;
 public:
 	enum ScreenOrientationType
 	{
@@ -47,7 +50,7 @@ public:
 		Portrate,
 	};
 	///Constructor
-	DC()
+	DC(): _currentFont(NULL)
 	{
 		Reset();
 	}
@@ -59,6 +62,26 @@ public:
 
 	///Returns screen height
 	virtual int DeviceHeight() = 0;
+
+	///Set active font
+	virtual void SetFont(const __FlashStringHelper * fontName)
+	{	
+		auto font = Environment::Get()->FindFont(fontName);
+		if(font != NULL)
+			SetFont(font);
+	}
+	AFont *GetCurrentFont()
+	{
+		return _currentFont;
+	}
+	///Set active font
+	void SetFont(AFont *font)
+	{
+		_currentFont = font;
+		SetFontImpl(font);
+	}
+	///Set active font
+	virtual void SetFontImpl(AFont *font) = 0;
 
 	///Resets device context into initial condition
 	void Reset()
@@ -242,8 +265,6 @@ public:
 		SetDeviceColor(color);
 	}
 	virtual void SetBackColor(Color color) = 0;
-
-	virtual void SetFont(uint8_t *font) = 0;
 
 	void MoveTo(int x,int y)
 	{ 

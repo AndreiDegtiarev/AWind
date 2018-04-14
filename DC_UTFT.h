@@ -19,6 +19,20 @@ permissions and limitations under the License.
 #include "DC.h"
 #include "UTFT.h"
 
+extern uint8_t BigFont[];
+extern uint8_t SmallFont[];
+
+
+class AFontUTFT : public AFont
+{
+public:
+	const uint8_t *Font;
+	AFontUTFT(const __FlashStringHelper * fontName, const uint8_t *font) :AFont(fontName), Font(font)
+	{
+
+	}
+};
+
 class DC_UTFT : public DC
 {
 private:
@@ -44,6 +58,12 @@ public:
 	int DeviceHeight()
 	{
 		return _lcd->getDisplayYSize() - 1;
+	}
+	///Set active font
+	virtual void SetFontImpl(AFont *font)
+	{
+		if(font != NULL)
+			SetFont(((AFontUTFT *)font)->Font);
 	}
 	///Fills rectangle. Input coordinates have to be defined in the window coordinate system
 	void FillRect(int left, int top, int right, int bottom)
@@ -167,12 +187,17 @@ public:
 		_lcd->setBackColor(VGA_TRANSPARENT);
 		SetDeviceColor(color);
 	}
-	void SetFont(uint8_t *font)
+	void SetFont(const uint8_t *font)
 	{
-		_lcd->setFont(font);
+		_lcd->setFont((uint8_t *)font);
 	}
 	void drawLine(int x1, int y1, int x2, int y2)
 	{
 		_lcd->drawLine(x1, y1, x2, y2);
+	}
+	static void RegisterDefaultFonts()
+	{
+		Environment::Get()->RegisterFont(new AFontUTFT(F("Big"), BigFont));
+		Environment::Get()->RegisterFont(new AFontUTFT(F("Small"), SmallFont));
 	}
 };

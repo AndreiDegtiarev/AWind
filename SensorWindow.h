@@ -25,10 +25,6 @@ permissions and limitations under the License.
 #include "ISensorHasDataEventReceiver.h"
 
 
-extern uint8_t ArialNumFontPlus[];
-extern uint8_t BigFont[];
-extern uint8_t SmallFont[];
-
 ///Window that visualizes data from sensor in from from text or chart with different time scala (See example Sensors monitor)
 class SensorWindow : public Window, ISensorHasDataEventReceiver
 {
@@ -89,15 +85,15 @@ protected:
 
 
 		_textValue = new TextBoxNumber(offset,offset,textBoxWidth-offset,first_font_height-offset,_sensorManager->Sensor()->Precission());
-		_textValue->SetFont(size != Small?ArialNumFontPlus:BigFont);
+		_textValue->SetFont(Environment::Get()->FindFont(size != Small?F("BigPlus") : F("Big")));
 		_textValue->SetStatus(false);
 
 		_textName = new TextBoxFString(offset,first_font_height,textBoxWidth,1,name);
-		_textName->SetFont(size != Small?BigFont:SmallFont);
+		_textName->SetFont(Environment::Get()->FindFont(size != Small? F("Big") :F("Small")));
 
 		int chart_height=Height()-15;
 		_textChartAxis=new TextBoxFString(Width()/2,chart_height,textBoxWidth,1,F(""));
-		_textChartAxis->SetFont(size != Small?BigFont:SmallFont);
+		_textChartAxis->SetFont(Environment::Get()->FindFont(size != Small ? F("Big") : F("Small")));
 		int chart_offset_x=0;
 		_chartWnd = new ChartWindow(NULL,NULL,chart_offset_x,0,Width()-chart_offset_x,chart_height);
 		_chartWnd->SetVisible(false);

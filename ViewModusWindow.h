@@ -59,7 +59,7 @@ public:
 
 		//SetBackColor(Color::Black);
 		_text=new TextBoxFString(width-100,height-45,95,35,F("Night"));
-		_text->SetFont(BigFont);
+		_text->SetFont(F("Big"));
 		_text->SetMargins(12,10);
 		_modus=Day;
 		AddChild(_text);

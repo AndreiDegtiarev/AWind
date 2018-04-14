@@ -67,13 +67,13 @@ public:
 	}
 	void initLabel(Label *label)
 	{
-		label->SetFont(BigFont);
+		label->SetFont(F("Big"));
 		AddChild(label);
 	}
 	void initTextWindow(TextBoxNumber *wnd, int precission)
 	{
 		wnd->SetDecorators(GetDecorators()); // here we save one decorator beacuse main window and text window have thae same decorator properties: black background
-		wnd->SetFont(BigFont);
+		wnd->SetFont(F("Big"));
 		wnd->SetMargins(5, 5);
 		wnd->SetPrecission(precission);
 		wnd->SetIsReadOnly(false);

@@ -33,6 +33,7 @@ permissions and limitations under the License.
 #include "SensorManager.h"
 #include "MeasurementNode.h"
 
+#include "DC_UTFT.h"
 #include <TouchUTFT.h>
 
 #include "TabStart.h"
@@ -84,7 +85,7 @@ void setup() {
 	pumpController.Settings().MaxTemperature = 37;
 	pumpController.Initialize(sensors);
 
-
+	DC_UTFT::RegisterDefaultFonts();
 	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
 	DefaultDecorators::InitAll();
 

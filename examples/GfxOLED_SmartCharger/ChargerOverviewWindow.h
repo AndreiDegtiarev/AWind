@@ -41,7 +41,6 @@ public:
 		int x = 20;
 		int y = 2;
 		auto labelTitle = new TextBoxFString(x, y, width / 2, 20, F("Smart charger"), F("Label"));
-		labelTitle->SetFont(SmallFont);
 		AddChild(labelTitle);
 		x = 0;
 		y = 15;
@@ -63,10 +62,8 @@ public:
 	{
 		auto label = new TextBoxFString(x, y, width / 2, 20, name, F("Label"));
 		label->SetMargins(2, 2);
-		label->SetFont(BigFont);
 		x += 18;
 		auto text = new TextBoxNumber(x, y, 30 + dx, 20, 0);
-		text->SetFont(BigFont);
 		text->SetMargins(0, 3);
 		text->SetHorizontalAlignment(DC::HorizontalAlignment::Center);
 		text->SetNumber(0);

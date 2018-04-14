@@ -61,7 +61,7 @@ public:
 		_radioTemperature->Move(5,2,70,30);
 		_radioPressure->Move(160, 2, 70, 30);
 
-		_chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, SmallFont, cy - axis_y_margins * 2, 10, 50, 5);
+		_chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, Environment::Get()->FindFont(F("Small")), cy - axis_y_margins * 2, 10, 50, 5);
 		_chartYAxis->SetOffset(4, axis_y_margins);
 		_chartWnd = new ChartWindow(NULL, _chartYAxis, 2, Height() - cy, Width() - 4, cy - axis_y_margins * 2);
 		//Chart decorators

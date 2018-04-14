@@ -38,7 +38,6 @@ public:
 		int x = 20;
 		int y = 2;
 		auto labelTitle = new TextBoxFString(x, y, width / 2, 20, F("Demo DHT sensor"), F("Label"));
-		labelTitle->SetFont(SmallFont);
 		AddChild(labelTitle);
 		//x = 2;
 		y = 15;
@@ -75,10 +74,8 @@ public:
 		int x = 2;
 		auto label = new TextBoxFString(x, y, width / 2, 20, name, F("Label"));
 		label->SetMargins(5, 2);
-		label->SetFont(BigFont);
 		x = 3 * width / 4 - 12;
 		auto text = new TextBoxNumber(x, y, width / 4 + 8, 20, 0);
-		text->SetFont(BigFont);
 		text->SetMargins(10, 3);
 		text->SetNumber(0);
 

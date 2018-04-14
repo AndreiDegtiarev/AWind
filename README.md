@@ -5,19 +5,17 @@ Introduction
 AWind (arduino window) is Arduino-library that is intended to simplify the use of touch TFT and OLED displays for visualization of sensors data in text or chart form. It is also possible to interact with GUI by the use of display touch feature. 
 The library is implemented as general window framework that allows creation of simple GUIs. The GUI is consist of labels, text fields, buttons, tab control, gauges, chart window and etc. 
 For TFT the special keyboard window is implemented to provide runtime possibility of changing text fields.
-At this moment TFT and OLED displays are tested on Arduiono Mega and Arduino DUE. ESPxx boards is comming soon.
+At this moment TFT and OLED displays are tested on Arduiono Mega and Arduino DUE. ESPxx boards are comming soon.
 
 Installation
 ------------
-TFT via UTFT
+TFT via UTFT library
 ------------
-AWind library for TFT displays is build on top of Henning Karlsen libraries: 
 * [UTFT](http://www.rinkydinkelectronics.com/library.php?id=51)
 * [UTouch](http://www.rinkydinkelectronics.com/library.php?id=55)
 
-OLED via Adafruit-GFX
+OLED via Adafruit-GFX library
 ------------
-AWind library for OLED displays is build on top of Adafruit_GFX library
 * [Adafruit-GFX-Library ](https://github.com/adafruit/Adafruit-GFX-Library)
 * Install Adafruit driver for your display. In my case it is [SSD1306](https://github.com/adafruit/Adafruit_SSD1306) display 
 

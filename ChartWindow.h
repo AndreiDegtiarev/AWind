@@ -105,6 +105,7 @@ public:
 				_dc.LineTo(dc,max(min_x,0.0f),max_y);
 			}
 			dc->SetColor(Color::LightBlue);
+			dc->SetFont(F("Small"));
 			if(_yAxis == NULL)
 			{
 				dc->DrawNumber(_dc.MaxY(),1,1,1);

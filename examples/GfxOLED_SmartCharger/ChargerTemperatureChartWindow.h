@@ -34,6 +34,7 @@ public:
 		_temperature(temperature)
 	{
 		auto labelTitle = new TextBoxFString(0, 2, width, 20, F("Temperature"), F("Label"));
+		labelTitle->SetFont(F("Small"));
 		labelTitle->SetHorizontalAlignment(DC::HorizontalAlignment::Center);
 		AddChild(labelTitle);
 		_chartYAxis = new DecoratorAxis(DecoratorAxis::VerticalLeft, Environment::Get()->FindFont(F("Small")), height - 15, 20, 50, 3);

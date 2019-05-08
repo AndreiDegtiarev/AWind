@@ -39,7 +39,7 @@ protected:
 	LinkedList<Window> _children;   //!< list of children windows. All children window are positioned relative to parent window
 	Window *_parent;                //!< pointer to parent window
 //#ifdef DEBUG_AWIND
-    //const __FlashStringHelper *_name;  //!< internal window name that helps by debugging. For some reason preprocessor definiton #ifdef DEBUG_AWIND does not work here. So if you define debug you dhould uncomment this line
+    //const __FlashStringHelper *_name;  //!< internal window name that helps by debugging. For some reason preprocessor definition #ifdef DEBUG_AWIND does not work here. So if you define debug you dhould uncomment this line
 //#endif
 	bool _isDirty;                     //!< if true than window manager will redraw this window. 
 	DecoratorList *_decorators;//!< contains list of drawig commands. If they are shared between more than one window -> SRAM usage optimisation
@@ -92,7 +92,7 @@ public:
 
 
 	///Registers receiver for touch event
-    /** Receiver can be a general class that is derived from ITouchEventReceiver. In this calss NotifyTouch virtual function has to be ovveriden */
+    /** Receiver can be a general class that is derived from ITouchEventReceiver. In this calls NotifyTouch virtual function has to be ovveriden */
 	/**
 	\param TouchEventReceiver pointer to touch event receiver
 	*/
@@ -136,7 +136,7 @@ public:
 		}
 		return parent;
 	}
-	///Moves and resizes window relativly to the parent window 
+	///Moves and resizes window relatively to the parent window 
 	/**
 	\param left left coordinate relative to parent window
 	\param top top coordinate relative to parent window

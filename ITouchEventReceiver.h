@@ -23,7 +23,7 @@ class ITouchEventReceiver
 public:
 	///Has to be implemented in target class
     /**
-	\param window pointer to window (like TextBox) wich content was changed 
+	\param window pointer to window (like TextBox) which content was changed 
     */
 	virtual void NotifyTouch(Window *window)=0;
 };

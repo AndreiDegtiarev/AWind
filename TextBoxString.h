@@ -18,7 +18,7 @@ permissions and limitations under the License.
 #pragma once
 
 #include "TextBox.h"
-///Text box for string. It is templat class and can be used for differnt type of string (see bellow typedef's)
+///Text box for string. It is template class and can be used for different type of string (see below typedef's)
 template <class T> class TextBoxTString : public TextBox
 {
 	const T * _text;
@@ -66,7 +66,7 @@ public:
 		Invalidate();
 	}
 };
-///typedef for __FlashStringHelper - very usefull type that allows to save very limitted amount of on-board memory 
+///typedef for __FlashStringHelper - very useful type that allows to save very limitted amount of on-board memory 
 typedef	TextBoxTString<const __FlashStringHelper> TextBoxFString;
 ///typedef for common string
 typedef TextBoxTString<char> TextBoxString;

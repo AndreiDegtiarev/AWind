@@ -17,7 +17,7 @@ implied.  See the License for the specific language governing
 permissions and limitations under the License.
 */
 //#include "AHelper.h"
-///Decorator primitive that sets current color. Overriden members description see Decorator class documentation
+///Decorator primitive that sets current color. Overridden members description see Decorator class documentation
 class DecoratorColor : public Decorator
 {
 	Color _color;
@@ -35,7 +35,7 @@ public:
 		dc->SetColor(_color);
 	}
 };
-///Decorator primitive for boundary lines. Overriden members description see Decorator class documentation
+///Decorator primitive for boundary lines. Overridden members description see Decorator class documentation
 class DecoratorBoundaryLine : public Decorator
 {
 public:
@@ -72,7 +72,7 @@ public:
 		}
 	}
 };
-///Decorator primitive for round rect filled area. Overriden members description see Decorator class documentation
+///Decorator primitive for round rect filled area. Overridden members description see Decorator class documentation
 class DecoratorRectFill : public Decorator
 {
 	Color _color;
@@ -91,7 +91,7 @@ public:
 			dc->FillRect (left, top, left+width, top+height);
 	}
 };
-///Decorator primitive for round rect filled area. Overriden members description see Decorator class documentation
+///Decorator primitive for round rect filled area. Overridden members description see Decorator class documentation
 class DecoratorRectGradientFill : public Decorator
 {
 	Color _color1;
@@ -108,7 +108,7 @@ public:
 		dc->FillGradientRect (left, top, left+width, top+height,_color2,_color1);
 	}
 };
-///Decorator primitive for round rectangle. Overriden members description see Decorator class documentation
+///Decorator primitive for round rectangle. Overridden members description see Decorator class documentation
 class DecoratorRoundRect : public Decorator
 {
 	Color _color;
@@ -123,7 +123,7 @@ public:
 		dc->DrawRoundRect (left, top, width+left, height+top);
 	}
 };
-///Decorator primitive for 3D rectangle. Overriden members description see Decorator class documentation
+///Decorator primitive for 3D rectangle. Overridden members description see Decorator class documentation
 class Decorator3DRect : public Decorator
 {
 	Color _color1;
@@ -139,7 +139,7 @@ public:
 	}
 };
 
-///Decorator primitive for 3D Circle. Overriden members description see Decorator class documentation
+///Decorator primitive for 3D Circle. Overridden members description see Decorator class documentation
 class Decorator3DSquare : public Decorator
 {
 	Color _color1;
@@ -167,7 +167,7 @@ public:
 		}
 	}
 };
-///Axis decorator primitive. It is shared between gauge and chart objects. Overriden members description see Decorator class documentation
+///Axis decorator primitive. It is shared between gauge and chart objects. Overridden members description see Decorator class documentation
 class DecoratorAxis : public Decorator
 {
 public:

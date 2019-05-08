@@ -22,7 +22,7 @@ permissions and limitations under the License.
 ///Window selector main window. It works as kind of tab control and can be used more or less without modifications in the target application 
 class WindowSelector : public MainWindow, public ITouchEventReceiver
 {
-	LinkedList<Button> _listButtons; //list of buttons on the left scrren side
+	LinkedList<Button> _listButtons; //list of buttons on the left screen side
 	LinkedList<Window> _listWindow;          //list of depended windows (
 public:
 	WindowSelector(int wnd_width,int wnd_height):MainWindow(wnd_width,wnd_height)

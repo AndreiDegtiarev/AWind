@@ -40,7 +40,7 @@ TouchUTFT touch(&myTouch);
 
 //manager which is responsible for window updating process
 WindowsManager<Oscilloscope> windowsManager(&dc,&touch);
-//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
+//Initialize appearance. Create your own DefaultDecorators class if you would like different application look
 DefaultDecorators dfltDecorators(DefaultDecorators::all);
 
 VoltmeterSensor *voltmeter;

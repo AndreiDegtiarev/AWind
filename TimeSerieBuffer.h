@@ -34,7 +34,7 @@ public:
 	/**
 	\param time_step time interval between samples in buffer 
 	\param factor_y scale factor for measurements. Data can be stored as volts measured directly on board pins and this factor transform them into phisical units
-	\param reserved_size expected buffer size. This value allows buffer allocation only once. This is highly recomended because memory allocation is expencive operation. Mutiple allocation leads also to memory fragmentation.
+	\param reserved_size expected buffer size. This value allows buffer allocation only once. This is highly recommended because memory allocation is expencive operation. Multiple allocation leads also to memory fragmentation.
 	\param size actual buffer size
 	*/
 	TimeSerieBuffer(float time_step,float factor_y,int reserved_size,int size,float offset_y = 0)

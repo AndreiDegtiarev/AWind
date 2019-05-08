@@ -25,7 +25,7 @@ public:
 	{
 
 	}
-	///Returns internal sensors name. Usefull for debugging
+	///Returns internal sensors name. Useful for debugging
 	virtual const __FlashStringHelper* Name()
 	{
 		return F("Battery voltage");

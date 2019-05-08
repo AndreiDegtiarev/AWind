@@ -19,10 +19,10 @@ permissions and limitations under the License.
 #include "MainWindow.h"
 #include "Button.h"
 
-///TabControl. Control element wich allows intersactive switch between chidl windows
+///TabControl. Control element which allows intersactive switch between chidl windows
 class TabControl : public Window, public ITouchEventReceiver
 {
-	LinkedList<Button> _listButtons; //list of buttons on the left scrren side
+	LinkedList<Button> _listButtons; //list of buttons on the left screen side
 	LinkedList<Window> _listWindow;          //list of depended windows (
 	static const int _szy = 30;
 public:

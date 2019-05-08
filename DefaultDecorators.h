@@ -17,7 +17,7 @@ implied.  See the License for the specific language governing
 permissions and limitations under the License.
 */
 #include "DecoratorPrimitives.h"
-///This class initializes default apperance for window, buttons, edit box and other controls in AWind library. If you need your another look just deefine your own resources file
+///This class initializes default appearance for window, buttons, edit box and other controls in AWind library. If you need your another look just deefine your own resources file
 class DefaultDecorators
 {
 public:

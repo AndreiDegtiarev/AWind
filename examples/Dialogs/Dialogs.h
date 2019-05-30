@@ -36,7 +36,7 @@ public:
 	Dialogs(int wnd_width,int wnd_height):MainWindow(wnd_width,wnd_height)
 	{
 	}
-	///Initilizes child controls
+	///Initializes child controls
 	void Initialize()
 	{
 		_btnDlg1=new Button(70,Height()/2,190,50,F("Get numbers"));

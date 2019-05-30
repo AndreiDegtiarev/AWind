@@ -2,7 +2,7 @@ SmartDHT
 ------------
 Introduction
 ------------
-SmartDHT example is intended to demonstrate follwing features of AWind library: 
+SmartDHT example is intended to demonstrate following features of AWind library: 
 - Interaction with DHT Sensor (temperature and humidity are measured)
 - Visualisation in from of text field
 - Visualization in form of chart

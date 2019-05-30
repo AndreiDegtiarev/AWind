@@ -27,7 +27,7 @@ class Gauge : public Window
 public:
 	Color _fillColor;  //!< Gauge fill color 
 	float _value;     //!< Current gauge value
-	float _oldValue;  //!< Previos gauge value
+	float _oldValue;  //!< Previous gauge value
 	float _minValue;  //!< Gauge min limit
 	float _maxValue;  //!< Gauge max limit
 	bool  _drawOnlyPointer; //!< Defines whether only pointer (not scale has to be drawn)

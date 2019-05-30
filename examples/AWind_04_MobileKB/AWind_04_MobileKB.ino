@@ -21,7 +21,7 @@ TouchUTFT touch(&myTouch);
 
 //Windows manager: container for GUI elements 
 WindowsManager<wnd_info> windowsManager(&dc,&touch);
-//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
+//Initialize appearance. Create your own DefaultDecorators class if you would like different application look
 DefaultDecorators dfltDecorators(DefaultDecorators::all);
 
 void setup()

@@ -45,7 +45,7 @@ TextBoxNumber *textNumber;
 
 //Number of chart points
 int buf_size=1000;
-//Time step in buffer. If this parameter is defined it is no more need to store x-date separatly
+//Time step in buffer. If this parameter is defined it is no more need to store x-date separately
 float time_step=1.0/buf_size;
 
 void setup()

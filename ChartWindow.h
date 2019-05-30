@@ -53,7 +53,7 @@ public:
 		_buffer=buffer;
 		_last_buffer_change=0;
 	}
-	///Forces to repain only chart arey (not axises) - reduces flickering 
+	///Forces to repain only chart arey (not axes) - reduces flickering 
 	void InvalidateOnlyChartArea()
 	{
 		if(_yAxis == NULL)
@@ -69,7 +69,7 @@ public:
 			}
 		}
 	}
-	///Implements drawing code. Please note axises are plotted as decorators
+	///Implements drawing code. Please note axes are plotted as decorators
 	void OnDraw(DC *dc)
 	{ 
 		if(_buffer!=NULL && _buffer->StartIndex()<_buffer->Size()-1)

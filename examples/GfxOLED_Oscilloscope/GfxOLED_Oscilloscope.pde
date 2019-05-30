@@ -77,7 +77,7 @@ void setup()
 	display.clearDisplay();
 
 	DC_GfxOLED::RegisterDefaultFonts();
-	//Initialize apperance. Create your own DefaultDecorators class if you would like different application look
+	//Initialize appearance. Create your own DefaultDecorators class if you would like different application look
 	DefaultDecoratorsOLED::InitAll();
 
 	//initialize window manager

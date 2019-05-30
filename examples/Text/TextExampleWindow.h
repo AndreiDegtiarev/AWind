@@ -36,7 +36,7 @@ public:
 		label->SetFont(F("Big"));
 		x=width*3.0/4;
 		_textNumber=new TextBoxNumber(x,y,width-x,25,0);
-		_textNumber->SetDecorators(GetDecorators()); // here we save one decorator beacuse main window and text window have thae same decorator properties: black background
+		_textNumber->SetDecorators(GetDecorators()); // here we save one decorator because main window and text window have thae same decorator properties: black background
 		_textNumber->SetFont(F("Big"));
 		_textNumber->SetMargins(20,2);
 		_textNumber->SetNumber(4);

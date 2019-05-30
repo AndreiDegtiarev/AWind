@@ -72,7 +72,7 @@ public:
 	}
 	void initTextWindow(TextBoxNumber *wnd, int precission)
 	{
-		wnd->SetDecorators(GetDecorators()); // here we save one decorator beacuse main window and text window have thae same decorator properties: black background
+		wnd->SetDecorators(GetDecorators()); // here we save one decorator because main window and text window have thae same decorator properties: black background
 		wnd->SetFont(F("Big"));
 		wnd->SetMargins(5, 5);
 		wnd->SetPrecission(precission);

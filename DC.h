@@ -26,7 +26,7 @@ permissions and limitations under the License.
 extern char *dtostrf(double val, signed char width, unsigned char prec, char *sout);
 #endif
 
-///Device context. Abstraction layer to the device specific drawing code. Coordinates in drawing function are in window coordinate system that internaly translated into screen coordinate system
+///Device context. Abstraction layer to the device specific drawing code. Coordinates in drawing function are in window coordinate system that internally translated into screen coordinate system
 class DC
 {
 public:
@@ -41,7 +41,7 @@ private:
 	int _offset_y;//!< Offset of coordinate system along y axis
 	int _last_x;  //!< Last x coordinate. It is needed in MoveTo and LineTo functions
 	int _last_y;  //!< Last x coordinate. It is needed in MoveTo and LineTo functions
-	char _buffer[15]; //!< Internal buffer for numbers convertion into string
+	char _buffer[15]; //!< Internal buffer for numbers conversion into string
 	AFont *_currentFont;
 public:
 	enum ScreenOrientationType
